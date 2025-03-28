@@ -4,7 +4,8 @@
   "description": "This project is a lightweight Vanilla JavaScript utility that provides shorthand functions for common DOM operations. It simplifies element selection, event handling, and other interactions without relying on external libraries like jQuery.",
   "main": "main.js",
   "scripts": {
-    "merge": "node build/merge.js"
+    "merge": "node build/merge.js && npm run minify",
+    "minify": "terser dist/rilla.js -o dist/rilla.min.js"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,8 @@
   "homepage": "https://github.com/aldrinrenzcruz/rillajs#readme",
   "dependencies": {
     "fs-extra": "^11.3.0"
+  },
+  "devDependencies": {
+    "terser": "^5.39.0"
   }
 }

@@ -1,23 +1,23 @@
 const fs = require("fs-extra");
 const path = require("path");
 
-// Define paths
-const sourceDir = path.resolve(__dirname, "../rilla"); // Adjusted for relative path from /build
-const outputDir = path.resolve(__dirname, ".."); // Root directory
-const outputFile = path.join(outputDir, "rilla.min.js");
+// Define paths 
+const sourceDir = path.resolve(__dirname, "../rilla"); // Adjusted for relative path from /build 
+const outputDir = path.resolve(__dirname, "../dist");
+const outputFile = path.join(outputDir, "rilla.js");
 
-// List of JavaScript files to merge (in order)
+// List of JavaScript files to merge (in order) 
 const files = [
   "Selector.js",
   "EventListeners.js",
 ];
 
-// Ensure output directory exists
+// Ensure output directory exists 
 fs.ensureDirSync(outputDir);
 
 console.log("Merging JavaScript files...");
 
-// Read, merge, and write files
+// Read, merge, and write files 
 const mergedContent = files
   .map(file => {
     const filePath = path.join(sourceDir, file);
@@ -29,8 +29,8 @@ const mergedContent = files
       return "";
     }
   })
-  .filter(content => content.trim() !== "") // Remove empty files
-  .join("\n\n"); // Add space between merged files
+  .filter(content => content.trim() !== "") // Remove empty files 
+  .join("\n\n"); // Add space between merged files 
 
 fs.writeFileSync(outputFile, mergedContent, "utf-8");
 
