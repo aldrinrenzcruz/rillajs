@@ -1,0 +1,23 @@
+{
+  "name": "rillajs",
+  "version": "1.0.0",
+  "description": "This project is a lightweight Vanilla JavaScript utility that provides shorthand functions for common DOM operations. It simplifies element selection, event handling, and other interactions without relying on external libraries like jQuery.",
+  "main": "main.js",
+  "scripts": {
+    "merge": "node build/merge.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aldrinrenzcruz/rillajs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aldrinrenzcruz/rillajs/issues"
+  },
+  "homepage": "https://github.com/aldrinrenzcruz/rillajs#readme",
+  "dependencies": {
+    "fs-extra": "^11.3.0"
+  }
+}
