@@ -1,6 +1,5 @@
-let container = $("#container");
-let btn = $("#hide");
+const myDiv = document.querySelector("#container");
 
-btn.$click(() => {
-  toggle(container)
-})
+myDiv.addClass("highlight active visible");
+myDiv.removeClass("hidden fade");
+myDiv.toggleClass("expanded collapsed");
