@@ -10,6 +10,7 @@ const outputFile = path.join(outputDir, "rilla.js");
 const files = [
   "Selector.js",
   "EventListeners.js",
+  "Storage.js"
 ];
 
 // Ensure output directory exists 
