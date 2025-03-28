@@ -5,6 +5,9 @@ $("#search").$input(() => {
   $sets("search", $("#search").value);
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-  $("#search").value = $gets("search");
+// Usage examples:
+$window(() => {
+  console.log("Entire page, including images and resources, is fully loaded");
 });
+
+$window(console.log("Entire page, including images and resources, is fully loaded"));
