@@ -115,3 +115,11 @@ $events.forEach(eventName => {
     return this;
   };
 });
+
+function $window(callback) {
+  window.addEventListener("load", callback);
+}
+
+function $dom(callback) {
+  document.addEventListener("DOMContentLoaded", callback);
+}

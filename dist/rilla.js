@@ -167,6 +167,14 @@ $events.forEach(eventName => {
   };
 });
 
+function $window(callback) {
+  window.addEventListener("load", callback);
+}
+
+function $dom(callback) {
+  document.addEventListener("DOMContentLoaded", callback);
+}
+
 function $set(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
 }
