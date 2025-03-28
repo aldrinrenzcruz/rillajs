@@ -175,27 +175,27 @@ function $dom(callback) {
   document.addEventListener("DOMContentLoaded", callback);
 }
 
-function $set(key, value) {
+function $setLocal(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
 }
 
-function $get(key) {
+function $getLocal(key) {
   return JSON.parse(localStorage.getItem(key));
 }
 
-function $rem(key) {
+function $remLocal(key) {
   localStorage.removeItem(key);
 }
 
-function $sets(key, value) {
+function $setSession(key, value) {
   sessionStorage.setItem(key, JSON.stringify(value));
 }
 
-function $gets(key) {
+function $getSession(key) {
   return JSON.parse(sessionStorage.getItem(key));
 }
 
-function $rems(key) {
+function $remSession(key) {
   sessionStorage.removeItem(key);
 }
 
