@@ -12,7 +12,8 @@ const files = [
   "ClassUtils.js",
   "EventListeners.js",
   "Storage.js",
-  "Visibility.js"
+  "Visibility.js",
+  "Draggable.js"
 ];
 
 // Ensure output directory exists 
