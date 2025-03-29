@@ -36,7 +36,7 @@ const $events = [
 
 $events.forEach(eventName => {
   // Create a method for each event type (e.g., $click, $keydown, $input)
-  // options: { stop: true, prevent: true, passive: true, capture: true, once: true }
+  // options: { passive: true, capture: true, once: true }
   Element.prototype[`$${eventName}`] = function (callback, options = {}) {
     // Handle different callback types similar to previous implementation
     if (callback == null) {
@@ -67,44 +67,76 @@ $events.forEach(eventName => {
       return this;
     }
 
-    // Wrap the callback to provide additional context and error handling
-    const wrappedCallback = (event) => {
-      try {
-        // Prevent default behavior if specified
-        if (options.prevent) {
-          event.preventDefault();
-        }
+    // Create a handler object to store event handling configuration
+    const handler = {
+      element: this,
+      callback: callback,
+      eventName: eventName,
+      options: {
+        passive: options.passive ?? false,
+        capture: options.capture ?? false,
+        once: options.once ?? false
+      },
+      preventDefault: false,
+      stopPropagation: false,
 
-        // Stop propagation if specified
-        if (options.stop) {
-          event.stopPropagation();
-        }
+      // The actual event listener function
+      listener: null,
 
-        // Call the original callback
-        const result = callback.call(this, event);
+      // Chainable method to add preventDefault
+      prevent: function () {
+        this.preventDefault = true;
+        return this;
+      },
 
-        // Support promise-based callbacks
-        if (result instanceof Promise) {
-          result.catch(error => {
-            console.error(`$${eventName}: Async callback error`, error);
-          });
-        }
+      // Chainable method to add stopPropagation
+      stop: function () {
+        this.stopPropagation = true;
+        return this;
+      },
 
-        return result;
-      } catch (error) {
-        console.error(`$${eventName}: Callback execution error`, error);
+      // Method to actually attach the event
+      attach: function () {
+        // Create the wrapped callback with the current configuration
+        this.listener = (event) => {
+          try {
+            // Apply configured behaviors
+            if (this.preventDefault) {
+              event.preventDefault();
+            }
+
+            if (this.stopPropagation) {
+              event.stopPropagation();
+            }
+
+            // Call the original callback
+            const result = this.callback.call(this.element, event);
+
+            // Support promise-based callbacks
+            if (result instanceof Promise) {
+              result.catch(error => {
+                console.error(`$${this.eventName}: Async callback error`, error);
+              });
+            }
+
+            return result;
+          } catch (error) {
+            console.error(`$${this.eventName}: Callback execution error`, error);
+          }
+        };
+
+        // Add the event listener
+        this.element.addEventListener(this.eventName, this.listener, this.options);
+
+        return this.element; // Return the element for further chaining
       }
     };
 
-    // Add event listener with optional configuration
-    this.addEventListener(eventName, wrappedCallback, {
-      passive: options.passive ?? false,
-      capture: options.capture ?? false,
-      once: options.once ?? false
-    });
+    // Automatically attach the event and return the handler for chaining
+    // We defer the actual attachment to allow for chaining .prevent() and .stop()
+    setTimeout(() => handler.attach(), 0);
 
-    // Return this for method chaining
-    return this;
+    return handler;
   };
 
   // Add corresponding remove method (e.g., $removeClick, $removeKeydown)
@@ -123,6 +155,7 @@ $events.forEach(eventName => {
     Element.prototype[`$remove${eventName.charAt(0).toUpperCase() + eventName.slice(1)}`];
 });
 
+// Add the same methods to Window.prototype
 $events.forEach(eventName => {
   Window.prototype[`$${eventName}`] = Element.prototype[`$${eventName}`];
   Window.prototype[`$remove${eventName.charAt(0).toUpperCase() + eventName.slice(1)}`] =
