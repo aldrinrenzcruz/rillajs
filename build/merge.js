@@ -13,7 +13,8 @@ const files = [
   "EventListeners.js",
   "Storage.js",
   "Visibility.js",
-  "Draggable.js"
+  "Draggable.js",
+  "InjectedStyles.js"
 ];
 
 // Ensure output directory exists 
