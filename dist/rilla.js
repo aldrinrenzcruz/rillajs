@@ -65,6 +65,12 @@ Element.prototype.$val = function (value) {
   return this;
 };
 
+Element.prototype.$attr = function (name, value) {
+  if (value === undefined) return this.getAttribute(name);
+  this.setAttribute(name, value);
+  return this;
+};
+
 Element.prototype.addClass = function (classNames) {
   if (typeof classNames !== "string") {
     console.error("addClass: Input must be a string");

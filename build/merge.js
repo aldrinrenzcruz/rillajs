@@ -10,6 +10,7 @@ const outputFile = path.join(outputDir, "rilla.js");
 const files = [
   "Selector.js",
   "ElementContent.js",
+  "Attributes.js",
   "ClassUtils.js",
   "EventListeners.js",
   "Storage.js",
