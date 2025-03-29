@@ -9,6 +9,7 @@ const outputFile = path.join(outputDir, "rilla.js");
 // List of JavaScript files to merge (in order) 
 const files = [
   "Selector.js",
+  "ElementInject.js",
   "ElementContent.js",
   "Attributes.js",
   "ClassUtils.js",
