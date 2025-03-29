@@ -254,29 +254,14 @@ function $dom(callback) {
   document.addEventListener("DOMContentLoaded", callback);
 }
 
-function $setLocal(key, value) {
-  localStorage.setItem(key, JSON.stringify(value));
-}
-
-function $getLocal(key) {
-  return JSON.parse(localStorage.getItem(key));
-}
-
-function $remLocal(key) {
-  localStorage.removeItem(key);
-}
-
-function $setSession(key, value) {
-  sessionStorage.setItem(key, JSON.stringify(value));
-}
-
-function $getSession(key) {
-  return JSON.parse(sessionStorage.getItem(key));
-}
-
-function $remSession(key) {
-  sessionStorage.removeItem(key);
-}
+const storage = (type, key, value) => {
+  const store = type === "local" ? localStorage : sessionStorage;
+  if (value === undefined) return JSON.parse(store.getItem(key));
+  if (value === null) return store.removeItem(key);
+  store.setItem(key, JSON.stringify(value));
+};
+const $local = (key, value) => storage("local", key, value);
+const $session = (key, value) => storage("session", key, value);
 
 // Helper function to get elements
 function $getElement(param) {
