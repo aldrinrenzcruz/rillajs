@@ -355,41 +355,47 @@ const storage = (type, key, value) => {
 const $local = (key, value) => storage("local", key, value);
 const $session = (key, value) => storage("session", key, value);
 
-// Helper function to get elements
 function $getElement(param) {
   return typeof param === "string" ? document.querySelector(`#${param}`) : param;
 }
 
-// Add methods to HTMLElement prototype
-HTMLElement.prototype.show = function(display_style = "block") {
-  show(this, display_style);
+HTMLElement.prototype.show = function (displayType = "block") {
+  show(this, displayType);
   return this;
 };
 
-HTMLElement.prototype.hide = function() {
+HTMLElement.prototype.hide = function () {
   hide(this);
   return this;
 };
 
-HTMLElement.prototype.toggle = function(display_style = "block") {
-  toggle(this, display_style);
+HTMLElement.prototype.toggle = function (displayType = "block") {
+  toggle(this, displayType);
   return this;
 };
 
-// Standalone functions
-function show(param, display_style = "block") {
+HTMLElement.prototype.fadeIn = function (displayType = "block") {
+  fadeIn(this, displayType);
+  return this;
+};
+
+HTMLElement.prototype.fadeOut = function () {
+  fadeOut(this);
+  return this;
+};
+
+HTMLElement.prototype.fadeToggle = function (displayType = "block") {
+  fadeToggle(this, displayType);
+  return this;
+};
+
+function show(param, displayType = "block") {
   const element = $getElement(param);
-  const display = display_style;
   if (element) {
-    element.style.opacity = 0;
-    element.style.display = display;
-    requestAnimationFrame(function () {
-      element.style.transition = "opacity 200ms";
-      element.style.opacity = 1;
-    });
+    element.style.display = displayType;
     return element;
   } else {
-    console.warn("Element being shown not found or invalid parameter.");
+    console.warn("show: element not found");
     return null;
   }
 }
@@ -397,46 +403,77 @@ function show(param, display_style = "block") {
 function hide(param) {
   const element = $getElement(param);
   if (element) {
-    element.style.opacity = 0;
-    requestAnimationFrame(function () {
-      element.style.transition = "opacity 200ms";
-      element.style.display = "none";
-    });
+    element.style.display = "none";
     return element;
   } else {
-    console.warn("Element being hidden not found or invalid parameter.");
+    console.warn("hide: element not found");
     return null;
   }
 }
 
-function toggle(param, display_style = "block") {
+function toggle(param, displayType = "block") {
   const element = $getElement(param);
-  const display = display_style;
   if (element) {
     if (window.getComputedStyle(element).display === "none") {
-      show(element, display);
+      show(element, displayType);
     } else {
       hide(element);
     }
     return element;
   } else {
-    console.warn("Element being toggled not found or invalid parameter.");
+    console.warn("toggle: element not found");
     return null;
   }
 }
 
-// Create global utility object
-window = {
-  show: show,
-  hide: hide,
-  toggle: toggle,
-  getElement: $getElement,
-  // Shorthand functions for elements by ID
-  get: function(id) {
-    const element = document.getElementById(id);
+function fadeIn(param, displayType = "block", duration = 200) {
+  const element = $getElement(param);
+  if (element) {
+    element.style.opacity = 0;
+    element.style.display = displayType;
+    requestAnimationFrame(function () {
+      element.style.transition = `opacity ${duration}ms`;
+      element.style.opacity = 1;
+    });
     return element;
+  } else {
+    console.warn("fadeIn: element not found");
+    return null;
   }
-};
+}
+
+function fadeOut(param, duration = 200) {
+  const element = $getElement(param);
+  if (element) {
+    element.style.opacity = 1;
+    element.style.transition = `opacity ${duration}ms`;
+    element.style.opacity = 0;
+
+    setTimeout(function () {
+      element.style.display = "none";
+    }, duration);
+
+    return element;
+  } else {
+    console.warn("fadeOut: element not found");
+    return null;
+  }
+}
+
+function fadeToggle(param, displayType = "block", duration = 200) {
+  const element = $getElement(param);
+  if (element) {
+    if (window.getComputedStyle(element).display === "none") {
+      fadeIn(element, displayType, duration);
+    } else {
+      fadeOut(element, duration);
+    }
+    return element;
+  } else {
+    console.warn("fadeToggle: element not found");
+    return null;
+  }
+}
 
 // Drag and Resize Function
 function $initElDrag() {
