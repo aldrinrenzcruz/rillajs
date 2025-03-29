@@ -51,7 +51,7 @@ function $select(context, selector) {
 
 Element.prototype.$prepend = function (htmlString) {
   if (!htmlString) {
-    console.error('$prepend: invalid parameter');
+    console.error("$prepend: invalid parameter");
     return this;
   }
   const template = document.createElement("template");
@@ -63,7 +63,7 @@ Element.prototype.$prepend = function (htmlString) {
 
 Element.prototype.$append = function (htmlString) {
   if (!htmlString) {
-    console.error('$append: invalid parameter');
+    console.error("$append: invalid parameter");
     return this;
   }
   const template = document.createElement("template");
@@ -76,7 +76,7 @@ Element.prototype.$append = function (htmlString) {
 Element.prototype.$paint = function (htmlString) {
   this.innerHTML = "";
   if (!htmlString) {
-    console.error('$paint: invalid parameter');
+    console.error("$paint: invalid parameter");
     return this;
   }
   const template = document.createElement("template");
