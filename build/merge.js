@@ -2,7 +2,7 @@ const fs = require("fs-extra");
 const path = require("path");
 
 // Define paths 
-const sourceDir = path.resolve(__dirname, "../src"); // Adjusted for relative path from /build 
+const sourceDir = path.resolve(__dirname, "../src/js"); // Adjusted for relative path from /build 
 const outputDir = path.resolve(__dirname, "../dist");
 const outputFile = path.join(outputDir, "rilla.js");
 
