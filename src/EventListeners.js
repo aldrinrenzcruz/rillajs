@@ -36,7 +36,7 @@ const $events = [
 
 $events.forEach(eventName => {
   // Create a method for each event type (e.g., $click, $keydown, $input)
-  // options: { stopPropagation: true, preventDefault: true, passive: true, capture: true, once: true }
+  // options: { stop: true, prevent: true, passive: true, capture: true, once: true }
   Element.prototype[`$${eventName}`] = function (callback, options = {}) {
     // Handle different callback types similar to previous implementation
     if (callback == null) {
@@ -71,12 +71,12 @@ $events.forEach(eventName => {
     const wrappedCallback = (event) => {
       try {
         // Prevent default behavior if specified
-        if (options.preventDefault) {
+        if (options.prevent) {
           event.preventDefault();
         }
 
         // Stop propagation if specified
-        if (options.stopPropagation) {
+        if (options.stop) {
           event.stopPropagation();
         }
 
@@ -114,6 +114,19 @@ $events.forEach(eventName => {
     }
     return this;
   };
+});
+
+// Add the same methods to Document.prototype
+$events.forEach(eventName => {
+  Document.prototype[`$${eventName}`] = Element.prototype[`$${eventName}`];
+  Document.prototype[`$remove${eventName.charAt(0).toUpperCase() + eventName.slice(1)}`] =
+    Element.prototype[`$remove${eventName.charAt(0).toUpperCase() + eventName.slice(1)}`];
+});
+
+$events.forEach(eventName => {
+  Window.prototype[`$${eventName}`] = Element.prototype[`$${eventName}`];
+  Window.prototype[`$remove${eventName.charAt(0).toUpperCase() + eventName.slice(1)}`] =
+    Element.prototype[`$remove${eventName.charAt(0).toUpperCase() + eventName.slice(1)}`];
 });
 
 function $window(callback) {
