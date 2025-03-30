@@ -384,10 +384,9 @@ $session('key', null);  // Remove value</code></pre>
 
           const targetId = this.getAttribute('href');
           const targetElement = document.querySelector(targetId);
-          const headerHeight = document.querySelector('header').offsetHeight;
 
           window.scrollTo({
-            top: targetElement.offsetTop - headerHeight - 20, // 20px extra padding
+            top: targetElement.offsetTop - 12,
             behavior: 'smooth'
           });
         });
