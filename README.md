@@ -2,11 +2,11 @@
 
 A Lightweight Vanilla JS Utility Library
 
+[Visit Rilla.js Documentation](https://aldrinrenzcruz.github.io/rillajs/)
+
 ## Overview
 
 Rilla is a minimalistic JavaScript utility library designed to simplify DOM selection, manipulation, and event handling without relying on larger external dependencies like jQuery.
-
-[Visit Rilla.js Documentation](https://aldrinrenzcruz.github.io/rillajs/)
 
 ## Features
 
