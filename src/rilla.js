@@ -98,6 +98,14 @@ Element.prototype.$paint = function (htmlString) {
   return this;
 };
 
+window.$create = function (tagName) {
+  if (!tagName || typeof tagName !== "string") {
+    console.error("$create: invalid tag name");
+    return null;
+  }
+  return document.createElement(tagName);
+};
+
 Element.prototype.html = function (content) {
   if (content === undefined) return this.innerHTML;
   this.innerHTML = content;
