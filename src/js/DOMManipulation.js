@@ -55,8 +55,8 @@ Element.prototype.text = function (content) {
   return this;
 };
 
-Element.prototype.val = function (value) {
-  if (value === undefined) return this.value;
-  this.value = value;
+Element.prototype.val = function (content) {
+  if (content === undefined) return this.value;
+  this.value = content;
   return this;
 };
