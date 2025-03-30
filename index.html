@@ -36,16 +36,23 @@
     <div class="flex flex-col md:flex-row">
       <!-- Sidebar navigation -->
       <aside class="md:w-64 flex-shrink-0 mb-8 md:mb-0 md:pr-8">
-        <div class="bg-white rounded-lg shadow-md p-4 md:sticky md:top-10">
-          <h3 class="font-bold text-lg mb-4 text-rose-600">Navigation</h3>
+        <div class="p-4 md:sticky md:top-8">
+          <div class="flex items-center mb-4 md:mb-0">
+            <h1 class="text-3xl font-bold text-rose-600">Rilla.js</h1>
+            <span class="ml-3 px-2 py-1 bg-rose-800 text-white rounded-full text-xs">v1.0</span>
+          </div>
           <ul class="space-y-2">
-            <li><a href="#overview" class="block hover:text-rose-600 transition">Overview</a></li>
-            <li><a href="#features" class="block hover:text-rose-600 transition">Features</a></li>
-            <li><a href="#installation" class="block hover:text-rose-600 transition">Installation</a></li>
+            <li class="pt-2">
+              <span class="font-semibold text-gray-600 uppercase text-xs">Getting Started</span>
+              <ul class="mt-2 space-y-2 text-sm">
+                <li><a href="#installation" class="block hover:text-rose-600 transition">Installation</a></li>
+                <li><a href="#features" class="block hover:text-rose-600 transition">Features</a></li>
+              </ul>
+            </li>
             <li class="pt-2 border-t border-gray-200">
-              <span class="font-semibold text-gray-600">Usage</span>
-              <ul class="pl-4 mt-2 space-y-2">
-                <li><a href="#element-selection" class="block hover:text-rose-600 transition">DOM Selection</a></li>
+              <span class="font-semibold text-gray-600 uppercase text-xs">Usage</span>
+              <ul class="mt-2 space-y-2 text-sm">
+                <li><a href="#dom-selectors" class="block hover:text-rose-600">DOM Selectors</a></li>
                 <li><a href="#dom-manipulation" class="block hover:text-rose-600 transition">DOM Manipulation</a></li>
                 <li><a href="#attributes-classes" class="block hover:text-rose-600 transition">Attributes &amp; Classes</a></li>
                 <li><a href="#event-handling" class="block hover:text-rose-600 transition">Event Handling</a></li>
@@ -56,9 +63,14 @@
                 <li><a href="#global-usage" class="block hover:text-rose-600 transition">Global Usage</a></li>
               </ul>
             </li>
-            <li class="pt-2 border-t border-gray-200"><a href="#browser-support" class="block hover:text-rose-600 transition">Browser Support</a></li>
-            <li><a href="#github" class="block hover:text-rose-600 transition">GitHub</a></li>
-            <li><a href="#license" class="block hover:text-rose-600 transition">License</a></li>
+            <li class="pt-2 border-t border-gray-200">
+              <span class="font-semibold text-gray-600 uppercase text-xs">More Information</span>
+              <ul class="mt-2 space-y-2 text-sm">
+                <li><a href="#browser-support" class="block hover:text-rose-600 transition">Browser Support</a></li>
+                <li><a href="#github" class="block hover:text-rose-600 transition">GitHub</a></li>
+                <li><a href="#license" class="block hover:text-rose-600 transition">License</a></li>
+              </ul>
+            </li>
           </ul>
         </div>
       </aside>
@@ -66,26 +78,24 @@
       <!-- Main content -->
       <div class="flex-1">
         <div class="bg-white rounded-lg shadow-md p-8">
-          <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4 md:mb-8">
-            <div class="flex items-center mb-4 md:mb-0">
-              <h1 class="text-5xl font-bold text-rose-600">Rilla.js</h1>
-              <span class="ml-3 px-2 py-1 bg-rose-800 text-white rounded-full text-xs">v1.0.0</span>
-            </div>
-            <a href="dist/rilla.min.js" download class="px-4 py-2 bg-rose-600 text-white font-bold rounded-lg shadow-md hover:bg-rose-700 transition">
-              Download Rilla.js
-            </a>
-          </div>
+          <section id="overview" class="mb-6">
+            <h2 class="text-3xl font-bold text-rose-600 mb-4">Get started with Rilla JS</h2>
+            <p class="text-gray-700">
+              Rilla is a minimalistic JavaScript utility library designed to simplify DOM selection, manipulation, and event handling.</p>
+          </section>
 
-          <section id="overview" class="mb-8">
-            <h2 class="text-3xl font-bold text-rose-600 mb-4">Overview</h2>
+          <section id="installation" class="mb-8">
+            <h2 class="text-3xl font-bold text-rose-600 mb-4">Installation</h2>
+            <div class="my-6">
+              <a href="dist/rilla.min.js" download class="px-4 py-2 bg-rose-600 text-white font-bold rounded-lg shadow-md hover:bg-rose-700 transition">
+                Download Rilla.js
+              </a>
+            </div>
             <p class="text-gray-700 mb-4">
-              Rilla is a minimalistic JavaScript utility library designed to simplify DOM selection, manipulation, and event handling
-              without relying on larger external dependencies like jQuery.
+              Simply include the <code>rilla.min.js</code> file in your project:
             </p>
-            <div class="bg-rose-50 border-l-4 border-rose-500 p-4 rounded">
-              <p class="text-rose-700">
-                <span class="font-bold">Lightweight</span> - Only what you need, nothing more
-              </p>
+            <div class="code-block">
+              <pre><code class="language-html">&lt;script src="path/to/rilla.min.js"&gt;&lt;/script&gt;</code></pre>
             </div>
           </section>
 
@@ -93,7 +103,7 @@
             <h2 class="text-3xl font-bold text-rose-600 mb-4">Features</h2>
             <ul class="list-disc list-inside space-y-2 text-gray-700">
               <li>
-                <span class="font-bold text-rose-500">DOM Selection:</span>
+                <span class="font-bold text-rose-500">DOM Selectors:</span>
                 <code class="bg-gray-100 px-1 rounded">$</code>,
                 <code class="bg-gray-100 px-1 rounded">$id</code>
               </li>
@@ -134,6 +144,7 @@
                 <code class="bg-gray-100 px-1 rounded">toggle</code>,
                 <code class="bg-gray-100 px-1 rounded">fadeIn</code>,
                 <code class="bg-gray-100 px-1 rounded">fadeOut</code>
+                <code class="bg-gray-100 px-1 rounded">fadeToggle</code>
               </li>
               <li>
                 <span class="font-bold text-rose-500">Draggable Elements:</span>
@@ -143,21 +154,11 @@
             </ul>
           </section>
 
-          <section id="installation" class="mb-8">
-            <h2 class="text-3xl font-bold text-rose-600 mb-4">Installation</h2>
-            <p class="text-gray-700 mb-4">
-              Simply include the rilla.min.js file in your project:
-            </p>
-            <div class="code-block">
-              <pre><code class="language-html">&lt;script src="path/to/rilla.min.js"&gt;&lt;/script&gt;</code></pre>
-            </div>
-          </section>
-
           <section id="usage" class="mb-8">
             <h2 class="text-3xl font-bold text-rose-600 mb-4">Usage</h2>
 
-            <section id="element-selection" class="mb-8">
-              <h3 class="text-2xl font-bold text-rose-500 mb-4">Element Selection</h3>
+            <section id="dom-selectors" class="mb-8">
+              <h3 class="text-2xl font-bold text-rose-500 mb-4">DOM Selectors</h3>
               <p class="text-gray-700 mb-4">
                 Rilla.js makes it easy to select DOM elements using CSS selectors or IDs.
               </p>
@@ -268,11 +269,6 @@ $dom(function() {
 // Window load event
 $window(function() {
   console.log('Window loaded');
-});
-
-// Window events
-window.$resize(function(event) {
-  console.log('Window resized');
 });</code></pre>
               </div>
             </section>
@@ -380,17 +376,14 @@ $session('key', null);  // Remove value</code></pre>
 
       // Smooth scrolling for anchor links
       $('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-
-          const targetId = this.getAttribute('href');
+        anchor.$click(function (e) {
+          const targetId = this.$attr('href');
           const targetElement = $(targetId);
-
           window.scrollTo({
             top: targetElement.offsetTop - 12,
             behavior: 'smooth'
           });
-        });
+        }).prevent();
       });
 
       $("pre").forEach((pre) => {
@@ -408,7 +401,7 @@ $session('key', null);  // Remove value</code></pre>
         wrapper.appendChild(button);
 
         // Copy functionality
-        button.addEventListener("click", async () => {
+        button.$click(async () => {
           try {
             await navigator.clipboard.writeText(pre.innerText);
             button.innerText = "Copied!";
