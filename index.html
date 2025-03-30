@@ -5,9 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rilla.js Documentation</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="public/css/atom-one-dark.min.css">
+  <link rel="stylesheet" href="public/css/app.css">
+  <script src="public/js/highlight.min.js"></script>
+  <script src="/dist/rilla.min.js"></script>
   <style>
     .code-block {
       background-color: #282c34;
@@ -374,16 +375,16 @@ $session('key', null);  // Remove value</code></pre>
   </main>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    $dom(() => {
       hljs.highlightAll();
 
       // Smooth scrolling for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      $('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
           e.preventDefault();
 
           const targetId = this.getAttribute('href');
-          const targetElement = document.querySelector(targetId);
+          const targetElement = $(targetId);
 
           window.scrollTo({
             top: targetElement.offsetTop - 12,
@@ -392,7 +393,7 @@ $session('key', null);  // Remove value</code></pre>
         });
       });
 
-      document.querySelectorAll("pre").forEach((pre) => {
+      $("pre").forEach((pre) => {
         // Create the copy button
         const button = document.createElement("button");
         button.innerText = "Copy";
