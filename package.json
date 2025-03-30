@@ -7,8 +7,7 @@
     "merge": "node build/merge.js && npm run minify",
     "minify": "terser src/rilla.js -o dist/rilla.min.js --source-map \"url='rilla.min.js.map'\"",
     "tailwind": "npx @tailwindcss/cli -i ./src/css/main.css -o ./public/css/app.css --minify",
-    "tailwind:watch": "npx @tailwindcss/cli -i ./src/css/main.css -o ./public/css/app.css --watch",
-    "push": "npm run merge && netlify deploy --prod"
+    "tailwind:watch": "npx @tailwindcss/cli -i ./src/css/main.css -o ./public/css/app.css --watch"
   },
   "repository": {
     "type": "git",
