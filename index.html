@@ -36,9 +36,9 @@
   <main class="container mx-auto px-4 py-8 max-w-5xl">
     <div class="flex flex-col md:flex-row">
       <!-- Sidebar navigation -->
-      <aside class="md:w-64 flex-shrink-0 mb-8 md:mb-0 md:pr-8">
+      <aside class="md:w-64 flex-shrink-0 md:mb-0 md:pr-8">
         <div class="p-4 md:sticky md:top-8">
-          <div class="flex items-center mb-4 md:mb-0">
+          <div class="flex items-center md:mb-0">
             <h1 class="text-3xl font-bold text-rose-600">Rilla.js</h1>
             <span class="ml-3 px-2 py-1 bg-rose-800 text-white rounded-full text-xs">v0.1</span>
           </div>
@@ -47,13 +47,12 @@
               <span class="font-semibold text-gray-600 uppercase text-xs">Getting Started</span>
               <ul class="mt-2 space-y-2 text-sm">
                 <li><a href="#installation" class="block hover:text-rose-500 transition">Installation</a></li>
-                <li><a href="#features" class="block hover:text-rose-500 transition">Features</a></li>
               </ul>
             </li>
             <li class="pt-2">
               <span class="font-semibold text-gray-600 uppercase text-xs">Usage</span>
               <ul class="mt-2 space-y-2 text-sm">
-                <li><a href="#dom-selectors" class="block hover:text-rose-500">DOM Selectors</a></li>
+                <li><a href="#dom-selection" class="block hover:text-rose-500">DOM Selection</a></li>
                 <li><a href="#dom-manipulation" class="block hover:text-rose-500 transition">DOM Manipulation</a></li>
                 <li><a href="#attributes-classes" class="block hover:text-rose-500 transition">Attributes &amp; Classes</a></li>
                 <li><a href="#event-handling" class="block hover:text-rose-500 transition">Event Handling</a></li>
@@ -100,72 +99,11 @@
             </div>
           </section>
 
-          <section id="features" class="mb-8">
-            <h2 class="text-2xl font-bold text-neutral-800 mb-2">Features</h2>
-            <ul class="list-disc list-inside space-y-2 text-gray-700">
-              <li>
-                <span class="font-bold text-neutral-800">DOM Selectors:</span>
-                <code class="bg-gray-100 px-1 rounded">$()</code>,
-                <code class="bg-gray-100 px-1 rounded">.$()</code>,
-                <code class="bg-gray-100 px-1 rounded">$id()</code>,
-                <code class="bg-gray-100 px-1 rounded">.$id()</code>
-              </li>
-              <li>
-                <span class="font-bold text-neutral-800">DOM Manipulation:</span>
-                <code class="bg-gray-100 px-1 rounded">$create()</code>,
-                <code class="bg-gray-100 px-1 rounded">.$append()</code>,
-                <code class="bg-gray-100 px-1 rounded">.$prepend()</code>,
-                <code class="bg-gray-100 px-1 rounded">.$paint()</code>,
-                <code class="bg-gray-100 px-1 rounded">.wrap()</code>,
-                <code class="bg-gray-100 px-1 rounded">.unwrap()</code>,
-                <code class="bg-gray-100 px-1 rounded">.html()</code>,
-                <code class="bg-gray-100 px-1 rounded">.text()</code>,
-                <code class="bg-gray-100 px-1 rounded">.val()</code>
-              </li>
-              <li>
-                <span class="font-bold text-neutral-800">Attribute Handling:</span>
-                <code class="bg-gray-100 px-1 rounded">.$attr()</code>
-              </li>
-              <li>
-                <span class="font-bold text-neutral-800">Class Management:</span>
-                <code class="bg-gray-100 px-1 rounded">.addClass()</code>,
-                <code class="bg-gray-100 px-1 rounded">.removeClass()</code>,
-                <code class="bg-gray-100 px-1 rounded">.toggleClass()</code>
-              </li>
-              <li>
-                <span class="font-bold text-neutral-800">Event Handling:</span>
-                <code class="bg-gray-100 px-1 rounded">.$click(() =&gt; {})</code>,
-                <code class="bg-gray-100 px-1 rounded">.$keydown(function(e) {})</code>, etc.
-              </li>
-              <li>
-                <span class="font-bold text-neutral-800">Storage Utilities:</span>
-                <code class="bg-gray-100 px-1 rounded">$local()</code>,
-                <code class="bg-gray-100 px-1 rounded">$session()</code>
-              </li>
-              <li>
-                <span class="font-bold text-neutral-800">Element Visibility:</span>
-                <code class="bg-gray-100 px-1 rounded">show()</code>,
-                <code class="bg-gray-100 px-1 rounded">hide()</code>,
-                <code class="bg-gray-100 px-1 rounded">toggle()</code>,
-                <code class="bg-gray-100 px-1 rounded">fadeIn()</code>,
-                <code class="bg-gray-100 px-1 rounded">fadeOut()</code>
-                <code class="bg-gray-100 px-1 rounded">fadeToggle()</code>
-              </li>
-              <li>
-                <span class="font-bold text-neutral-800">Draggable Elements:</span>
-                adding
-                <code class="bg-gray-100 px-1 rounded">.draggable</code>,
-                <code class="bg-gray-100 px-1 rounded">.draggable-handle</code>
-                classes
-              </li>
-            </ul>
-          </section>
-
           <section id="usage" class="mb-8">
             <h2 class="text-3xl font-bold text-rose-600 mb-4">Usage</h2>
 
-            <section id="dom-selectors" class="mb-8">
-              <h3 class="text-2xl font-bold text-neutral-800 mb-2">DOM Selectors</h3>
+            <section id="dom-selection" class="mb-8">
+              <h3 class="text-2xl font-bold text-neutral-800 mb-2">DOM Selection</h3>
               <p class="text-gray-700 mb-4">
                 Rilla.js makes it easy to select DOM elements using CSS selectors or IDs.
               </p>
@@ -210,6 +148,7 @@ $("#container")
 $("p")
   .wrap("&lt;blockquote&gt;&lt;/blockquote&gt;")
 
+// Unwrapping elements
 $("p").unwrap()
 $("#container").unwrap()
 
