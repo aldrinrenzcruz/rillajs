@@ -180,7 +180,7 @@ Add the `draggable` class to any element you want to make draggable:
 To use the library functions inside HTML attributes like `onclick`, make sure to use the global reference:
 
 ```html
-<button onclick="console.log(window.$('#container'))">Toggle</button>
+<button onclick="toggle(window.$('#container'))">Toggle</button>
 ```
 
 ## Browser Support
