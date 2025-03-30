@@ -6,11 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rilla.js</title>
   <!-- <link rel="stylesheet" href="/public/assets/css/app.css"> -->
+  <script src="/dist/rilla.min.js"></script>
 </head>
 
 <body>
 
-  <script src="/dist/rilla.min.js"></script>
+  <button onclick="console.log(document.querySelector('#container'))">Toggle</button>
+  <button onclick="console.log($('#container'))">Toggle</button>
+
+  <div id="container">Hello world</div>
+
   <script src="/public/assets/js/main.js"></script>
 
 </body>

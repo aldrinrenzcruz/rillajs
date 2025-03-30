@@ -2,36 +2,6 @@ function $getElement(param) {
   return typeof param === "string" ? document.querySelector(`#${param}`) : param;
 }
 
-HTMLElement.prototype.show = function (displayType = "block") {
-  show(this, displayType);
-  return this;
-};
-
-HTMLElement.prototype.hide = function () {
-  hide(this);
-  return this;
-};
-
-HTMLElement.prototype.toggle = function (displayType = "block") {
-  toggle(this, displayType);
-  return this;
-};
-
-HTMLElement.prototype.fadeIn = function (displayType = "block") {
-  fadeIn(this, displayType);
-  return this;
-};
-
-HTMLElement.prototype.fadeOut = function () {
-  fadeOut(this);
-  return this;
-};
-
-HTMLElement.prototype.fadeToggle = function (displayType = "block") {
-  fadeToggle(this, displayType);
-  return this;
-};
-
 function show(param, displayType = "block") {
   const element = $getElement(param);
   if (element) {
@@ -117,3 +87,33 @@ function fadeToggle(param, displayType = "block", duration = 200) {
     return null;
   }
 }
+
+// HTMLElement.prototype.show = function (displayType = "block") {
+//   show(this, displayType);
+//   return this;
+// };
+
+// HTMLElement.prototype.hide = function () {
+//   hide(this);
+//   return this;
+// };
+
+// HTMLElement.prototype.toggle = function (displayType = "block") {
+//   toggle(this, displayType);
+//   return this;
+// };
+
+// HTMLElement.prototype.fadeIn = function (displayType = "block") {
+//   fadeIn(this, displayType);
+//   return this;
+// };
+
+// HTMLElement.prototype.fadeOut = function () {
+//   fadeOut(this);
+//   return this;
+// };
+
+// HTMLElement.prototype.fadeToggle = function (displayType = "block") {
+//   fadeToggle(this, displayType);
+//   return this;
+// };
