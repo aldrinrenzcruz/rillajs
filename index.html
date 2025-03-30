@@ -4,20 +4,383 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rilla.js</title>
-  <!-- <link rel="stylesheet" href="/public/assets/css/app.css"> -->
-  <script src="/dist/rilla.min.js"></script>
+  <title>Rilla.js Documentation</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .code-block {
+      background-color: #282c34;
+      border-radius: 0.375rem;
+      overflow-x: auto;
+    }
+
+    pre code {
+      font-family: monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    h2,
+    h3,
+    section[id] {
+      scroll-margin-top: 6rem;
+    }
+  </style>
 </head>
 
-<body>
+<body class="bg-gray-50 text-gray-800">
 
-  <button onclick="console.log(document.querySelector('#container'))">Toggle</button>
-  <button onclick="console.log($('#container'))">Toggle</button>
+  <main class="container mx-auto px-4 py-8 max-w-5xl">
+    <div class="flex flex-col md:flex-row">
+      <!-- Sidebar navigation -->
+      <aside class="md:w-64 flex-shrink-0 mb-8 md:mb-0 md:pr-8">
+        <div class="bg-white rounded-lg shadow-md p-4 md:sticky md:top-10">
+          <h3 class="font-bold text-lg mb-4 text-rose-600">Navigation</h3>
+          <ul class="space-y-2">
+            <li><a href="#overview" class="block hover:text-rose-600 transition">Overview</a></li>
+            <li><a href="#features" class="block hover:text-rose-600 transition">Features</a></li>
+            <li><a href="#installation" class="block hover:text-rose-600 transition">Installation</a></li>
+            <li class="pt-2 border-t border-gray-200">
+              <span class="font-semibold text-gray-600">Usage</span>
+              <ul class="pl-4 mt-2 space-y-2">
+                <li><a href="#element-selection" class="block hover:text-rose-600 transition">DOM Selection</a></li>
+                <li><a href="#dom-manipulation" class="block hover:text-rose-600 transition">DOM Manipulation</a></li>
+                <li><a href="#attributes-classes" class="block hover:text-rose-600 transition">Attributes &amp; Classes</a></li>
+                <li><a href="#event-handling" class="block hover:text-rose-600 transition">Event Handling</a></li>
+                <li><a href="#document-window" class="block hover:text-rose-600 transition">Document &amp; Window Events</a></li>
+                <li><a href="#show-hide" class="block hover:text-rose-600 transition">Show/Hide &amp; Fade Effects</a></li>
+                <li><a href="#storage" class="block hover:text-rose-600 transition">Storage Utilities</a></li>
+                <li><a href="#draggable" class="block hover:text-rose-600 transition">Draggable Elements</a></li>
+                <li><a href="#global-usage" class="block hover:text-rose-600 transition">Global Usage</a></li>
+              </ul>
+            </li>
+            <li class="pt-2 border-t border-gray-200"><a href="#browser-support" class="block hover:text-rose-600 transition">Browser Support</a></li>
+            <li><a href="#license" class="block hover:text-rose-600 transition">License</a></li>
+          </ul>
+        </div>
+      </aside>
 
-  <div id="container">Hello world</div>
+      <!-- Main content -->
+      <div class="flex-1">
+        <div class="bg-white rounded-lg shadow-md p-8">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4 md:mb-8">
+            <div class="flex items-center mb-4 md:mb-0">
+              <h1 class="text-5xl font-bold text-rose-600">Rilla.js</h1>
+              <span class="ml-3 px-2 py-1 bg-rose-800 text-white rounded-full text-xs">v1.0.0</span>
+            </div>
+            <a href="dist/rilla.min.js" download class="px-4 py-2 bg-rose-600 text-white font-bold rounded-lg shadow-md hover:bg-rose-700 transition">
+              Download Rilla.js
+            </a>
+          </div>
 
-  <script src="/public/assets/js/main.js"></script>
+          <section id="overview" class="mb-8">
+            <h2 class="text-3xl font-bold text-rose-600 mb-4">Overview</h2>
+            <p class="text-gray-700 mb-4">
+              Rilla is a minimalistic JavaScript utility library designed to simplify DOM selection, manipulation, and event handling
+              without relying on larger external dependencies like jQuery.
+            </p>
+            <div class="bg-rose-50 border-l-4 border-rose-500 p-4 rounded">
+              <p class="text-rose-700">
+                <span class="font-bold">Lightweight</span> - Only what you need, nothing more
+              </p>
+            </div>
+          </section>
 
+          <section id="features" class="mb-8">
+            <h2 class="text-3xl font-bold text-rose-600 mb-4">Features</h2>
+            <ul class="list-disc list-inside space-y-2 text-gray-700">
+              <li>
+                <span class="font-bold text-rose-500">DOM Selection:</span>
+                <code class="bg-gray-100 px-1 rounded">$</code>,
+                <code class="bg-gray-100 px-1 rounded">$id</code>
+              </li>
+              <li>
+                <span class="font-bold text-rose-500">DOM Manipulation:</span>
+                <code class="bg-gray-100 px-1 rounded">$append</code>,
+                <code class="bg-gray-100 px-1 rounded">$prepend</code>,
+                <code class="bg-gray-100 px-1 rounded">$paint</code>,
+                <code class="bg-gray-100 px-1 rounded">html</code>,
+                <code class="bg-gray-100 px-1 rounded">text</code>,
+                <code class="bg-gray-100 px-1 rounded">val</code>
+              </li>
+              <li>
+                <span class="font-bold text-rose-500">Attribute Handling:</span>
+                <code class="bg-gray-100 px-1 rounded">$attr</code>
+              </li>
+              <li>
+                <span class="font-bold text-rose-500">Class Management:</span>
+                <code class="bg-gray-100 px-1 rounded">addClass</code>,
+                <code class="bg-gray-100 px-1 rounded">removeClass</code>,
+                <code class="bg-gray-100 px-1 rounded">toggleClass</code>
+              </li>
+              <li>
+                <span class="font-bold text-rose-500">Event Handling:</span>
+                <code class="bg-gray-100 px-1 rounded">$click</code>,
+                <code class="bg-gray-100 px-1 rounded">$keydown</code>,
+                <code class="bg-gray-100 px-1 rounded">$submit</code>, etc.
+              </li>
+              <li>
+                <span class="font-bold text-rose-500">Storage Utilities:</span>
+                <code class="bg-gray-100 px-1 rounded">$local</code>,
+                <code class="bg-gray-100 px-1 rounded">$session</code>
+              </li>
+              <li>
+                <span class="font-bold text-rose-500">Element Visibility:</span>
+                <code class="bg-gray-100 px-1 rounded">show</code>,
+                <code class="bg-gray-100 px-1 rounded">hide</code>,
+                <code class="bg-gray-100 px-1 rounded">toggle</code>,
+                <code class="bg-gray-100 px-1 rounded">fadeIn</code>,
+                <code class="bg-gray-100 px-1 rounded">fadeOut</code>
+              </li>
+              <li>
+                <span class="font-bold text-rose-500">Draggable Elements:</span>
+                <code class="bg-gray-100 px-1 rounded">.draggable</code>,
+                <code class="bg-gray-100 px-1 rounded">.draggable-header</code>
+              </li>
+            </ul>
+          </section>
+
+          <section id="installation" class="mb-8">
+            <h2 class="text-3xl font-bold text-rose-600 mb-4">Installation</h2>
+            <p class="text-gray-700 mb-4">
+              Simply include the rilla.min.js file in your project:
+            </p>
+            <div class="code-block">
+              <pre><code class="language-html">&lt;script src="path/to/rilla.min.js"&gt;&lt;/script&gt;</code></pre>
+            </div>
+          </section>
+
+          <section id="usage" class="mb-8">
+            <h2 class="text-3xl font-bold text-rose-600 mb-4">Usage</h2>
+
+            <section id="element-selection" class="mb-8">
+              <h3 class="text-2xl font-bold text-rose-500 mb-4">Element Selection</h3>
+              <p class="text-gray-700 mb-4">
+                Rilla.js makes it easy to select DOM elements using CSS selectors or IDs.
+              </p>
+              <div class="code-block">
+                <pre><code class="language-javascript">// Select by CSS selector (returns single element or NodeList)
+const element = $('#container');
+
+// Select within an element
+const childElement = element.$('.child');
+
+// Get element by ID
+const elementById = $id('container');</code></pre>
+              </div>
+            </section>
+
+            <section id="dom-manipulation" class="mb-8">
+              <h3 class="text-2xl font-bold text-rose-500 mb-4">DOM Manipulation</h3>
+              <p class="text-gray-700 mb-4">
+                Easily modify DOM elements with these utility methods.
+              </p>
+              <div class="code-block">
+                <pre><code class="language-javascript">// Append HTML to an element (returns the element for chaining)
+element.$append('&lt;div class="new-item"&gt;Content&lt;/div&gt;');
+
+// Prepend HTML
+element.$prepend('&lt;header&gt;New Header&lt;/header&gt;');
+
+// Replace all content
+element.$paint('&lt;div&gt;New Content&lt;/div&gt;');
+
+// Get or set HTML content
+element.html();         // Get HTML content
+element.html('&lt;p&gt;New content&lt;/p&gt;');  // Set HTML content
+
+// Get or set text content
+element.text();         // Get text content
+element.text('New text');  // Set text content
+
+// Get or set input value
+element.val();          // Get value
+element.val('New value');  // Set value</code></pre>
+              </div>
+            </section>
+
+            <section id="attributes-classes" class="mb-8">
+              <h3 class="text-2xl font-bold text-rose-500 mb-4">Attributes and Classes</h3>
+              <p class="text-gray-700 mb-4">
+                Work with element attributes and CSS classes seamlessly.
+              </p>
+              <div class="code-block">
+                <pre><code class="language-javascript">// Get or set attributes
+element.$attr('data-id');  // Get attribute
+element.$attr('data-id', 'new-value');  // Set attribute
+
+// Add classes
+element.addClass('active highlighted');
+
+// Remove classes
+element.removeClass('highlighted');
+
+// Toggle classes
+element.toggleClass('active');</code></pre>
+              </div>
+            </section>
+
+            <section id="event-handling" class="mb-8">
+              <h3 class="text-2xl font-bold text-rose-500 mb-4">Event Handling</h3>
+              <p class="text-gray-700 mb-4">
+                Manage event listeners with chainable methods.
+              </p>
+              <div class="code-block">
+                <pre><code class="language-javascript">// Click event with callback function
+element.$click(function(event) {
+  console.log('Clicked!', this);  // 'this' refers to the element
+});
+
+// Prevent default behavior
+element.$submit(function(event) {
+  // Do something
+}).prevent();
+
+// Stop propagation
+element.$click(function(event) {
+  // Do something
+}).stop();
+
+// Chain prevent and stop
+element.$click(function(event) {
+  // Do something
+}).prevent().stop();
+
+// Remove event listener
+element.$removeClick(callbackFunction);</code></pre>
+              </div>
+            </section>
+
+            <section id="document-window" class="mb-8">
+              <h3 class="text-2xl font-bold text-rose-500 mb-4">Document and Window Events</h3>
+              <p class="text-gray-700 mb-4">
+                Listen for document and window events.
+              </p>
+              <div class="code-block">
+                <pre><code class="language-javascript">// DOM ready event
+$dom(function() {
+  console.log('DOM fully loaded');
+});
+
+// Window load event
+$window(function() {
+  console.log('Window loaded');
+});
+
+// Window events
+window.$resize(function(event) {
+  console.log('Window resized');
+});</code></pre>
+              </div>
+            </section>
+
+            <section id="show-hide" class="mb-8">
+              <h3 class="text-2xl font-bold text-rose-500 mb-4">Show/Hide and Fade Effects</h3>
+              <p class="text-gray-700 mb-4">
+                Control element visibility with simple functions.
+              </p>
+              <div class="code-block">
+                <pre><code class="language-javascript">// Show element (accepts element or ID)
+show('elementId');  // Default display is 'block'
+show('elementId', 'flex');  // Custom display value
+
+// Hide element
+hide('elementId');
+
+// Toggle visibility
+toggle('elementId');
+
+// Fade effects
+fadeIn('elementId');
+fadeOut('elementId');
+fadeToggle('elementId');</code></pre>
+              </div>
+            </section>
+
+            <section id="storage" class="mb-8">
+              <h3 class="text-2xl font-bold text-rose-500 mb-4">Storage Utilities</h3>
+              <p class="text-gray-700 mb-4">
+                Easily interact with browser storage.
+              </p>
+              <div class="code-block">
+                <pre><code class="language-javascript">// Local storage
+$local('key', 'value');  // Set value
+const value = $local('key');  // Get value
+$local('key', null);  // Remove value
+
+// Session storage
+$session('key', 'value');  // Set value
+const sessionValue = $session('key');  // Get value
+$session('key', null);  // Remove value</code></pre>
+              </div>
+            </section>
+
+            <section id="draggable" class="mb-8">
+              <h3 class="text-2xl font-bold text-rose-500 mb-4">Draggable Elements</h3>
+              <p class="text-gray-700 mb-4">
+                Make elements draggable with simple class names.
+              </p>
+              <div class="code-block">
+                <pre><code class="language-html">&lt;div class="draggable"&gt;
+  &lt;!-- Add a header element with the class "draggable-header" --&gt;
+  &lt;div class="draggable-header"&gt;Drag me&lt;/div&gt;
+  &lt;!-- Content --&gt;
+&lt;/div&gt;</code></pre>
+              </div>
+            </section>
+
+            <section id="global-usage" class="mb-8">
+              <h3 class="text-2xl font-bold text-rose-500 mb-4">Global Usage in HTML Attributes</h3>
+              <p class="text-gray-700 mb-4">
+                To use the library functions inside HTML attributes like <code>onclick</code>, make sure to use the global reference:
+              </p>
+              <div class="code-block">
+                <pre><code class="language-html">&lt;button onclick="console.log(window.$('#container'))"&gt;Toggle&lt;/button&gt;</code></pre>
+              </div>
+            </section>
+          </section>
+
+          <section id="browser-support" class="mb-8">
+            <h2 class="text-3xl font-bold text-rose-600 mb-4">Browser Support</h2>
+            <p class="text-gray-700 mb-4">
+              Rilla.js is designed for modern browsers and uses ES6 features. It works in all major browsers that support ES6.
+            </p>
+          </section>
+
+          <section id="license" class="mb-4">
+            <h2 class="text-3xl font-bold text-rose-600 mb-4">License</h2>
+            <p class="text-gray-700">
+              <a href="LICENSE" class="text-rose-600 hover:underline">MIT License</a>
+            </p>
+          </section>
+          <p class="text-gray-400">&copy; 2025 Rilla.js. MIT License.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      hljs.highlightAll();
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          const headerHeight = document.querySelector('header').offsetHeight;
+
+          window.scrollTo({
+            top: targetElement.offsetTop - headerHeight - 20, // 20px extra padding
+            behavior: 'smooth'
+          });
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>
