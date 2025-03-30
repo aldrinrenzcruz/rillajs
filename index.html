@@ -116,6 +116,8 @@
                 <code class="bg-gray-100 px-1 rounded">.$append</code>,
                 <code class="bg-gray-100 px-1 rounded">.$prepend</code>,
                 <code class="bg-gray-100 px-1 rounded">.$paint</code>,
+                <code class="bg-gray-100 px-1 rounded">.wrap()</code>,
+                <code class="bg-gray-100 px-1 rounded">.unwrap()</code>,
                 <code class="bg-gray-100 px-1 rounded">.html</code>,
                 <code class="bg-gray-100 px-1 rounded">.text</code>,
                 <code class="bg-gray-100 px-1 rounded">.val</code>
@@ -197,6 +199,18 @@ element.$prepend('&lt;header&gt;New Header&lt;/header&gt;');
 
 // Replace all content
 element.$paint('&lt;div&gt;New Content&lt;/div&gt;');
+
+// Single wrapping or Chain wrapping
+$("#container")
+  .wrap("&lt;section class='test-class'&gt;&lt;/section&gt;")
+  .wrap("&lt;blockquote&gt;&lt;/blockquote&gt;")
+
+// Wrap multiple elements
+$("p")
+  .wrap("&lt;blockquote&gt;&lt;/blockquote&gt;")
+
+$("p").unwrap()
+$("#container").unwrap()
 
 // Get or set HTML content
 element.html();         // Get HTML content
@@ -390,6 +404,9 @@ $session('key', null);  // Remove value</code></pre>
       });
 
       $("pre").forEach((pre) => {
+
+        // pre.parentNode.$prepend("<p>test</p>")
+
         const button = $create("button")
           .text("Copy")
           .addClass("absolute top-2 right-2 px-2 py-1 bg-gray-800 text-gray-400 text-xs rounded hover:bg-gray-700 transition hover:cursor-pointer");
