@@ -92,7 +92,7 @@
               </a>
             </div>
             <p class="text-gray-700 mb-4">
-              Simply include the <code>rilla.min.js</code> file in your project:
+              Simply include the <code class="bg-gray-100 px-1 rounded">rilla.min.js</code> file in your project:
             </p>
             <div class="code-block">
               <pre><code class="language-html">&lt;script src="path/to/rilla.min.js"&gt;&lt;/script&gt;</code></pre>
@@ -105,32 +105,34 @@
               <li>
                 <span class="font-bold text-rose-500">DOM Selectors:</span>
                 <code class="bg-gray-100 px-1 rounded">$</code>,
-                <code class="bg-gray-100 px-1 rounded">$id</code>
+                <code class="bg-gray-100 px-1 rounded">.$</code>,
+                <code class="bg-gray-100 px-1 rounded">$id</code>,
+                <code class="bg-gray-100 px-1 rounded">.$id</code>
               </li>
               <li>
                 <span class="font-bold text-rose-500">DOM Manipulation:</span>
-                <code class="bg-gray-100 px-1 rounded">$append</code>,
-                <code class="bg-gray-100 px-1 rounded">$prepend</code>,
-                <code class="bg-gray-100 px-1 rounded">$paint</code>,
-                <code class="bg-gray-100 px-1 rounded">html</code>,
-                <code class="bg-gray-100 px-1 rounded">text</code>,
-                <code class="bg-gray-100 px-1 rounded">val</code>
+                <code class="bg-gray-100 px-1 rounded">.$append</code>,
+                <code class="bg-gray-100 px-1 rounded">.$prepend</code>,
+                <code class="bg-gray-100 px-1 rounded">.$paint</code>,
+                <code class="bg-gray-100 px-1 rounded">.html</code>,
+                <code class="bg-gray-100 px-1 rounded">.text</code>,
+                <code class="bg-gray-100 px-1 rounded">.val</code>
               </li>
               <li>
                 <span class="font-bold text-rose-500">Attribute Handling:</span>
-                <code class="bg-gray-100 px-1 rounded">$attr</code>
+                <code class="bg-gray-100 px-1 rounded">.$attr</code>
               </li>
               <li>
                 <span class="font-bold text-rose-500">Class Management:</span>
-                <code class="bg-gray-100 px-1 rounded">addClass</code>,
-                <code class="bg-gray-100 px-1 rounded">removeClass</code>,
-                <code class="bg-gray-100 px-1 rounded">toggleClass</code>
+                <code class="bg-gray-100 px-1 rounded">.addClass</code>,
+                <code class="bg-gray-100 px-1 rounded">.removeClass</code>,
+                <code class="bg-gray-100 px-1 rounded">.toggleClass</code>
               </li>
               <li>
                 <span class="font-bold text-rose-500">Event Handling:</span>
-                <code class="bg-gray-100 px-1 rounded">$click</code>,
-                <code class="bg-gray-100 px-1 rounded">$keydown</code>,
-                <code class="bg-gray-100 px-1 rounded">$submit</code>, etc.
+                <code class="bg-gray-100 px-1 rounded">.$click</code>,
+                <code class="bg-gray-100 px-1 rounded">.$keydown</code>,
+                <code class="bg-gray-100 px-1 rounded">.$submit</code>, etc.
               </li>
               <li>
                 <span class="font-bold text-rose-500">Storage Utilities:</span>
@@ -331,7 +333,7 @@ $session('key', null);  // Remove value</code></pre>
             <section id="global-usage" class="mb-8">
               <h3 class="text-2xl font-bold text-rose-500 mb-4">Global Usage in HTML Attributes</h3>
               <p class="text-gray-700 mb-4">
-                To use the library functions inside HTML attributes like <code>onclick</code>, make sure to use the global reference:
+                To use the library functions inside HTML attributes like <code class="bg-gray-100 px-1 rounded">onclick</code>, make sure to use the global reference:
               </p>
               <div class="code-block">
                 <pre><code class="language-html">&lt;button onclick="console.log(window.$('#container'))"&gt;Toggle&lt;/button&gt;</code></pre>

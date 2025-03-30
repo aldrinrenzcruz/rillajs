@@ -10,11 +10,11 @@ Rilla is a minimalistic JavaScript utility library designed to simplify DOM sele
 
 ## Features
 
-- **DOM Selection** (`$`, `$id`)
-- **DOM Manipulation** (`$append`, `$prepend`, `$paint`, `html`, `text`, `val`)
-- **Attribute Handling** (`$attr`)
-- **Class Management** (`addClass`, `removeClass`, `toggleClass`)
-- **Event Handling** (`$click`, `$keydown`, `$submit`, etc.)
+- **DOM Selection** (`$`, `.$`, `$id`, `.$id`)
+- **DOM Manipulation** (`.$append`, `.$prepend`, `.$paint`, `.html`, `.text`, `.val`)
+- **Attribute Handling** (`.$attr`)
+- **Class Management** (`.addClass`, `.removeClass`, `.toggleClass`)
+- **Event Handling** (`.$click`, `.$keydown`, `.$submit`, etc.)
 - **Storage Utilities** (`$local`, `$session`)
 - **Element Visibility** (`show`, `hide`, `toggle`, `fadeIn`, `fadeOut`, `fadeToggle`)
 - **Draggable Elements** (`.draggable`, `.draggable-header`)
