@@ -192,6 +192,11 @@ element.$prepend('&lt;header&gt;New Header&lt;/header&gt;');
 // Replace all content
 element.$paint('&lt;div&gt;New Content&lt;/div&gt;');
 
+// Create a new element
+const button = $create("button")
+  .text("Copy")
+  .addClass("px-2 py-1 bg-gray-800 text-gray-400");
+
 // Get or set HTML content
 element.html();         // Get HTML content
 element.html('&lt;p&gt;New content&lt;/p&gt;');  // Set HTML content
@@ -384,15 +389,13 @@ $session('key', null);  // Remove value</code></pre>
       });
 
       $("pre").forEach((pre) => {
-        // Create the copy button
-        const button = document.createElement("button");
-        button.innerText = "Copy";
-        button.className =
-          "absolute top-2 right-2 px-2 py-1 bg-gray-800 text-gray-400 text-xs rounded hover:bg-gray-700 transition";
+        const button = $create("button")
+          .text("Copy")
+          .addClass("absolute top-2 right-2 px-2 py-1 bg-gray-800 text-gray-400 text-xs rounded hover:bg-gray-700 transition hover:cursor-pointer");
 
         // Wrap pre in a relative div to position button correctly
-        const wrapper = document.createElement("div");
-        wrapper.className = "relative";
+        const wrapper = $create("div")
+          .addClass("relative");
         pre.parentNode.insertBefore(wrapper, pre);
         wrapper.appendChild(pre);
         wrapper.appendChild(button);
@@ -400,9 +403,9 @@ $session('key', null);  // Remove value</code></pre>
         // Copy functionality
         button.$click(async () => {
           try {
-            await navigator.clipboard.writeText(pre.innerText);
-            button.innerText = "Copied!";
-            setTimeout(() => (button.innerText = "Copy"), 1500);
+            await navigator.clipboard.writeText(pre.text());
+            button.text("Copied!");
+            setTimeout(() => (button.text("Copy")), 1500);
           } catch (err) {
             console.error("Copy failed", err);
           }
