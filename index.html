@@ -54,6 +54,7 @@
               <ul class="mt-2 space-y-2 text-sm">
                 <li><a href="#dom-selection" class="block hover:text-rose-500">DOM Selection</a></li>
                 <li><a href="#dom-manipulation" class="block hover:text-rose-500 transition">DOM Manipulation</a></li>
+                <li><a href="#element-references" class="block hover:text-rose-500 transition">Element References</a></li>
                 <li><a href="#attributes-classes" class="block hover:text-rose-500 transition">Attributes &amp; Classes</a></li>
                 <li><a href="#event-handling" class="block hover:text-rose-500 transition">Event Handling</a></li>
                 <li><a href="#document-window" class="block hover:text-rose-500 transition">Document &amp; Window Events</a></li>
@@ -163,6 +164,41 @@ element.text('New text');  // Set text content
 // Get or set input value
 element.val();          // Get value
 element.val('New value');  // Set value</code></pre>
+              </div>
+            </section>
+
+            <section id="element-references" class="mb-8">
+              <h3 class="text-2xl font-bold text-neutral-800 mb-2">Element References</h3>
+              <p class="text-gray-700 mb-4">
+                Capture element references while maintaining chainability.
+              </p>
+              <div class="code-block">
+                <pre><code class="language-javascript">// Capture element reference within a chain
+element.this(function(el) {
+  // Access the element inside the callback
+  console.log(el);
+});
+
+// Event handlers that modify the element
+$create("button")
+  .text("Copy")
+  .this(button =&gt; 
+    button.$click(() =&gt; {
+      button.text("Copied!");
+      setTimeout(() =&gt; button.text("Copy"), 1500);
+    })
+  )
+  .addClass("primary");
+
+// Use with conditional logic
+element
+  .addClass("card")
+  .this(el =&gt; {
+    if (condition) {
+      el.addClass("special");
+    }
+  })
+  .appendChild(contentElement);</code></pre>
               </div>
             </section>
 
@@ -304,12 +340,12 @@ $session('key', null);  // Remove value</code></pre>
 
           <h2 class="text-3xl font-bold text-rose-600 mb-2 border-b border-rose-300 pb-3">More Information</h2>
 
-          <section id="browser-support" class="mb-8">
+          <section id="browser-support" class="mb-4">
             <h2 class="text-2xl font-bold text-neutral-800 mb-2">Browser Support</h2>
             <p class="text-gray-700 mb-4">Rilla.js is built for modern browsers and uses ES6 features. It works in all major browsers that support ES6.</p>
           </section>
 
-          <section id="github" class="mb-8">
+          <section id="github" class="mb-4">
             <h2 class="text-2xl font-bold text-neutral-800 mb-2">GitHub Repository</h2>
             <p class="text-gray-700 mb-4">
               View the source code and contribute on <a href="https://github.com/aldrinrenzcruz/rillajs" class="text-rose-600 underline">GitHub</a>.
@@ -346,32 +382,24 @@ $session('key', null);  // Remove value</code></pre>
       });
 
       $("pre").forEach((pre) => {
-
-        // pre.parentNode.$prepend("<p>test</p>")
-
-        const button = $create("button")
+        let btn = $create("button")
           .text("Copy")
           .addClass("absolute top-2 right-2 px-2 py-1 bg-gray-800 text-gray-400 text-xs rounded hover:bg-gray-700 transition hover:cursor-pointer");
 
-        // Wrap pre in a relative div to position button correctly
-        const wrapper = $create("div")
-          .addClass("relative");
-        pre.parentNode.insertBefore(wrapper, pre);
-        wrapper.appendChild(pre);
-        wrapper.appendChild(button);
-
-        // Copy functionality
-        button.$click(async () => {
+        btn.$click(async () => {
           try {
             await navigator.clipboard.writeText(pre.text());
-            button.text("Copied!");
-            setTimeout(() => (button.text("Copy")), 1500);
+            btn.text("Copied!");
+            setTimeout(() => btn.text("Copy"), 1500);
           } catch (err) {
             console.error("Copy failed", err);
           }
         });
-      });
 
+        pre
+          .wrap("<div class='relative'></div>")
+          .appendChild(btn)
+      });
     });
   </script>
 </body>
