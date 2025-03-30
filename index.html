@@ -112,6 +112,7 @@
               </li>
               <li>
                 <span class="font-bold text-neutral-800">DOM Manipulation:</span>
+                <code class="bg-gray-100 px-1 rounded">$create</code>,
                 <code class="bg-gray-100 px-1 rounded">.$append</code>,
                 <code class="bg-gray-100 px-1 rounded">.$prepend</code>,
                 <code class="bg-gray-100 px-1 rounded">.$paint</code>,
@@ -183,7 +184,12 @@ const elementById = $id('container');</code></pre>
                 Easily modify DOM elements with these utility methods.
               </p>
               <div class="code-block">
-                <pre><code class="language-javascript">// Append HTML to an element (returns the element for chaining)
+                <pre><code class="language-javascript">// Create a new element
+const button = $create("button")
+  .text("Copy")
+  .addClass("px-2 py-1 bg-gray-800 text-gray-400");
+
+// Append HTML to an element (returns the element for chaining)
 element.$append('&lt;div class="new-item"&gt;Content&lt;/div&gt;');
 
 // Prepend HTML
@@ -191,11 +197,6 @@ element.$prepend('&lt;header&gt;New Header&lt;/header&gt;');
 
 // Replace all content
 element.$paint('&lt;div&gt;New Content&lt;/div&gt;');
-
-// Create a new element
-const button = $create("button")
-  .text("Copy")
-  .addClass("px-2 py-1 bg-gray-800 text-gray-400");
 
 // Get or set HTML content
 element.html();         // Get HTML content

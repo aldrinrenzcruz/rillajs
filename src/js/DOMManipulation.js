@@ -1,3 +1,11 @@
+window.$create = function (tagName) {
+  if (!tagName || typeof tagName !== "string") {
+    console.error("$create: invalid tag name");
+    return null;
+  }
+  return document.createElement(tagName);
+};
+
 Element.prototype.$prepend = function (htmlString) {
   if (!htmlString) {
     console.error("$prepend: invalid parameter");
@@ -33,14 +41,6 @@ Element.prototype.$paint = function (htmlString) {
   const fragment = template.content;
   this.append(fragment);
   return this;
-};
-
-window.$create = function (tagName) {
-  if (!tagName || typeof tagName !== "string") {
-    console.error("$create: invalid tag name");
-    return null;
-  }
-  return document.createElement(tagName);
 };
 
 Element.prototype.html = function (content) {
