@@ -379,6 +379,33 @@ $session('key', null);  // Remove value</code></pre>
           });
         });
       });
+
+      document.querySelectorAll("pre").forEach((pre) => {
+        // Create the copy button
+        const button = document.createElement("button");
+        button.innerText = "Copy";
+        button.className =
+          "absolute top-2 right-2 px-2 py-1 bg-gray-800 text-gray-400 text-xs rounded hover:bg-gray-700 transition";
+
+        // Wrap pre in a relative div to position button correctly
+        const wrapper = document.createElement("div");
+        wrapper.className = "relative";
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+        wrapper.appendChild(button);
+
+        // Copy functionality
+        button.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(pre.innerText);
+            button.innerText = "Copied!";
+            setTimeout(() => (button.innerText = "Copy"), 1500);
+          } catch (err) {
+            console.error("Copy failed", err);
+          }
+        });
+      });
+
     });
   </script>
 </body>
