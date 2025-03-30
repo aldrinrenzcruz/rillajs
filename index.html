@@ -80,18 +80,18 @@
       <div class="flex-1">
         <div class="bg-white rounded-lg shadow-md p-8">
           <section id="overview" class="mb-6">
-            <h2 class="text-3xl font-bold text-neutral-800 mb-4">Get started with Rilla JS</h2>
+            <h2 class="text-3xl font-bold text-rose-600 mb-2">Get started with Rilla JS</h2>
             <p class="text-gray-700">
               Rilla is a minimalistic JavaScript utility library designed to simplify DOM selection, manipulation, and event handling.</p>
-          </section>
-
-          <section id="installation" class="mb-8">
-            <h2 class="text-3xl font-bold text-neutral-800 mb-4">Installation</h2>
-            <div class="my-6">
+            <div class="my-4">
               <a href="dist/rilla.min.js" download class="px-4 py-2 bg-rose-600 text-white font-bold rounded-lg shadow-md hover:bg-rose-700 transition">
                 Download Rilla.js
               </a>
             </div>
+          </section>
+
+          <section id="installation" class="mb-8">
+            <h2 class="text-2xl font-bold text-neutral-800 mb-2">Installation</h2>
             <p class="text-gray-700 mb-4">
               Simply include the <code class="bg-gray-100 px-1 rounded">rilla.min.js</code> file in your project:
             </p>
@@ -101,7 +101,7 @@
           </section>
 
           <section id="features" class="mb-8">
-            <h2 class="text-3xl font-bold text-neutral-800 mb-4">Features</h2>
+            <h2 class="text-2xl font-bold text-neutral-800 mb-2">Features</h2>
             <ul class="list-disc list-inside space-y-2 text-gray-700">
               <li>
                 <span class="font-bold text-neutral-800">DOM Selectors:</span>
@@ -158,10 +158,10 @@
           </section>
 
           <section id="usage" class="mb-8">
-            <h2 class="text-3xl font-bold text-neutral-800 mb-4">Usage</h2>
+            <h2 class="text-3xl font-bold text-rose-600 mb-2">Usage</h2>
 
             <section id="dom-selectors" class="mb-8">
-              <h3 class="text-2xl font-bold text-neutral-800 mb-4">DOM Selectors</h3>
+              <h3 class="text-2xl font-bold text-neutral-800 mb-2">DOM Selectors</h3>
               <p class="text-gray-700 mb-4">
                 Rilla.js makes it easy to select DOM elements using CSS selectors or IDs.
               </p>
@@ -178,7 +178,7 @@ const elementById = $id('container');</code></pre>
             </section>
 
             <section id="dom-manipulation" class="mb-8">
-              <h3 class="text-2xl font-bold text-neutral-800 mb-4">DOM Manipulation</h3>
+              <h3 class="text-2xl font-bold text-neutral-800 mb-2">DOM Manipulation</h3>
               <p class="text-gray-700 mb-4">
                 Easily modify DOM elements with these utility methods.
               </p>
@@ -207,7 +207,7 @@ element.val('New value');  // Set value</code></pre>
             </section>
 
             <section id="attributes-classes" class="mb-8">
-              <h3 class="text-2xl font-bold text-neutral-800 mb-4">Attributes and Classes</h3>
+              <h3 class="text-2xl font-bold text-neutral-800 mb-2">Attributes and Classes</h3>
               <p class="text-gray-700 mb-4">
                 Work with element attributes and CSS classes seamlessly.
               </p>
@@ -228,7 +228,7 @@ element.toggleClass('active');</code></pre>
             </section>
 
             <section id="event-handling" class="mb-8">
-              <h3 class="text-2xl font-bold text-neutral-800 mb-4">Event Handling</h3>
+              <h3 class="text-2xl font-bold text-neutral-800 mb-2">Event Handling</h3>
               <p class="text-gray-700 mb-4">
                 Manage event listeners with chainable methods.
               </p>
@@ -259,7 +259,7 @@ element.$removeClick(callbackFunction);</code></pre>
             </section>
 
             <section id="document-window" class="mb-8">
-              <h3 class="text-2xl font-bold text-neutral-800 mb-4">Document and Window Events</h3>
+              <h3 class="text-2xl font-bold text-neutral-800 mb-2">Document and Window Events</h3>
               <p class="text-gray-700 mb-4">
                 Listen for document and window events.
               </p>
@@ -277,7 +277,7 @@ $window(function() {
             </section>
 
             <section id="show-hide" class="mb-8">
-              <h3 class="text-2xl font-bold text-neutral-800 mb-4">Show/Hide and Fade Effects</h3>
+              <h3 class="text-2xl font-bold text-neutral-800 mb-2">Show/Hide and Fade Effects</h3>
               <p class="text-gray-700 mb-4">
                 Control element visibility with simple functions.
               </p>
@@ -300,7 +300,7 @@ fadeToggle('elementId');</code></pre>
             </section>
 
             <section id="storage" class="mb-8">
-              <h3 class="text-2xl font-bold text-neutral-800 mb-4">Storage Utilities</h3>
+              <h3 class="text-2xl font-bold text-neutral-800 mb-2">Storage Utilities</h3>
               <p class="text-gray-700 mb-4">
                 Easily interact with browser storage.
               </p>
@@ -318,7 +318,7 @@ $session('key', null);  // Remove value</code></pre>
             </section>
 
             <section id="draggable" class="mb-8">
-              <h3 class="text-2xl font-bold text-neutral-800 mb-4">Draggable Elements</h3>
+              <h3 class="text-2xl font-bold text-neutral-800 mb-2">Draggable Elements</h3>
               <p class="text-gray-700 mb-4">
                 Make elements draggable with simple class names.
               </p>
@@ -332,7 +332,7 @@ $session('key', null);  // Remove value</code></pre>
             </section>
 
             <section id="global-usage" class="mb-8">
-              <h3 class="text-2xl font-bold text-neutral-800 mb-4">Global Usage in HTML Attributes</h3>
+              <h3 class="text-2xl font-bold text-neutral-800 mb-2">Global Usage in HTML Attributes</h3>
               <p class="text-gray-700 mb-4">
                 To use the library functions inside HTML attributes like <code class="bg-gray-100 px-1 rounded">onclick</code>, make sure to use the global reference:
               </p>
@@ -343,21 +343,21 @@ $session('key', null);  // Remove value</code></pre>
           </section>
 
           <section id="browser-support" class="mb-8">
-            <h2 class="text-3xl font-bold text-neutral-800 mb-4">Browser Support</h2>
+            <h2 class="text-2xl font-bold text-neutral-800 mb-2">Browser Support</h2>
             <p class="text-gray-700 mb-4">
               Rilla.js is designed for modern browsers and uses ES6 features. It works in all major browsers that support ES6.
             </p>
           </section>
 
           <section id="github" class="mb-8">
-            <h2 class="text-3xl font-bold text-neutral-800 mb-4">GitHub Repository</h2>
+            <h2 class="text-2xl font-bold text-neutral-800 mb-2">GitHub Repository</h2>
             <p class="text-gray-700 mb-4">
               View the source code and contribute on <a href="https://github.com/aldrinrenzcruz/rillajs" class="text-rose-600 underline">GitHub</a>.
             </p>
           </section>
 
           <section id="license" class="mb-4">
-            <h2 class="text-3xl font-bold text-neutral-800 mb-4">License</h2>
+            <h2 class="text-2xl font-bold text-neutral-800 mb-2">License</h2>
             <p class="text-gray-700">
               <a href="LICENSE" class="text-rose-600 underline">MIT License</a>
             </p>
