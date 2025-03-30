@@ -1,2 +1,3 @@
 TODO:
-- In Visibility, add parameter to turn off any transition effects
+- Add installation via CDN
+- Add installation via npm
