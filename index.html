@@ -93,7 +93,7 @@
           <section id="installation" class="mb-8">
             <h2 class="text-2xl font-bold text-neutral-800 mb-2">Installation</h2>
             <p class="text-gray-700 mb-4">
-              Simply include the <code class="bg-gray-100 px-1 rounded">rilla.min.js</code> file in your project:
+              Include the <code class="bg-gray-100 px-1 rounded">rilla.min.js</code> file in your project:
             </p>
             <div class="code-block">
               <pre><code class="language-html">&lt;script src="path/to/rilla.min.js"&gt;&lt;/script&gt;</code></pre>
@@ -337,16 +337,14 @@ $session('key', null);  // Remove value</code></pre>
                 To use the library functions inside HTML attributes like <code class="bg-gray-100 px-1 rounded">onclick</code>, make sure to use the global reference:
               </p>
               <div class="code-block">
-                <pre><code class="language-html">&lt;button onclick="console.log(window.$('#container'))"&gt;Toggle&lt;/button&gt;</code></pre>
+                <pre><code class="language-html">&lt;button onclick="toggle(window.$('#container'))"&gt;Toggle&lt;/button&gt;</code></pre>
               </div>
             </section>
           </section>
 
           <section id="browser-support" class="mb-8">
             <h2 class="text-2xl font-bold text-neutral-800 mb-2">Browser Support</h2>
-            <p class="text-gray-700 mb-4">
-              Rilla.js is designed for modern browsers and uses ES6 features. It works in all major browsers that support ES6.
-            </p>
+            <p class="text-gray-700 mb-4">Rilla.js is built for modern browsers and uses ES6 features. It works in all major browsers that support ES6.</p>
           </section>
 
           <section id="github" class="mb-8">
