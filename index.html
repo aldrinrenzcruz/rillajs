@@ -174,7 +174,7 @@ element.val('New value');  // Set value</code></pre>
               </p>
               <div class="code-block">
                 <pre><code class="language-javascript">// Capture element reference within a chain
-element.this(function(el) {
+element.$this(function(el) {
   // Access the element inside the callback
   console.log(el);
 });
@@ -182,7 +182,7 @@ element.this(function(el) {
 // Event handlers that modify the element
 $create("button")
   .text("Copy")
-  .this(button =&gt; 
+  .$this(button =&gt; 
     button.$click(() =&gt; {
       button.text("Copied!");
       setTimeout(() =&gt; button.text("Copy"), 1500);
@@ -193,7 +193,7 @@ $create("button")
 // Use with conditional logic
 element
   .addClass("card")
-  .this(el =&gt; {
+  .$this(el =&gt; {
     if (condition) {
       el.addClass("special");
     }
@@ -381,24 +381,21 @@ $session('key', null);  // Remove value</code></pre>
         }).prevent();
       });
 
+      // Create copy btn for each code blocks
       $("pre").forEach((pre) => {
-        let btn = $create("button")
-          .text("Copy")
-          .addClass("absolute top-2 right-2 px-2 py-1 bg-gray-800 text-gray-400 text-xs rounded hover:bg-gray-700 transition hover:cursor-pointer");
-
-        btn.$click(async () => {
-          try {
-            await navigator.clipboard.writeText(pre.text());
-            btn.text("Copied!");
-            setTimeout(() => btn.text("Copy"), 1500);
-          } catch (err) {
-            console.error("Copy failed", err);
-          }
-        });
-
         pre
           .wrap("<div class='relative'></div>")
-          .appendChild(btn)
+          .parentNode.appendChild($create("button")
+            .text("Copy")
+            .addClass("absolute top-2 right-2 px-2 py-1 bg-gray-800 text-gray-400 text-xs rounded hover:bg-gray-700 transition hover:cursor-pointer")
+            .$this(btn =>
+              btn.$click(() => {
+                navigator.clipboard.writeText(pre.text());
+                btn.text("Copied!");
+                setTimeout(() => btn.text("Copy"), 1500);
+              })
+            )
+          )
       });
     });
   </script>

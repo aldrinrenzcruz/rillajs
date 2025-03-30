@@ -61,14 +61,14 @@ function $id(id, error_log = true) {
   return element;
 }
 
-Element.prototype.this = function (callback) {
+Element.prototype.$this = function (callback) {
   if (typeof callback === "function") {
     callback(this);
   }
   return this;
 };
 
-NodeList.prototype.this = function (callback) {
+NodeList.prototype.$this = function (callback) {
   if (typeof callback === "function") {
     this.forEach(el => callback(el));
   }
