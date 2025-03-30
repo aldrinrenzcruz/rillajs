@@ -49,7 +49,7 @@ function $initElDrag() {
     document.onmousemove = null;
   }
   function $getHeader(element) {
-    var headerItems = element.querySelectorAll(".draggable-header");
+    var headerItems = element.querySelectorAll(".draggable-handle");
 
     if (headerItems.length === 1) {
       return headerItems[0];
