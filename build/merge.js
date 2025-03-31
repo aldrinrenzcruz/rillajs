@@ -3,7 +3,7 @@ const path = require("path");
 
 // Define paths 
 const sourceDir = path.resolve(__dirname, "../src/js"); // Adjusted for relative path from /build 
-const outputDir = path.resolve(__dirname, "../src");
+const outputDir = path.resolve(__dirname, "../dist");
 const outputFile = path.join(outputDir, "rilla.js");
 
 // List of JavaScript files to merge (in order) 
