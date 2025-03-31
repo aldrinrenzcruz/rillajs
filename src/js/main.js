@@ -35,9 +35,9 @@ function addCopyBtnToCodeBlocks() {
       )
   })
 }
+const examples = ["dom-selection", "installation", "dom-manipulation", "element-references", "attributes-classes", "event-handling", "document-window", "visibility", "storage", "draggable", "global-usage"];
 
 function fetchCodeBlocksContent() {
-  const examples = ["dom-selection", "installation", "dom-manipulation", "element-references", "attributes-classes", "event-handling", "document-window", "visibility", "storage", "draggable", "global-usage"];
   Promise.all(
     examples.map(async example => {
       const url = `./public/examples/${example}.txt`;
