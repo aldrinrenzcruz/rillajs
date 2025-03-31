@@ -1,6 +1,6 @@
 $dom(() => {
   initializeSidebarSmoothScroll();
-  addCopyBtnToCodeBlock();
+  addCopyBtnToCodeBlocks();
   hljs.highlightAll();
 });
 
@@ -17,7 +17,7 @@ function initializeSidebarSmoothScroll() {
   });
 }
 
-function addCopyBtnToCodeBlock() {
+function addCopyBtnToCodeBlocks() {
   $("pre").forEach((pre) => {
     const lang = pre.$("code").$attr("class").split("-")[1];
     pre
