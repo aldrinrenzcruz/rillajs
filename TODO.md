@@ -1,9 +1,9 @@
 **TODO:**
 - Rename ClassUtils to ClassUtilities
 - Modify merge.js to support splitting src scripts by adding easy file pathing
-- Create <pre><code class="language-html"></code></pre> dynamically, add metadata to the examples .txt files
 - Add error handling for examples fetch script for invalid query selectors, just skip those
 - Change .js and .css file names to be the same per use case (i.e. app.js, app.min.js)
+- Add .parent() to docs
 
 **FOR CONSIDERATION:**
 - Performance benchmark tests
@@ -16,6 +16,7 @@
 - Add $data to access all element data, should accept parameter, get or set value
 
 **COMPLETED:**
+- Create <pre><code class="language-html"></code></pre> dynamically, add metadata to the examples .txt files
 - Add .on and .off event handlers to the docs
 - Add .hasClass() to return a boolean
 - Specify adding the rilla.min.js in the head
