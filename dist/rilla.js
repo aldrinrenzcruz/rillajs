@@ -650,36 +650,6 @@ function fadeToggle(param, displayType = "block", duration = 200) {
   }
 }
 
-// HTMLElement.prototype.show = function (displayType = "block") {
-//   show(this, displayType);
-//   return this;
-// };
-
-// HTMLElement.prototype.hide = function () {
-//   hide(this);
-//   return this;
-// };
-
-// HTMLElement.prototype.toggle = function (displayType = "block") {
-//   toggle(this, displayType);
-//   return this;
-// };
-
-// HTMLElement.prototype.fadeIn = function (displayType = "block") {
-//   fadeIn(this, displayType);
-//   return this;
-// };
-
-// HTMLElement.prototype.fadeOut = function () {
-//   fadeOut(this);
-//   return this;
-// };
-
-// HTMLElement.prototype.fadeToggle = function (displayType = "block") {
-//   fadeToggle(this, displayType);
-//   return this;
-// };
-
 // Drag and Resize Function
 function $initElDrag() {
   var pos1 = 0,
