@@ -5,7 +5,7 @@ $dom(() => {
 
 function initializeSidebarSmoothScroll() {
   $('a[href^="#"]').forEach(anchor => {
-    anchor.$click(function (e) {
+    anchor.on('click', function (e) {
       const targetId = this.$attr('href');
       const targetElement = $(targetId);
       window.scrollTo({
@@ -40,28 +40,26 @@ function renderCodeBlocks() {
     })
   ).then(results => {
     results.forEach(({ example, modifiedData, lang }) => {
-
       $(`.code-block[data-src=${example}]`)
-        .$append(`<pre><code class="language-${lang}"></code></pre>`)
-
-      const codeElement = $(`.code-block[data-src=${example}] code`);
-      codeElement.text(modifiedData);
-      hljs.highlightElement(codeElement);
-
-      $(`.code-block[data-src=${example}] pre`)
+        .$append(`<pre></pre>`)
+        .$("pre")
+        .$append(`<code class="language-${lang}"></code>`)
+        .$("code")
+        .text(modifiedData)
+        .$this((el) => { hljs.highlightElement(el) })
+        .parent()
         .wrap("<div class='relative'></div>")
-        .parentNode.appendChild($create("button")
-          .text(lang || "copy")
-          .addClass("absolute top-2 right-2 px-2 py-1 bg-gray-800 text-gray-400 text-xs rounded hover:bg-gray-700 transition hover:cursor-pointer")
-          .$this(btn =>
-            btn.$click(() => {
-              navigator.clipboard.writeText(modifiedData);
-              btn.text("copied!");
-              setTimeout(() => btn.text(lang || "copy"), 1500);
-            })
-          )
+        .parent()
+        .$append("<button class='absolute top-2 right-2 px-2 py-1 bg-gray-800 text-gray-400 text-xs rounded hover:bg-gray-700 transition hover:cursor-pointer'></button>")
+        .$("button")
+        .text(lang.trim() || "copy")
+        .$this(btn =>
+          btn.on('click', () => {
+            navigator.clipboard.writeText(modifiedData);
+            btn.text("copied!");
+            setTimeout(() => btn.text(lang || "copy"), 1500);
+          })
         )
-
     });
   });
 }
