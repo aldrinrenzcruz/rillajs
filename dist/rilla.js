@@ -190,6 +190,10 @@ NodeList.prototype.unwrap = function () {
   return this;
 };
 
+Element.prototype.parent = function () {
+  return this.parentNode;
+};
+
 Element.prototype.html = function (content) {
   if (content === undefined) return this.innerHTML;
   this.innerHTML = content;
