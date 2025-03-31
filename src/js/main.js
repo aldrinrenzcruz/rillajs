@@ -1,7 +1,7 @@
 $dom(() => {
   fetchCodeBlocksContent();
   initializeSidebarSmoothScroll();
-  addCopyBtnToCodeBlocks();
+  // addCopyBtnToCodeBlocks();
 });
 
 function initializeSidebarSmoothScroll() {
@@ -35,6 +35,7 @@ function addCopyBtnToCodeBlocks() {
       )
   })
 }
+
 const examples = ["dom-selection", "installation", "dom-manipulation", "element-references", "attributes-classes", "event-handling", "document-window", "visibility", "storage", "draggable", "global-usage"];
 
 function fetchCodeBlocksContent() {
@@ -46,20 +47,29 @@ function fetchCodeBlocksContent() {
           if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
           return response.text();
         })
-        .then(data => ({ example, data }))
+        .then(data => {
+          const lines = data.split("\n");
+          const lang = lines[0].replace(/^#\s*/, "");
+          const modifiedData = lines.slice(2).join("\n");
+          return { example, modifiedData, lang };
+        })
         .catch(err => {
           console.error(`Error fetching ${url}:`, err);
-          return { example, data: null };
+          return { example, data: null, lang };
         });
     })
-  )
-    .then(results => {
-      results.forEach(({ example, data }) => {
-        if (data) {
-          const codeElement = $(`.code-block[data-src=${example}] code`);
-          codeElement.text(data);
-          hljs.highlightElement(codeElement);
-        }
-      });
+  ).then(results => {
+    results.forEach(({ example, modifiedData, lang }) => {
+
+      $(`.code-block[data-src=${example}]`)
+        .$append(`<pre><code class="language-${lang}"></code></pre>`)
+
+      const codeElement = $(`.code-block[data-src=${example}] code`);
+
+      codeElement.text(modifiedData);
+      hljs.highlightElement(codeElement);
     });
+  });
 }
+
+/* <pre><code class="language-html"></code></pre> */
