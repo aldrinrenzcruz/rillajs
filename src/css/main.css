@@ -17,3 +17,15 @@ h3,
 section[id] {
   scroll-margin-top: 6rem;
 }
+
+a.hover {
+  text-decoration: underline;
+  color: var(--color-rose-600);
+}
+
+.code {
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  background-color: var(--color-rose-200);
+  font-family: monospace;
+}
