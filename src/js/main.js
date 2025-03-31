@@ -1,7 +1,10 @@
 $dom(() => {
+  initializeSidebarSmoothScroll();
+  addCopyBtnToCodeBlock();
   hljs.highlightAll();
+});
 
-  // Smooth scrolling for anchor links
+function initializeSidebarSmoothScroll() {
   $('a[href^="#"]').forEach(anchor => {
     anchor.$click(function (e) {
       const targetId = this.$attr('href');
@@ -12,21 +15,24 @@ $dom(() => {
       });
     }).prevent();
   });
+}
 
-  // Create copy btn for each code blocks
+function addCopyBtnToCodeBlock() {
   $("pre").forEach((pre) => {
+    const lang = pre.$("code").$attr("class").split("-")[1];
+    console.log(lang)
     pre
       .wrap("<div class='relative'></div>")
       .parentNode.appendChild($create("button")
-        .text("Copy")
+        .text(lang || "copy")
         .addClass("absolute top-2 right-2 px-2 py-1 bg-gray-800 text-gray-400 text-xs rounded hover:bg-gray-700 transition hover:cursor-pointer")
         .$this(btn =>
           btn.$click(() => {
             navigator.clipboard.writeText(pre.text());
             btn.text("Copied!");
-            setTimeout(() => btn.text("Copy"), 1500);
+            setTimeout(() => btn.text(lang || "copy"), 1500);
           })
         )
       )
-  });
-});
+  })
+}

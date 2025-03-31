@@ -68,7 +68,7 @@
             Include the <span class="code">rilla.min.js</span> file in your project:
           </p>
           <div class="code-block">
-            <pre><code>&lt;script src="path/to/rilla.min.js"&gt;&lt;/script&gt;</code></pre>
+            <pre><code class="language-javascript">&lt;script src="path/to/rilla.min.js"&gt;&lt;/script&gt;</code></pre>
           </div>
         </article>
       </section>
@@ -82,7 +82,7 @@
             Rilla.js makes it easy to select DOM elements using CSS selectors or IDs.
           </p>
           <div class="code-block">
-            <pre><code>// Select by ID or Class selector (returns single element or NodeList)
+            <pre><code class="language-javascript">// Select by ID or Class selector (returns single element or NodeList)
 const element = $('#container');
 
 // Select within an element
@@ -99,7 +99,7 @@ const elementById = $id('container');</code></pre>
             Easily modify DOM elements with these utility methods.
           </p>
           <div class="code-block">
-            <pre><code>// Create a new element
+            <pre><code class="language-javascript">// Create a new element
 const button = $create("button")
   .text("Copy")
   .addClass("px-2 py-1 bg-gray-800 text-gray-400");
@@ -146,7 +146,7 @@ element.val('New value');  // Set value</code></pre>
             Capture element references while maintaining chainability.
           </p>
           <div class="code-block">
-            <pre><code>// Capture element reference within a chain
+            <pre><code class="language-javascript">// Capture element reference within a chain
 element.$this(function(el) {
   // Access the element inside the callback
   console.log(el);
@@ -181,7 +181,7 @@ element
             Work with element attributes and CSS classes seamlessly.
           </p>
           <div class="code-block">
-            <pre><code>// Get or set attributes
+            <pre><code class="language-javascript">// Get or set attributes
 element.$attr('data-id');  // Get attribute
 element.$attr('data-id', 'new-value');  // Set attribute
 
@@ -202,7 +202,7 @@ element.toggleClass('active');</code></pre>
             Manage event listeners with chainable methods.
           </p>
           <div class="code-block">
-            <pre><code>// Click event with callback function
+            <pre><code class="language-javascript">// Click event with callback function
 element.$click(function(event) {
   console.log('Clicked!', this);  // 'this' refers to the element
 });
@@ -233,7 +233,7 @@ element.$removeClick(callbackFunction);</code></pre>
             Listen for document and window events.
           </p>
           <div class="code-block">
-            <pre><code>// DOM ready event
+            <pre><code class="language-javascript">// DOM ready event
 $dom(function() {
   console.log('DOM fully loaded');
 });
@@ -251,7 +251,7 @@ $window(function() {
             Control element visibility with simple functions.
           </p>
           <div class="code-block">
-            <pre><code>// Show element (accepts element or ID)
+            <pre><code class="language-javascript">// Show element (accepts element or ID)
 show('elementId');  // Default display is 'block'
 show('elementId', 'flex');  // Custom display value
 
@@ -274,7 +274,7 @@ fadeToggle('elementId');</code></pre>
             Easily interact with browser storage.
           </p>
           <div class="code-block">
-            <pre><code>// Local storage
+            <pre><code class="language-javascript">// Local storage
 $local('key', 'value');  // Set value
 const value = $local('key');  // Get value
 $local('key', null);  // Remove value
@@ -303,10 +303,10 @@ $session('key', null);  // Remove value</code></pre>
         <article id="global-usage" class="mb-8">
           <h3 class="text-2xl font-bold text-neutral-800 mb-2">Global Usage in HTML Attributes</h3>
           <p class="text-gray-700 mb-4">
-            To use the library functions inside HTML attributes like <code class="bg-gray-100 px-1 rounded">onclick</code>, make sure to use the global reference:
+            To use the library functions inside HTML attributes like <span class="code">onclick</span>, make sure to use the global reference:
           </p>
           <div class="code-block">
-            <pre id="test"><code class="language-html" data-lang="html">&lt;button onclick="toggle(window.$('#container'))"&gt;Toggle&lt;/button&gt;</code></pre>
+            <pre id="test"><code class="language-html">&lt;button onclick="toggle(window.$('#container'))"&gt;Toggle&lt;/button&gt;</code></pre>
           </div>
         </article>
       </section>
@@ -334,8 +334,8 @@ $session('key', null);  // Remove value</code></pre>
     </main>
   </div>
 
-  <!-- <script src="./src/js/main.js"></script> -->
-  <script src="./public/js/app.min.js"></script>
+  <script src="./src/js/main.js"></script>
+  <!-- <script src="./public/js/app.min.js"></script> -->
 </body>
 
 </html>
