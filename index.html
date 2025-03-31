@@ -64,9 +64,7 @@
 
         <article id="installation" class="my-8">
           <h3 class="text-2xl font-bold text-neutral-800 mb-2">Installation</h3>
-          <p class="text-gray-700 mb-4">
-            Include the <span class="code">rilla.min.js</span> file in your project:
-          </p>
+          <p class="text-gray-700 mb-4">Include <span class="code">rilla.min.js</span> in the head section of your project:</p>
           <div class="code-block">
             <pre><code class="language-javascript">&lt;script src="path/to/rilla.min.js"&gt;&lt;/script&gt;</code></pre>
           </div>
@@ -78,9 +76,7 @@
 
         <article id="dom-selection" class="mb-8">
           <h3 class="text-2xl font-bold text-neutral-800 mb-2">DOM Selection</h3>
-          <p class="text-gray-700 mb-4">
-            Rilla.js makes it easy to select DOM elements using CSS selectors or IDs.
-          </p>
+          <p class="text-gray-700 mb-4">Select DOM elements using ID, ClassName, or TagName.</p>
           <div class="code-block">
             <pre><code class="language-javascript">// Select by ID or Class selector (returns single element or NodeList)
 const element = $('#container');
@@ -95,9 +91,7 @@ const elementById = $id('container');</code></pre>
 
         <article id="dom-manipulation" class="mb-8">
           <h3 class="text-2xl font-bold text-neutral-800 mb-2">DOM Manipulation</h3>
-          <p class="text-gray-700 mb-4">
-            Easily modify DOM elements with these utility methods.
-          </p>
+          <p class="text-gray-700 mb-4">Easily modify DOM elements with these utility methods.</p>
           <div class="code-block">
             <pre><code class="language-javascript">// Create a new element
 const button = $create("button")
@@ -142,9 +136,7 @@ element.val('New value');  // Set value</code></pre>
 
         <article id="element-references" class="mb-8">
           <h3 class="text-2xl font-bold text-neutral-800 mb-2">Element References</h3>
-          <p class="text-gray-700 mb-4">
-            Capture element references while maintaining chainability.
-          </p>
+          <p class="text-gray-700 mb-4">Capture element references while maintaining chainability.</p>
           <div class="code-block">
             <pre><code class="language-javascript">// Capture element reference within a chain
 element.$this(function(el) {
@@ -177,9 +169,7 @@ element
 
         <article id="attributes-classes" class="mb-8">
           <h3 class="text-2xl font-bold text-neutral-800 mb-2">Attributes and Classes</h3>
-          <p class="text-gray-700 mb-4">
-            Work with element attributes and CSS classes seamlessly.
-          </p>
+          <p class="text-gray-700 mb-4">Work with element attributes and CSS classes seamlessly.</p>
           <div class="code-block">
             <pre><code class="language-javascript">// Get or set attributes
 element.$attr('data-id');  // Get attribute
@@ -203,9 +193,7 @@ element.toggleClass('active');</code></pre>
 
         <article id="event-handling" class="mb-8">
           <h3 class="text-2xl font-bold text-neutral-800 mb-2">Event Handling</h3>
-          <p class="text-gray-700 mb-4">
-            Manage event listeners with chainable methods.
-          </p>
+          <p class="text-gray-700 mb-4">Manage event listeners with chainable methods.</p>
           <div class="code-block">
             <pre><code class="language-javascript">// Click event with callback function
 element.$click(function(event) {
@@ -234,9 +222,7 @@ element.$removeClick(callbackFunction);</code></pre>
 
         <article id="document-window" class="mb-8">
           <h3 class="text-2xl font-bold text-neutral-800 mb-2">Document and Window Events</h3>
-          <p class="text-gray-700 mb-4">
-            Listen for document and window events.
-          </p>
+          <p class="text-gray-700 mb-4">Listen for document and window events.</p>
           <div class="code-block">
             <pre><code class="language-javascript">// DOM ready event
 $dom(function() {
@@ -252,9 +238,7 @@ $window(function() {
 
         <article id="show-hide" class="mb-8">
           <h3 class="text-2xl font-bold text-neutral-800 mb-2">Show/Hide and Fade Effects</h3>
-          <p class="text-gray-700 mb-4">
-            Control element visibility with simple functions.
-          </p>
+          <p class="text-gray-700 mb-4">Control element visibility with simple functions.</p>
           <div class="code-block">
             <pre><code class="language-javascript">// Show element (accepts element or ID)
 show('elementId');  // Default display is 'block'
@@ -275,9 +259,7 @@ fadeToggle('elementId');</code></pre>
 
         <article id="storage" class="mb-8">
           <h3 class="text-2xl font-bold text-neutral-800 mb-2">Storage Utilities</h3>
-          <p class="text-gray-700 mb-4">
-            Easily interact with browser storage.
-          </p>
+          <p class="text-gray-700 mb-4">Easily interact with browser storage.</p>
           <div class="code-block">
             <pre><code class="language-javascript">// Local storage
 $local('key', 'value');  // Set value
@@ -293,9 +275,7 @@ $session('key', null);  // Remove value</code></pre>
 
         <article id="draggable" class="mb-8">
           <h3 class="text-2xl font-bold text-neutral-800 mb-2">Draggable Elements</h3>
-          <p class="text-gray-700 mb-4">
-            Make elements draggable with simple class names.
-          </p>
+          <p class="text-gray-700 mb-4">Make elements draggable with simple class names.</p>
           <div class="code-block">
             <pre><code class="language-html">&lt;div class="draggable"&gt;
   &lt;!-- Add a header element with the class "draggable-handle" --&gt;
@@ -307,9 +287,7 @@ $session('key', null);  // Remove value</code></pre>
 
         <article id="global-usage" class="mb-8">
           <h3 class="text-2xl font-bold text-neutral-800 mb-2">Global Usage in HTML Attributes</h3>
-          <p class="text-gray-700 mb-4">
-            To use the library functions inside HTML attributes like <span class="code">onclick</span>, make sure to use the global reference:
-          </p>
+          <p class="text-gray-700 mb-4">To use the library functions inside HTML attributes like <span class="code">onclick</span>, make sure to use the global reference:</p>
           <div class="code-block">
             <pre id="test"><code class="language-html">&lt;button onclick="toggle(window.$('#container'))"&gt;Toggle&lt;/button&gt;</code></pre>
           </div>
