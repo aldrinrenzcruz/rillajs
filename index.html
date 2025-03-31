@@ -37,10 +37,9 @@
               <li><a href="#attributes-classes" class="block hover:text-rose-500 transition">Attributes &amp; Classes</a></li>
               <li><a href="#event-handling" class="block hover:text-rose-500 transition">Event Handling</a></li>
               <li><a href="#document-window" class="block hover:text-rose-500 transition">Document &amp; Window Events</a></li>
-              <li><a href="#show-hide" class="block hover:text-rose-500 transition">Show/Hide &amp; Fade Effects</a></li>
+              <li><a href="#visibility" class="block hover:text-rose-500 transition">Show/Hide &amp; Fade Effects</a></li>
               <li><a href="#storage" class="block hover:text-rose-500 transition">Storage Utilities</a></li>
               <li><a href="#draggable" class="block hover:text-rose-500 transition">Draggable Elements</a></li>
-              <li><a href="#global-usage" class="block hover:text-rose-500 transition">Global Usage</a></li>
             </ul>
           </li>
           <li class="pt-2">
@@ -65,8 +64,8 @@
         <article id="installation" class="my-8">
           <h3 class="text-2xl font-bold text-neutral-800 mb-2">Installation</h3>
           <p class="text-gray-700 mb-4">Include <span class="code">rilla.min.js</span> in the head section of your project:</p>
-          <div class="code-block">
-            <pre><code class="language-javascript">&lt;script src="path/to/rilla.min.js"&gt;&lt;/script&gt;</code></pre>
+          <div class="code-block" data-src="installation">
+            <pre><code class="language-javascript"></code></pre>
           </div>
         </article>
       </section>
@@ -77,215 +76,76 @@
         <article id="dom-selection" class="mb-8">
           <h3 class="text-2xl font-bold text-neutral-800 mb-2">DOM Selection</h3>
           <p class="text-gray-700 mb-4">Select DOM elements using ID, ClassName, or TagName.</p>
-          <div class="code-block">
+          <div class="code-block" data-src="dom-selection">
             <pre><code class="language-javascript"></code></pre>
+          </div>
+          <p class="text-gray-700 my-4">To use the library functions inside HTML attributes like <span class="code">onclick</span>, make sure to use the global reference:</p>
+          <div class="code-block" data-src="global-usage">
+            <pre><code class="language-html"></code></pre>
           </div>
         </article>
 
         <article id="dom-manipulation" class="mb-8">
           <h3 class="text-2xl font-bold text-neutral-800 mb-2">DOM Manipulation</h3>
           <p class="text-gray-700 mb-4">Easily modify DOM elements with these utility methods.</p>
-          <div class="code-block">
-            <pre><code class="language-javascript">// Create a new element
-const button = $create("button")
-  .text("Copy")
-  .addClass("px-2 py-1 bg-gray-800 text-gray-400");
-
-// Append HTML to an element (returns the element for chaining)
-element.$append('&lt;div class="new-item"&gt;Content&lt;/div&gt;');
-
-// Prepend HTML
-element.$prepend('&lt;header&gt;New Header&lt;/header&gt;');
-
-// Replace all content
-element.$paint('&lt;div&gt;New Content&lt;/div&gt;');
-
-// Single wrapping or Chain wrapping
-$("#container")
-  .wrap("&lt;section class='test-class'&gt;&lt;/section&gt;")
-  .wrap("&lt;blockquote&gt;&lt;/blockquote&gt;")
-
-// Wrap multiple elements
-$("p")
-  .wrap("&lt;blockquote&gt;&lt;/blockquote&gt;")
-
-// Unwrapping elements
-$("p").unwrap()
-$("#container").unwrap()
-
-// Get or set HTML content
-element.html();         // Get HTML content
-element.html('&lt;p&gt;New content&lt;/p&gt;');  // Set HTML content
-
-// Get or set text content
-element.text();         // Get text content
-element.text('New text');  // Set text content
-
-// Get or set input value
-element.val();          // Get value
-element.val('New value');  // Set value</code></pre>
+          <div class="code-block" data-src="dom-manipulation">
+            <pre><code class="language-javascript"></code></pre>
           </div>
         </article>
 
         <article id="element-references" class="mb-8">
           <h3 class="text-2xl font-bold text-neutral-800 mb-2">Element References</h3>
           <p class="text-gray-700 mb-4">Capture element references while maintaining chainability.</p>
-          <div class="code-block">
-            <pre><code class="language-javascript">// Capture element reference within a chain
-element.$this(function(el) {
-  // Access the element inside the callback
-  console.log(el);
-});
-
-// Event handlers that modify the element
-$create("button")
-  .text("Copy")
-  .$this(button =&gt; 
-    button.$click(() =&gt; {
-      button.text("Copied!");
-      setTimeout(() =&gt; button.text("Copy"), 1500);
-    })
-  )
-  .addClass("primary");
-
-// Use with conditional logic
-element
-  .addClass("card")
-  .$this(el =&gt; {
-    if (condition) {
-      el.addClass("special");
-    }
-  })
-  .appendChild(contentElement);</code></pre>
+          <div class="code-block" data-src="element-references">
+            <pre><code class="language-javascript"></code></pre>
           </div>
         </article>
 
         <article id="attributes-classes" class="mb-8">
           <h3 class="text-2xl font-bold text-neutral-800 mb-2">Attributes and Classes</h3>
           <p class="text-gray-700 mb-4">Work with element attributes and CSS classes seamlessly.</p>
-          <div class="code-block">
-            <pre><code class="language-javascript">// Get or set attributes
-element.$attr('data-id');  // Get attribute
-element.$attr('data-id', 'new-value');  // Set attribute
-
-container.$class(); // get all element classes
-container.$class(""); // remove all element classes
-container.$class("lorem ipsum dolor") // replace all classes with given value
-$("p").$class("text-xl text-neutral-500") // Applies classes to all matching elements
-
-container.hasClass() // returns a boolean
-container.hasClass("lorem") // returns true if the element has the "lorem" class, otherwise false
-
-// Add classes
-element.addClass('active highlighted');
-
-// Remove classes
-element.removeClass('highlighted');
-
-// Toggle classes
-element.toggleClass('active');</code></pre>
+          <div class="code-block" data-src="attributes-classes">
+            <pre><code class="language-javascript"></code></pre>
           </div>
         </article>
 
         <article id="event-handling" class="mb-8">
           <h3 class="text-2xl font-bold text-neutral-800 mb-2">Event Handling</h3>
           <p class="text-gray-700 mb-4">Manage event listeners with chainable methods.</p>
-          <div class="code-block">
-            <pre><code class="language-javascript">// Click event with callback function
-element.$click(function(event) {
-  console.log('Clicked!', this);  // 'this' refers to the element
-});
-
-// Prevent default behavior
-element.$submit(function(event) {
-  // Do something
-}).prevent();
-
-// Stop propagation
-element.$click(function(event) {
-  // Do something
-}).stop();
-
-// Chain prevent and stop
-element.$click(function(event) {
-  // Do something
-}).prevent().stop();
-
-// Remove event listener
-element.$removeClick(callbackFunction);</code></pre>
+          <div class="code-block" data-src="event-handling">
+            <pre><code class="language-javascript"></code></pre>
           </div>
         </article>
 
         <article id="document-window" class="mb-8">
           <h3 class="text-2xl font-bold text-neutral-800 mb-2">Document and Window Events</h3>
           <p class="text-gray-700 mb-4">Listen for document and window events.</p>
-          <div class="code-block">
-            <pre><code class="language-javascript">// DOM ready event
-$dom(function() {
-  console.log('DOM fully loaded');
-});
-
-// Window load event
-$window(function() {
-  console.log('Window loaded');
-});</code></pre>
+          <div class="code-block" data-src="document-window">
+            <pre><code class="language-javascript"></code></pre>
           </div>
         </article>
 
-        <article id="show-hide" class="mb-8">
+        <article id="visibility" class="mb-8">
           <h3 class="text-2xl font-bold text-neutral-800 mb-2">Show/Hide and Fade Effects</h3>
           <p class="text-gray-700 mb-4">Control element visibility with simple functions.</p>
-          <div class="code-block">
-            <pre><code class="language-javascript">// Show element (accepts element or ID)
-show('elementId');  // Default display is 'block'
-show('elementId', 'flex');  // Custom display value
-
-// Hide element
-hide('elementId');
-
-// Toggle visibility
-toggle('elementId');
-
-// Fade effects
-fadeIn('elementId');
-fadeOut('elementId');
-fadeToggle('elementId');</code></pre>
+          <div class="code-block" data-src="visibility">
+            <pre><code class="language-javascript"></code></pre>
           </div>
         </article>
 
         <article id="storage" class="mb-8">
           <h3 class="text-2xl font-bold text-neutral-800 mb-2">Storage Utilities</h3>
           <p class="text-gray-700 mb-4">Easily interact with browser storage.</p>
-          <div class="code-block">
-            <pre><code class="language-javascript">// Local storage
-$local('key', 'value');  // Set value
-const value = $local('key');  // Get value
-$local('key', null);  // Remove value
-
-// Session storage
-$session('key', 'value');  // Set value
-const sessionValue = $session('key');  // Get value
-$session('key', null);  // Remove value</code></pre>
+          <div class="code-block" data-src="storage">
+            <pre><code class="language-javascript"></code></pre>
           </div>
         </article>
 
         <article id="draggable" class="mb-8">
           <h3 class="text-2xl font-bold text-neutral-800 mb-2">Draggable Elements</h3>
           <p class="text-gray-700 mb-4">Make elements draggable with simple class names.</p>
-          <div class="code-block">
-            <pre><code class="language-html">&lt;div class="draggable"&gt;
-  &lt;!-- Add a header element with the class "draggable-handle" --&gt;
-  &lt;div class="draggable-handle"&gt;Drag me&lt;/div&gt;
-  &lt;!-- Content --&gt;
-&lt;/div&gt;</code></pre>
-          </div>
-        </article>
-
-        <article id="global-usage" class="mb-8">
-          <h3 class="text-2xl font-bold text-neutral-800 mb-2">Global Usage in HTML Attributes</h3>
-          <p class="text-gray-700 mb-4">To use the library functions inside HTML attributes like <span class="code">onclick</span>, make sure to use the global reference:</p>
-          <div class="code-block">
-            <pre id="test"><code class="language-html">&lt;button onclick="toggle(window.$('#container'))"&gt;Toggle&lt;/button&gt;</code></pre>
+          <div class="code-block" data-src="draggable">
+            <pre><code class="language-html"></code></pre>
           </div>
         </article>
       </section>

@@ -1,0 +1,5 @@
+<div class="draggable">
+  <!-- Add a header element with the class "draggable-handle" -->
+  <div class="draggable-handle">Drag me</div>
+  <!-- Content -->
+</div>

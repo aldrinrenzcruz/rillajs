@@ -1,0 +1,9 @@
+// DOM ready event
+$dom(function() {
+  console.log('DOM fully loaded');
+});
+
+// Window load event
+$window(function() {
+  console.log('Window loaded');
+});

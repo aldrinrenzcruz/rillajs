@@ -1,0 +1,26 @@
+// Capture element reference within a chain
+element.$this(function(el) {
+  // Access the element inside the callback
+  console.log(el);
+});
+
+// Event handlers that modify the element
+$create("button")
+  .text("Copy")
+  .$this(button => 
+    button.$click(() => {
+      button.text("Copied!");
+      setTimeout(() => button.text("Copy"), 1500);
+    })
+  )
+  .addClass("primary");
+
+// Use with conditional logic
+element
+  .addClass("card")
+  .$this(el => {
+    if (condition) {
+      el.addClass("special");
+    }
+  })
+  .appendChild(contentElement);

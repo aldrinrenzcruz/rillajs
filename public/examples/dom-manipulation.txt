@@ -1,0 +1,38 @@
+// Create a new element
+const button = $create("button")
+  .text("Copy")
+  .addClass("px-2 py-1 bg-gray-800 text-gray-400");
+
+// Append HTML to an element (returns the element for chaining)
+element.$append('<div class="new-item">Content</div>');
+
+// Prepend HTML
+element.$prepend('<header>New Header</header>');
+
+// Replace all content
+element.$paint('<div>New Content</div>');
+
+// Single wrapping or Chain wrapping
+$("#container")
+  .wrap("<section class='test-class'></section>")
+  .wrap("<blockquote></blockquote>")
+
+// Wrap multiple elements
+$("p")
+  .wrap("<blockquote></blockquote>")
+
+// Unwrapping elements
+$("p").unwrap()
+$("#container").unwrap()
+
+// Get or set HTML content
+element.html();         // Get HTML content
+element.html('<p>New content</p>');  // Set HTML content
+
+// Get or set text content
+element.text();         // Get text content
+element.text('New text');  // Set text content
+
+// Get or set input value
+element.val();          // Get value
+element.val('New value');  // Set value

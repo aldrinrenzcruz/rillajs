@@ -1,0 +1,9 @@
+// Local storage
+$local('key', 'value');  // Set value
+const value = $local('key');  // Get value
+$local('key', null);  // Remove value
+
+// Session storage
+$session('key', 'value');  // Set value
+const sessionValue = $session('key');  // Get value
+$session('key', null);  // Remove value

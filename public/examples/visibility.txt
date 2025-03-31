@@ -1,0 +1,14 @@
+// Show element (accepts element or ID)
+show('elementId');  // Default display is 'block'
+show('elementId', 'flex');  // Custom display value
+
+// Hide element
+hide('elementId');
+
+// Toggle visibility
+toggle('elementId');
+
+// Fade effects
+fadeIn('elementId');
+fadeOut('elementId');
+fadeToggle('elementId');

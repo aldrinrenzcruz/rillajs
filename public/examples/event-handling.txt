@@ -1,0 +1,22 @@
+// Click event with callback function
+element.$click(function(event) {
+  console.log('Clicked!', this);  // 'this' refers to the element
+});
+
+// Prevent default behavior
+element.$submit(function(event) {
+  // Do something
+}).prevent();
+
+// Stop propagation
+element.$click(function(event) {
+  // Do something
+}).stop();
+
+// Chain prevent and stop
+element.$click(function(event) {
+  // Do something
+}).prevent().stop();
+
+// Remove event listener
+element.$removeClick(callbackFunction);

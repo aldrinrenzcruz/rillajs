@@ -37,10 +37,10 @@ function addCopyBtnToCodeBlocks() {
 }
 
 function fetchCodeBlocksContent() {
-  const examples = ["dom-selection"];
+  const examples = ["dom-selection", "installation", "dom-manipulation", "element-references", "attributes-classes", "event-handling", "document-window", "visibility", "storage", "draggable", "global-usage"];
   Promise.all(
-    examples.map(example => {
-      const url = `./public/examples/${example}.js`;
+    examples.map(async example => {
+      const url = `./public/examples/${example}.txt`;
       return fetch(url)
         .then(response => {
           if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
@@ -56,7 +56,7 @@ function fetchCodeBlocksContent() {
     .then(results => {
       results.forEach(({ example, data }) => {
         if (data) {
-          const codeElement = $(`#${example} code`);
+          const codeElement = $(`.code-block[data-src=${example}] code`);
           codeElement.text(data);
           hljs.highlightElement(codeElement);
         }

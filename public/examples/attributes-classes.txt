@@ -1,0 +1,20 @@
+// Get or set attributes
+element.$attr('data-id');  // Get attribute
+element.$attr('data-id', 'new-value');  // Set attribute
+
+container.$class(); // get all element classes
+container.$class(""); // remove all element classes
+container.$class("lorem ipsum dolor") // replace all classes with given value
+$("p").$class("text-xl text-neutral-500") // Applies classes to all matching elements
+
+container.hasClass() // returns a boolean
+container.hasClass("lorem") // returns true if the element has the "lorem" class, otherwise false
+
+// Add classes
+element.addClass('active highlighted');
+
+// Remove classes
+element.removeClass('highlighted');
+
+// Toggle classes
+element.toggleClass('active');
