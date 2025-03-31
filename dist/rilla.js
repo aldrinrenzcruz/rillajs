@@ -224,6 +224,14 @@ Element.prototype.$attr = function (name, value) {
   return this;
 };
 
+NodeList.prototype.$attr = function (name, value) {
+  if (value === undefined) {
+    return Array.from(this).map(el => el.$attr(name));
+  }
+  this.forEach(el => el.$attr(name, value));
+  return this;
+};
+
 Element.prototype.addClass = function (classNames) {
   if (typeof classNames !== "string") {
     console.error("addClass: Input must be a string");
