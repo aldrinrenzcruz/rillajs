@@ -28,7 +28,7 @@ function addCopyBtnToCodeBlocks() {
         .$this(btn =>
           btn.$click(() => {
             navigator.clipboard.writeText(pre.text());
-            btn.text("Copied!");
+            btn.text("copied!");
             setTimeout(() => btn.text(lang || "copy"), 1500);
           })
         )
