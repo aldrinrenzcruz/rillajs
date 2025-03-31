@@ -4,6 +4,7 @@
 - Add .on and .off event handlers to the docs
 
 **FOR CONSIDERATION:**
+- Performance benchmark tests
 - Reduce total file size by shortening variable and helper functions names, also by using arrow function when possible
 - Create a converter vanilla to Rilla and vice versa
 - Add installation via CDN
