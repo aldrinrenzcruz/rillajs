@@ -403,62 +403,16 @@ $events.forEach(eventName => {
 
     return handler;
   };
-
-  // Modify the $remove methods to use the WeakMap tracking
-  Element.prototype[`$remove${eventName.charAt(0).toUpperCase() + eventName.slice(1)}`] = function (callback) {
-    if (callback && typeof callback === "function") {
-      // If a specific callback is provided, remove just that one
-      this.removeEventListener(eventName, callback);
-
-      // Also remove from the WeakMap if present
-      if ($eventHandlers.has(this)) {
-        const handlers = $eventHandlers.get(this);
-        if (handlers.has(eventName)) {
-          const handlerList = handlers.get(eventName);
-          // Look for the callback in the stored handlers
-          for (let i = handlerList.length - 1; i >= 0; i--) {
-            const handler = handlerList[i];
-            // Check if it's the same function or the wrapped version
-            if (handler === callback || handler._originalCallback === callback) {
-              handlerList.splice(i, 1);
-              break;
-            }
-          }
-
-          // Clean up if no handlers left for this event
-          if (handlerList.length === 0) {
-            handlers.delete(eventName);
-          }
-        }
-      }
-    } else {
-      // If no callback is provided, remove all for this event type
-      if ($eventHandlers.has(this)) {
-        const handlers = $eventHandlers.get(this);
-        if (handlers.has(eventName)) {
-          handlers.get(eventName).forEach(handler => {
-            this.removeEventListener(eventName, handler);
-          });
-          handlers.delete(eventName);
-        }
-      }
-    }
-    return this;
-  };
 });
 
 // Add the same methods to Document.prototype
 $events.forEach(eventName => {
   Document.prototype[`$${eventName}`] = Element.prototype[`$${eventName}`];
-  Document.prototype[`$remove${eventName.charAt(0).toUpperCase() + eventName.slice(1)}`] =
-    Element.prototype[`$remove${eventName.charAt(0).toUpperCase() + eventName.slice(1)}`];
 });
 
 // Add the same methods to Window.prototype
 $events.forEach(eventName => {
   Window.prototype[`$${eventName}`] = Element.prototype[`$${eventName}`];
-  Window.prototype[`$remove${eventName.charAt(0).toUpperCase() + eventName.slice(1)}`] =
-    Element.prototype[`$remove${eventName.charAt(0).toUpperCase() + eventName.slice(1)}`];
 });
 
 function $window(callback) {
