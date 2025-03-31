@@ -63,5 +63,3 @@ function renderCodeBlocks() {
     });
   });
 }
-
-/* <pre><code class="language-html"></code></pre> */
