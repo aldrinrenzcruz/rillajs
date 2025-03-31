@@ -1,3 +1,5 @@
+#javascript
+
 // Local storage
 $local('key', 'value');  // Set value
 const value = $local('key');  // Get value

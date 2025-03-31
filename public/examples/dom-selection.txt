@@ -1,3 +1,5 @@
+#javascript
+
 // Select by ID or Class selector (returns single element or NodeList)
 const element = $('#container');
 

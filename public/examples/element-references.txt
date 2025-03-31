@@ -1,3 +1,5 @@
+#javascript
+
 // Capture element reference within a chain
 element.$this(function(el) {
   // Access the element inside the callback

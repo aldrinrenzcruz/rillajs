@@ -1,1 +1,3 @@
+#html
+
 <script src="path/to/rilla.min.js"></script></script>

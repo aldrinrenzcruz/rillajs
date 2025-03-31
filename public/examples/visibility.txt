@@ -1,3 +1,5 @@
+#javascript
+
 // Show element (accepts element or ID)
 show('elementId');  // Default display is 'block'
 show('elementId', 'flex');  // Custom display value

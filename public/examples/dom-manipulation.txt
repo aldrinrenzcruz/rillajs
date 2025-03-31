@@ -1,3 +1,5 @@
+#javascript
+
 // Create a new element
 const button = $create("button")
   .text("Copy")

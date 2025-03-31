@@ -1,3 +1,5 @@
+#javascript
+
 // Get or set attributes
 element.$attr('data-id');  // Get attribute
 element.$attr('data-id', 'new-value');  // Set attribute

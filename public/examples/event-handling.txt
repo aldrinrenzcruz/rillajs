@@ -1,3 +1,5 @@
+#javascript
+
 element.off() - Removes all event listeners
 element.off("click") - Removes all click event listeners
 element.off("click", handler) - Removes a specific click event handler
