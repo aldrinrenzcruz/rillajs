@@ -20,7 +20,6 @@ function initializeSidebarSmoothScroll() {
 function addCopyBtnToCodeBlock() {
   $("pre").forEach((pre) => {
     const lang = pre.$("code").$attr("class").split("-")[1];
-    console.log(lang)
     pre
       .wrap("<div class='relative'></div>")
       .parentNode.appendChild($create("button")
