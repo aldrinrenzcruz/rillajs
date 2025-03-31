@@ -3,6 +3,7 @@
 - Modify merge.js to support splitting src scripts by adding easy file pathing
 - Create <pre><code class="language-html"></code></pre> dynamically, add metadata to the examples .txt files
 - Add error handling for examples fetch script for invalid query selectors, just skip those
+- Change .js and .css file names to be the same per use case (i.e. app.js, app.min.js)
 
 **FOR CONSIDERATION:**
 - Performance benchmark tests
