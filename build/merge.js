@@ -1,12 +1,10 @@
 const fs = require("fs-extra");
 const path = require("path");
 
-// Define paths 
-const sourceDir = path.resolve(__dirname, "../src/js"); // Adjusted for relative path from /build 
+const sourceDir = path.resolve(__dirname, "../src/js");
 const outputDir = path.resolve(__dirname, "../dist");
 const outputFile = path.join(outputDir, "rilla.js");
 
-// List of JavaScript files to merge (in order) 
 const files = [
   "DOMSelectors.js",
   "DOMManipulation.js",
@@ -19,7 +17,6 @@ const files = [
   "InjectedStyles.js"
 ];
 
-// Ensure output directory exists 
 fs.ensureDirSync(outputDir);
 
 console.log("Merging JavaScript files...");
@@ -36,8 +33,8 @@ const mergedContent = files
       return "";
     }
   })
-  .filter(content => content.trim() !== "") // Remove empty files 
-  .join("\n\n"); // Add space between merged files 
+  .filter(content => content.trim() !== "")
+  .join("\n\n");
 
 fs.writeFileSync(outputFile, mergedContent, "utf-8");
 
