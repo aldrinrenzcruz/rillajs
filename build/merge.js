@@ -6,7 +6,7 @@ const outputDir = path.resolve(__dirname, "../dist");
 const outputFile = path.join(outputDir, "rilla.js");
 
 const files = [
-  "DOMSelectors.js",
+  "DOMSelection.js",
   "DOMManipulation.js",
   "Attributes.js",
   "ClassUtils.js",
