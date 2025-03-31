@@ -1,6 +1,7 @@
 **TODO:**
 - Specify adding the rilla.min.js in the head
 - Rename ClassUtils.js to ClassManagement.js
+- Modify merge.js to support splitting src scripts by adding easy file pathing
 
 **FOR CONSIDERATION:**
 - Add installation via CDN
