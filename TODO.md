@@ -1,7 +1,7 @@
 **TODO:**
-- Specify adding the rilla.min.js in the head
-- Rename ClassUtils.js to ClassManagement.js
+- Rename ClassUtils to ClassManagement
 - Modify merge.js to support splitting src scripts by adding easy file pathing
+- Add .hasClass() to return a boolean
 
 **FOR CONSIDERATION:**
 - Add installation via CDN
@@ -11,9 +11,11 @@
 - Add $data to access all element data, should accept parameter, get or set value
 
 **COMPLETED:**
+- Specify adding the rilla.min.js in the head
 - $class, full replacement of element class
-- 
-NOT IMPLEMENTED:
+
+
+**NOT IMPLEMENTED:**
 - Add "selector" to error for invalid selector instead of just "$:"
 
 **NOTES:**
