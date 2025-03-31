@@ -1,7 +1,7 @@
 $dom(() => {
+  fetchCodeBlocksContent();
   initializeSidebarSmoothScroll();
   addCopyBtnToCodeBlocks();
-  hljs.highlightAll();
 });
 
 function initializeSidebarSmoothScroll() {
@@ -34,4 +34,32 @@ function addCopyBtnToCodeBlocks() {
         )
       )
   })
+}
+
+function fetchCodeBlocksContent() {
+  const examples = ["dom-selection"];
+  Promise.all(
+    examples.map(example => {
+      const url = `./public/examples/${example}.js`;
+      return fetch(url)
+        .then(response => {
+          if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+          return response.text();
+        })
+        .then(data => ({ example, data }))
+        .catch(err => {
+          console.error(`Error fetching ${url}:`, err);
+          return { example, data: null };
+        });
+    })
+  )
+    .then(results => {
+      results.forEach(({ example, data }) => {
+        if (data) {
+          const codeElement = $(`#${example} code`);
+          codeElement.text(data);
+          hljs.highlightElement(codeElement);
+        }
+      });
+    });
 }
