@@ -185,6 +185,11 @@ element
 element.$attr('data-id');  // Get attribute
 element.$attr('data-id', 'new-value');  // Set attribute
 
+container.$class(); // get all element classes
+container.$class(""); // remove all element classes
+container.$class("lorem ipsum dolor") // replace all classes with given value
+$("p").$class("text-xl text-neutral-500") // Applies classes to all matching elements
+
 // Add classes
 element.addClass('active highlighted');
 
