@@ -3,6 +3,8 @@
 - Modify merge.js to support splitting src scripts by adding easy file pathing
 
 **FOR CONSIDERATION:**
+- Reduce total file size by shortening variable and helper functions names, also by using arrow function when possible
+- Create a converter vanilla to Rilla and vice versa
 - Add installation via CDN
 - Add installation via npm
 - Add DOM Traversal: parent, parents, parentsUntil, children, find, siblings, next, nextAll, nextUntil, prev, prevAll, prevUntil, first, last
