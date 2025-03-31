@@ -1,3 +1,248 @@
+const $eventHandlers = new WeakMap();
+
+Element.prototype.on = function (event, handler) {
+  if (typeof event !== "string") {
+    console.error("on: Event type must be a string");
+    return this;
+  }
+
+  if (typeof handler !== "function") {
+    console.error("on: Handler must be a function");
+    return this;
+  }
+
+  try {
+    // Initialize handlers map for this element if it doesn't exist
+    if (!$eventHandlers.has(this)) {
+      $eventHandlers.set(this, new Map());
+    }
+
+    // Get the handlers map for this element
+    const handlers = $eventHandlers.get(this);
+
+    // Initialize array for this event type if it doesn't exist
+    if (!handlers.has(event)) {
+      handlers.set(event, []);
+    }
+
+    // Store the original handler for reference
+    handlers.get(event).push(handler);
+
+    // Add the event listener
+    this.addEventListener(event, handler);
+  } catch (error) {
+    console.error(`on: Error adding '${event}' event listener`, error);
+  }
+
+  return this;
+};
+
+NodeList.prototype.on = function (event, handler) {
+  if (typeof event !== "string") {
+    console.error("on: Event type must be a string");
+    return this;
+  }
+
+  if (typeof handler !== "function") {
+    console.error("on: Handler must be a function");
+    return this;
+  }
+
+  try {
+    this.forEach(element => {
+      element.on(event, handler);
+    });
+  } catch (error) {
+    console.error(`on: Error adding '${event}' event listener to NodeList`, error);
+  }
+
+  return this;
+};
+
+Element.prototype.off = function (event, handler) {
+  try {
+    // If no arguments, remove all event listeners
+    if (arguments.length === 0) {
+      if ($eventHandlers.has(this)) {
+        const handlers = $eventHandlers.get(this);
+
+        handlers.forEach((eventHandlers, eventType) => {
+          eventHandlers.forEach(fn => {
+            this.removeEventListener(eventType, fn);
+          });
+        });
+
+        // Clear the stored handlers
+        $eventHandlers.delete(this);
+      }
+      return this;
+    }
+
+    // If event type specified but no handler
+    if (arguments.length === 1 && typeof event === "string") {
+      if ($eventHandlers.has(this)) {
+        const handlers = $eventHandlers.get(this);
+
+        if (handlers.has(event)) {
+          handlers.get(event).forEach(fn => {
+            this.removeEventListener(event, fn);
+          });
+
+          // Remove this event type from storage
+          handlers.delete(event);
+        }
+      }
+      return this;
+    }
+
+    // If both event and handler specified
+    if (arguments.length === 2 && typeof event === "string" && typeof handler === "function") {
+      if ($eventHandlers.has(this)) {
+        const handlers = $eventHandlers.get(this);
+
+        if (handlers.has(event)) {
+          const handlerList = handlers.get(event);
+          const index = handlerList.indexOf(handler);
+
+          if (index !== -1) {
+            // Remove the specific handler
+            this.removeEventListener(event, handler);
+            handlerList.splice(index, 1);
+
+            // Clean up if no handlers left for this event
+            if (handlerList.length === 0) {
+              handlers.delete(event);
+            }
+          }
+        }
+      }
+      return this;
+    }
+
+    console.error("off: Invalid arguments");
+  } catch (error) {
+    console.error("off: Error removing event listener(s)", error);
+  }
+
+  return this;
+};
+
+NodeList.prototype.off = function (event, handler) {
+  try {
+    this.forEach(element => {
+      if (arguments.length === 0) {
+        element.off();
+      } else if (arguments.length === 1) {
+        element.off(event);
+      } else {
+        element.off(event, handler);
+      }
+    });
+  } catch (error) {
+    console.error("off: Error removing event listener(s) from NodeList", error);
+  }
+
+  return this;
+};
+
+Element.prototype.prevent = function () {
+  try {
+    if (!$eventHandlers.has(this)) {
+      return this;
+    }
+
+    const handlers = $eventHandlers.get(this);
+
+    handlers.forEach((eventHandlers, eventType) => {
+      // Process the most recently added handler for each event type
+      if (eventHandlers.length > 0) {
+        const lastIndex = eventHandlers.length - 1;
+        const originalHandler = eventHandlers[lastIndex];
+
+        // Remove the original handler
+        this.removeEventListener(eventType, originalHandler);
+
+        // Create a new handler with preventDefault
+        const newHandler = function (e) {
+          e.preventDefault();
+          return originalHandler.call(this, e);
+        };
+
+        // Replace the original handler with the new one
+        eventHandlers[lastIndex] = newHandler;
+
+        // Add the new handler
+        this.addEventListener(eventType, newHandler);
+      }
+    });
+  } catch (error) {
+    console.error("prevent: Error adding preventDefault", error);
+  }
+
+  return this;
+};
+
+NodeList.prototype.prevent = function () {
+  try {
+    this.forEach(element => {
+      element.prevent();
+    });
+  } catch (error) {
+    console.error("prevent: Error adding preventDefault to NodeList", error);
+  }
+
+  return this;
+};
+
+Element.prototype.stop = function () {
+  try {
+    if (!$eventHandlers.has(this)) {
+      return this;
+    }
+
+    const handlers = $eventHandlers.get(this);
+
+    handlers.forEach((eventHandlers, eventType) => {
+      // Process the most recently added handler for each event type
+      if (eventHandlers.length > 0) {
+        const lastIndex = eventHandlers.length - 1;
+        const originalHandler = eventHandlers[lastIndex];
+
+        // Remove the original handler
+        this.removeEventListener(eventType, originalHandler);
+
+        // Create a new handler with stopPropagation
+        const newHandler = function (e) {
+          e.stopPropagation();
+          return originalHandler.call(this, e);
+        };
+
+        // Replace the original handler with the new one
+        eventHandlers[lastIndex] = newHandler;
+
+        // Add the new handler
+        this.addEventListener(eventType, newHandler);
+      }
+    });
+  } catch (error) {
+    console.error("stop: Error adding stopPropagation", error);
+  }
+
+  return this;
+};
+
+NodeList.prototype.stop = function () {
+  try {
+    this.forEach(element => {
+      element.stop();
+    });
+  } catch (error) {
+    console.error("stop: Error adding stopPropagation to NodeList", error);
+  }
+
+  return this;
+};
+
 const $events = [
   // Mouse Events
   "click", "dblclick", "mousedown", "mouseup", "mousemove",
@@ -128,6 +373,26 @@ $events.forEach(eventName => {
         // Add the event listener
         this.element.addEventListener(this.eventName, this.listener, this.options);
 
+        // Initialize handlers map for this element if it doesn't exist
+        if (!$eventHandlers.has(this.element)) {
+          $eventHandlers.set(this.element, new Map());
+        }
+
+        // Get the handlers map for this element
+        const handlers = $eventHandlers.get(this.element);
+
+        // Initialize array for this event type if it doesn't exist
+        if (!handlers.has(this.eventName)) {
+          handlers.set(this.eventName, []);
+        }
+
+        // Store the listener for reference to enable off() method compatibility
+        handlers.get(this.eventName).push(this.listener);
+
+        // Also store the original callback for potential reference
+        // We can associate them using a second WeakMap or just store as a property
+        this.listener._originalCallback = this.callback;
+
         return this.element; // Return the element for further chaining
       }
     };
@@ -139,10 +404,44 @@ $events.forEach(eventName => {
     return handler;
   };
 
-  // Add corresponding remove method (e.g., $removeClick, $removeKeydown)
+  // Modify the $remove methods to use the WeakMap tracking
   Element.prototype[`$remove${eventName.charAt(0).toUpperCase() + eventName.slice(1)}`] = function (callback) {
-    if (typeof callback === "function") {
+    if (callback && typeof callback === "function") {
+      // If a specific callback is provided, remove just that one
       this.removeEventListener(eventName, callback);
+
+      // Also remove from the WeakMap if present
+      if ($eventHandlers.has(this)) {
+        const handlers = $eventHandlers.get(this);
+        if (handlers.has(eventName)) {
+          const handlerList = handlers.get(eventName);
+          // Look for the callback in the stored handlers
+          for (let i = handlerList.length - 1; i >= 0; i--) {
+            const handler = handlerList[i];
+            // Check if it's the same function or the wrapped version
+            if (handler === callback || handler._originalCallback === callback) {
+              handlerList.splice(i, 1);
+              break;
+            }
+          }
+
+          // Clean up if no handlers left for this event
+          if (handlerList.length === 0) {
+            handlers.delete(eventName);
+          }
+        }
+      }
+    } else {
+      // If no callback is provided, remove all for this event type
+      if ($eventHandlers.has(this)) {
+        const handlers = $eventHandlers.get(this);
+        if (handlers.has(eventName)) {
+          handlers.get(eventName).forEach(handler => {
+            this.removeEventListener(eventName, handler);
+          });
+          handlers.delete(eventName);
+        }
+      }
     }
     return this;
   };
