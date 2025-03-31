@@ -6,6 +6,7 @@ FOR CONSIDERATION:
 - Add installation via npm
 - Add DOM Traversal: parent, parents, parentsUntil, children, find, siblings, next, nextAll, nextUntil, prev, prevAll, prevUntil, first, last
 - Add $css method to add style
+- Add $data to access all element data, should accept parameter, get or set value
 
 COMPLETED:
 
