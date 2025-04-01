@@ -2,10 +2,10 @@
   "name": "rillajs",
   "version": "1.0.0",
   "description": "Rilla is a minimalistic JavaScript utility library designed to simplify DOM selection, manipulation, and event handling.",
-  "main": "main.js",
+  "main": "app.js",
   "scripts": {
     "merge": "node build/merge.js && npm run minify",
-    "minify": "terser dist/rilla.js -o dist/rilla.min.js --source-map \"url='rilla.min.js.map'\" && terser src/js/main.js -o public/js/app.min.js --source-map \"url='app.min.js.map'\"",
+    "minify": "terser dist/rilla.js -o dist/rilla.min.js --source-map \"url='rilla.min.js.map'\" && terser public/js/app.js -o public/js/app.min.js --source-map \"url='app.min.js.map'\"",
     "tailwind": "npx @tailwindcss/cli -i ./src/css/main.css -o ./public/css/app.css --minify",
     "tailwind:watch": "npx @tailwindcss/cli -i ./src/css/main.css -o ./public/css/app.css --watch"
   },
