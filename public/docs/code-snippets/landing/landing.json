@@ -1,0 +1,15 @@
+{
+  "examples": [
+    "dom-selection",
+    "installation",
+    "dom-manipulation",
+    "element-references",
+    "attributes-classes",
+    "event-handling",
+    "document-window",
+    "visibility",
+    "storage",
+    "draggable",
+    "global-usage"
+  ]
+}
