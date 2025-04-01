@@ -3,6 +3,7 @@
 - Modify merge.js to support splitting src scripts by adding easy file pathing
 - Add error handling for examples fetch script for invalid query selectors, just skip those
 - Add .parent() to docs
+- Move examples (docs) array to a separate file
 
 **FOR CONSIDERATION:**
 - Change .js and .css file names to be the same per use case (i.e. app.js, app.min.js)
