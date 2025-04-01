@@ -9,51 +9,51 @@ rillajs/
 │  tailwind.config.js
 │  TODO.md
 │
-├──dist
-│    rilla.js
-│    rilla.min.js
-│    rilla.min.js.map
+├─dist
+│   rilla.js
+│   rilla.min.js
+│   rilla.min.js.map
 │
-├──public
-│  ├──css
-│  │    app.css
-│  │    app.min.css
-│  │    atom-one-dark.min.css
+├─public
+│  ├─css
+│  │   app.css
+│  │   app.min.css
+│  │   atom-one-dark.min.css
 │  │
-│  ├──examples
-│  │    attributes-classes.txt
-│  │    document-window.txt
-│  │    dom-manipulation.txt
-│  │    dom-selection.txt
-│  │    draggable.txt
-│  │    element-references.txt
-│  │    event-handling.txt
-│  │    global-usage.txt
-│  │    installation.txt
-│  │    storage.txt
-│  │    visibility.txt
+│  ├─examples
+│  │   attributes-classes.txt
+│  │   document-window.txt
+│  │   dom-manipulation.txt
+│  │   dom-selection.txt
+│  │   draggable.txt
+│  │   element-references.txt
+│  │   event-handling.txt
+│  │   global-usage.txt
+│  │   installation.txt
+│  │   storage.txt
+│  │   visibility.txt
 │  │
-│  ├──favicon
-│  │    favicon.svg
+│  ├─favicon
+│  │   favicon.svg
 │  │
-│  └──js
-│       app.js
-│       app.min.js
-│       app.min.js.map
-│       highlight.min.js
+│  └─js
+│      app.js
+│      app.min.js
+│      app.min.js.map
+│      highlight.min.js
 │
-├──src
-│  └──rilla
-│       Attributes.js
-│       ClassUtils.js
-│       DOMManipulation.js
-│       DOMSelection.js
-│       Draggable.js
-│       EventHandling.js
-│       InjectedStyles.js
-│       Storage.js
-│       Visibility.js
+├─src
+│  └─rilla
+│      Attributes.js
+│      ClassUtils.js
+│      DOMManipulation.js
+│      DOMSelection.js
+│      Draggable.js
+│      EventHandling.js
+│      InjectedStyles.js
+│      Storage.js
+│      Visibility.js
 │
-└──test
-     test.html
-     test.js
+└─test
+    test.html
+    test.js
