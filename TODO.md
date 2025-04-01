@@ -16,6 +16,7 @@
 - Add $data to access all element data, should accept parameter, get or set value
 
 **COMPLETED:**
+- Remove the old $eventname event handlers
 - Modify merge.js to support splitting src scripts
 - Move examples (docs) array to a separate file
 - Change .js and .css file names to be the same per use case (i.e. app.js, app.min.js)
