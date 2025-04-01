@@ -5,23 +5,45 @@ const sourceDir = path.resolve(__dirname, "../src");
 const outputDir = path.resolve(__dirname, "../dist");
 const outputFile = path.join(outputDir, "rilla.js");
 
-const files = [
-  "DOMSelection.js",
-  "DOMManipulation.js",
-  "Attributes.js",
-  "ClassUtils.js",
-  "EventHandling.js",
-  "Storage.js",
-  "Visibility.js",
-  "Draggable.js",
-  "InjectedStyles.js"
+const directories = [
+  "DOM Selection",
+  "DOM Manipulation",
+  "Event Handling",
+  "Attribute Utilities",
+  "Class Utilities",
+  "Storage",
+  "Visibility",
+  "User Interface"
 ];
 
 fs.ensureDirSync(outputDir);
 
 console.log("Merging JavaScript files...");
 
-// Read, merge, and write files 
+function getFilesFromDirectory(dirPath) {
+  if (!fs.existsSync(dirPath)) {
+    console.warn(`⚠ Directory not found: ${dirPath}`);
+    return [];
+  }
+
+  const files = fs.readdirSync(dirPath);
+  return files
+    .filter(file => file.endsWith('.js'))
+    .map(file => path.relative(sourceDir, path.join(dirPath, file)));
+}
+
+let files = [];
+
+directories.forEach(dir => {
+  const dirPath = path.join(sourceDir, dir);
+  const dirFiles = getFilesFromDirectory(dirPath);
+
+  console.log(`Found ${dirFiles.length} files in ${dir}/`);
+  files = files.concat(dirFiles);
+});
+
+console.log(`Total files to merge: ${files.length}`);
+
 const mergedContent = files
   .map(file => {
     const filePath = path.join(sourceDir, file);

@@ -6,6 +6,18 @@ Element.prototype.$ = function (selector) {
   return $select(this, selector);
 };
 
+function $id(id, error_log = true) {
+  if (typeof id !== "string" || !id.trim()) {
+    console.error(`$id: invalid id "${id}"`);
+    return null;
+  }
+  const element = document.getElementById(id);
+  if (!element && error_log) {
+    console.error(`$id: #"${id}" not found.`);
+  }
+  return element;
+}
+
 function $select(context, selector) {
   if (typeof selector !== "string" || !selector.trim()) {
     console.error(`$: invalid selector "${selector}"`);
@@ -39,52 +51,6 @@ function $select(context, selector) {
   return elements.length === 1 ? elements[0] : elements;
 }
 
-function $id(id, error_log = true) {
-  if (typeof id !== "string" || !id.trim()) {
-    console.error(`$id: invalid id "${id}"`);
-    return null;
-  }
-  const element = document.getElementById(id);
-  if (!element && error_log) {
-    console.error(`$id: #"${id}" not found.`);
-  }
-  return element;
-}
-
-Element.prototype.$this = function (callback) {
-  if (typeof callback === "function") {
-    callback(this);
-  }
-  return this;
-};
-
-NodeList.prototype.$this = function (callback) {
-  if (typeof callback === "function") {
-    this.forEach(el => callback(el));
-  }
-  return this;
-};
-
-window.$create = function (tagName) {
-  if (!tagName || typeof tagName !== "string") {
-    console.error("$create: invalid tag name");
-    return null;
-  }
-  return document.createElement(tagName);
-};
-
-Element.prototype.$prepend = function (htmlString) {
-  if (!htmlString) {
-    console.error("$prepend: invalid parameter");
-    return this;
-  }
-  const template = document.createElement("template");
-  template.innerHTML = htmlString.trim();
-  const fragment = template.content;
-  this.prepend(fragment);
-  return this;
-};
-
 Element.prototype.$append = function (htmlString) {
   if (!htmlString) {
     console.error("$append: invalid parameter");
@@ -95,6 +61,14 @@ Element.prototype.$append = function (htmlString) {
   const fragment = template.content;
   this.append(fragment);
   return this;
+};
+
+window.$create = function (tagName) {
+  if (!tagName || typeof tagName !== "string") {
+    console.error("$create: invalid tag name");
+    return null;
+  }
+  return document.createElement(tagName);
 };
 
 Element.prototype.$paint = function (htmlString) {
@@ -110,29 +84,45 @@ Element.prototype.$paint = function (htmlString) {
   return this;
 };
 
-Element.prototype.wrap = function (content) {
-  const temp = document.createElement("div");
-  temp.innerHTML = content;
-  const wrapper = temp.firstElementChild;
-  if (!wrapper) {
-    console.error("$wrap: invalid argument");
+Element.prototype.$prepend = function (htmlString) {
+  if (!htmlString) {
+    console.error("$prepend: invalid parameter");
     return this;
   }
-  const parent = this.parentNode;
-  if (parent) {
-    parent.insertBefore(wrapper, this);
-    wrapper.appendChild(this);
+  const template = document.createElement("template");
+  template.innerHTML = htmlString.trim();
+  const fragment = template.content;
+  this.prepend(fragment);
+  return this;
+};
+
+Element.prototype.$this = function (callback) {
+  if (typeof callback === "function") {
+    callback(this);
   }
   return this;
 };
 
-NodeList.prototype.wrap = HTMLCollection.prototype.wrap = function (content) {
-  const elements = Array.from(this);
-  elements.forEach(element => {
-    if (element instanceof Element) {
-      element.wrap(content);
-    }
-  });
+NodeList.prototype.$this = function (callback) {
+  if (typeof callback === "function") {
+    this.forEach(el => callback(el));
+  }
+  return this;
+};
+
+Element.prototype.html = function (content) {
+  if (content === undefined) return this.innerHTML;
+  this.innerHTML = content;
+  return this;
+};
+
+Element.prototype.parent = function () {
+  return this.parentNode;
+};
+
+Element.prototype.text = function (content) {
+  if (content === undefined) return this.textContent;
+  this.textContent = content;
   return this;
 };
 
@@ -190,25 +180,289 @@ NodeList.prototype.unwrap = function () {
   return this;
 };
 
-Element.prototype.parent = function () {
-  return this.parentNode;
-};
-
-Element.prototype.html = function (content) {
-  if (content === undefined) return this.innerHTML;
-  this.innerHTML = content;
-  return this;
-};
-
-Element.prototype.text = function (content) {
-  if (content === undefined) return this.textContent;
-  this.textContent = content;
-  return this;
-};
-
 Element.prototype.val = function (content) {
   if (content === undefined) return this.value;
   this.value = content;
+  return this;
+};
+
+Element.prototype.wrap = function (content) {
+  const temp = document.createElement("div");
+  temp.innerHTML = content;
+  const wrapper = temp.firstElementChild;
+  if (!wrapper) {
+    console.error("$wrap: invalid argument");
+    return this;
+  }
+  const parent = this.parentNode;
+  if (parent) {
+    parent.insertBefore(wrapper, this);
+    wrapper.appendChild(this);
+  }
+  return this;
+};
+
+NodeList.prototype.wrap = HTMLCollection.prototype.wrap = function (content) {
+  const elements = Array.from(this);
+  elements.forEach(element => {
+    if (element instanceof Element) {
+      element.wrap(content);
+    }
+  });
+  return this;
+};
+
+function $dom(callback) {
+  document.addEventListener("DOMContentLoaded", callback);
+}
+
+const $rillaEvents = new WeakMap();
+
+
+function $window(callback) {
+  window.addEventListener("load", callback);
+}
+
+Element.prototype.off = function (event, handler) {
+  try {
+    // If no arguments, remove all event listeners
+    if (arguments.length === 0) {
+      if ($rillaEvents.has(this)) {
+        const handlers = $rillaEvents.get(this);
+
+        handlers.forEach((eventHandlers, eventType) => {
+          eventHandlers.forEach(fn => {
+            this.removeEventListener(eventType, fn);
+          });
+        });
+
+        // Clear the stored handlers
+        $rillaEvents.delete(this);
+      }
+      return this;
+    }
+
+    // If event type specified but no handler
+    if (arguments.length === 1 && typeof event === "string") {
+      if ($rillaEvents.has(this)) {
+        const handlers = $rillaEvents.get(this);
+
+        if (handlers.has(event)) {
+          handlers.get(event).forEach(fn => {
+            this.removeEventListener(event, fn);
+          });
+
+          // Remove this event type from storage
+          handlers.delete(event);
+        }
+      }
+      return this;
+    }
+
+    // If both event and handler specified
+    if (arguments.length === 2 && typeof event === "string" && typeof handler === "function") {
+      if ($rillaEvents.has(this)) {
+        const handlers = $rillaEvents.get(this);
+
+        if (handlers.has(event)) {
+          const handlerList = handlers.get(event);
+          const index = handlerList.indexOf(handler);
+
+          if (index !== -1) {
+            // Remove the specific handler
+            this.removeEventListener(event, handler);
+            handlerList.splice(index, 1);
+
+            // Clean up if no handlers left for this event
+            if (handlerList.length === 0) {
+              handlers.delete(event);
+            }
+          }
+        }
+      }
+      return this;
+    }
+
+    console.error("off: Invalid arguments");
+  } catch (error) {
+    console.error("off: Error removing event listener(s)", error);
+  }
+
+  return this;
+};
+
+NodeList.prototype.off = function (event, handler) {
+  try {
+    this.forEach(element => {
+      if (arguments.length === 0) {
+        element.off();
+      } else if (arguments.length === 1) {
+        element.off(event);
+      } else {
+        element.off(event, handler);
+      }
+    });
+  } catch (error) {
+    console.error("off: Error removing event listener(s) from NodeList", error);
+  }
+
+  return this;
+};
+
+Element.prototype.on = function (event, handler) {
+  if (typeof event !== "string") {
+    console.error("on: Event type must be a string");
+    return this;
+  }
+
+  if (typeof handler !== "function") {
+    console.error("on: Handler must be a function");
+    return this;
+  }
+
+  try {
+    // Initialize handlers map for this element if it doesn't exist
+    if (!$rillaEvents.has(this)) {
+      $rillaEvents.set(this, new Map());
+    }
+
+    // Get the handlers map for this element
+    const handlers = $rillaEvents.get(this);
+
+    // Initialize array for this event type if it doesn't exist
+    if (!handlers.has(event)) {
+      handlers.set(event, []);
+    }
+
+    // Store the original handler for reference
+    handlers.get(event).push(handler);
+
+    // Add the event listener
+    this.addEventListener(event, handler);
+  } catch (error) {
+    console.error(`on: Error adding '${event}' event listener`, error);
+  }
+
+  return this;
+};
+
+NodeList.prototype.on = function (event, handler) {
+  if (typeof event !== "string") {
+    console.error("on: Event type must be a string");
+    return this;
+  }
+
+  if (typeof handler !== "function") {
+    console.error("on: Handler must be a function");
+    return this;
+  }
+
+  try {
+    this.forEach(element => {
+      element.on(event, handler);
+    });
+  } catch (error) {
+    console.error(`on: Error adding '${event}' event listener to NodeList`, error);
+  }
+
+  return this;
+};
+
+Element.prototype.prevent = function () {
+  try {
+    if (!$rillaEvents.has(this)) {
+      return this;
+    }
+
+    const handlers = $rillaEvents.get(this);
+
+    handlers.forEach((eventHandlers, eventType) => {
+      // Process the most recently added handler for each event type
+      if (eventHandlers.length > 0) {
+        const lastIndex = eventHandlers.length - 1;
+        const originalHandler = eventHandlers[lastIndex];
+
+        // Remove the original handler
+        this.removeEventListener(eventType, originalHandler);
+
+        // Create a new handler with preventDefault
+        const newHandler = function (e) {
+          e.preventDefault();
+          return originalHandler.call(this, e);
+        };
+
+        // Replace the original handler with the new one
+        eventHandlers[lastIndex] = newHandler;
+
+        // Add the new handler
+        this.addEventListener(eventType, newHandler);
+      }
+    });
+  } catch (error) {
+    console.error("prevent: Error adding preventDefault", error);
+  }
+
+  return this;
+};
+
+NodeList.prototype.prevent = function () {
+  try {
+    this.forEach(element => {
+      element.prevent();
+    });
+  } catch (error) {
+    console.error("prevent: Error adding preventDefault to NodeList", error);
+  }
+
+  return this;
+};
+
+Element.prototype.stop = function () {
+  try {
+    if (!$rillaEvents.has(this)) {
+      return this;
+    }
+
+    const handlers = $rillaEvents.get(this);
+
+    handlers.forEach((eventHandlers, eventType) => {
+      // Process the most recently added handler for each event type
+      if (eventHandlers.length > 0) {
+        const lastIndex = eventHandlers.length - 1;
+        const originalHandler = eventHandlers[lastIndex];
+
+        // Remove the original handler
+        this.removeEventListener(eventType, originalHandler);
+
+        // Create a new handler with stopPropagation
+        const newHandler = function (e) {
+          e.stopPropagation();
+          return originalHandler.call(this, e);
+        };
+
+        // Replace the original handler with the new one
+        eventHandlers[lastIndex] = newHandler;
+
+        // Add the new handler
+        this.addEventListener(eventType, newHandler);
+      }
+    });
+  } catch (error) {
+    console.error("stop: Error adding stopPropagation", error);
+  }
+
+  return this;
+};
+
+NodeList.prototype.stop = function () {
+  try {
+    this.forEach(element => {
+      element.stop();
+    });
+  } catch (error) {
+    console.error("stop: Error adding stopPropagation to NodeList", error);
+  }
+
   return this;
 };
 
@@ -278,6 +532,28 @@ NodeList.prototype.$class = function (classNames) {
   return this;
 };
 
+Element.prototype.addClass = function (classNames) {
+  if (typeof classNames !== "string") {
+    console.error("addClass: input must be a string");
+    return this;
+  }
+
+  const classes = classNames.trim().split(/\s+/).filter(cls => cls);
+
+  if (classes.length === 0) {
+    console.warn("addClass: no valid classes provided");
+    return this;
+  }
+
+  try {
+    this.classList.add(...classes);
+  } catch (error) {
+    console.error("addClass: error adding classes", error);
+  }
+
+  return this;
+};
+
 Element.prototype.hasClass = function (className) {
   if (className === undefined || className === "") {
     return this.classList.length > 0;
@@ -308,28 +584,6 @@ NodeList.prototype.hasClass = function (className) {
     console.error("hasClass: Error checking classes", error);
     return false;
   }
-};
-
-Element.prototype.addClass = function (classNames) {
-  if (typeof classNames !== "string") {
-    console.error("addClass: input must be a string");
-    return this;
-  }
-
-  const classes = classNames.trim().split(/\s+/).filter(cls => cls);
-
-  if (classes.length === 0) {
-    console.warn("addClass: no valid classes provided");
-    return this;
-  }
-
-  try {
-    this.classList.add(...classes);
-  } catch (error) {
-    console.error("addClass: error adding classes", error);
-  }
-
-  return this;
 };
 
 Element.prototype.removeClass = function (classNames) {
@@ -376,432 +630,11 @@ Element.prototype.toggleClass = function (classNames) {
   return this;
 };
 
-const $eventHandlers = new WeakMap();
-
-Element.prototype.on = function (event, handler) {
-  if (typeof event !== "string") {
-    console.error("on: Event type must be a string");
-    return this;
-  }
-
-  if (typeof handler !== "function") {
-    console.error("on: Handler must be a function");
-    return this;
-  }
-
-  try {
-    // Initialize handlers map for this element if it doesn't exist
-    if (!$eventHandlers.has(this)) {
-      $eventHandlers.set(this, new Map());
-    }
-
-    // Get the handlers map for this element
-    const handlers = $eventHandlers.get(this);
-
-    // Initialize array for this event type if it doesn't exist
-    if (!handlers.has(event)) {
-      handlers.set(event, []);
-    }
-
-    // Store the original handler for reference
-    handlers.get(event).push(handler);
-
-    // Add the event listener
-    this.addEventListener(event, handler);
-  } catch (error) {
-    console.error(`on: Error adding '${event}' event listener`, error);
-  }
-
-  return this;
-};
-
-NodeList.prototype.on = function (event, handler) {
-  if (typeof event !== "string") {
-    console.error("on: Event type must be a string");
-    return this;
-  }
-
-  if (typeof handler !== "function") {
-    console.error("on: Handler must be a function");
-    return this;
-  }
-
-  try {
-    this.forEach(element => {
-      element.on(event, handler);
-    });
-  } catch (error) {
-    console.error(`on: Error adding '${event}' event listener to NodeList`, error);
-  }
-
-  return this;
-};
-
-Element.prototype.off = function (event, handler) {
-  try {
-    // If no arguments, remove all event listeners
-    if (arguments.length === 0) {
-      if ($eventHandlers.has(this)) {
-        const handlers = $eventHandlers.get(this);
-
-        handlers.forEach((eventHandlers, eventType) => {
-          eventHandlers.forEach(fn => {
-            this.removeEventListener(eventType, fn);
-          });
-        });
-
-        // Clear the stored handlers
-        $eventHandlers.delete(this);
-      }
-      return this;
-    }
-
-    // If event type specified but no handler
-    if (arguments.length === 1 && typeof event === "string") {
-      if ($eventHandlers.has(this)) {
-        const handlers = $eventHandlers.get(this);
-
-        if (handlers.has(event)) {
-          handlers.get(event).forEach(fn => {
-            this.removeEventListener(event, fn);
-          });
-
-          // Remove this event type from storage
-          handlers.delete(event);
-        }
-      }
-      return this;
-    }
-
-    // If both event and handler specified
-    if (arguments.length === 2 && typeof event === "string" && typeof handler === "function") {
-      if ($eventHandlers.has(this)) {
-        const handlers = $eventHandlers.get(this);
-
-        if (handlers.has(event)) {
-          const handlerList = handlers.get(event);
-          const index = handlerList.indexOf(handler);
-
-          if (index !== -1) {
-            // Remove the specific handler
-            this.removeEventListener(event, handler);
-            handlerList.splice(index, 1);
-
-            // Clean up if no handlers left for this event
-            if (handlerList.length === 0) {
-              handlers.delete(event);
-            }
-          }
-        }
-      }
-      return this;
-    }
-
-    console.error("off: Invalid arguments");
-  } catch (error) {
-    console.error("off: Error removing event listener(s)", error);
-  }
-
-  return this;
-};
-
-NodeList.prototype.off = function (event, handler) {
-  try {
-    this.forEach(element => {
-      if (arguments.length === 0) {
-        element.off();
-      } else if (arguments.length === 1) {
-        element.off(event);
-      } else {
-        element.off(event, handler);
-      }
-    });
-  } catch (error) {
-    console.error("off: Error removing event listener(s) from NodeList", error);
-  }
-
-  return this;
-};
-
-Element.prototype.prevent = function () {
-  try {
-    if (!$eventHandlers.has(this)) {
-      return this;
-    }
-
-    const handlers = $eventHandlers.get(this);
-
-    handlers.forEach((eventHandlers, eventType) => {
-      // Process the most recently added handler for each event type
-      if (eventHandlers.length > 0) {
-        const lastIndex = eventHandlers.length - 1;
-        const originalHandler = eventHandlers[lastIndex];
-
-        // Remove the original handler
-        this.removeEventListener(eventType, originalHandler);
-
-        // Create a new handler with preventDefault
-        const newHandler = function (e) {
-          e.preventDefault();
-          return originalHandler.call(this, e);
-        };
-
-        // Replace the original handler with the new one
-        eventHandlers[lastIndex] = newHandler;
-
-        // Add the new handler
-        this.addEventListener(eventType, newHandler);
-      }
-    });
-  } catch (error) {
-    console.error("prevent: Error adding preventDefault", error);
-  }
-
-  return this;
-};
-
-NodeList.prototype.prevent = function () {
-  try {
-    this.forEach(element => {
-      element.prevent();
-    });
-  } catch (error) {
-    console.error("prevent: Error adding preventDefault to NodeList", error);
-  }
-
-  return this;
-};
-
-Element.prototype.stop = function () {
-  try {
-    if (!$eventHandlers.has(this)) {
-      return this;
-    }
-
-    const handlers = $eventHandlers.get(this);
-
-    handlers.forEach((eventHandlers, eventType) => {
-      // Process the most recently added handler for each event type
-      if (eventHandlers.length > 0) {
-        const lastIndex = eventHandlers.length - 1;
-        const originalHandler = eventHandlers[lastIndex];
-
-        // Remove the original handler
-        this.removeEventListener(eventType, originalHandler);
-
-        // Create a new handler with stopPropagation
-        const newHandler = function (e) {
-          e.stopPropagation();
-          return originalHandler.call(this, e);
-        };
-
-        // Replace the original handler with the new one
-        eventHandlers[lastIndex] = newHandler;
-
-        // Add the new handler
-        this.addEventListener(eventType, newHandler);
-      }
-    });
-  } catch (error) {
-    console.error("stop: Error adding stopPropagation", error);
-  }
-
-  return this;
-};
-
-NodeList.prototype.stop = function () {
-  try {
-    this.forEach(element => {
-      element.stop();
-    });
-  } catch (error) {
-    console.error("stop: Error adding stopPropagation to NodeList", error);
-  }
-
-  return this;
-};
-
-const $events = [
-  // Mouse Events
-  "click", "dblclick", "mousedown", "mouseup", "mousemove",
-  "mouseover", "mouseout", "mouseenter", "mouseleave",
-
-  // Keyboard Events
-  "keydown", "keyup", "keypress",
-
-  // Form Events
-  "input", "change", "submit", "focus", "blur", "reset",
-
-  // Touch Events
-  "touchstart", "touchend", "touchmove", "touchcancel",
-
-  // Window/Document Events
-  "scroll", "resize", "load", "unload", "beforeunload",
-
-  // Drag Events
-  "dragstart", "drag", "dragenter", "dragleave", "dragover", "drop", "dragend",
-
-  // Clipboard Events
-  "cut", "copy", "paste",
-
-  // Media Events
-  "play", "pause", "ended", "volumechange", "timeupdate",
-
-  // Focus Events
-  "focusin", "focusout",
-
-  // Wheel and Scroll
-  "wheel", "scroll",
-
-  // Miscellaneous
-  "contextmenu", "select"
-];
-
-$events.forEach(eventName => {
-  // Create a method for each event type (e.g., $click, $keydown, $input)
-  // options: { passive: true, capture: true, once: true }
-  Element.prototype[`$${eventName}`] = function (callback, options = {}) {
-    // Handle different callback types similar to previous implementation
-    if (callback == null) {
-      console.error(`$${eventName}: Callback cannot be null or undefined`);
-      return this;
-    }
-
-    // Handle string callback
-    if (typeof callback === "string") {
-      try {
-        // Priority 1: Check for global function
-        if (typeof window[callback] === "function") {
-          callback = window[callback];
-        }
-        // Priority 2: Try to create function from string
-        else {
-          callback = new Function("event", callback);
-        }
-      } catch (error) {
-        console.error(`$${eventName}: Could not resolve function from string "${callback}"`, error);
-        return this;
-      }
-    }
-
-    // Validate callback is a function
-    if (typeof callback !== "function") {
-      console.error(`$${eventName}: Callback must be a function or a valid function string`);
-      return this;
-    }
-
-    // Create a handler object to store event handling configuration
-    const handler = {
-      element: this,
-      callback: callback,
-      eventName: eventName,
-      options: {
-        passive: options.passive ?? false,
-        capture: options.capture ?? false,
-        once: options.once ?? false
-      },
-      preventDefault: false,
-      stopPropagation: false,
-
-      // The actual event listener function
-      listener: null,
-
-      // Chainable method to add preventDefault
-      prevent: function () {
-        this.preventDefault = true;
-        return this;
-      },
-
-      // Chainable method to add stopPropagation
-      stop: function () {
-        this.stopPropagation = true;
-        return this;
-      },
-
-      // Method to actually attach the event
-      attach: function () {
-        // Create the wrapped callback with the current configuration
-        this.listener = (event) => {
-          try {
-            // Apply configured behaviors
-            if (this.preventDefault) {
-              event.preventDefault();
-            }
-
-            if (this.stopPropagation) {
-              event.stopPropagation();
-            }
-
-            // Call the original callback
-            const result = this.callback.call(this.element, event);
-
-            // Support promise-based callbacks
-            if (result instanceof Promise) {
-              result.catch(error => {
-                console.error(`$${this.eventName}: Async callback error`, error);
-              });
-            }
-
-            return result;
-          } catch (error) {
-            console.error(`$${this.eventName}: Callback execution error`, error);
-          }
-        };
-
-        // Add the event listener
-        this.element.addEventListener(this.eventName, this.listener, this.options);
-
-        // Initialize handlers map for this element if it doesn't exist
-        if (!$eventHandlers.has(this.element)) {
-          $eventHandlers.set(this.element, new Map());
-        }
-
-        // Get the handlers map for this element
-        const handlers = $eventHandlers.get(this.element);
-
-        // Initialize array for this event type if it doesn't exist
-        if (!handlers.has(this.eventName)) {
-          handlers.set(this.eventName, []);
-        }
-
-        // Store the listener for reference to enable off() method compatibility
-        handlers.get(this.eventName).push(this.listener);
-
-        // Also store the original callback for potential reference
-        // We can associate them using a second WeakMap or just store as a property
-        this.listener._originalCallback = this.callback;
-
-        return this.element; // Return the element for further chaining
-      }
-    };
-
-    // Automatically attach the event and return the handler for chaining
-    // We defer the actual attachment to allow for chaining .prevent() and .stop()
-    setTimeout(() => handler.attach(), 0);
-
-    return handler;
-  };
-});
-
-// Add the same methods to Document.prototype
-$events.forEach(eventName => {
-  Document.prototype[`$${eventName}`] = Element.prototype[`$${eventName}`];
-});
-
-// Add the same methods to Window.prototype
-$events.forEach(eventName => {
-  Window.prototype[`$${eventName}`] = Element.prototype[`$${eventName}`];
-});
-
-function $window(callback) {
-  window.addEventListener("load", callback);
+function $local(key, value) {
+  return $rillaStore("local", key, value);
 }
 
-function $dom(callback) {
-  document.addEventListener("DOMContentLoaded", callback);
-}
-
-const storage = (type, key, value) => {
+const $rillaStore = (type, key, value) => {
   const store = type === "local" ? localStorage : sessionStorage;
   if (value === undefined) {
     try {
@@ -814,52 +647,12 @@ const storage = (type, key, value) => {
   store.setItem(key, JSON.stringify(value));
 };
 
-const $local = (key, value) => storage("local", key, value);
-const $session = (key, value) => storage("session", key, value);
-
-function $getElement(param) {
-  return typeof param === "string" ? document.querySelector(`#${param}`) : param;
-}
-
-function show(param, displayType = "block") {
-  const element = $getElement(param);
-  if (element) {
-    element.style.display = displayType;
-    return element;
-  } else {
-    console.warn("show: element not found");
-    return null;
-  }
-}
-
-function hide(param) {
-  const element = $getElement(param);
-  if (element) {
-    element.style.display = "none";
-    return element;
-  } else {
-    console.warn("hide: element not found");
-    return null;
-  }
-}
-
-function toggle(param, displayType = "block") {
-  const element = $getElement(param);
-  if (element) {
-    if (window.getComputedStyle(element).display === "none") {
-      show(element, displayType);
-    } else {
-      hide(element);
-    }
-    return element;
-  } else {
-    console.warn("toggle: element not found");
-    return null;
-  }
+function $session(key, value) {
+  return $rillaStore("session", key, value);
 }
 
 function fadeIn(param, displayType = "block", duration = 200) {
-  const element = $getElement(param);
+  const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
   if (element) {
     element.style.opacity = 0;
     element.style.display = displayType;
@@ -875,7 +668,7 @@ function fadeIn(param, displayType = "block", duration = 200) {
 }
 
 function fadeOut(param, duration = 200) {
-  const element = $getElement(param);
+  const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
   if (element) {
     element.style.opacity = 1;
     element.style.transition = `opacity ${duration}ms`;
@@ -893,7 +686,7 @@ function fadeOut(param, duration = 200) {
 }
 
 function fadeToggle(param, displayType = "block", duration = 200) {
-  const element = $getElement(param);
+  const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
   if (element) {
     if (window.getComputedStyle(element).display === "none") {
       fadeIn(element, displayType, duration);
@@ -907,8 +700,44 @@ function fadeToggle(param, displayType = "block", duration = 200) {
   }
 }
 
-// Drag and Resize Function
-function $initElDrag() {
+function hide(param) {
+  const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
+  if (element) {
+    element.style.display = "none";
+    return element;
+  } else {
+    console.warn("hide: element not found");
+    return null;
+  }
+}
+
+function show(param, displayType = "block") {
+  const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
+  if (element) {
+    element.style.display = displayType;
+    return element;
+  } else {
+    console.warn("show: element not found");
+    return null;
+  }
+}
+
+function toggle(param, displayType = "block") {
+  const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
+  if (element) {
+    if (window.getComputedStyle(element).display === "none") {
+      show(element, displayType);
+    } else {
+      hide(element);
+    }
+    return element;
+  } else {
+    console.warn("toggle: element not found");
+    return null;
+  }
+}
+
+function $initDragging() {
   var pos1 = 0,
     pos2 = 0,
     pos3 = 0,
@@ -966,7 +795,7 @@ function $initElDrag() {
     return null;
   }
 }
-$initElDrag();
+$initDragging();
 
 (function () {
   const style = document.createElement("style");
@@ -976,11 +805,3 @@ $initElDrag();
   sheet.insertRule(".draggable { position: absolute; overflow: hidden; z-index: 1; }", sheet.cssRules.length);
   sheet.insertRule(".draggable-handle { cursor: grab; z-index: 1; }", sheet.cssRules.length);
 })();
-
-// (function () {
-//   const sheet = new CSSStyleSheet();
-//   sheet.insertRule(".draggable { position: absolute; overflow: hidden; z-index: 1; }");
-//   sheet.insertRule(".draggable-handle { cursor: grab; z-index: 1; }");
-
-//   document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
-// })();
