@@ -34,6 +34,25 @@ function show(param, displayType = "block") {
   return null;
 }
 
+Element.prototype.show = function(displayType = "block") {
+  this.style.display = displayType;
+  return this;
+};
+
+NodeList.prototype.show = function(displayType = "block") {
+  for (let i = 0; i < this.length; i++) {
+    this[i].style.display = displayType;
+  }
+  return this;
+};
+
+HTMLCollection.prototype.show = function(displayType = "block") {
+  for (let i = 0; i < this.length; i++) {
+    this[i].style.display = displayType;
+  }
+  return this;
+};
+
 // function show(param, displayType = "block") {
 //   const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
 //   if (element) {

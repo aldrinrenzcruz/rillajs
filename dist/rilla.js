@@ -712,6 +712,53 @@ function fadeIn(param, displayType = "block", duration = 200) {
   return null;
 }
 
+Element.prototype.fadeIn = function(displayType = "block", duration = 200) {
+  this.style.opacity = 0;
+  this.style.display = displayType;
+  
+  const element = this;
+  requestAnimationFrame(function() {
+    element.style.transition = `opacity ${duration}ms`;
+    element.style.opacity = 1;
+  });
+  
+  return this;
+};
+
+NodeList.prototype.fadeIn = function(displayType = "block", duration = 200) {
+  for (let i = 0; i < this.length; i++) {
+    const element = this[i];
+    element.style.opacity = 0;
+    element.style.display = displayType;
+    (function(el) {
+      requestAnimationFrame(function() {
+        el.style.transition = `opacity ${duration}ms`;
+        el.style.opacity = 1;
+      });
+    })(element);
+  }
+  
+  return this;
+};
+
+HTMLCollection.prototype.fadeIn = function(displayType = "block", duration = 200) {
+  for (let i = 0; i < this.length; i++) {
+    const element = this[i];
+    element.style.opacity = 0;
+    element.style.display = displayType;
+    
+    // Use closure to capture the current element
+    (function(el) {
+      requestAnimationFrame(function() {
+        el.style.transition = `opacity ${duration}ms`;
+        el.style.opacity = 1;
+      });
+    })(element);
+  }
+  
+  return this;
+};
+
 // function fadeIn(param, displayType = "block", duration = 200) {
 //   const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
 //   if (element) {
@@ -787,6 +834,52 @@ function fadeOut(param, duration = 200) {
   console.warn("fadeOut: element not found or invalid");
   return null;
 }
+
+Element.prototype.fadeOut = function(duration = 200) {
+  this.style.opacity = 1;
+  this.style.transition = `opacity ${duration}ms`;
+  this.style.opacity = 0;
+  
+  const element = this;
+  setTimeout(function() {
+    element.style.display = "none";
+  }, duration);
+  
+  return this;
+};
+
+NodeList.prototype.fadeOut = function(duration = 200) {
+  for (let i = 0; i < this.length; i++) {
+    const element = this[i];
+    element.style.opacity = 1;
+    element.style.transition = `opacity ${duration}ms`;
+    element.style.opacity = 0;
+    (function(el) {
+      setTimeout(function() {
+        el.style.display = "none";
+      }, duration);
+    })(element);
+  }
+  
+  return this;
+};
+
+HTMLCollection.prototype.fadeOut = function(duration = 200) {
+  for (let i = 0; i < this.length; i++) {
+    const element = this[i];
+    element.style.opacity = 1;
+    element.style.transition = `opacity ${duration}ms`;
+    element.style.opacity = 0;
+    (function(el) {
+      setTimeout(function() {
+        el.style.display = "none";
+      }, duration);
+    })(element);
+  }
+  
+  return this;
+};
+
 
 // function fadeOut(param, duration = 200) {
 //   const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
@@ -875,6 +968,70 @@ function fadeToggle(param, displayType = "block", duration = 200) {
   return null;
 }
 
+Element.prototype.fadeToggle = function(displayType = "block", duration = 200) {
+  if (window.getComputedStyle(this).display === "none") {
+    this.fadeIn(displayType, duration);
+  } else {
+    this.fadeOut(duration);
+  }
+  
+  return this;
+};
+
+NodeList.prototype.fadeToggle = function(displayType = "block", duration = 200) {
+  for (let i = 0; i < this.length; i++) {
+    const element = this[i];
+    if (window.getComputedStyle(element).display === "none") {
+      element.style.opacity = 0;
+      element.style.display = displayType;
+      (function(el) {
+        requestAnimationFrame(function() {
+          el.style.transition = `opacity ${duration}ms`;
+          el.style.opacity = 1;
+        });
+      })(element);
+    } else {
+      element.style.opacity = 1;
+      element.style.transition = `opacity ${duration}ms`;
+      element.style.opacity = 0;
+      (function(el) {
+        setTimeout(function() {
+          el.style.display = "none";
+        }, duration);
+      })(element);
+    }
+  }
+  
+  return this;
+};
+
+
+HTMLCollection.prototype.fadeToggle = function(displayType = "block", duration = 200) {
+  for (let i = 0; i < this.length; i++) {
+    const element = this[i];
+    if (window.getComputedStyle(element).display === "none") {
+      element.style.opacity = 0;
+      element.style.display = displayType;
+      (function(el) {
+        requestAnimationFrame(function() {
+          el.style.transition = `opacity ${duration}ms`;
+          el.style.opacity = 1;
+        });
+      })(element);
+    } else {
+      element.style.opacity = 1;
+      element.style.transition = `opacity ${duration}ms`;
+      element.style.opacity = 0;
+      (function(el) {
+        setTimeout(function() {
+          el.style.display = "none";
+        }, duration);
+      })(element);
+    }
+  }
+  return this;
+};
+
 // function fadeToggle(param, displayType = "block", duration = 200) {
 //   const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
 //   if (element) {
@@ -926,6 +1083,25 @@ function hide(param) {
   return null;
 }
 
+Element.prototype.hide = function() {
+  this.style.display = "none";
+  return this;
+};
+
+NodeList.prototype.hide = function() {
+  for (let i = 0; i < this.length; i++) {
+    this[i].style.display = "none";
+  }
+  return this;
+};
+
+HTMLCollection.prototype.hide = function() {
+  for (let i = 0; i < this.length; i++) {
+    this[i].style.display = "none";
+  }
+  return this;
+};
+
 // function hide(param) {
 //   const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
 //   if (element) {
@@ -972,6 +1148,25 @@ function show(param, displayType = "block") {
   console.warn("show: element not found or invalid");
   return null;
 }
+
+Element.prototype.show = function(displayType = "block") {
+  this.style.display = displayType;
+  return this;
+};
+
+NodeList.prototype.show = function(displayType = "block") {
+  for (let i = 0; i < this.length; i++) {
+    this[i].style.display = displayType;
+  }
+  return this;
+};
+
+HTMLCollection.prototype.show = function(displayType = "block") {
+  for (let i = 0; i < this.length; i++) {
+    this[i].style.display = displayType;
+  }
+  return this;
+};
 
 // function show(param, displayType = "block") {
 //   const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
@@ -1032,6 +1227,39 @@ function toggle(param, displayType = "block") {
   console.warn("toggle: element not found or invalid");
   return null;
 }
+
+Element.prototype.toggle = function(displayType = "block") {
+  if (window.getComputedStyle(this).display === "none") {
+    this.style.display = displayType;
+  } else {
+    this.style.display = "none";
+  }
+  return this;
+};
+
+NodeList.prototype.toggle = function(displayType = "block") {
+  for (let i = 0; i < this.length; i++) {
+    const element = this[i];
+    if (window.getComputedStyle(element).display === "none") {
+      element.style.display = displayType;
+    } else {
+      element.style.display = "none";
+    }
+  }
+  return this;
+};
+
+HTMLCollection.prototype.toggle = function(displayType = "block") {
+  for (let i = 0; i < this.length; i++) {
+    const element = this[i];
+    if (window.getComputedStyle(element).display === "none") {
+      element.style.display = displayType;
+    } else {
+      element.style.display = "none";
+    }
+  }
+  return this;
+};
 
 // function toggle(param, displayType = "block") {
 //   const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;

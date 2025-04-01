@@ -47,6 +47,39 @@ function toggle(param, displayType = "block") {
   return null;
 }
 
+Element.prototype.toggle = function(displayType = "block") {
+  if (window.getComputedStyle(this).display === "none") {
+    this.style.display = displayType;
+  } else {
+    this.style.display = "none";
+  }
+  return this;
+};
+
+NodeList.prototype.toggle = function(displayType = "block") {
+  for (let i = 0; i < this.length; i++) {
+    const element = this[i];
+    if (window.getComputedStyle(element).display === "none") {
+      element.style.display = displayType;
+    } else {
+      element.style.display = "none";
+    }
+  }
+  return this;
+};
+
+HTMLCollection.prototype.toggle = function(displayType = "block") {
+  for (let i = 0; i < this.length; i++) {
+    const element = this[i];
+    if (window.getComputedStyle(element).display === "none") {
+      element.style.display = displayType;
+    } else {
+      element.style.display = "none";
+    }
+  }
+  return this;
+};
+
 // function toggle(param, displayType = "block") {
 //   const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
 //   if (element) {

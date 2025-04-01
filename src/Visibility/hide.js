@@ -34,6 +34,25 @@ function hide(param) {
   return null;
 }
 
+Element.prototype.hide = function() {
+  this.style.display = "none";
+  return this;
+};
+
+NodeList.prototype.hide = function() {
+  for (let i = 0; i < this.length; i++) {
+    this[i].style.display = "none";
+  }
+  return this;
+};
+
+HTMLCollection.prototype.hide = function() {
+  for (let i = 0; i < this.length; i++) {
+    this[i].style.display = "none";
+  }
+  return this;
+};
+
 // function hide(param) {
 //   const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
 //   if (element) {

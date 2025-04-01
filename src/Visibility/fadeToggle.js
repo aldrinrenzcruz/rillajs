@@ -67,6 +67,70 @@ function fadeToggle(param, displayType = "block", duration = 200) {
   return null;
 }
 
+Element.prototype.fadeToggle = function(displayType = "block", duration = 200) {
+  if (window.getComputedStyle(this).display === "none") {
+    this.fadeIn(displayType, duration);
+  } else {
+    this.fadeOut(duration);
+  }
+  
+  return this;
+};
+
+NodeList.prototype.fadeToggle = function(displayType = "block", duration = 200) {
+  for (let i = 0; i < this.length; i++) {
+    const element = this[i];
+    if (window.getComputedStyle(element).display === "none") {
+      element.style.opacity = 0;
+      element.style.display = displayType;
+      (function(el) {
+        requestAnimationFrame(function() {
+          el.style.transition = `opacity ${duration}ms`;
+          el.style.opacity = 1;
+        });
+      })(element);
+    } else {
+      element.style.opacity = 1;
+      element.style.transition = `opacity ${duration}ms`;
+      element.style.opacity = 0;
+      (function(el) {
+        setTimeout(function() {
+          el.style.display = "none";
+        }, duration);
+      })(element);
+    }
+  }
+  
+  return this;
+};
+
+
+HTMLCollection.prototype.fadeToggle = function(displayType = "block", duration = 200) {
+  for (let i = 0; i < this.length; i++) {
+    const element = this[i];
+    if (window.getComputedStyle(element).display === "none") {
+      element.style.opacity = 0;
+      element.style.display = displayType;
+      (function(el) {
+        requestAnimationFrame(function() {
+          el.style.transition = `opacity ${duration}ms`;
+          el.style.opacity = 1;
+        });
+      })(element);
+    } else {
+      element.style.opacity = 1;
+      element.style.transition = `opacity ${duration}ms`;
+      element.style.opacity = 0;
+      (function(el) {
+        setTimeout(function() {
+          el.style.display = "none";
+        }, duration);
+      })(element);
+    }
+  }
+  return this;
+};
+
 // function fadeToggle(param, displayType = "block", duration = 200) {
 //   const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
 //   if (element) {
