@@ -1,34 +1,31 @@
-function $initDragging() {
-  var pos1 = 0,
-    pos2 = 0,
-    pos3 = 0,
-    pos4 = 0;
-  var popups = document.querySelectorAll(".draggable");
+$window(() => {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  var popups = document.getElementsByClassName("draggable");
   var elmnt = null;
   var currentZIndex = 1;
   for (var i = 0; i < popups.length; i++) {
     var popup = popups[i];
-    var header = $getHeader(popup);
+    var header = getHeader(popup);
     popup.onmousedown = function () {
       this.style.zIndex = "" + ++currentZIndex;
     };
     if (header) {
       header.parentPopup = popup;
-      header.onmousedown = $dragMouseDown;
+      header.onmousedown = dragMouseDown;
     }
   }
-  function $dragMouseDown(e) {
+  function dragMouseDown(e) {
     elmnt = this.parentPopup;
     elmnt.style.zIndex = "" + ++currentZIndex;
     e = e || window.event;
     // get the mouse cursor position at startup:
     pos3 = e.clientX;
     pos4 = e.clientY;
-    document.onmouseup = $closeDragElement;
+    document.onmouseup = closeDragElement;
     // call a function whenever the cursor moves:
-    document.onmousemove = $elementDrag;
+    document.onmousemove = elementDrag;
   }
-  function $elementDrag(e) {
+  function elementDrag(e) {
     if (!elmnt) {
       return;
     }
@@ -42,27 +39,17 @@ function $initDragging() {
     elmnt.style.top = elmnt.offsetTop - pos2 + "px";
     elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
   }
-  function $closeDragElement() {
-    /* stop moving when mouse button is released:*/
+  function closeDragElement() {
+    // stop moving when mouse button is released:
     document.onmouseup = null;
     document.onmousemove = null;
   }
-  function $getHeader(element) {
-    var headerItems = element.querySelectorAll(".draggable-handle");
-
+  function getHeader(element) {
+    var headerItems = element.getElementsByClassName("draggable-handle");
     if (headerItems.length === 1) {
       return headerItems[0];
     }
     return null;
   }
-}
-$initDragging();
+})
 
-(function () {
-  const style = document.createElement("style");
-  document.head.appendChild(style);
-  const sheet = style.sheet;
-
-  sheet.insertRule(".draggable { position: absolute; overflow: hidden; z-index: 1; }", sheet.cssRules.length);
-  sheet.insertRule(".draggable-handle { cursor: grab; z-index: 1; }", sheet.cssRules.length);
-})();
