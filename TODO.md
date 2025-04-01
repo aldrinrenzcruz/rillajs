@@ -1,9 +1,9 @@
 **TODO:**
 - Modify merge.js to support splitting src scripts by adding easy file pathing
-- Add error handling for examples fetch script for invalid query selectors, just skip those
 - Add .parent() to docs
 
 **FOR CONSIDERATION:**
+- Add error handling for examples fetch script for invalid query selectors, just skip those
 - Rename ClassUtils to ClassUtilities
 - Performance benchmark tests
 - Reduce total file size by shortening variable and helper functions names, also by using arrow function when possible
