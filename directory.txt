@@ -55,5 +55,5 @@ rillajs/
 │       Visibility.js
 │
 └──test
-     index.html
-     main.js
+     test.html
+     test.js
