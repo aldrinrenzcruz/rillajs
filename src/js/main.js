@@ -30,8 +30,8 @@ function renderCodeBlocks() {
         .then(data => {
           const lines = data.split("\n");
           const lang = lines[0].replace(/^#\s*/, "");
-          const modifiedData = lines.slice(2).join("\n");
-          return { example, modifiedData, lang };
+          const modifiedContent = lines.slice(2).join("\n");
+          return { example, modifiedContent, lang };
         })
         .catch(err => {
           console.error(`Error fetching ${url}:`, err);
@@ -39,13 +39,13 @@ function renderCodeBlocks() {
         });
     })
   ).then(results => {
-    results.forEach(({ example, modifiedData, lang }) => {
+    results.forEach(({ example, modifiedContent, lang }) => {
       $(`.code-block[data-src=${example}]`)
         .$append(`<pre></pre>`)
         .$("pre")
         .$append(`<code class="language-${lang}"></code>`)
         .$("code")
-        .text(modifiedData)
+        .text(modifiedContent)
         .$this((el) => { hljs.highlightElement(el) })
         .parent()
         .wrap("<div class='relative'></div>")
@@ -55,7 +55,7 @@ function renderCodeBlocks() {
         .text(lang.trim() || "copy")
         .$this(btn =>
           btn.on('click', () => {
-            navigator.clipboard.writeText(modifiedData);
+            navigator.clipboard.writeText(modifiedContent);
             btn.text("copied!");
             setTimeout(() => btn.text(lang || "copy"), 1500);
           })
