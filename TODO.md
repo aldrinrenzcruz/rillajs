@@ -1,18 +1,24 @@
 **TODO:**
 - Add .parent() to docs
+- Add personal note to explain project scope
+- Add a script to force jump to hashed url on window load after building the page
 
 **FOR CONSIDERATION:**
+- Add a roadmap
 - Add error handling for examples fetch script for invalid query selectors, just skip those
 - Test performance benchmark
 - Reduce total file size by shortening variable and helper functions names, also by using arrow function when possible
 - Create a converter vanilla to Rilla and vice versa
-- Add installation via CDN
 - Add installation via npm
 - Add DOM Traversal: parent, parents, parentsUntil, children, find, siblings, next, nextAll, nextUntil, prev, prevAll, prevUntil, first, last
 - Add $css method to add style
 - Add $data to access all element data, should accept parameter, get or set value
 
 **COMPLETED:**
+- Add right sidebar for Page Contents and header
+- Create a disclaimer banner at the top
+- Add installation via CDN
+- Rename draggable-handle to drag-handle
 - Remove injected CSS
 - Extend $class and hasClass to HTML Collection
 - Extend addClass, removeClass, and toggleClass to NodeList and HTML Collection
