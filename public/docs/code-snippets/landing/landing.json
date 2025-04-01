@@ -10,6 +10,7 @@
     "visibility",
     "storage",
     "draggable",
+    "draggable-css",
     "global-usage"
   ]
 }

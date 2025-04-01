@@ -1,0 +1,12 @@
+#css
+
+.draggable {
+  position: absolute;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.draggable-handle {
+  cursor: grab;
+  z-index: 1;
+}
