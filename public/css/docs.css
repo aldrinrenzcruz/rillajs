@@ -1,7 +1,8 @@
 h2,
 h3,
-section[id] {
-  scroll-margin-top: 6rem;
+section[id],
+article[id] {
+  scroll-margin-top: 5rem;
 }
 
 p a,

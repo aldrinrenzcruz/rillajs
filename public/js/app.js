@@ -1,19 +1,33 @@
 $dom(() => {
   renderLandingCodeBlocks();
-  initializeSidebarSmoothScroll();
+  initializeContentSidebar();
 });
 
-function initializeSidebarSmoothScroll() {
-  $('a[href^="#"]').forEach(anchor => {
-    anchor.on('click', function (e) {
-      const targetId = this.$attr('href');
-      const targetElement = $(targetId);
-      window.scrollTo({
-        top: targetElement.offsetTop - 12,
-        behavior: 'smooth'
-      });
-    }).prevent();
-  });
+function initializeContentSidebar() {
+  const sections = document.querySelectorAll('section, article');
+  const tocLinks = document.querySelectorAll('.toc a');
+  function highlightActiveSection() {
+    let scrollPosition = window.scrollY;
+    scrollPosition += 100;
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute('id');
+      if (sectionId && scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        tocLinks.forEach(link => {
+          link.classList.remove('text-rose-500', 'font-medium');
+          link.classList.add('text-gray-500');
+        });
+        const activeLink = document.querySelector(`.toc a[href="#${sectionId}"]`);
+        if (activeLink) {
+          activeLink.classList.remove('text-gray-500');
+          activeLink.classList.add('text-rose-500', 'font-medium');
+        }
+      }
+    });
+  }
+  highlightActiveSection();
+  window.addEventListener('scroll', highlightActiveSection);
 }
 
 function renderLandingCodeBlocks() {
