@@ -24,19 +24,29 @@ section article:not(:last-of-type) {
   margin-bottom: 2rem;
 }
 
-section h2 {
+h1 {
   margin-bottom: 0.5rem;
   padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--color-rose-300);
   font-weight: bold;
   font-size: 1.875rem;
   letter-spacing: 0.025em;
   color: var(--color-rose-600);
 }
 
+section h2 {
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-rose-300);
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: .75rem;
+  letter-spacing: 0.025em;
+  color: var(--color-rose-600);
+}
+
 article h3 {
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   letter-spacing: 0.025em;
   color: var(--color-gray-800);
   opacity: 0.95;
