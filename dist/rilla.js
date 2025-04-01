@@ -657,90 +657,396 @@ function $session(key, value) {
 }
 
 function fadeIn(param, displayType = "block", duration = 200) {
-  const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
-  if (element) {
-    element.style.opacity = 0;
-    element.style.display = displayType;
-    requestAnimationFrame(function () {
-      element.style.transition = `opacity ${duration}ms`;
-      element.style.opacity = 1;
-    });
-    return element;
-  } else {
-    console.warn("fadeIn: element not found");
-    return null;
+  if (typeof param === "string") {
+    const element = document.querySelector(`#${param}`);
+    if (element) {
+      element.style.opacity = 0;
+      element.style.display = displayType;
+      requestAnimationFrame(function () {
+        element.style.transition = `opacity ${duration}ms`;
+        element.style.opacity = 1;
+      });
+      return element;
+    } else {
+      console.warn(`fadeIn: element with ID ${param} not found`);
+      return null;
+    }
   }
+
+  // Handle NodeList or HTMLCollection
+  if (param instanceof NodeList || param instanceof HTMLCollection) {
+    if (param.length === 0) {
+      console.warn("fadeIn: empty element collection");
+      return null;
+    }
+
+    // Apply to all elements in the collection
+    for (let i = 0; i < param.length; i++) {
+      const element = param[i];
+      element.style.opacity = 0;
+      element.style.display = displayType;
+
+      // Use closure to capture the current element
+      (function (el) {
+        requestAnimationFrame(function () {
+          el.style.transition = `opacity ${duration}ms`;
+          el.style.opacity = 1;
+        });
+      })(element);
+    }
+    return param;
+  }
+
+  // Handle single element
+  if (param && param.style) {
+    param.style.opacity = 0;
+    param.style.display = displayType;
+    requestAnimationFrame(function () {
+      param.style.transition = `opacity ${duration}ms`;
+      param.style.opacity = 1;
+    });
+    return param;
+  }
+
+  console.warn("fadeIn: element not found or invalid");
+  return null;
 }
+
+// function fadeIn(param, displayType = "block", duration = 200) {
+//   const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
+//   if (element) {
+//     element.style.opacity = 0;
+//     element.style.display = displayType;
+//     requestAnimationFrame(function () {
+//       element.style.transition = `opacity ${duration}ms`;
+//       element.style.opacity = 1;
+//     });
+//     return element;
+//   } else {
+//     console.warn("fadeIn: element not found");
+//     return null;
+//   }
+// }
 
 function fadeOut(param, duration = 200) {
-  const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
-  if (element) {
-    element.style.opacity = 1;
-    element.style.transition = `opacity ${duration}ms`;
-    element.style.opacity = 0;
+  if (typeof param === "string") {
+    const element = document.querySelector(`#${param}`);
+    if (element) {
+      element.style.opacity = 1;
+      element.style.transition = `opacity ${duration}ms`;
+      element.style.opacity = 0;
+
+      setTimeout(function () {
+        element.style.display = "none";
+      }, duration);
+
+      return element;
+    } else {
+      console.warn(`fadeOut: element with ID ${param} not found`);
+      return null;
+    }
+  }
+
+  // Handle NodeList or HTMLCollection
+  if (param instanceof NodeList || param instanceof HTMLCollection) {
+    if (param.length === 0) {
+      console.warn("fadeOut: empty element collection");
+      return null;
+    }
+
+    // Apply to all elements in the collection
+    for (let i = 0; i < param.length; i++) {
+      const element = param[i];
+      element.style.opacity = 1;
+      element.style.transition = `opacity ${duration}ms`;
+      element.style.opacity = 0;
+
+      // Use closure to capture the current element
+      (function (el) {
+        setTimeout(function () {
+          el.style.display = "none";
+        }, duration);
+      })(element);
+    }
+    return param;
+  }
+
+  // Handle single element
+  if (param && param.style) {
+    param.style.opacity = 1;
+    param.style.transition = `opacity ${duration}ms`;
+    param.style.opacity = 0;
 
     setTimeout(function () {
-      element.style.display = "none";
+      param.style.display = "none";
     }, duration);
 
-    return element;
-  } else {
-    console.warn("fadeOut: element not found");
-    return null;
+    return param;
   }
+
+  console.warn("fadeOut: element not found or invalid");
+  return null;
 }
+
+// function fadeOut(param, duration = 200) {
+//   const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
+//   if (element) {
+//     element.style.opacity = 1;
+//     element.style.transition = `opacity ${duration}ms`;
+//     element.style.opacity = 0;
+
+//     setTimeout(function () {
+//       element.style.display = "none";
+//     }, duration);
+
+//     return element;
+//   } else {
+//     console.warn("fadeOut: element not found");
+//     return null;
+//   }
+// }
 
 function fadeToggle(param, displayType = "block", duration = 200) {
-  const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
-  if (element) {
-    if (window.getComputedStyle(element).display === "none") {
-      fadeIn(element, displayType, duration);
+  if (typeof param === "string") {
+    const element = document.querySelector(`#${param}`);
+    if (element) {
+      if (window.getComputedStyle(element).display === "none") {
+        fadeIn(element, displayType, duration);
+      } else {
+        fadeOut(element, duration);
+      }
+      return element;
     } else {
-      fadeOut(element, duration);
+      console.warn(`fadeToggle: element with ID ${param} not found`);
+      return null;
     }
-    return element;
-  } else {
-    console.warn("fadeToggle: element not found");
-    return null;
   }
+
+  // Handle NodeList or HTMLCollection
+  if (param instanceof NodeList || param instanceof HTMLCollection) {
+    if (param.length === 0) {
+      console.warn("fadeToggle: empty element collection");
+      return null;
+    }
+
+    // Toggle each element in the collection
+    for (let i = 0; i < param.length; i++) {
+      const element = param[i];
+      if (window.getComputedStyle(element).display === "none") {
+        // Fade in this specific element
+        element.style.opacity = 0;
+        element.style.display = displayType;
+
+        // Use closure to capture the current element
+        (function (el) {
+          requestAnimationFrame(function () {
+            el.style.transition = `opacity ${duration}ms`;
+            el.style.opacity = 1;
+          });
+        })(element);
+      } else {
+        // Fade out this specific element
+        element.style.opacity = 1;
+        element.style.transition = `opacity ${duration}ms`;
+        element.style.opacity = 0;
+
+        // Use closure to capture the current element
+        (function (el) {
+          setTimeout(function () {
+            el.style.display = "none";
+          }, duration);
+        })(element);
+      }
+    }
+    return param;
+  }
+
+  // Handle single element
+  if (param && param.style) {
+    if (window.getComputedStyle(param).display === "none") {
+      fadeIn(param, displayType, duration);
+    } else {
+      fadeOut(param, duration);
+    }
+    return param;
+  }
+
+  console.warn("fadeToggle: element not found or invalid");
+  return null;
 }
+
+// function fadeToggle(param, displayType = "block", duration = 200) {
+//   const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
+//   if (element) {
+//     if (window.getComputedStyle(element).display === "none") {
+//       fadeIn(element, displayType, duration);
+//     } else {
+//       fadeOut(element, duration);
+//     }
+//     return element;
+//   } else {
+//     console.warn("fadeToggle: element not found");
+//     return null;
+//   }
+// }
 
 function hide(param) {
-  const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
-  if (element) {
-    element.style.display = "none";
-    return element;
-  } else {
-    console.warn("hide: element not found");
-    return null;
+  if (typeof param === "string") {
+    const element = document.querySelector(`#${param}`);
+    if (element) {
+      element.style.display = "none";
+      return element;
+    } else {
+      console.warn(`hide: element with ID ${param} not found`);
+      return null;
+    }
   }
+
+  // Handle NodeList or HTMLCollection
+  if (param instanceof NodeList || param instanceof HTMLCollection) {
+    if (param.length === 0) {
+      console.warn("hide: empty element collection");
+      return null;
+    }
+
+    // Apply to all elements in the collection
+    for (let i = 0; i < param.length; i++) {
+      param[i].style.display = "none";
+    }
+    return param;
+  }
+
+  // Handle single element
+  if (param && param.style) {
+    param.style.display = "none";
+    return param;
+  }
+
+  console.warn("hide: element not found or invalid");
+  return null;
 }
+
+// function hide(param) {
+//   const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
+//   if (element) {
+//     element.style.display = "none";
+//     return element;
+//   } else {
+//     console.warn("hide: element not found");
+//     return null;
+//   }
+// }
 
 function show(param, displayType = "block") {
-  const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
-  if (element) {
-    element.style.display = displayType;
-    return element;
-  } else {
-    console.warn("show: element not found");
-    return null;
+  if (typeof param === "string") {
+    const element = document.querySelector(`#${param}`);
+    if (element) {
+      element.style.display = displayType;
+      return element;
+    } else {
+      console.warn(`show: element with ID ${param} not found`);
+      return null;
+    }
   }
+
+  // Handle NodeList or HTMLCollection
+  if (param instanceof NodeList || param instanceof HTMLCollection) {
+    if (param.length === 0) {
+      console.warn("show: empty element collection");
+      return null;
+    }
+
+    // Apply to all elements in the collection
+    for (let i = 0; i < param.length; i++) {
+      param[i].style.display = displayType;
+    }
+    return param;
+  }
+
+  // Handle single element
+  if (param && param.style) {
+    param.style.display = displayType;
+    return param;
+  }
+
+  console.warn("show: element not found or invalid");
+  return null;
 }
 
+// function show(param, displayType = "block") {
+//   const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
+//   if (element) {
+//     element.style.display = displayType;
+//     return element;
+//   } else {
+//     console.warn("show: element not found");
+//     return null;
+//   }
+// }
+
 function toggle(param, displayType = "block") {
-  const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
-  if (element) {
-    if (window.getComputedStyle(element).display === "none") {
-      show(element, displayType);
+  if (typeof param === "string") {
+    const element = document.querySelector(`#${param}`);
+    if (element) {
+      if (window.getComputedStyle(element).display === "none") {
+        show(element, displayType);
+      } else {
+        hide(element);
+      }
+      return element;
     } else {
-      hide(element);
+      console.warn(`toggle: element with ID ${param} not found`);
+      return null;
     }
-    return element;
-  } else {
-    console.warn("toggle: element not found");
-    return null;
   }
+
+  // Handle NodeList or HTMLCollection
+  if (param instanceof NodeList || param instanceof HTMLCollection) {
+    if (param.length === 0) {
+      console.warn("toggle: empty element collection");
+      return null;
+    }
+
+    // Toggle each element in the collection
+    for (let i = 0; i < param.length; i++) {
+      const element = param[i];
+      if (window.getComputedStyle(element).display === "none") {
+        element.style.display = displayType;
+      } else {
+        element.style.display = "none";
+      }
+    }
+    return param;
+  }
+
+  // Handle single element
+  if (param && param.style) {
+    if (window.getComputedStyle(param).display === "none") {
+      show(param, displayType);
+    } else {
+      hide(param);
+    }
+    return param;
+  }
+
+  console.warn("toggle: element not found or invalid");
+  return null;
 }
+
+// function toggle(param, displayType = "block") {
+//   const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
+//   if (element) {
+//     if (window.getComputedStyle(element).display === "none") {
+//       show(element, displayType);
+//     } else {
+//       hide(element);
+//     }
+//     return element;
+//   } else {
+//     console.warn("toggle: element not found");
+//     return null;
+//   }
+// }
 
 function $initDragging() {
   var pos1 = 0,
