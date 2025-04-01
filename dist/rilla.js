@@ -116,8 +116,30 @@ NodeList.prototype.$this = function (callback) {
 };
 
 Element.prototype.html = function (content) {
-  if (content === undefined) return this.innerHTML;
+  if (content === undefined) {
+    return this.innerHTML;
+  }
   this.innerHTML = content;
+  return this;
+};
+
+NodeList.prototype.html = function (content) {
+  if (content === undefined) {
+    return Array.from(this).map(el => el.innerHTML);
+  }
+  for (let i = 0; i < this.length; i++) {
+    this[i].innerHTML = content;
+  }
+  return this;
+};
+
+HTMLCollection.prototype.html = function (content) {
+  if (content === undefined) {
+    return Array.from(this).map(el => el.innerHTML);
+  }
+  for (let i = 0; i < this.length; i++) {
+    this[i].innerHTML = content;
+  }
   return this;
 };
 
@@ -125,9 +147,31 @@ Element.prototype.parent = function () {
   return this.parentNode;
 };
 
-Element.prototype.text = function (content) {
-  if (content === undefined) return this.textContent;
+Element.prototype.text = function(content) {
+  if (content === undefined) {
+    return this.textContent;
+  }
   this.textContent = content;
+  return this;
+};
+
+NodeList.prototype.text = function(content) {
+  if (content === undefined) {
+    return Array.from(this).map(el => el.textContent);
+  }
+  for (let i = 0; i < this.length; i++) {
+    this[i].textContent = content;
+  }
+  return this;
+};
+
+HTMLCollection.prototype.text = function(content) {
+  if (content === undefined) {
+    return Array.from(this).map(el => el.textContent);
+  }
+  for (let i = 0; i < this.length; i++) {
+    this[i].textContent = content;
+  }
   return this;
 };
 
@@ -186,8 +230,34 @@ NodeList.prototype.unwrap = function () {
 };
 
 Element.prototype.val = function (content) {
-  if (content === undefined) return this.value;
+  if (content === undefined) {
+    return this.value;
+  }
   this.value = content;
+  return this;
+};
+
+NodeList.prototype.val = function (content) {
+  if (content === undefined) {
+    return Array.from(this).map(el => "value" in el ? el.value : null);
+  }
+  for (let i = 0; i < this.length; i++) {
+    if ("value" in this[i]) {
+      this[i].value = content;
+    }
+  }
+  return this;
+};
+
+HTMLCollection.prototype.val = function (content) {
+  if (content === undefined) {
+    return Array.from(this).map(el => "value" in el ? el.value : null);
+  }
+  for (let i = 0; i < this.length; i++) {
+    if ("value" in this[i]) {
+      this[i].value = content;
+    }
+  }
   return this;
 };
 
