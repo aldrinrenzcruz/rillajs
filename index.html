@@ -57,15 +57,26 @@
 
       <section>
         <h2>Getting Started</h2>
-        <article>
-          <p>Rilla is a minimalistic JavaScript utility library designed to simplify DOM selection, manipulation, and event handling.</p>
-          <button class="bg-rose-600 text-white font-bold rounded-lg shadow-md hover:bg-rose-700 transition px-4 py-2 mt-4">
+        <p class="mb-4">Rilla is a minimalistic JavaScript utility library designed to simplify DOM selection, manipulation, and event handling.</p>
+        <div class="bg-rose-100 text-rose-800 border-l-4 border-rose-600 p-4 mb-4">
+          <strong>Disclaimer:</strong> The current build (v0.1) is unstable and may contain bugs.
+        </div>
+        <article id="cdn">
+          <h3>CDN</h3>
+          <p>Use the jsDeliver CDN to access the latest minified version of Rilla.js:</p>
+          <div class="code-block" data-src="jsdelivr-cdn"></div>
+          <p>Alternatively, you can also download it from the link below:</p>
+          <button class="bg-rose-600 text-white font-bold rounded-lg shadow-md hover:bg-rose-700 transition px-4 py-2">
             <a href="./dist/rilla.min.js" download>Download Rilla.js</a>
           </button>
+          <ul class="list-disc space-y-2 pl-5 mt-4">
+            <li><a href="./dist/rilla.js" download class="rilla-url">Download the uncompressed development version of Rilla.js</a></li>
+            <li><a href="./dist/rilla.min.js.map" download class="rilla-url">Download the map file for Rilla.js</a></li>
+          </ul>
         </article>
         <article id="installation">
           <h3>Installation</h3>
-          <p>Include <span class="code">rilla.min.js</span> in the head section of your project:</p>
+          <p>Add the <span class="code">rilla.min.js</span> script tag in the <span class="code">&lt;head&gt;</span> of your HTML file, and start using Rilla to write less and do more.</p>
           <div class="code-block" data-src="installation"></div>
         </article>
       </section>

@@ -1,7 +1,8 @@
 {
   "examples": [
-    "dom-selection",
+    "jsdelivr-cdn",
     "installation",
+    "dom-selection",
     "dom-manipulation",
     "element-references",
     "attributes-classes",

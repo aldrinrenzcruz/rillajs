@@ -4,12 +4,14 @@ section[id] {
   scroll-margin-top: 6rem;
 }
 
-p a {
+p a,
+.rilla-url {
   text-decoration: underline;
   color: var(--color-rose-600);
 }
 
-p a:hover {
+p a:hover,
+.rilla-url:hover {
   color: var(--color-rose-500);
 }
 
