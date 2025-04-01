@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rilla.js</title>
   <link rel="icon" type="image/svg+xml" href="./public/favicon/favicon.svg">
-  <link rel="stylesheet" href="./public/css/atom-one-dark.min.css">
   <link rel="stylesheet" href="./public/css/app.min.css">
   <script src="./public/js/highlight.min.js"></script>
   <script src="./dist/rilla.min.js"></script>
@@ -56,95 +55,98 @@
 
     <main class="flex-1 max-w-2xl sm:bg-white sm:rounded-lg sm:shadow-md sm:px-6 sm:py-4">
 
-      <section class="mb-8">
-        <h2 class="text-3xl font-bold text-rose-600 mb-2 border-b border-rose-300 pb-3 tracking-wide">Getting Started</h2>
-        <p class="text-gray-700 mb-6">Rilla is a minimalistic JavaScript utility library designed to simplify DOM selection, manipulation, and event handling.</p>
-        <a href="./dist/rilla.min.js" class="px-4 py-2 bg-rose-600 text-white font-bold rounded-lg shadow-md hover:bg-rose-700 transition" download>Download Rilla.js</a>
-
-        <article id="installation" class="my-8">
-          <h3 class="text-2xl font-bold text-neutral-800 mb-2">Installation</h3>
-          <p class="text-gray-700 mb-4">Include <span class="code">rilla.min.js</span> in the head section of your project:</p>
+      <section>
+        <h2>Getting Started</h2>
+        <article>
+          <p>Rilla is a minimalistic JavaScript utility library designed to simplify DOM selection, manipulation, and event handling.</p>
+          <button class="bg-rose-600 text-white font-bold rounded-lg shadow-md hover:bg-rose-700 transition px-4 py-2 mt-4">
+            <a href="./dist/rilla.min.js" download>Download Rilla.js</a>
+          </button>
+        </article>
+        <article id="installation">
+          <h3>Installation</h3>
+          <p>Include <span class="code">rilla.min.js</span> in the head section of your project:</p>
           <div class="code-block" data-src="installation"></div>
         </article>
       </section>
 
-      <section class="mb-8">
-        <h2 class="text-3xl font-bold text-rose-600 mb-2 border-b border-rose-300 pb-3 tracking-wide">Usage</h2>
+      <section>
+        <h2>Usage</h2>
 
-        <article id="dom-selection" class="mb-8">
-          <h3 class="text-2xl font-bold text-neutral-800 mb-2">DOM Selection</h3>
-          <p class="text-gray-700 mb-4">Select DOM elements using ID, ClassName, or TagName.</p>
+        <article id="dom-selection">
+          <h3>DOM Selection</h3>
+          <p>Select DOM elements using ID, ClassName, or TagName.</p>
           <div class="code-block" data-src="dom-selection"></div>
-          <p class="text-gray-700 my-4">To use the library functions inside HTML attributes like <span class="code">onclick</span>, make sure to use the global reference:</p>
+          <p>To use the library functions inside HTML attributes like <span class="code">onclick</span>, make sure to use the global reference:</p>
           <div class="code-block" data-src="global-usage"></div>
         </article>
 
-        <article id="dom-manipulation" class="mb-8">
-          <h3 class="text-2xl font-bold text-neutral-800 mb-2">DOM Manipulation</h3>
-          <p class="text-gray-700 mb-4">Easily modify DOM elements with these utility methods.</p>
+        <article id="dom-manipulation">
+          <h3>DOM Manipulation</h3>
+          <p>Easily modify DOM elements with these utility methods.</p>
           <div class="code-block" data-src="dom-manipulation"></div>
         </article>
 
-        <article id="element-references" class="mb-8">
-          <h3 class="text-2xl font-bold text-neutral-800 mb-2">Element References</h3>
-          <p class="text-gray-700 mb-4">Capture element references while maintaining chainability.</p>
+        <article id="element-references">
+          <h3>Element References</h3>
+          <p>Capture element references while maintaining chainability.</p>
           <div class="code-block" data-src="element-references"></div>
         </article>
 
-        <article id="attributes-classes" class="mb-8">
-          <h3 class="text-2xl font-bold text-neutral-800 mb-2">Attributes and Classes</h3>
-          <p class="text-gray-700 mb-4">Work with element attributes and CSS classes seamlessly.</p>
+        <article id="attributes-classes">
+          <h3>Attributes and Classes</h3>
+          <p>Work with element attributes and CSS classes seamlessly.</p>
           <div class="code-block" data-src="attributes-classes"></div>
         </article>
 
-        <article id="event-handling" class="mb-8">
-          <h3 class="text-2xl font-bold text-neutral-800 mb-2">Event Handling</h3>
-          <p class="text-gray-700 mb-4">Manage event listeners with chainable methods.</p>
+        <article id="event-handling">
+          <h3>Event Handling</h3>
+          <p>Manage event listeners with chainable methods.</p>
           <div class="code-block" data-src="event-handling"></div>
         </article>
 
-        <article id="document-window" class="mb-8">
-          <h3 class="text-2xl font-bold text-neutral-800 mb-2">Document and Window Events</h3>
-          <p class="text-gray-700 mb-4">Listen for document and window events.</p>
+        <article id="document-window">
+          <h3>Document and Window Events</h3>
+          <p>Listen for document and window events.</p>
           <div class="code-block" data-src="document-window"></div>
         </article>
 
-        <article id="visibility" class="mb-8">
-          <h3 class="text-2xl font-bold text-neutral-800 mb-2">Show/Hide and Fade Effects</h3>
-          <p class="text-gray-700 mb-4">Control element visibility with simple functions.</p>
+        <article id="visibility">
+          <h3>Show/Hide and Fade Effects</h3>
+          <p>Control element visibility with simple functions.</p>
           <div class="code-block" data-src="visibility"></div>
         </article>
 
-        <article id="storage" class="mb-8">
-          <h3 class="text-2xl font-bold text-neutral-800 mb-2">Storage Utilities</h3>
-          <p class="text-gray-700 mb-4">Easily interact with browser storage.</p>
+        <article id="storage">
+          <h3>Storage Utilities</h3>
+          <p>Easily interact with browser storage.</p>
           <div class="code-block" data-src="storage"></div>
         </article>
 
-        <article id="draggable" class="mb-8">
-          <h3 class="text-2xl font-bold text-neutral-800">Draggable Elements</h3>
-          <p class="text-gray-700 my-4">To make a container (or an element) draggable, add a <span class="code">.draggable</span> class to the container, and <span class="code">.draggable-handle</span> to the element you want to assign as the handle:</p>
-          <div class="code-block" data-src="draggable"></div>
-          <p class="text-gray-700 my-4">Also add the following CSS classes to your stylesheet:</p>
+        <article id="draggable">
+          <h3>Draggable Elements</h3>
+          <p>Insert the following CSS classes to your stylesheet:</p>
           <div class="code-block" data-src="draggable-css"></div>
+          <p>Then, to make a container (or an element) draggable, add the <span class="code">.draggable</span> class to the container, and <span class="code">.draggable-handle</span> to the element you want to assign as the handle:</p>
+          <div class="code-block" data-src="draggable"></div>
         </article>
       </section>
 
       <section>
-        <h2 class="text-3xl font-bold text-rose-600 mb-2 border-b border-rose-300 pb-3 tracking-wide">More Information</h2>
-        <article id="browser-support" class="mb-6">
-          <h3 class="text-2xl font-bold text-neutral-800 mb-2">Browser Support</h3>
-          <p class="text-gray-700">Rilla.js is built for modern browsers and uses ES6 features. It works in all major browsers that support ES6.</p>
+        <h2>More Information</h2>
+        <article id="browser-support">
+          <h3>Browser Support</h3>
+          <p>Rilla.js is built for modern browsers and uses ES6 features. It works in all major browsers that support ES6.</p>
         </article>
-        <article id="github" class="mb-6">
-          <h3 class="text-2xl font-bold text-neutral-800 mb-2">GitHub Repository</h3>
-          <p class="text-gray-700">View the source code and contribute on <a href="https://github.com/aldrinrenzcruz/rillajs" class="hover">GitHub</a>.</p>
+        <article id="github">
+          <h3>GitHub Repository</h3>
+          <p>View the source code and contribute on <a href="https://github.com/aldrinrenzcruz/rillajs">GitHub</a>.</p>
         </article>
-        <article id="license" class="mb-6">
-          <h3 class="text-2xl font-bold text-neutral-800 mb-2">License</h3>
-          <p class="text-gray-700"><a href="LICENSE" class="hover">MIT License</a></p>
+        <article id="license">
+          <h3>License</h3>
+          <p><a href="LICENSE">MIT License</a></p>
         </article>
-        <p class="text-neutral-600">&copy; 2025 Rilla.js. MIT License.</p>
+        <p>&copy; 2025 Rilla.js. MIT License.</p>
       </section>
 
     </main>
