@@ -1,5 +1,5 @@
 $dom(() => {
-  renderCodeBlocks();
+  renderLandingCodeBlocks();
   initializeSidebarSmoothScroll();
 });
 
@@ -18,10 +18,10 @@ function initializeSidebarSmoothScroll() {
 
 const examples = ["dom-selection", "installation", "dom-manipulation", "element-references", "attributes-classes", "event-handling", "document-window", "visibility", "storage", "draggable", "global-usage"];
 
-function renderCodeBlocks() {
+function renderLandingCodeBlocks() {
   Promise.all(
     examples.map(async example => {
-      const url = `./public/docs/${example}.txt`;
+      const url = `./public/docs/code-snippets/landing/${example}.txt`;
       return fetch(url)
         .then(response => {
           if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
