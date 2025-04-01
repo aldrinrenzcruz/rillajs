@@ -1,7 +1,6 @@
 #html
 
 <div class="draggable">
-  <!-- Add a header element with the class "draggable-handle" -->
-  <div class="draggable-handle">Drag me</div>
+  <span class="draggable-handle">Drag me</span>
   <!-- Content -->
 </div>

@@ -7,6 +7,6 @@
 }
 
 .draggable-handle {
-  cursor: grab;
   z-index: 1;
+  cursor: grab;
 }
