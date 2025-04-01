@@ -45,7 +45,7 @@ $window(() => {
     document.onmousemove = null;
   }
   function getHeader(element) {
-    var headerItems = element.getElementsByClassName("draggable-handle");
+    var headerItems = element.getElementsByClassName("drag-handle");
     if (headerItems.length === 1) {
       return headerItems[0];
     }

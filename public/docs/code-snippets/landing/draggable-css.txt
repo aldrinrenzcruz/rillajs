@@ -6,7 +6,7 @@
   z-index: 1;
 }
 
-.draggable-handle {
+.drag-handle {
   z-index: 1;
   cursor: grab;
 }

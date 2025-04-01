@@ -17,7 +17,7 @@ Rilla is a minimalistic JavaScript utility library designed to simplify DOM sele
 - **Event Handling**: `.$click`, `.$keydown`, `.$submit`, etc.
 - **Storage Utilities**: `$local`, `$session`
 - **Element Visibility**: `show`, `hide`, `toggle`, `fadeIn`, `fadeOut`, `fadeToggle`
-- **Draggable Elements**: `.draggable`, `.draggable-handle`
+- **Draggable Elements**: `.draggable`, `.drag-handle`
 
 ## Installation
 
@@ -169,8 +169,8 @@ Add the `draggable` class to any element you want to make draggable:
 
 ```html
 <div class="draggable">
-    <!-- Add a header element with the class "draggable-handle" -->
-    <div class="draggable-handle">Drag me</div>
+    <!-- Add a header element with the class "drag-handle" -->
+    <div class="drag-handle">Drag me</div>
     <!-- Content -->
 </div>
 ```

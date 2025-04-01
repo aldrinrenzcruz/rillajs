@@ -1,6 +1,6 @@
 #html
 
 <div class="draggable">
-  <span class="draggable-handle">Drag me</span>
+  <span class="drag-handle">Drag me</span>
   <!-- Content -->
 </div>
