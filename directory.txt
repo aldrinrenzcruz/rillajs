@@ -20,7 +20,7 @@ rillajs/
 │  │   app.min.css
 │  │   atom-one-dark.min.css
 │  │
-│  ├─examples
+│  ├─docs
 │  │   attributes-classes.txt
 │  │   document-window.txt
 │  │   dom-manipulation.txt

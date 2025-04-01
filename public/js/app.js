@@ -21,7 +21,7 @@ const examples = ["dom-selection", "installation", "dom-manipulation", "element-
 function renderCodeBlocks() {
   Promise.all(
     examples.map(async example => {
-      const url = `./public/examples/${example}.txt`;
+      const url = `./public/docs/${example}.txt`;
       return fetch(url)
         .then(response => {
           if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
