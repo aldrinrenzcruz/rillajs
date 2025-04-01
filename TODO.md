@@ -2,10 +2,10 @@
 - Rename ClassUtils to ClassUtilities
 - Modify merge.js to support splitting src scripts by adding easy file pathing
 - Add error handling for examples fetch script for invalid query selectors, just skip those
-- Change .js and .css file names to be the same per use case (i.e. app.js, app.min.js)
 - Add .parent() to docs
 
 **FOR CONSIDERATION:**
+- Change .js and .css file names to be the same per use case (i.e. app.js, app.min.js)
 - Performance benchmark tests
 - Reduce total file size by shortening variable and helper functions names, also by using arrow function when possible
 - Create a converter vanilla to Rilla and vice versa
