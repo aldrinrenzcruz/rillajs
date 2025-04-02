@@ -1,26 +1,27 @@
 Element.prototype.$replace = function (el) {
-  if (this.parentNode) {
-    this.parentNode.replaceChild(el, this);
+  if (typeof el === "string") {
+    const div = document.createElement("div");
+    div.innerHTML = el.trim();
+    el = div.firstChild;
   }
+  this.parentNode.replaceChild(el, this);
   return el;
 };
 
 NodeList.prototype.$replace = function (el) {
   if (this.length > 0) {
-    var firstElement = this[0];
-    var replacedElements = [];
-    if (firstElement.parentNode) {
-      firstElement.parentNode.replaceChild(el, firstElement);
-      replacedElements.push(el);
-    }
-    for (var i = 1; i < this.length; i++) {
+    let first = this[0];
+    let replaced = [];
+    first.parentNode.replaceChild(el, first);
+    replaced.push(el);
+    for (let i = 1; i < this.length; i++) {
       if (this[i].parentNode) {
-        var clone = el.cloneNode(true);
+        let clone = el.cloneNode(true);
         this[i].parentNode.replaceChild(clone, this[i]);
-        replacedElements.push(clone);
+        replaced.push(clone);
       }
     }
-    return replacedElements.length === 1 ? replacedElements[0] : replacedElements;
+    return replaced.length === 1 ? replaced[0] : replaced;
   }
   return null;
 };
