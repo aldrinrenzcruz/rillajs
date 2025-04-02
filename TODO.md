@@ -21,6 +21,7 @@
 - Add in User Interface: resizable()
 
 **COMPLETED:**
+- Remove dollar for attr, data, class
 - Add methods for console.log, console.info console.error, and console.warn $log, $info, $err, $warn
 
 **NOT IMPLEMENTED:**
