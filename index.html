@@ -12,7 +12,7 @@
 </head>
 
 <body class="bg-gray-50 text-gray-800">
-  <header class="sticky top-0 z-50 bg-white shadow-md py-4 px-4">
+  <header class="sticky top-0 z-50 bg-white py-4 px-4">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
       <div class="flex items-center">
         <span class="text-2xl font-bold text-rose-600">Rilla.js</span>
@@ -28,7 +28,6 @@
           </li>
         </ul>
       </nav>
-      <!-- Mobile menu button (can be expanded to a full mobile menu) -->
       <button class="md:hidden text-gray-500 hover:text-rose-500 focus:outline-none">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
@@ -37,9 +36,9 @@
     </div>
   </header>
 
-  <div class="max-w-6xl mx-auto px-4 md:px-0 py-8 flex flex-col lg:flex-row">
-    <aside class="w-full lg:w-64 flex-shrink-0 lg:pr-8">
-      <div class="lg:sticky lg:top-24 max-h-[calc(100vh-6rem)] overflow-y-auto">
+  <div class="max-w-6xl mx-auto px-4 md:px-0 py-8 relative">
+    <aside class="hidden lg:block fixed lg:w-50 top-16 bottom-0 overflow-y-auto pb-8 h-[calc(100vh-8vh)]">
+      <div class="pr-8">
         <ul class="space-y-2">
           <li>
             <span class="font-semibold text-gray-600 uppercase text-xs tracking-wide">DOM Selection</span>
@@ -122,7 +121,7 @@
       </div>
     </aside>
 
-    <main class="flex-1 max-w-2xl sm:bg-white sm:rounded-lg sm:shadow-md sm:px-6 sm:py-4">
+    <main class="w-full lg:ml-64 lg:mr-64 max-w-2xl mx-auto sm:bg-white sm:rounded-lg sm:shadow-md sm:px-6 sm:py-4">
       <h1>Writing Vanilla JS Made Easy</h1>
       <p class="mb-6">Rilla is a minimalistic JavaScript utility library designed to simplify DOM selection, manipulation, and event handling.</p>
       <div class="bg-rose-100 text-rose-800 border-l-4 border-rose-600 p-4 mb-8">
@@ -231,8 +230,8 @@
       </section>
     </main>
 
-    <aside class="hidden lg:block lg:w-64 lg:pl-8">
-      <div class="lg:sticky lg:top-24">
+    <aside class="hidden lg:block fixed lg:w-64 top-16 bottom-0 overflow-y-auto pb-8 h-[calc(100vh-8vh)]" style="left: calc(50% + 352px)">
+      <div class="pt-12 pl-8">
         <h3 class="font-bold text-gray-700 mb-4 uppercase text-xs">On This Page</h3>
         <nav class="toc text-sm pl-3">
           <div class="mb-3">
