@@ -61,19 +61,19 @@ function renderLandingCodeBlocks() {
             .$("pre")
             .$append(`<code class="language-${lang}"></code>`)
             .$("code")
-            .text(modifiedContent)
+            .$text(modifiedContent)
             .$this((el) => { hljs.highlightElement(el) })
-            .parent()
-            .wrap("<div class='relative'></div>")
-            .parent()
+            .$parent()
+            .$wrap("<div class='relative'></div>")
+            .$parent()
             .$append("<button class='copy-btn'></button>")
             .$("button")
-            .text(lang.trim() || "copy")
+            .$text(lang.trim() || "copy")
             .$this(btn =>
-              btn.on('click', () => {
+              btn.$on('click', () => {
                 navigator.clipboard.writeText(modifiedContent);
-                btn.text("copied!");
-                setTimeout(() => btn.text(lang || "copy"), 1500);
+                btn.$text("copied!");
+                setTimeout(() => btn.$text(lang || "copy"), 1500);
               })
             );
         });

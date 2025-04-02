@@ -15,9 +15,9 @@ NodeList.prototype.$prepend = function (htmlString) {
     console.error("$prepend: invalid parameter");
     return this;
   }
-  this.forEach(element => {
-    if (element instanceof Element) {
-      element.$prepend(htmlString);
+  this.forEach(el => {
+    if (el instanceof Element) {
+      el.$prepend(htmlString);
     }
   });
   return this;

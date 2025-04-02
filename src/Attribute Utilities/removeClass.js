@@ -1,4 +1,4 @@
-Element.prototype.removeClass = function (classNames) {
+Element.prototype.$removeClass = function (classNames) {
   if (typeof classNames !== "string") {
     console.error("removeClass: input must be a string");
     return this;
@@ -16,7 +16,7 @@ Element.prototype.removeClass = function (classNames) {
   return this;
 };
 
-NodeList.prototype.removeClass = function (classNames) {
+NodeList.prototype.$removeClass = function (classNames) {
   if (typeof classNames !== "string") {
     console.error("removeClass: input must be a string");
     return this;

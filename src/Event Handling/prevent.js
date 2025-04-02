@@ -1,4 +1,4 @@
-Element.prototype.prevent = function () {
+Element.prototype.$prevent = function () {
   try {
     if (!$rillaEvents.has(this)) {
       return this;
@@ -35,10 +35,10 @@ Element.prototype.prevent = function () {
   return this;
 };
 
-NodeList.prototype.prevent = function () {
+NodeList.prototype.$prevent = function () {
   try {
     this.forEach(element => {
-      element.prevent();
+      element.$prevent();
     });
   } catch (error) {
     console.error("prevent: Error adding preventDefault to NodeList", error);

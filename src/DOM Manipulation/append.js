@@ -15,9 +15,9 @@ NodeList.prototype.$append = function (htmlString) {
     console.error("$append: invalid parameter");
     return this;
   }
-  this.forEach(element => {
-    if (element instanceof Element) {
-      element.$append(htmlString);
+  this.forEach(el => {
+    if (el instanceof Element) {
+      el.$append(htmlString);
     }
   });
   return this;

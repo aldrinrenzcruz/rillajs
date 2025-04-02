@@ -1,4 +1,4 @@
-Element.prototype.stop = function () {
+Element.prototype.$stop = function () {
   try {
     if (!$rillaEvents.has(this)) {
       return this;
@@ -35,10 +35,10 @@ Element.prototype.stop = function () {
   return this;
 };
 
-NodeList.prototype.stop = function () {
+NodeList.prototype.$stop = function () {
   try {
     this.forEach(element => {
-      element.stop();
+      element.$stop();
     });
   } catch (error) {
     console.error("stop: Error adding stopPropagation to NodeList", error);

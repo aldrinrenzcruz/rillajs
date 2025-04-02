@@ -1,4 +1,4 @@
-function hide(param) {
+function $hide(param) {
   if (typeof param === "string") {
     const element = document.querySelector(`#${param}`);
     if (element) {
@@ -27,12 +27,12 @@ function hide(param) {
   return null;
 }
 
-Element.prototype.hide = function () {
+Element.prototype.$hide = function () {
   this.style.display = "none";
   return this;
 };
 
-NodeList.prototype.hide = function () {
+NodeList.prototype.$hide = function () {
   for (let i = 0; i < this.length; i++) {
     this[i].style.display = "none";
   }

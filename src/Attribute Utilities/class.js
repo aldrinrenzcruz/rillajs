@@ -1,4 +1,4 @@
-Element.prototype.class = function (classNames) {
+Element.prototype.$class = function (classNames) {
   if (classNames === undefined) {
     return Array.from(this.classList);
   }
@@ -22,7 +22,7 @@ Element.prototype.class = function (classNames) {
   return this;
 };
 
-NodeList.prototype.class = function (classNames) {
+NodeList.prototype.$class = function (classNames) {
   if (classNames === undefined) {
     return Array.from(this).map(element => Array.from(element.classList));
   }

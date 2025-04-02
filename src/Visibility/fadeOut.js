@@ -1,4 +1,4 @@
-function fadeOut(param, duration = 200) {
+function $fadeOut(param, duration = 200) {
   if (typeof param === "string") {
     const element = document.querySelector(`#${param}`);
     if (element) {
@@ -47,7 +47,7 @@ function fadeOut(param, duration = 200) {
   return null;
 }
 
-Element.prototype.fadeOut = function (duration = 200) {
+Element.prototype.$fadeOut = function (duration = 200) {
   this.style.opacity = 1;
   this.style.transition = `opacity ${duration}ms`;
   this.style.opacity = 0;
@@ -60,7 +60,7 @@ Element.prototype.fadeOut = function (duration = 200) {
   return this;
 };
 
-NodeList.prototype.fadeOut = function (duration = 200) {
+NodeList.prototype.$fadeOut = function (duration = 200) {
   for (let i = 0; i < this.length; i++) {
     const element = this[i];
     element.style.opacity = 1;

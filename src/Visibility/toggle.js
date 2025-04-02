@@ -1,11 +1,11 @@
-function toggle(param, displayType = "block") {
+function $toggle(param, displayType = "block") {
   if (typeof param === "string") {
     const element = document.querySelector(`#${param}`);
     if (element) {
       if (window.getComputedStyle(element).display === "none") {
-        show(element, displayType);
+        $show(element, displayType);
       } else {
-        hide(element);
+        $hide(element);
       }
       return element;
     } else {
@@ -30,9 +30,9 @@ function toggle(param, displayType = "block") {
   }
   if (param && param.style) {
     if (window.getComputedStyle(param).display === "none") {
-      show(param, displayType);
+      $show(param, displayType);
     } else {
-      hide(param);
+      $hide(param);
     }
     return param;
   }
@@ -40,7 +40,7 @@ function toggle(param, displayType = "block") {
   return null;
 }
 
-Element.prototype.toggle = function (displayType = "block") {
+Element.prototype.$toggle = function (displayType = "block") {
   if (window.getComputedStyle(this).display === "none") {
     this.style.display = displayType;
   } else {
@@ -49,7 +49,7 @@ Element.prototype.toggle = function (displayType = "block") {
   return this;
 };
 
-NodeList.prototype.toggle = function (displayType = "block") {
+NodeList.prototype.$toggle = function (displayType = "block") {
   for (let i = 0; i < this.length; i++) {
     const element = this[i];
     if (window.getComputedStyle(element).display === "none") {

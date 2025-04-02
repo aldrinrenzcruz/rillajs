@@ -1,4 +1,4 @@
-Element.prototype.addClass = function (classNames) {
+Element.prototype.$addClass = function (classNames) {
   if (typeof classNames !== "string") {
     console.error("addClass: input must be a string");
     return this;
@@ -16,7 +16,7 @@ Element.prototype.addClass = function (classNames) {
   return this;
 };
 
-NodeList.prototype.addClass = function (classNames) {
+NodeList.prototype.$addClass = function (classNames) {
   if (typeof classNames !== "string") {
     console.error("addClass: input must be a string");
     return this;

@@ -1,4 +1,4 @@
-Element.prototype.unwrap = function () {
+Element.prototype.$unwrap = function () {
   const parent = this.parentNode;
   if (!parent || parent === document.documentElement) {
     return this;
@@ -21,7 +21,7 @@ Element.prototype.unwrap = function () {
   return this;
 };
 
-NodeList.prototype.unwrap = function () {
+NodeList.prototype.$unwrap = function () {
   const elements = Array.from(this);
   const parents = new Set();
   elements.forEach(element => {

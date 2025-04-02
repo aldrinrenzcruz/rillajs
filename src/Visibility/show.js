@@ -1,4 +1,4 @@
-function show(param, displayType = "block") {
+function $show(param, displayType = "block") {
   if (typeof param === "string") {
     const element = document.querySelector(`#${param}`);
     if (element) {
@@ -27,12 +27,12 @@ function show(param, displayType = "block") {
   return null;
 }
 
-Element.prototype.show = function (displayType = "block") {
+Element.prototype.$show = function (displayType = "block") {
   this.style.display = displayType;
   return this;
 };
 
-NodeList.prototype.show = function (displayType = "block") {
+NodeList.prototype.$show = function (displayType = "block") {
   for (let i = 0; i < this.length; i++) {
     this[i].style.display = displayType;
   }

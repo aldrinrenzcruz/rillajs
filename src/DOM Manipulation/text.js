@@ -1,4 +1,4 @@
-Element.prototype.text = function(content) {
+Element.prototype.$text = function (content) {
   if (content === undefined) {
     return this.textContent;
   }
@@ -6,7 +6,7 @@ Element.prototype.text = function(content) {
   return this;
 };
 
-NodeList.prototype.text = function(content) {
+NodeList.prototype.$text = function (content) {
   if (content === undefined) {
     return Array.from(this).map(el => el.textContent);
   }

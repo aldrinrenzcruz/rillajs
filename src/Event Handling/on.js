@@ -1,4 +1,4 @@
-Element.prototype.on = function (event, handler) {
+Element.prototype.$on = function (event, handler) {
   if (typeof event !== "string") {
     console.error("on: Event type must be a string");
     return this;
@@ -35,7 +35,7 @@ Element.prototype.on = function (event, handler) {
   return this;
 };
 
-NodeList.prototype.on = function (event, handler) {
+NodeList.prototype.$on = function (event, handler) {
   if (typeof event !== "string") {
     console.error("on: Event type must be a string");
     return this;
@@ -48,7 +48,7 @@ NodeList.prototype.on = function (event, handler) {
 
   try {
     this.forEach(element => {
-      element.on(event, handler);
+      element.$on(event, handler);
     });
   } catch (error) {
     console.error(`on: Error adding '${event}' event listener to NodeList`, error);

@@ -1,4 +1,4 @@
-Element.prototype.off = function (event, handler) {
+Element.prototype.$off = function (event, handler) {
   try {
     // If no arguments, remove all event listeners
     if (arguments.length === 0) {
@@ -66,15 +66,15 @@ Element.prototype.off = function (event, handler) {
   return this;
 };
 
-NodeList.prototype.off = function (event, handler) {
+NodeList.prototype.$off = function (event, handler) {
   try {
     this.forEach(element => {
       if (arguments.length === 0) {
-        element.off();
+        element.$off();
       } else if (arguments.length === 1) {
-        element.off(event);
+        element.$off(event);
       } else {
-        element.off(event, handler);
+        element.$off(event, handler);
       }
     });
   } catch (error) {

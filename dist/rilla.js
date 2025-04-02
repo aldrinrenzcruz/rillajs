@@ -79,9 +79,9 @@ NodeList.prototype.$append = function (htmlString) {
     console.error("$append: invalid parameter");
     return this;
   }
-  this.forEach(element => {
-    if (element instanceof Element) {
-      element.$append(htmlString);
+  this.forEach(el => {
+    if (el instanceof Element) {
+      el.$append(htmlString);
     }
   });
   return this;
@@ -93,6 +93,42 @@ window.$create = function (tagName) {
     return null;
   }
   return document.createElement(tagName);
+};
+
+Element.prototype.$html = function (content) {
+  if (content === undefined) {
+    return this.innerHTML;
+  }
+  this.innerHTML = content;
+  return this;
+};
+
+NodeList.prototype.$html = function (content) {
+  if (content === undefined) {
+    return Array.from(this).map(el => el.innerHTML);
+  }
+  for (let i = 0; i < this.length; i++) {
+    this[i].innerHTML = content;
+  }
+  return this;
+};
+
+Element.prototype.outer = function (content) {
+  if (content === undefined) {
+    return this.outerHTML;
+  }
+  this.outerHTML = content;
+  return this;
+};
+
+NodeList.prototype.outer = function (content) {
+  if (content === undefined) {
+    return Array.from(this).map(el => el.outerHTML);
+  }
+  for (let i = 0; i < this.length; i++) {
+    this[i].outerHTML = content;
+  }
+  return this;
 };
 
 Element.prototype.$paint = function (htmlString) {
@@ -113,6 +149,10 @@ NodeList.prototype.$paint = function (htmlString) {
   return this;
 };
 
+Element.prototype.$parent = function () {
+  return this.parentNode;
+};
+
 Element.prototype.$prepend = function (htmlString) {
   if (!htmlString) {
     console.error("$prepend: invalid parameter");
@@ -130,9 +170,9 @@ NodeList.prototype.$prepend = function (htmlString) {
     console.error("$prepend: invalid parameter");
     return this;
   }
-  this.forEach(element => {
-    if (element instanceof Element) {
-      element.$prepend(htmlString);
+  this.forEach(el => {
+    if (el instanceof Element) {
+      el.$prepend(htmlString);
     }
   });
   return this;
@@ -183,6 +223,24 @@ NodeList.prototype.$replace = function (el) {
   return null;
 };
 
+Element.prototype.$text = function (content) {
+  if (content === undefined) {
+    return this.textContent;
+  }
+  this.textContent = content;
+  return this;
+};
+
+NodeList.prototype.$text = function (content) {
+  if (content === undefined) {
+    return Array.from(this).map(el => el.textContent);
+  }
+  for (let i = 0; i < this.length; i++) {
+    this[i].textContent = content;
+  }
+  return this;
+};
+
 Element.prototype.$this = function (callback) {
   if (typeof callback === "function") {
     callback(this);
@@ -197,65 +255,7 @@ NodeList.prototype.$this = function (callback) {
   return this;
 };
 
-Element.prototype.html = function (content) {
-  if (content === undefined) {
-    return this.innerHTML;
-  }
-  this.innerHTML = content;
-  return this;
-};
-
-NodeList.prototype.html = function (content) {
-  if (content === undefined) {
-    return Array.from(this).map(el => el.innerHTML);
-  }
-  for (let i = 0; i < this.length; i++) {
-    this[i].innerHTML = content;
-  }
-  return this;
-};
-
-Element.prototype.outer = function (content) {
-  if (content === undefined) {
-    return this.outerHTML;
-  }
-  this.outerHTML = content;
-  return this;
-};
-
-NodeList.prototype.outer = function (content) {
-  if (content === undefined) {
-    return Array.from(this).map(el => el.outerHTML);
-  }
-  for (let i = 0; i < this.length; i++) {
-    this[i].outerHTML = content;
-  }
-  return this;
-};
-
-Element.prototype.parent = function () {
-  return this.parentNode;
-};
-
-Element.prototype.text = function(content) {
-  if (content === undefined) {
-    return this.textContent;
-  }
-  this.textContent = content;
-  return this;
-};
-
-NodeList.prototype.text = function(content) {
-  if (content === undefined) {
-    return Array.from(this).map(el => el.textContent);
-  }
-  for (let i = 0; i < this.length; i++) {
-    this[i].textContent = content;
-  }
-  return this;
-};
-
-Element.prototype.unwrap = function () {
+Element.prototype.$unwrap = function () {
   const parent = this.parentNode;
   if (!parent || parent === document.documentElement) {
     return this;
@@ -278,7 +278,7 @@ Element.prototype.unwrap = function () {
   return this;
 };
 
-NodeList.prototype.unwrap = function () {
+NodeList.prototype.$unwrap = function () {
   const elements = Array.from(this);
   const parents = new Set();
   elements.forEach(element => {
@@ -309,7 +309,7 @@ NodeList.prototype.unwrap = function () {
   return this;
 };
 
-Element.prototype.val = function (content) {
+Element.prototype.$value = function (content) {
   if (content === undefined) {
     return this.value;
   }
@@ -317,7 +317,7 @@ Element.prototype.val = function (content) {
   return this;
 };
 
-NodeList.prototype.val = function (content) {
+NodeList.prototype.$value = function (content) {
   if (content === undefined) {
     return Array.from(this).map(el => "value" in el ? el.value : null);
   }
@@ -329,7 +329,8 @@ NodeList.prototype.val = function (content) {
   return this;
 };
 
-Element.prototype.wrap = function (content) {
+// Expects a pair of HTML element
+Element.prototype.$wrap = function (content) {
   const temp = document.createElement("div");
   temp.innerHTML = content;
   const wrapper = temp.firstElementChild;
@@ -345,7 +346,7 @@ Element.prototype.wrap = function (content) {
   return this;
 };
 
-NodeList.prototype.wrap = function (content) {
+NodeList.prototype.$wrap = function (content) {
   return Array.from(this).map(el => {
     if (el instanceof Element) {
       return el.wrap(content);
@@ -358,14 +359,7 @@ function $dom(callback) {
   document.addEventListener("DOMContentLoaded", callback);
 }
 
-const $rillaEvents = new WeakMap();
-
-
-function $window(callback) {
-  window.addEventListener("load", callback);
-}
-
-Element.prototype.off = function (event, handler) {
+Element.prototype.$off = function (event, handler) {
   try {
     // If no arguments, remove all event listeners
     if (arguments.length === 0) {
@@ -433,15 +427,15 @@ Element.prototype.off = function (event, handler) {
   return this;
 };
 
-NodeList.prototype.off = function (event, handler) {
+NodeList.prototype.$off = function (event, handler) {
   try {
     this.forEach(element => {
       if (arguments.length === 0) {
-        element.off();
+        element.$off();
       } else if (arguments.length === 1) {
-        element.off(event);
+        element.$off(event);
       } else {
-        element.off(event, handler);
+        element.$off(event, handler);
       }
     });
   } catch (error) {
@@ -451,7 +445,7 @@ NodeList.prototype.off = function (event, handler) {
   return this;
 };
 
-Element.prototype.on = function (event, handler) {
+Element.prototype.$on = function (event, handler) {
   if (typeof event !== "string") {
     console.error("on: Event type must be a string");
     return this;
@@ -488,7 +482,7 @@ Element.prototype.on = function (event, handler) {
   return this;
 };
 
-NodeList.prototype.on = function (event, handler) {
+NodeList.prototype.$on = function (event, handler) {
   if (typeof event !== "string") {
     console.error("on: Event type must be a string");
     return this;
@@ -501,7 +495,7 @@ NodeList.prototype.on = function (event, handler) {
 
   try {
     this.forEach(element => {
-      element.on(event, handler);
+      element.$on(event, handler);
     });
   } catch (error) {
     console.error(`on: Error adding '${event}' event listener to NodeList`, error);
@@ -510,7 +504,7 @@ NodeList.prototype.on = function (event, handler) {
   return this;
 };
 
-Element.prototype.prevent = function () {
+Element.prototype.$prevent = function () {
   try {
     if (!$rillaEvents.has(this)) {
       return this;
@@ -547,10 +541,10 @@ Element.prototype.prevent = function () {
   return this;
 };
 
-NodeList.prototype.prevent = function () {
+NodeList.prototype.$prevent = function () {
   try {
     this.forEach(element => {
-      element.prevent();
+      element.$prevent();
     });
   } catch (error) {
     console.error("prevent: Error adding preventDefault to NodeList", error);
@@ -559,7 +553,9 @@ NodeList.prototype.prevent = function () {
   return this;
 };
 
-Element.prototype.stop = function () {
+const $rillaEvents = new WeakMap();
+
+Element.prototype.$stop = function () {
   try {
     if (!$rillaEvents.has(this)) {
       return this;
@@ -596,10 +592,10 @@ Element.prototype.stop = function () {
   return this;
 };
 
-NodeList.prototype.stop = function () {
+NodeList.prototype.$stop = function () {
   try {
     this.forEach(element => {
-      element.stop();
+      element.$stop();
     });
   } catch (error) {
     console.error("stop: Error adding stopPropagation to NodeList", error);
@@ -608,7 +604,11 @@ NodeList.prototype.stop = function () {
   return this;
 };
 
-Element.prototype.addClass = function (classNames) {
+function $window(callback) {
+  window.addEventListener("load", callback);
+}
+
+Element.prototype.$addClass = function (classNames) {
   if (typeof classNames !== "string") {
     console.error("addClass: input must be a string");
     return this;
@@ -626,7 +626,7 @@ Element.prototype.addClass = function (classNames) {
   return this;
 };
 
-NodeList.prototype.addClass = function (classNames) {
+NodeList.prototype.$addClass = function (classNames) {
   if (typeof classNames !== "string") {
     console.error("addClass: input must be a string");
     return this;
@@ -646,21 +646,21 @@ NodeList.prototype.addClass = function (classNames) {
   return this;
 };
 
-Element.prototype.attr = function (name, value) {
+Element.prototype.$attr = function (name, value) {
   if (value === undefined) return this.getAttribute(name);
   this.setAttribute(name, value);
   return this;
 };
 
-NodeList.prototype.attr = function (name, value) {
+NodeList.prototype.$attr = function (name, value) {
   if (value === undefined) {
-    return Array.from(this).map(el => el.attr(name));
+    return Array.from(this).map(el => el.$attr(name));
   }
-  this.forEach(el => el.attr(name, value));
+  this.forEach(el => el.$attr(name, value));
   return this;
 };
 
-Element.prototype.class = function (classNames) {
+Element.prototype.$class = function (classNames) {
   if (classNames === undefined) {
     return Array.from(this.classList);
   }
@@ -684,7 +684,7 @@ Element.prototype.class = function (classNames) {
   return this;
 };
 
-NodeList.prototype.class = function (classNames) {
+NodeList.prototype.$class = function (classNames) {
   if (classNames === undefined) {
     return Array.from(this).map(element => Array.from(element.classList));
   }
@@ -712,7 +712,7 @@ NodeList.prototype.class = function (classNames) {
   return this;
 };
 
-Element.prototype.data = function (key, value) {
+Element.prototype.$data = function (key, value) {
   // Case 1: No parameters - get all data attributes
   if (arguments.length === 0) {
     const dataAttributes = {};
@@ -749,24 +749,24 @@ Element.prototype.data = function (key, value) {
   return this;
 };
 
-NodeList.prototype.data = function (key, value) {
+NodeList.prototype.$data = function (key, value) {
   if (arguments.length === 0) {
     return Array.from(this).map(element => {
       if (element instanceof Element) {
-        return element.data();
+        return element.$data();
       }
       return null;
     });
   }
   Array.from(this).forEach(element => {
     if (element instanceof Element) {
-      Element.prototype.data.apply(element, arguments);
+      Element.prototype.$data.apply(element, arguments);
     }
   });
   return this;
 };
 
-Element.prototype.hasClass = function (className) {
+Element.prototype.$hasClass = function (className) {
   if (className === undefined || className === "") {
     return this.classList.length > 0;
   }
@@ -782,7 +782,7 @@ Element.prototype.hasClass = function (className) {
   }
 };
 
-NodeList.prototype.hasClass = function (className) {
+NodeList.prototype.$hasClass = function (className) {
   if (className === undefined || className === "") {
     return Array.from(this).some(element => element.classList.length > 0);
   }
@@ -798,7 +798,7 @@ NodeList.prototype.hasClass = function (className) {
   }
 };
 
-Element.prototype.removeClass = function (classNames) {
+Element.prototype.$removeClass = function (classNames) {
   if (typeof classNames !== "string") {
     console.error("removeClass: input must be a string");
     return this;
@@ -816,7 +816,7 @@ Element.prototype.removeClass = function (classNames) {
   return this;
 };
 
-NodeList.prototype.removeClass = function (classNames) {
+NodeList.prototype.$removeClass = function (classNames) {
   if (typeof classNames !== "string") {
     console.error("removeClass: input must be a string");
     return this;
@@ -836,7 +836,7 @@ NodeList.prototype.removeClass = function (classNames) {
   return this;
 };
 
-Element.prototype.toggleClass = function (classNames) {
+Element.prototype.$toggleClass = function (classNames) {
   if (typeof classNames !== "string") {
     console.error("toggleClass: input must be a string");
     return this;
@@ -854,7 +854,7 @@ Element.prototype.toggleClass = function (classNames) {
   return this;
 };
 
-NodeList.prototype.toggleClass = function (classNames) {
+NodeList.prototype.$toggleClass = function (classNames) {
   if (typeof classNames !== "string") {
     console.error("toggleClass: input must be a string");
     return this;
@@ -895,7 +895,7 @@ function $session(key, value) {
   return $rillaStore("session", key, value);
 }
 
-function fadeIn(param, displayType = "block", duration = 200) {
+function $fadeIn(param, displayType = "block", duration = 200) {
   if (typeof param === "string") {
     const element = document.querySelector(`#${param}`);
     if (element) {
@@ -942,7 +942,7 @@ function fadeIn(param, displayType = "block", duration = 200) {
   return null;
 }
 
-Element.prototype.fadeIn = function (displayType = "block", duration = 200) {
+Element.prototype.$fadeIn = function (displayType = "block", duration = 200) {
   this.style.opacity = 0;
   this.style.display = displayType;
   const element = this;
@@ -954,7 +954,7 @@ Element.prototype.fadeIn = function (displayType = "block", duration = 200) {
   return this;
 };
 
-NodeList.prototype.fadeIn = function (displayType = "block", duration = 200) {
+NodeList.prototype.$fadeIn = function (displayType = "block", duration = 200) {
   for (let i = 0; i < this.length; i++) {
     const element = this[i];
     element.style.opacity = 0;
@@ -969,7 +969,7 @@ NodeList.prototype.fadeIn = function (displayType = "block", duration = 200) {
   return this;
 };
 
-function fadeOut(param, duration = 200) {
+function $fadeOut(param, duration = 200) {
   if (typeof param === "string") {
     const element = document.querySelector(`#${param}`);
     if (element) {
@@ -1018,7 +1018,7 @@ function fadeOut(param, duration = 200) {
   return null;
 }
 
-Element.prototype.fadeOut = function (duration = 200) {
+Element.prototype.$fadeOut = function (duration = 200) {
   this.style.opacity = 1;
   this.style.transition = `opacity ${duration}ms`;
   this.style.opacity = 0;
@@ -1031,7 +1031,7 @@ Element.prototype.fadeOut = function (duration = 200) {
   return this;
 };
 
-NodeList.prototype.fadeOut = function (duration = 200) {
+NodeList.prototype.$fadeOut = function (duration = 200) {
   for (let i = 0; i < this.length; i++) {
     const element = this[i];
     element.style.opacity = 1;
@@ -1047,14 +1047,14 @@ NodeList.prototype.fadeOut = function (duration = 200) {
   return this;
 };
 
-function fadeToggle(param, displayType = "block", duration = 200) {
+function $fadeToggle(param, displayType = "block", duration = 200) {
   if (typeof param === "string") {
     const element = document.querySelector(`#${param}`);
     if (element) {
       if (window.getComputedStyle(element).display === "none") {
-        fadeIn(element, displayType, duration);
+        $fadeIn(element, displayType, duration);
       } else {
-        fadeOut(element, duration);
+        $fadeOut(element, duration);
       }
       return element;
     } else {
@@ -1093,9 +1093,9 @@ function fadeToggle(param, displayType = "block", duration = 200) {
   }
   if (param && param.style) {
     if (window.getComputedStyle(param).display === "none") {
-      fadeIn(param, displayType, duration);
+      $fadeIn(param, displayType, duration);
     } else {
-      fadeOut(param, duration);
+      $fadeOut(param, duration);
     }
     return param;
   }
@@ -1103,16 +1103,16 @@ function fadeToggle(param, displayType = "block", duration = 200) {
   return null;
 }
 
-Element.prototype.fadeToggle = function (displayType = "block", duration = 200) {
+Element.prototype.$fadeToggle = function (displayType = "block", duration = 200) {
   if (window.getComputedStyle(this).display === "none") {
-    this.fadeIn(displayType, duration);
+    this.$fadeIn(displayType, duration);
   } else {
-    this.fadeOut(duration);
+    this.$fadeOut(duration);
   }
   return this;
 };
 
-NodeList.prototype.fadeToggle = function (displayType = "block", duration = 200) {
+NodeList.prototype.$fadeToggle = function (displayType = "block", duration = 200) {
   for (let i = 0; i < this.length; i++) {
     const element = this[i];
     if (window.getComputedStyle(element).display === "none") {
@@ -1138,7 +1138,7 @@ NodeList.prototype.fadeToggle = function (displayType = "block", duration = 200)
   return this;
 };
 
-function hide(param) {
+function $hide(param) {
   if (typeof param === "string") {
     const element = document.querySelector(`#${param}`);
     if (element) {
@@ -1167,19 +1167,19 @@ function hide(param) {
   return null;
 }
 
-Element.prototype.hide = function () {
+Element.prototype.$hide = function () {
   this.style.display = "none";
   return this;
 };
 
-NodeList.prototype.hide = function () {
+NodeList.prototype.$hide = function () {
   for (let i = 0; i < this.length; i++) {
     this[i].style.display = "none";
   }
   return this;
 };
 
-function show(param, displayType = "block") {
+function $show(param, displayType = "block") {
   if (typeof param === "string") {
     const element = document.querySelector(`#${param}`);
     if (element) {
@@ -1208,26 +1208,26 @@ function show(param, displayType = "block") {
   return null;
 }
 
-Element.prototype.show = function (displayType = "block") {
+Element.prototype.$show = function (displayType = "block") {
   this.style.display = displayType;
   return this;
 };
 
-NodeList.prototype.show = function (displayType = "block") {
+NodeList.prototype.$show = function (displayType = "block") {
   for (let i = 0; i < this.length; i++) {
     this[i].style.display = displayType;
   }
   return this;
 };
 
-function toggle(param, displayType = "block") {
+function $toggle(param, displayType = "block") {
   if (typeof param === "string") {
     const element = document.querySelector(`#${param}`);
     if (element) {
       if (window.getComputedStyle(element).display === "none") {
-        show(element, displayType);
+        $show(element, displayType);
       } else {
-        hide(element);
+        $hide(element);
       }
       return element;
     } else {
@@ -1252,9 +1252,9 @@ function toggle(param, displayType = "block") {
   }
   if (param && param.style) {
     if (window.getComputedStyle(param).display === "none") {
-      show(param, displayType);
+      $show(param, displayType);
     } else {
-      hide(param);
+      $hide(param);
     }
     return param;
   }
@@ -1262,7 +1262,7 @@ function toggle(param, displayType = "block") {
   return null;
 }
 
-Element.prototype.toggle = function (displayType = "block") {
+Element.prototype.$toggle = function (displayType = "block") {
   if (window.getComputedStyle(this).display === "none") {
     this.style.display = displayType;
   } else {
@@ -1271,7 +1271,7 @@ Element.prototype.toggle = function (displayType = "block") {
   return this;
 };
 
-NodeList.prototype.toggle = function (displayType = "block") {
+NodeList.prototype.$toggle = function (displayType = "block") {
   for (let i = 0; i < this.length; i++) {
     const element = this[i];
     if (window.getComputedStyle(element).display === "none") {

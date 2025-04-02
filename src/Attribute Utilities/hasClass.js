@@ -1,4 +1,4 @@
-Element.prototype.hasClass = function (className) {
+Element.prototype.$hasClass = function (className) {
   if (className === undefined || className === "") {
     return this.classList.length > 0;
   }
@@ -14,7 +14,7 @@ Element.prototype.hasClass = function (className) {
   }
 };
 
-NodeList.prototype.hasClass = function (className) {
+NodeList.prototype.$hasClass = function (className) {
   if (className === undefined || className === "") {
     return Array.from(this).some(element => element.classList.length > 0);
   }

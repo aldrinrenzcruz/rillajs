@@ -1,4 +1,4 @@
-Element.prototype.data = function (key, value) {
+Element.prototype.$data = function (key, value) {
   // Case 1: No parameters - get all data attributes
   if (arguments.length === 0) {
     const dataAttributes = {};
@@ -35,18 +35,18 @@ Element.prototype.data = function (key, value) {
   return this;
 };
 
-NodeList.prototype.data = function (key, value) {
+NodeList.prototype.$data = function (key, value) {
   if (arguments.length === 0) {
     return Array.from(this).map(element => {
       if (element instanceof Element) {
-        return element.data();
+        return element.$data();
       }
       return null;
     });
   }
   Array.from(this).forEach(element => {
     if (element instanceof Element) {
-      Element.prototype.data.apply(element, arguments);
+      Element.prototype.$data.apply(element, arguments);
     }
   });
   return this;

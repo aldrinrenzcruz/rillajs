@@ -1,11 +1,11 @@
-function fadeToggle(param, displayType = "block", duration = 200) {
+function $fadeToggle(param, displayType = "block", duration = 200) {
   if (typeof param === "string") {
     const element = document.querySelector(`#${param}`);
     if (element) {
       if (window.getComputedStyle(element).display === "none") {
-        fadeIn(element, displayType, duration);
+        $fadeIn(element, displayType, duration);
       } else {
-        fadeOut(element, duration);
+        $fadeOut(element, duration);
       }
       return element;
     } else {
@@ -44,9 +44,9 @@ function fadeToggle(param, displayType = "block", duration = 200) {
   }
   if (param && param.style) {
     if (window.getComputedStyle(param).display === "none") {
-      fadeIn(param, displayType, duration);
+      $fadeIn(param, displayType, duration);
     } else {
-      fadeOut(param, duration);
+      $fadeOut(param, duration);
     }
     return param;
   }
@@ -54,16 +54,16 @@ function fadeToggle(param, displayType = "block", duration = 200) {
   return null;
 }
 
-Element.prototype.fadeToggle = function (displayType = "block", duration = 200) {
+Element.prototype.$fadeToggle = function (displayType = "block", duration = 200) {
   if (window.getComputedStyle(this).display === "none") {
-    this.fadeIn(displayType, duration);
+    this.$fadeIn(displayType, duration);
   } else {
-    this.fadeOut(duration);
+    this.$fadeOut(duration);
   }
   return this;
 };
 
-NodeList.prototype.fadeToggle = function (displayType = "block", duration = 200) {
+NodeList.prototype.$fadeToggle = function (displayType = "block", duration = 200) {
   for (let i = 0; i < this.length; i++) {
     const element = this[i];
     if (window.getComputedStyle(element).display === "none") {

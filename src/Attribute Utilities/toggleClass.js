@@ -1,4 +1,4 @@
-Element.prototype.toggleClass = function (classNames) {
+Element.prototype.$toggleClass = function (classNames) {
   if (typeof classNames !== "string") {
     console.error("toggleClass: input must be a string");
     return this;
@@ -16,7 +16,7 @@ Element.prototype.toggleClass = function (classNames) {
   return this;
 };
 
-NodeList.prototype.toggleClass = function (classNames) {
+NodeList.prototype.$toggleClass = function (classNames) {
   if (typeof classNames !== "string") {
     console.error("toggleClass: input must be a string");
     return this;

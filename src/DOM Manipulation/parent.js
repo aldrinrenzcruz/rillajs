@@ -1,3 +1,3 @@
-Element.prototype.parent = function () {
+Element.prototype.$parent = function () {
   return this.parentNode;
 };

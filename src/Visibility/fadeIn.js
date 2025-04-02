@@ -1,4 +1,4 @@
-function fadeIn(param, displayType = "block", duration = 200) {
+function $fadeIn(param, displayType = "block", duration = 200) {
   if (typeof param === "string") {
     const element = document.querySelector(`#${param}`);
     if (element) {
@@ -45,7 +45,7 @@ function fadeIn(param, displayType = "block", duration = 200) {
   return null;
 }
 
-Element.prototype.fadeIn = function (displayType = "block", duration = 200) {
+Element.prototype.$fadeIn = function (displayType = "block", duration = 200) {
   this.style.opacity = 0;
   this.style.display = displayType;
   const element = this;
@@ -57,7 +57,7 @@ Element.prototype.fadeIn = function (displayType = "block", duration = 200) {
   return this;
 };
 
-NodeList.prototype.fadeIn = function (displayType = "block", duration = 200) {
+NodeList.prototype.$fadeIn = function (displayType = "block", duration = 200) {
   for (let i = 0; i < this.length; i++) {
     const element = this[i];
     element.style.opacity = 0;

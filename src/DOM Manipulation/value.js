@@ -1,4 +1,4 @@
-Element.prototype.val = function (content) {
+Element.prototype.$value = function (content) {
   if (content === undefined) {
     return this.value;
   }
@@ -6,7 +6,7 @@ Element.prototype.val = function (content) {
   return this;
 };
 
-NodeList.prototype.val = function (content) {
+NodeList.prototype.$value = function (content) {
   if (content === undefined) {
     return Array.from(this).map(el => "value" in el ? el.value : null);
   }
