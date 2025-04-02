@@ -66,7 +66,7 @@ function renderLandingCodeBlocks() {
             .parent()
             .wrap("<div class='relative'></div>")
             .parent()
-            .$append("<button class='absolute top-2 right-2 px-2 py-1 bg-gray-800 text-gray-400 text-xs rounded hover:bg-gray-700 transition hover:cursor-pointer'></button>")
+            .$append("<button class='copy-btn'></button>")
             .$("button")
             .text(lang.trim() || "copy")
             .$this(btn =>
