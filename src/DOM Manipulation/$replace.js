@@ -1,3 +1,4 @@
+// This expects either $create or a tag name, doesnt have to be valid
 Element.prototype.$replace = function (el) {
   if (typeof el === "string") {
     const div = document.createElement("div");
