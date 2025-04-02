@@ -138,22 +138,6 @@ NodeList.prototype.$prepend = function (htmlString) {
   return this;
 };
 
-Element.prototype.$remove = function () {
-  if (this.parentNode) {
-    this.parentNode.removeChild(this);
-  }
-  return this;
-};
-
-NodeList.prototype.$remove = function () {
-  Array.prototype.forEach.call(this, function (el) {
-    if (el.parentNode) {
-      el.parentNode.removeChild(el);
-    }
-  });
-  return this;
-};
-
 // This expects either $create or a tag name, doesnt have to be valid
 Element.prototype.$replace = function (el) {
   if (typeof el === "string") {
@@ -194,6 +178,16 @@ NodeList.prototype.$this = function (callback) {
   if (typeof callback === "function") {
     this.forEach(el => callback(el));
   }
+  return this;
+};
+
+Element.prototype.destroy = function () {
+  this.parentNode?.removeChild(this);
+  return this;
+};
+
+NodeList.prototype.destroy = function () {
+  this.forEach(el => el.destroy());
   return this;
 };
 
