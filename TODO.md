@@ -1,6 +1,7 @@
 **TODO:**
 - Add personal note to explain project scope
 - Dynamically build both left and right sidebars
+- Add a check to .unwrap to make sure the parent isn't the body
 
 **FOR CONSIDERATION:**
 - Add once, capture, passive, signal methods for the event listeners
