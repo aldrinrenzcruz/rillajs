@@ -1,21 +1,21 @@
-Element.prototype.$replace = function (newEl) {
+Element.prototype.$replace = function (el) {
   if (this.parentNode) {
-    this.parentNode.replaceChild(newEl, this);
+    this.parentNode.replaceChild(el, this);
   }
-  return newEl;
+  return el;
 };
 
-NodeList.prototype.$replace = function (newEl) {
+NodeList.prototype.$replace = function (el) {
   if (this.length > 0) {
     var firstElement = this[0];
     var replacedElements = [];
     if (firstElement.parentNode) {
-      firstElement.parentNode.replaceChild(newEl, firstElement);
-      replacedElements.push(newEl);
+      firstElement.parentNode.replaceChild(el, firstElement);
+      replacedElements.push(el);
     }
     for (var i = 1; i < this.length; i++) {
       if (this[i].parentNode) {
-        var clone = newEl.cloneNode(true);
+        var clone = el.cloneNode(true);
         this[i].parentNode.replaceChild(clone, this[i]);
         replacedElements.push(clone);
       }
