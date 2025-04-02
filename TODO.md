@@ -21,8 +21,6 @@
 - Add in User Interface: resizable()
 
 **COMPLETED:**
-- Rename $remove to destroy
-- Remove dollar for attr, data, class
 - Add methods for console.log, console.info console.error, and console.warn $log, $info, $err, $warn
 
 **NOT IMPLEMENTED:**
