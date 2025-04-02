@@ -62,6 +62,24 @@ function $select(context, selector) {
   return elements.length === 1 ? elements[0] : elements;
 }
 
+Element.prototype.$parent = function () {
+  return this.parentNode;
+};
+
+Element.prototype.$this = function (callback) {
+  if (typeof callback === "function") {
+    callback(this);
+  }
+  return this;
+};
+
+NodeList.prototype.$this = function (callback) {
+  if (typeof callback === "function") {
+    this.forEach(el => callback(el));
+  }
+  return this;
+};
+
 Element.prototype.$append = function (htmlString) {
   if (!htmlString) {
     console.error("$append: invalid parameter");
@@ -149,10 +167,6 @@ NodeList.prototype.$paint = function (htmlString) {
   return this;
 };
 
-Element.prototype.$parent = function () {
-  return this.parentNode;
-};
-
 Element.prototype.$prepend = function (htmlString) {
   if (!htmlString) {
     console.error("$prepend: invalid parameter");
@@ -237,20 +251,6 @@ NodeList.prototype.$text = function (content) {
   }
   for (let i = 0; i < this.length; i++) {
     this[i].textContent = content;
-  }
-  return this;
-};
-
-Element.prototype.$this = function (callback) {
-  if (typeof callback === "function") {
-    callback(this);
-  }
-  return this;
-};
-
-NodeList.prototype.$this = function (callback) {
-  if (typeof callback === "function") {
-    this.forEach(el => callback(el));
   }
   return this;
 };

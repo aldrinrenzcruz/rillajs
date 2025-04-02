@@ -8,6 +8,7 @@ const outputFile = path.join(outputDir, "rilla.js");
 const directories = [
   "Console",
   "DOM Selection",
+  "DOM Traversal",
   "DOM Manipulation",
   "Event Handling",
   "Attribute Utilities",
