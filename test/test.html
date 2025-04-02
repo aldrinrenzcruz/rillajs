@@ -11,9 +11,45 @@
 
 <body>
 
-  <button onclick="toggle(document.querySelector('#container'))">Toggle</button>
+  <div class="container">Hello world
+    <ul>
+      <li>haha</li>
+      <li>12312312</li>
+      <li>12331232</li>
+    </ul>
+  </div>
+  <div class="container">Hello world
+    <ul>
+      <li>haha</li>
+      <li>12312312</li>
+      <li>12331232</li>
+    </ul>
+  </div>
+  <div class="container">Hello world
+    <ul>
+      <li>haha</li>
+      <li>12312312</li>
+      <li>12331232</li>
+    </ul>
+  </div>
+  <div class="container">Hello world
+    <ul>
+      <li>haha</li>
+      <li>12312312</li>
+      <li>12331232</li>
+    </ul>
+  </div>
 
-  <div id="container">Hello world</div>
+  <button id="btn">Toggle</button>
+
+  <script>
+    btn.on("click", () => {
+      $(".container li").$prepend(`
+      <p>Six live!</p>
+      `)
+    })
+
+  </script>
 
   <script src="./test.js"></script>
 

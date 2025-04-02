@@ -10,3 +10,16 @@ Element.prototype.$paint = function (htmlString) {
   this.append(fragment);
   return this;
 };
+
+NodeList.prototype.$paint = function (htmlString) {
+  if (!htmlString) {
+    console.error("$paint: invalid parameter");
+    return this;
+  }
+  this.forEach(element => {
+    if (element instanceof Element) {
+      element.$paint(htmlString);
+    }
+  });
+  return this;
+};

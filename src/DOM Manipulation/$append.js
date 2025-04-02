@@ -9,3 +9,16 @@ Element.prototype.$append = function (htmlString) {
   this.append(fragment);
   return this;
 };
+
+NodeList.prototype.$append = function (htmlString) {
+  if (!htmlString) {
+    console.error("$append: invalid parameter");
+    return this;
+  }
+  this.forEach(element => {
+    if (element instanceof Element) {
+      element.$append(htmlString);
+    }
+  });
+  return this;
+};

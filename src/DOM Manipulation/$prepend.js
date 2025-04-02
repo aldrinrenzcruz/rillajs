@@ -9,3 +9,16 @@ Element.prototype.$prepend = function (htmlString) {
   this.prepend(fragment);
   return this;
 };
+
+NodeList.prototype.$prepend = function (htmlString) {
+  if (!htmlString) {
+    console.error("$prepend: invalid parameter");
+    return this;
+  }
+  this.forEach(element => {
+    if (element instanceof Element) {
+      element.$prepend(htmlString);
+    }
+  });
+  return this;
+};

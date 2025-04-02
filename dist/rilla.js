@@ -68,6 +68,19 @@ Element.prototype.$append = function (htmlString) {
   return this;
 };
 
+NodeList.prototype.$append = function (htmlString) {
+  if (!htmlString) {
+    console.error("$append: invalid parameter");
+    return this;
+  }
+  this.forEach(element => {
+    if (element instanceof Element) {
+      element.$append(htmlString);
+    }
+  });
+  return this;
+};
+
 window.$create = function (tagName) {
   if (!tagName || typeof tagName !== "string") {
     console.error("$create: invalid tag name");
@@ -89,6 +102,19 @@ Element.prototype.$paint = function (htmlString) {
   return this;
 };
 
+NodeList.prototype.$paint = function (htmlString) {
+  if (!htmlString) {
+    console.error("$paint: invalid parameter");
+    return this;
+  }
+  this.forEach(element => {
+    if (element instanceof Element) {
+      element.$paint(htmlString);
+    }
+  });
+  return this;
+};
+
 Element.prototype.$prepend = function (htmlString) {
   if (!htmlString) {
     console.error("$prepend: invalid parameter");
@@ -98,6 +124,19 @@ Element.prototype.$prepend = function (htmlString) {
   template.innerHTML = htmlString.trim();
   const fragment = template.content;
   this.prepend(fragment);
+  return this;
+};
+
+NodeList.prototype.$prepend = function (htmlString) {
+  if (!htmlString) {
+    console.error("$prepend: invalid parameter");
+    return this;
+  }
+  this.forEach(element => {
+    if (element instanceof Element) {
+      element.$prepend(htmlString);
+    }
+  });
   return this;
 };
 
