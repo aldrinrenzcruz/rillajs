@@ -1,3 +1,9 @@
+window.$err = console.error.bind(console);
+
+window.$log = console.log.bind(console);
+
+window.$warn = console.warn.bind(console);
+
 function $(selector) {
   return $select(document, selector);
 }

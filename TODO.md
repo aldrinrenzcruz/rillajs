@@ -17,11 +17,12 @@
 - Add DOM Traversal: parent, parents, parentsUntil, children, find, siblings, next, nextAll, nextUntil, prev, prevAll, prevUntil, first, last
 - Add $css method to add style
 - Move $this to DOM Traversal
-- Create methods for console.log, console.error, and console.warn, $log, $err, $warn
+
 - Add in Visibility: slideUp, slideDown, slideToggle
 - Add in User Interface: resizable()
 
 **COMPLETED:**
+- Add methods for console.log, console.info console.error, and console.warn $log, $info, $err, $warn
 - Add $replace method
 - Add $remove method
 - Add $data to access all element data, should accept parameter, get or set value
