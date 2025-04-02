@@ -1,9 +1,12 @@
 **TODO:**
-- Add .parent() to docs
 - Add personal note to explain project scope
 - Add a script to force jump to hashed url on window load after building the page
+- Remove extensions for HTMLCollection to reduce total file size
+- Extend $paint, $append, $prepend to NodeList
 
 **FOR CONSIDERATION:**
+- Modify and .parent() to .appendToParent
+- Add .parent() to docs
 - Add a roadmap
 - Add error handling for examples fetch script for invalid query selectors, just skip those
 - Test performance benchmark
@@ -15,6 +18,7 @@
 - Add $data to access all element data, should accept parameter, get or set value
 
 **COMPLETED:**
+- Move Class Utilities to Attribute Utilities
 - Add right sidebar for Page Contents and header
 - Create a disclaimer banner at the top
 - Add installation via CDN
