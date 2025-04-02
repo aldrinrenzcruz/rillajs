@@ -39,7 +39,7 @@ section h2 {
   border-bottom: 1px solid var(--color-rose-300);
   text-transform: uppercase;
   font-weight: bold;
-  font-size: .75rem;
+  font-size: 0.75rem;
   letter-spacing: 0.025em;
   color: var(--color-rose-600);
 }
