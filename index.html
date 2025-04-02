@@ -39,35 +39,83 @@
 
   <div class="max-w-6xl mx-auto px-4 md:px-0 py-8 flex flex-col lg:flex-row">
     <aside class="w-full lg:w-64 flex-shrink-0 lg:pr-8">
-      <div class="lg:sticky lg:top-24">
+      <div class="lg:sticky lg:top-24 max-h-[calc(100vh-6rem)] overflow-y-auto">
         <ul class="space-y-2">
           <li>
-            <span class="font-semibold text-gray-600 uppercase text-xs tracking-wide">Getting Started</span>
-            <ul class="mt-2 space-y-2 text-sm">
-              <li><a href="#cdn" class="block hover:text-rose-500 transition">CDN</a></li>
-              <li><a href="#installation" class="block hover:text-rose-500 transition">Installation</a></li>
+            <span class="font-semibold text-gray-600 uppercase text-xs tracking-wide">DOM Selection</span>
+            <ul class="space-y-2 text-sm mt-2 pl-3">
+              <li><a href="#" class="block hover:text-rose-500 transition">$()</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">$id()</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">$select()</a></li>
             </ul>
           </li>
           <li class="pt-2">
-            <span class="font-semibold text-gray-600 uppercase text-xs tracking-wide">Features</span>
-            <ul class="mt-2 space-y-2 text-sm">
-              <li><a href="#dom-selection" class="block hover:text-rose-500 transition">DOM Selection</a></li>
-              <li><a href="#dom-manipulation" class="block hover:text-rose-500 transition">DOM Manipulation</a></li>
-              <li><a href="#element-references" class="block hover:text-rose-500 transition">Element References</a></li>
-              <li><a href="#attributes-classes" class="block hover:text-rose-500 transition">Attributes &amp; Classes</a></li>
-              <li><a href="#event-handling" class="block hover:text-rose-500 transition">Event Handling</a></li>
-              <li><a href="#document-window" class="block hover:text-rose-500 transition">Document &amp; Window Events</a></li>
-              <li><a href="#visibility" class="block hover:text-rose-500 transition">Show/Hide &amp; Fade Effects</a></li>
-              <li><a href="#storage" class="block hover:text-rose-500 transition">Storage Utilities</a></li>
-              <li><a href="#draggable" class="block hover:text-rose-500 transition">Draggable Elements</a></li>
+            <span class="font-semibold text-gray-600 uppercase text-xs tracking-wide">DOM Manipulation</span>
+            <ul class="space-y-2 text-sm mt-2 pl-3">
+              <li><a href="#" class="block hover:text-rose-500 transition">$create</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">$paint</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">$append</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">$prepend</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">$this</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">wrap</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">unwrap</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">html</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">outer</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">text</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">val</a></li>
             </ul>
           </li>
           <li class="pt-2">
-            <span class="font-semibold text-gray-600 uppercase text-xs tracking-wide">More Information</span>
-            <ul class="mt-2 space-y-2 text-sm">
-              <li><a href="#browser-support" class="block hover:text-rose-500 transition">Browser Support</a></li>
-              <li><a href="#github" class="block hover:text-rose-500 transition">GitHub</a></li>
-              <li><a href="#license" class="block hover:text-rose-500 transition">License</a></li>
+            <span class="font-semibold text-gray-600 uppercase text-xs tracking-wide">Event Handling</span>
+            <ul class="space-y-2 text-sm mt-2 pl-3">
+              <li><a href="#" class="block hover:text-rose-500 transition">on</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">off</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">prevent</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">stop</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">$dom</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">$window</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">$rillaEvents</a></li>
+            </ul>
+          </li>
+          <li class="pt-2">
+            <span class="font-semibold text-gray-600 uppercase text-xs tracking-wide">Attribute Utilities</span>
+            <ul class="space-y-2 text-sm mt-2 pl-3">
+              <li><a href="#" class="block hover:text-rose-500 transition">$attr</a></li>
+            </ul>
+          </li>
+          <li class="pt-2">
+            <span class="font-semibold text-gray-600 uppercase text-xs tracking-wide">Class Utilities</span>
+            <ul class="space-y-2 text-sm mt-2 pl-3">
+              <li><a href="#" class="block hover:text-rose-500 transition">$class</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">hasClass</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">addClass</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">removeClass</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">toggleClass</a></li>
+            </ul>
+          </li>
+          <li class="pt-2">
+            <span class="font-semibold text-gray-600 uppercase text-xs tracking-wide">Storage</span>
+            <ul class="space-y-2 text-sm mt-2 pl-3">
+              <li><a href="#" class="block hover:text-rose-500 transition">$local</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">$session</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">$rillaStore</a></li>
+            </ul>
+          </li>
+          <li class="pt-2">
+            <span class="font-semibold text-gray-600 uppercase text-xs tracking-wide">Visiblity</span>
+            <ul class="space-y-2 text-sm mt-2 pl-3">
+              <li><a href="#" class="block hover:text-rose-500 transition">show</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">hide</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">toggle</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">fadeIn</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">fadeOut</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">fadeToggle</a></li>
+            </ul>
+          </li>
+          <li class="pt-2">
+            <span class="font-semibold text-gray-600 uppercase text-xs tracking-wide">User Interface</span>
+            <ul class="space-y-2 text-sm mt-2 pl-3">
+              <li><a href="#" class="block hover:text-rose-500 transition">draggable</a></li>
             </ul>
           </li>
         </ul>
