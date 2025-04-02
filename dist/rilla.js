@@ -1,4 +1,4 @@
-window.$err = console.error.bind(console);
+window.$error = console.error.bind(console);
 
 window.$log = console.log.bind(console);
 
