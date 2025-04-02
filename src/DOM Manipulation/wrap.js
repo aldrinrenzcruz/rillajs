@@ -13,13 +13,3 @@ Element.prototype.wrap = function (content) {
   }
   return this;
 };
-
-NodeList.prototype.wrap = HTMLCollection.prototype.wrap = function (content) {
-  const elements = Array.from(this);
-  elements.forEach(element => {
-    if (element instanceof Element) {
-      element.wrap(content);
-    }
-  });
-  return this;
-};

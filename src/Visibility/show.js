@@ -9,57 +9,32 @@ function show(param, displayType = "block") {
       return null;
     }
   }
-
-  // Handle NodeList or HTMLCollection
-  if (param instanceof NodeList || param instanceof HTMLCollection) {
+  if (param instanceof NodeList) {
     if (param.length === 0) {
       console.warn("show: empty element collection");
       return null;
     }
-
-    // Apply to all elements in the collection
     for (let i = 0; i < param.length; i++) {
       param[i].style.display = displayType;
     }
     return param;
   }
-
-  // Handle single element
   if (param && param.style) {
     param.style.display = displayType;
     return param;
   }
-
   console.warn("show: element not found or invalid");
   return null;
 }
 
-Element.prototype.show = function(displayType = "block") {
+Element.prototype.show = function (displayType = "block") {
   this.style.display = displayType;
   return this;
 };
 
-NodeList.prototype.show = function(displayType = "block") {
+NodeList.prototype.show = function (displayType = "block") {
   for (let i = 0; i < this.length; i++) {
     this[i].style.display = displayType;
   }
   return this;
 };
-
-HTMLCollection.prototype.show = function(displayType = "block") {
-  for (let i = 0; i < this.length; i++) {
-    this[i].style.display = displayType;
-  }
-  return this;
-};
-
-// function show(param, displayType = "block") {
-//   const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
-//   if (element) {
-//     element.style.display = displayType;
-//     return element;
-//   } else {
-//     console.warn("show: element not found");
-//     return null;
-//   }
-// }

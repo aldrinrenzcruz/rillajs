@@ -133,16 +133,6 @@ NodeList.prototype.html = function (content) {
   return this;
 };
 
-HTMLCollection.prototype.html = function (content) {
-  if (content === undefined) {
-    return Array.from(this).map(el => el.innerHTML);
-  }
-  for (let i = 0; i < this.length; i++) {
-    this[i].innerHTML = content;
-  }
-  return this;
-};
-
 Element.prototype.outer = function (content) {
   if (content === undefined) {
     return this.outerHTML;
@@ -152,16 +142,6 @@ Element.prototype.outer = function (content) {
 };
 
 NodeList.prototype.outer = function (content) {
-  if (content === undefined) {
-    return Array.from(this).map(el => el.outerHTML);
-  }
-  for (let i = 0; i < this.length; i++) {
-    this[i].outerHTML = content;
-  }
-  return this;
-};
-
-HTMLCollection.prototype.outer = function (content) {
   if (content === undefined) {
     return Array.from(this).map(el => el.outerHTML);
   }
@@ -184,16 +164,6 @@ Element.prototype.text = function(content) {
 };
 
 NodeList.prototype.text = function(content) {
-  if (content === undefined) {
-    return Array.from(this).map(el => el.textContent);
-  }
-  for (let i = 0; i < this.length; i++) {
-    this[i].textContent = content;
-  }
-  return this;
-};
-
-HTMLCollection.prototype.text = function(content) {
   if (content === undefined) {
     return Array.from(this).map(el => el.textContent);
   }
@@ -277,18 +247,6 @@ NodeList.prototype.val = function (content) {
   return this;
 };
 
-HTMLCollection.prototype.val = function (content) {
-  if (content === undefined) {
-    return Array.from(this).map(el => "value" in el ? el.value : null);
-  }
-  for (let i = 0; i < this.length; i++) {
-    if ("value" in this[i]) {
-      this[i].value = content;
-    }
-  }
-  return this;
-};
-
 Element.prototype.wrap = function (content) {
   const temp = document.createElement("div");
   temp.innerHTML = content;
@@ -302,16 +260,6 @@ Element.prototype.wrap = function (content) {
     parent.insertBefore(wrapper, this);
     wrapper.appendChild(this);
   }
-  return this;
-};
-
-NodeList.prototype.wrap = HTMLCollection.prototype.wrap = function (content) {
-  const elements = Array.from(this);
-  elements.forEach(element => {
-    if (element instanceof Element) {
-      element.wrap(content);
-    }
-  });
   return this;
 };
 
@@ -635,34 +583,6 @@ NodeList.prototype.$class = function (classNames) {
   return this;
 };
 
-HTMLCollection.prototype.$class = function (classNames) {
-  if (classNames === undefined) {
-    return Array.from(this).map(element => Array.from(element.classList));
-  }
-  if (typeof classNames !== "string") {
-    console.error("$class: input must be a string");
-    return this;
-  }
-  try {
-    if (classNames === "") {
-      this.forEach(element => {
-        element.removeAttribute("class");
-      });
-      return this;
-    }
-    const classes = classNames.trim().split(/\s+/).filter(cls => cls);
-    this.forEach(element => {
-      element.className = "";
-      if (classes.length > 0) {
-        element.classList.add(...classes);
-      }
-    });
-  } catch (error) {
-    console.error("$class: error setting classes", error);
-  }
-  return this;
-};
-
 Element.prototype.addClass = function (classNames) {
   if (typeof classNames !== "string") {
     console.error("addClass: input must be a string");
@@ -682,26 +602,6 @@ Element.prototype.addClass = function (classNames) {
 };
 
 NodeList.prototype.addClass = function (classNames) {
-  if (typeof classNames !== "string") {
-    console.error("addClass: input must be a string");
-    return this;
-  }
-  const classes = classNames.trim().split(/\s+/).filter(cls => cls);
-  if (classes.length === 0) {
-    console.warn("addClass: no valid classes provided");
-    return this;
-  }
-  try {
-    this.forEach(element => {
-      element.classList.add(...classes);
-    });
-  } catch (error) {
-    console.error("addClass: error adding classes", error);
-  }
-  return this;
-};
-
-HTMLCollection.prototype.addClass = function (classNames) {
   if (typeof classNames !== "string") {
     console.error("addClass: input must be a string");
     return this;
@@ -753,22 +653,6 @@ NodeList.prototype.hasClass = function (className) {
   }
 };
 
-HTMLCollection.prototype.hasClass = function (className) {
-  if (className === undefined || className === "") {
-    return Array.from(this).some(element => element.classList.length > 0);
-  }
-  if (typeof className !== "string") {
-    console.error("hasClass: Input must be a string");
-    return false;
-  }
-  try {
-    return Array.from(this).some(element => element.classList.contains(className.trim()));
-  } catch (error) {
-    console.error("hasClass: Error checking classes", error);
-    return false;
-  }
-};
-
 Element.prototype.removeClass = function (classNames) {
   if (typeof classNames !== "string") {
     console.error("removeClass: input must be a string");
@@ -788,26 +672,6 @@ Element.prototype.removeClass = function (classNames) {
 };
 
 NodeList.prototype.removeClass = function (classNames) {
-  if (typeof classNames !== "string") {
-    console.error("removeClass: input must be a string");
-    return this;
-  }
-  const classes = classNames.trim().split(/\s+/).filter(cls => cls);
-  if (classes.length === 0) {
-    console.warn("removeClass: no valid classes provided");
-    return this;
-  }
-  try {
-    this.forEach(element => {
-      element.classList.remove(...classes);
-    });
-  } catch (error) {
-    console.error("removeClass: error removing classes", error);
-  }
-  return this;
-};
-
-HTMLCollection.prototype.removeClass = function (classNames) {
   if (typeof classNames !== "string") {
     console.error("removeClass: input must be a string");
     return this;
@@ -902,21 +766,15 @@ function fadeIn(param, displayType = "block", duration = 200) {
       return null;
     }
   }
-
-  // Handle NodeList or HTMLCollection
-  if (param instanceof NodeList || param instanceof HTMLCollection) {
+  if (param instanceof NodeList) {
     if (param.length === 0) {
       console.warn("fadeIn: empty element collection");
       return null;
     }
-
-    // Apply to all elements in the collection
     for (let i = 0; i < param.length; i++) {
       const element = param[i];
       element.style.opacity = 0;
       element.style.display = displayType;
-
-      // Use closure to capture the current element
       (function (el) {
         requestAnimationFrame(function () {
           el.style.transition = `opacity ${duration}ms`;
@@ -926,8 +784,6 @@ function fadeIn(param, displayType = "block", duration = 200) {
     }
     return param;
   }
-
-  // Handle single element
   if (param && param.style) {
     param.style.opacity = 0;
     param.style.display = displayType;
@@ -937,73 +793,36 @@ function fadeIn(param, displayType = "block", duration = 200) {
     });
     return param;
   }
-
   console.warn("fadeIn: element not found or invalid");
   return null;
 }
 
-Element.prototype.fadeIn = function(displayType = "block", duration = 200) {
+Element.prototype.fadeIn = function (displayType = "block", duration = 200) {
   this.style.opacity = 0;
   this.style.display = displayType;
-  
   const element = this;
-  requestAnimationFrame(function() {
+  requestAnimationFrame(function () {
     element.style.transition = `opacity ${duration}ms`;
     element.style.opacity = 1;
   });
-  
+
   return this;
 };
 
-NodeList.prototype.fadeIn = function(displayType = "block", duration = 200) {
+NodeList.prototype.fadeIn = function (displayType = "block", duration = 200) {
   for (let i = 0; i < this.length; i++) {
     const element = this[i];
     element.style.opacity = 0;
     element.style.display = displayType;
-    (function(el) {
-      requestAnimationFrame(function() {
+    (function (el) {
+      requestAnimationFrame(function () {
         el.style.transition = `opacity ${duration}ms`;
         el.style.opacity = 1;
       });
     })(element);
   }
-  
   return this;
 };
-
-HTMLCollection.prototype.fadeIn = function(displayType = "block", duration = 200) {
-  for (let i = 0; i < this.length; i++) {
-    const element = this[i];
-    element.style.opacity = 0;
-    element.style.display = displayType;
-    
-    // Use closure to capture the current element
-    (function(el) {
-      requestAnimationFrame(function() {
-        el.style.transition = `opacity ${duration}ms`;
-        el.style.opacity = 1;
-      });
-    })(element);
-  }
-  
-  return this;
-};
-
-// function fadeIn(param, displayType = "block", duration = 200) {
-//   const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
-//   if (element) {
-//     element.style.opacity = 0;
-//     element.style.display = displayType;
-//     requestAnimationFrame(function () {
-//       element.style.transition = `opacity ${duration}ms`;
-//       element.style.opacity = 1;
-//     });
-//     return element;
-//   } else {
-//     console.warn("fadeIn: element not found");
-//     return null;
-//   }
-// }
 
 function fadeOut(param, duration = 200) {
   if (typeof param === "string") {
@@ -1023,22 +842,16 @@ function fadeOut(param, duration = 200) {
       return null;
     }
   }
-
-  // Handle NodeList or HTMLCollection
-  if (param instanceof NodeList || param instanceof HTMLCollection) {
+  if (param instanceof NodeList) {
     if (param.length === 0) {
       console.warn("fadeOut: empty element collection");
       return null;
     }
-
-    // Apply to all elements in the collection
     for (let i = 0; i < param.length; i++) {
       const element = param[i];
       element.style.opacity = 1;
       element.style.transition = `opacity ${duration}ms`;
       element.style.opacity = 0;
-
-      // Use closure to capture the current element
       (function (el) {
         setTimeout(function () {
           el.style.display = "none";
@@ -1047,87 +860,47 @@ function fadeOut(param, duration = 200) {
     }
     return param;
   }
-
-  // Handle single element
   if (param && param.style) {
     param.style.opacity = 1;
     param.style.transition = `opacity ${duration}ms`;
     param.style.opacity = 0;
-
     setTimeout(function () {
       param.style.display = "none";
     }, duration);
-
     return param;
   }
-
   console.warn("fadeOut: element not found or invalid");
   return null;
 }
 
-Element.prototype.fadeOut = function(duration = 200) {
+Element.prototype.fadeOut = function (duration = 200) {
   this.style.opacity = 1;
   this.style.transition = `opacity ${duration}ms`;
   this.style.opacity = 0;
-  
+
   const element = this;
-  setTimeout(function() {
+  setTimeout(function () {
     element.style.display = "none";
   }, duration);
-  
+
   return this;
 };
 
-NodeList.prototype.fadeOut = function(duration = 200) {
+NodeList.prototype.fadeOut = function (duration = 200) {
   for (let i = 0; i < this.length; i++) {
     const element = this[i];
     element.style.opacity = 1;
     element.style.transition = `opacity ${duration}ms`;
     element.style.opacity = 0;
-    (function(el) {
-      setTimeout(function() {
+    (function (el) {
+      setTimeout(function () {
         el.style.display = "none";
       }, duration);
     })(element);
   }
-  
+
   return this;
 };
-
-HTMLCollection.prototype.fadeOut = function(duration = 200) {
-  for (let i = 0; i < this.length; i++) {
-    const element = this[i];
-    element.style.opacity = 1;
-    element.style.transition = `opacity ${duration}ms`;
-    element.style.opacity = 0;
-    (function(el) {
-      setTimeout(function() {
-        el.style.display = "none";
-      }, duration);
-    })(element);
-  }
-  
-  return this;
-};
-
-
-// function fadeOut(param, duration = 200) {
-//   const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
-//   if (element) {
-//     element.style.opacity = 1;
-//     element.style.transition = `opacity ${duration}ms`;
-//     element.style.opacity = 0;
-
-//     setTimeout(function () {
-//       element.style.display = "none";
-//     }, duration);
-
-//     return element;
-//   } else {
-//     console.warn("fadeOut: element not found");
-//     return null;
-//   }
-// }
 
 function fadeToggle(param, displayType = "block", duration = 200) {
   if (typeof param === "string") {
@@ -1144,23 +917,16 @@ function fadeToggle(param, displayType = "block", duration = 200) {
       return null;
     }
   }
-
-  // Handle NodeList or HTMLCollection
-  if (param instanceof NodeList || param instanceof HTMLCollection) {
+  if (param instanceof NodeList) {
     if (param.length === 0) {
       console.warn("fadeToggle: empty element collection");
       return null;
     }
-
-    // Toggle each element in the collection
     for (let i = 0; i < param.length; i++) {
       const element = param[i];
       if (window.getComputedStyle(element).display === "none") {
-        // Fade in this specific element
         element.style.opacity = 0;
         element.style.display = displayType;
-
-        // Use closure to capture the current element
         (function (el) {
           requestAnimationFrame(function () {
             el.style.transition = `opacity ${duration}ms`;
@@ -1168,12 +934,9 @@ function fadeToggle(param, displayType = "block", duration = 200) {
           });
         })(element);
       } else {
-        // Fade out this specific element
         element.style.opacity = 1;
         element.style.transition = `opacity ${duration}ms`;
         element.style.opacity = 0;
-
-        // Use closure to capture the current element
         (function (el) {
           setTimeout(function () {
             el.style.display = "none";
@@ -1183,8 +946,6 @@ function fadeToggle(param, displayType = "block", duration = 200) {
     }
     return param;
   }
-
-  // Handle single element
   if (param && param.style) {
     if (window.getComputedStyle(param).display === "none") {
       fadeIn(param, displayType, duration);
@@ -1193,29 +954,27 @@ function fadeToggle(param, displayType = "block", duration = 200) {
     }
     return param;
   }
-
   console.warn("fadeToggle: element not found or invalid");
   return null;
 }
 
-Element.prototype.fadeToggle = function(displayType = "block", duration = 200) {
+Element.prototype.fadeToggle = function (displayType = "block", duration = 200) {
   if (window.getComputedStyle(this).display === "none") {
     this.fadeIn(displayType, duration);
   } else {
     this.fadeOut(duration);
   }
-  
   return this;
 };
 
-NodeList.prototype.fadeToggle = function(displayType = "block", duration = 200) {
+NodeList.prototype.fadeToggle = function (displayType = "block", duration = 200) {
   for (let i = 0; i < this.length; i++) {
     const element = this[i];
     if (window.getComputedStyle(element).display === "none") {
       element.style.opacity = 0;
       element.style.display = displayType;
-      (function(el) {
-        requestAnimationFrame(function() {
+      (function (el) {
+        requestAnimationFrame(function () {
           el.style.transition = `opacity ${duration}ms`;
           el.style.opacity = 1;
         });
@@ -1224,36 +983,8 @@ NodeList.prototype.fadeToggle = function(displayType = "block", duration = 200) 
       element.style.opacity = 1;
       element.style.transition = `opacity ${duration}ms`;
       element.style.opacity = 0;
-      (function(el) {
-        setTimeout(function() {
-          el.style.display = "none";
-        }, duration);
-      })(element);
-    }
-  }
-  
-  return this;
-};
-
-
-HTMLCollection.prototype.fadeToggle = function(displayType = "block", duration = 200) {
-  for (let i = 0; i < this.length; i++) {
-    const element = this[i];
-    if (window.getComputedStyle(element).display === "none") {
-      element.style.opacity = 0;
-      element.style.display = displayType;
-      (function(el) {
-        requestAnimationFrame(function() {
-          el.style.transition = `opacity ${duration}ms`;
-          el.style.opacity = 1;
-        });
-      })(element);
-    } else {
-      element.style.opacity = 1;
-      element.style.transition = `opacity ${duration}ms`;
-      element.style.opacity = 0;
-      (function(el) {
-        setTimeout(function() {
+      (function (el) {
+        setTimeout(function () {
           el.style.display = "none";
         }, duration);
       })(element);
@@ -1261,21 +992,6 @@ HTMLCollection.prototype.fadeToggle = function(displayType = "block", duration =
   }
   return this;
 };
-
-// function fadeToggle(param, displayType = "block", duration = 200) {
-//   const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
-//   if (element) {
-//     if (window.getComputedStyle(element).display === "none") {
-//       fadeIn(element, displayType, duration);
-//     } else {
-//       fadeOut(element, duration);
-//     }
-//     return element;
-//   } else {
-//     console.warn("fadeToggle: element not found");
-//     return null;
-//   }
-// }
 
 function hide(param) {
   if (typeof param === "string") {
@@ -1288,60 +1004,35 @@ function hide(param) {
       return null;
     }
   }
-
-  // Handle NodeList or HTMLCollection
-  if (param instanceof NodeList || param instanceof HTMLCollection) {
+  if (param instanceof NodeList) {
     if (param.length === 0) {
       console.warn("hide: empty element collection");
       return null;
     }
-
-    // Apply to all elements in the collection
     for (let i = 0; i < param.length; i++) {
       param[i].style.display = "none";
     }
     return param;
   }
-
-  // Handle single element
   if (param && param.style) {
     param.style.display = "none";
     return param;
   }
-
   console.warn("hide: element not found or invalid");
   return null;
 }
 
-Element.prototype.hide = function() {
+Element.prototype.hide = function () {
   this.style.display = "none";
   return this;
 };
 
-NodeList.prototype.hide = function() {
+NodeList.prototype.hide = function () {
   for (let i = 0; i < this.length; i++) {
     this[i].style.display = "none";
   }
   return this;
 };
-
-HTMLCollection.prototype.hide = function() {
-  for (let i = 0; i < this.length; i++) {
-    this[i].style.display = "none";
-  }
-  return this;
-};
-
-// function hide(param) {
-//   const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
-//   if (element) {
-//     element.style.display = "none";
-//     return element;
-//   } else {
-//     console.warn("hide: element not found");
-//     return null;
-//   }
-// }
 
 function show(param, displayType = "block") {
   if (typeof param === "string") {
@@ -1354,60 +1045,35 @@ function show(param, displayType = "block") {
       return null;
     }
   }
-
-  // Handle NodeList or HTMLCollection
-  if (param instanceof NodeList || param instanceof HTMLCollection) {
+  if (param instanceof NodeList) {
     if (param.length === 0) {
       console.warn("show: empty element collection");
       return null;
     }
-
-    // Apply to all elements in the collection
     for (let i = 0; i < param.length; i++) {
       param[i].style.display = displayType;
     }
     return param;
   }
-
-  // Handle single element
   if (param && param.style) {
     param.style.display = displayType;
     return param;
   }
-
   console.warn("show: element not found or invalid");
   return null;
 }
 
-Element.prototype.show = function(displayType = "block") {
+Element.prototype.show = function (displayType = "block") {
   this.style.display = displayType;
   return this;
 };
 
-NodeList.prototype.show = function(displayType = "block") {
+NodeList.prototype.show = function (displayType = "block") {
   for (let i = 0; i < this.length; i++) {
     this[i].style.display = displayType;
   }
   return this;
 };
-
-HTMLCollection.prototype.show = function(displayType = "block") {
-  for (let i = 0; i < this.length; i++) {
-    this[i].style.display = displayType;
-  }
-  return this;
-};
-
-// function show(param, displayType = "block") {
-//   const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
-//   if (element) {
-//     element.style.display = displayType;
-//     return element;
-//   } else {
-//     console.warn("show: element not found");
-//     return null;
-//   }
-// }
 
 function toggle(param, displayType = "block") {
   if (typeof param === "string") {
@@ -1424,15 +1090,11 @@ function toggle(param, displayType = "block") {
       return null;
     }
   }
-
-  // Handle NodeList or HTMLCollection
-  if (param instanceof NodeList || param instanceof HTMLCollection) {
+  if (param instanceof NodeList) {
     if (param.length === 0) {
       console.warn("toggle: empty element collection");
       return null;
     }
-
-    // Toggle each element in the collection
     for (let i = 0; i < param.length; i++) {
       const element = param[i];
       if (window.getComputedStyle(element).display === "none") {
@@ -1443,8 +1105,6 @@ function toggle(param, displayType = "block") {
     }
     return param;
   }
-
-  // Handle single element
   if (param && param.style) {
     if (window.getComputedStyle(param).display === "none") {
       show(param, displayType);
@@ -1453,12 +1113,11 @@ function toggle(param, displayType = "block") {
     }
     return param;
   }
-
   console.warn("toggle: element not found or invalid");
   return null;
 }
 
-Element.prototype.toggle = function(displayType = "block") {
+Element.prototype.toggle = function (displayType = "block") {
   if (window.getComputedStyle(this).display === "none") {
     this.style.display = displayType;
   } else {
@@ -1467,7 +1126,7 @@ Element.prototype.toggle = function(displayType = "block") {
   return this;
 };
 
-NodeList.prototype.toggle = function(displayType = "block") {
+NodeList.prototype.toggle = function (displayType = "block") {
   for (let i = 0; i < this.length; i++) {
     const element = this[i];
     if (window.getComputedStyle(element).display === "none") {
@@ -1478,33 +1137,6 @@ NodeList.prototype.toggle = function(displayType = "block") {
   }
   return this;
 };
-
-HTMLCollection.prototype.toggle = function(displayType = "block") {
-  for (let i = 0; i < this.length; i++) {
-    const element = this[i];
-    if (window.getComputedStyle(element).display === "none") {
-      element.style.display = displayType;
-    } else {
-      element.style.display = "none";
-    }
-  }
-  return this;
-};
-
-// function toggle(param, displayType = "block") {
-//   const element = typeof param === "string" ? document.querySelector(`#${param}`) : param;
-//   if (element) {
-//     if (window.getComputedStyle(element).display === "none") {
-//       show(element, displayType);
-//     } else {
-//       hide(element);
-//     }
-//     return element;
-//   } else {
-//     console.warn("toggle: element not found");
-//     return null;
-//   }
-// }
 
 $window(() => {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;

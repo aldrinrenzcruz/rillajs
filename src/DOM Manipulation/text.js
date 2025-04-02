@@ -15,13 +15,3 @@ NodeList.prototype.text = function(content) {
   }
   return this;
 };
-
-HTMLCollection.prototype.text = function(content) {
-  if (content === undefined) {
-    return Array.from(this).map(el => el.textContent);
-  }
-  for (let i = 0; i < this.length; i++) {
-    this[i].textContent = content;
-  }
-  return this;
-};

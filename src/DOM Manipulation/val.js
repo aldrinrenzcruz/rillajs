@@ -17,15 +17,3 @@ NodeList.prototype.val = function (content) {
   }
   return this;
 };
-
-HTMLCollection.prototype.val = function (content) {
-  if (content === undefined) {
-    return Array.from(this).map(el => "value" in el ? el.value : null);
-  }
-  for (let i = 0; i < this.length; i++) {
-    if ("value" in this[i]) {
-      this[i].value = content;
-    }
-  }
-  return this;
-};
