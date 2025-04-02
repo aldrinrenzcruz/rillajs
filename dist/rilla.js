@@ -599,26 +599,64 @@ NodeList.prototype.stop = function () {
   return this;
 };
 
-Element.prototype.$attr = function (name, value) {
+Element.prototype.addClass = function (classNames) {
+  if (typeof classNames !== "string") {
+    console.error("addClass: input must be a string");
+    return this;
+  }
+  const classes = classNames.trim().split(/\s+/).filter(cls => cls);
+  if (classes.length === 0) {
+    console.warn("addClass: no valid classes provided");
+    return this;
+  }
+  try {
+    this.classList.add(...classes);
+  } catch (error) {
+    console.error("addClass: error adding classes", error);
+  }
+  return this;
+};
+
+NodeList.prototype.addClass = function (classNames) {
+  if (typeof classNames !== "string") {
+    console.error("addClass: input must be a string");
+    return this;
+  }
+  const classes = classNames.trim().split(/\s+/).filter(cls => cls);
+  if (classes.length === 0) {
+    console.warn("addClass: no valid classes provided");
+    return this;
+  }
+  try {
+    this.forEach(element => {
+      element.classList.add(...classes);
+    });
+  } catch (error) {
+    console.error("addClass: error adding classes", error);
+  }
+  return this;
+};
+
+Element.prototype.attr = function (name, value) {
   if (value === undefined) return this.getAttribute(name);
   this.setAttribute(name, value);
   return this;
 };
 
-NodeList.prototype.$attr = function (name, value) {
+NodeList.prototype.attr = function (name, value) {
   if (value === undefined) {
-    return Array.from(this).map(el => el.$attr(name));
+    return Array.from(this).map(el => el.attr(name));
   }
-  this.forEach(el => el.$attr(name, value));
+  this.forEach(el => el.attr(name, value));
   return this;
 };
 
-Element.prototype.$class = function (classNames) {
+Element.prototype.class = function (classNames) {
   if (classNames === undefined) {
     return Array.from(this.classList);
   }
   if (typeof classNames !== "string") {
-    console.error("$class: input must be a string");
+    console.error("class: input must be a string");
     return this;
   }
   try {
@@ -632,17 +670,17 @@ Element.prototype.$class = function (classNames) {
       this.classList.add(...classes);
     }
   } catch (error) {
-    console.error("$class: error setting classes", error);
+    console.error("class: error setting classes", error);
   }
   return this;
 };
 
-NodeList.prototype.$class = function (classNames) {
+NodeList.prototype.class = function (classNames) {
   if (classNames === undefined) {
     return Array.from(this).map(element => Array.from(element.classList));
   }
   if (typeof classNames !== "string") {
-    console.error("$class: input must be a string");
+    console.error("class: input must be a string");
     return this;
   }
   try {
@@ -660,12 +698,12 @@ NodeList.prototype.$class = function (classNames) {
       }
     });
   } catch (error) {
-    console.error("$class: error setting classes", error);
+    console.error("class: error setting classes", error);
   }
   return this;
 };
 
-Element.prototype.$data = function (key, value) {
+Element.prototype.data = function (key, value) {
   // Case 1: No parameters - get all data attributes
   if (arguments.length === 0) {
     const dataAttributes = {};
@@ -702,58 +740,20 @@ Element.prototype.$data = function (key, value) {
   return this;
 };
 
-NodeList.prototype.$data = function (key, value) {
+NodeList.prototype.data = function (key, value) {
   if (arguments.length === 0) {
     return Array.from(this).map(element => {
       if (element instanceof Element) {
-        return element.$data();
+        return element.data();
       }
       return null;
     });
   }
   Array.from(this).forEach(element => {
     if (element instanceof Element) {
-      Element.prototype.$data.apply(element, arguments);
+      Element.prototype.data.apply(element, arguments);
     }
   });
-  return this;
-};
-
-Element.prototype.addClass = function (classNames) {
-  if (typeof classNames !== "string") {
-    console.error("addClass: input must be a string");
-    return this;
-  }
-  const classes = classNames.trim().split(/\s+/).filter(cls => cls);
-  if (classes.length === 0) {
-    console.warn("addClass: no valid classes provided");
-    return this;
-  }
-  try {
-    this.classList.add(...classes);
-  } catch (error) {
-    console.error("addClass: error adding classes", error);
-  }
-  return this;
-};
-
-NodeList.prototype.addClass = function (classNames) {
-  if (typeof classNames !== "string") {
-    console.error("addClass: input must be a string");
-    return this;
-  }
-  const classes = classNames.trim().split(/\s+/).filter(cls => cls);
-  if (classes.length === 0) {
-    console.warn("addClass: no valid classes provided");
-    return this;
-  }
-  try {
-    this.forEach(element => {
-      element.classList.add(...classes);
-    });
-  } catch (error) {
-    console.error("addClass: error adding classes", error);
-  }
   return this;
 };
 

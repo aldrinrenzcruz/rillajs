@@ -1,9 +1,9 @@
-Element.prototype.$class = function (classNames) {
+Element.prototype.class = function (classNames) {
   if (classNames === undefined) {
     return Array.from(this.classList);
   }
   if (typeof classNames !== "string") {
-    console.error("$class: input must be a string");
+    console.error("class: input must be a string");
     return this;
   }
   try {
@@ -17,17 +17,17 @@ Element.prototype.$class = function (classNames) {
       this.classList.add(...classes);
     }
   } catch (error) {
-    console.error("$class: error setting classes", error);
+    console.error("class: error setting classes", error);
   }
   return this;
 };
 
-NodeList.prototype.$class = function (classNames) {
+NodeList.prototype.class = function (classNames) {
   if (classNames === undefined) {
     return Array.from(this).map(element => Array.from(element.classList));
   }
   if (typeof classNames !== "string") {
-    console.error("$class: input must be a string");
+    console.error("class: input must be a string");
     return this;
   }
   try {
@@ -45,7 +45,7 @@ NodeList.prototype.$class = function (classNames) {
       }
     });
   } catch (error) {
-    console.error("$class: error setting classes", error);
+    console.error("class: error setting classes", error);
   }
   return this;
 };

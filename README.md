@@ -12,7 +12,7 @@ Rilla is a minimalistic JavaScript utility library designed to simplify DOM sele
 
 - **DOM Selection**: `$`, `.$`, `$id`, `.$id`
 - **DOM Manipulation**: `.$append`, `.$prepend`, `.$paint`, `.html`, `.text`, `.val`
-- **Attribute Handling**: `.$attr`
+- **Attribute Handling**: `.attr`
 - **Class Management**: `.addClass`, `.removeClass`, `.toggleClass`
 - **Event Handling**: `.$click`, `.$keydown`, `.$submit`, etc.
 - **Storage Utilities**: `$local`, `$session`
@@ -71,8 +71,8 @@ element.val('New value');  // Set value
 
 ```javascript
 // Get or set attributes
-element.$attr('data-id');  // Get attribute
-element.$attr('data-id', 'new-value');  // Set attribute
+element.attr('data-id');  // Get attribute
+element.attr('data-id', 'new-value');  // Set attribute
 
 // Add classes
 element.addClass('active highlighted');
