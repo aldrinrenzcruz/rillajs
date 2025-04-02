@@ -1,3 +1,5 @@
+// Expects a pair of HTML element
+
 Element.prototype.wrap = function (content) {
   const temp = document.createElement("div");
   temp.innerHTML = content;
@@ -12,4 +14,13 @@ Element.prototype.wrap = function (content) {
     wrapper.appendChild(this);
   }
   return this;
+};
+
+NodeList.prototype.wrap = function (content) {
+  return Array.from(this).map(el => {
+    if (el instanceof Element) {
+      return el.wrap(content);
+    }
+    return el;
+  });
 };

@@ -345,6 +345,15 @@ Element.prototype.wrap = function (content) {
   return this;
 };
 
+NodeList.prototype.wrap = function (content) {
+  return Array.from(this).map(el => {
+    if (el instanceof Element) {
+      return el.wrap(content);
+    }
+    return el;
+  });
+};
+
 function $dom(callback) {
   document.addEventListener("DOMContentLoaded", callback);
 }
