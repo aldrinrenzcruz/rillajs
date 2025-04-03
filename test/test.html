@@ -41,9 +41,15 @@
   <button id="btn">Toggle</button>
 
   <script>
-    $("#btn").$on("click", () => {
-      $("   li   ").$unwrap()
-    })
+    fetch('../public/data/rilla.json')
+      .then(response => response.json())
+      .then(data => {
+        Object.entries(data).forEach(([key, values]) => {
+          console.log(key);
+          console.log(values);
+        });
+      })
+      .catch(error => console.error('Error fetching JSON:', error));
   </script>
 
   <script src="./test.js"></script>
