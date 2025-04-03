@@ -36,7 +36,7 @@ function renderLandingCodeBlocks() {
     .then(data => {
       const examples = data.examples;
       return Promise.all(
-        examples.map(async example => {
+        examples.map(example => {
           const url = `./public/docs/code-snippets/landing/${example}.txt`;
           return fetch(url)
             .then(response => {

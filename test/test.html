@@ -12,10 +12,8 @@
 <body>
 
   <div id="container">
-    <ul>
-      <li>haha1</li>
-      <li>12312312</li>
-      <li>12331232</li>
+    <ul id="masterlist">
+      <li>sadas</li>
     </ul>
   </div>
   <div class="container">
@@ -43,10 +41,9 @@
   <button id="btn">Toggle</button>
 
   <script>
-    btn.on("click", () => {
-      $("#container").replace("li")
+    $("#btn").$on("click", () => {
+      $("   li   ").$unwrap()
     })
-
   </script>
 
   <script src="./test.js"></script>
