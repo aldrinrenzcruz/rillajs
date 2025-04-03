@@ -958,26 +958,62 @@ String.prototype.$toTitle = function (cm = true) {
   return $toTitle(this, cm);
 };
 
-function $local(key, value) {
-  return $rillaStore("local", key, value);
-}
-
-const $rillaStore = (type, key, value) => {
-  const store = type === "local" ? localStorage : sessionStorage;
-  if (value === undefined) {
-    try {
-      return JSON.parse(store.getItem(key));
-    } catch (e) {
-      return store.getItem(key);
+$window(() => {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  var popups = document.getElementsByClassName("draggable");
+  var elmnt = null;
+  var currentZIndex = 1;
+  for (var i = 0; i < popups.length; i++) {
+    var popup = popups[i];
+    var header = getHeader(popup);
+    popup.onmousedown = function () {
+      this.style.zIndex = "" + ++currentZIndex;
+    };
+    if (header) {
+      header.parentPopup = popup;
+      header.onmousedown = dragMouseDown;
     }
   }
-  if (value === null) return store.removeItem(key);
-  store.setItem(key, JSON.stringify(value));
-};
+  function dragMouseDown(e) {
+    elmnt = this.parentPopup;
+    elmnt.style.zIndex = "" + ++currentZIndex;
+    e = e || window.event;
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+  function elementDrag(e) {
+    if (!elmnt) {
+      return;
+    }
+    e = e || window.event;
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = elmnt.offsetTop - pos2 + "px";
+    elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
+  }
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+  function getHeader(element) {
+    var headerItems = element.getElementsByClassName("drag-handle");
+    if (headerItems.length === 1) {
+      return headerItems[0];
+    }
+    return null;
+  }
+})
 
-function $session(key, value) {
-  return $rillaStore("session", key, value);
-}
+
 
 function $fadeIn(param, displayType = "block", duration = 200) {
   if (typeof param === "string") {
@@ -1367,58 +1403,23 @@ NodeList.prototype.$toggle = function (displayType = "block") {
   return this;
 };
 
-$window(() => {
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  var popups = document.getElementsByClassName("draggable");
-  var elmnt = null;
-  var currentZIndex = 1;
-  for (var i = 0; i < popups.length; i++) {
-    var popup = popups[i];
-    var header = getHeader(popup);
-    popup.onmousedown = function () {
-      this.style.zIndex = "" + ++currentZIndex;
-    };
-    if (header) {
-      header.parentPopup = popup;
-      header.onmousedown = dragMouseDown;
-    }
-  }
-  function dragMouseDown(e) {
-    elmnt = this.parentPopup;
-    elmnt.style.zIndex = "" + ++currentZIndex;
-    e = e || window.event;
-    // get the mouse cursor position at startup:
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.onmouseup = closeDragElement;
-    // call a function whenever the cursor moves:
-    document.onmousemove = elementDrag;
-  }
-  function elementDrag(e) {
-    if (!elmnt) {
-      return;
-    }
-    e = e || window.event;
-    // calculate the new cursor position:
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    // set the element's new position:
-    elmnt.style.top = elmnt.offsetTop - pos2 + "px";
-    elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
-  }
-  function closeDragElement() {
-    // stop moving when mouse button is released:
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
-  function getHeader(element) {
-    var headerItems = element.getElementsByClassName("drag-handle");
-    if (headerItems.length === 1) {
-      return headerItems[0];
-    }
-    return null;
-  }
-})
+function $local(key, value) {
+  return $rillaStore("local", key, value);
+}
 
+const $rillaStore = (type, key, value) => {
+  const store = type === "local" ? localStorage : sessionStorage;
+  if (value === undefined) {
+    try {
+      return JSON.parse(store.getItem(key));
+    } catch (e) {
+      return store.getItem(key);
+    }
+  }
+  if (value === null) return store.removeItem(key);
+  store.setItem(key, JSON.stringify(value));
+};
+
+function $session(key, value) {
+  return $rillaStore("session", key, value);
+}
