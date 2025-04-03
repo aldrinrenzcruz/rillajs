@@ -4,6 +4,7 @@
   "description": "Rilla is a minimalistic JavaScript utility library designed to simplify DOM selection, manipulation, and event handling.",
   "main": "app.js",
   "scripts": {
+    "build": "node build/build.js",
     "merge": "node build/merge.js && npm run minify",
     "minify": "terser dist/rilla.js -o dist/rilla.min.js --source-map \"url='rilla.min.js.map'\" && terser public/js/app.js -o public/js/app.min.js --source-map \"url='app.min.js.map'\"",
     "tailwind": "npx @tailwindcss/cli -i ./public/css/app.css -o ./public/css/app.min.css --minify",
@@ -20,6 +21,7 @@
     "url": "https://github.com/aldrinrenzcruz/rillajs/issues"
   },
   "homepage": "https://github.com/aldrinrenzcruz/rillajs#readme",
+  "type": "module",
   "dependencies": {
     "@tailwindcss/cli": "^4.0.17",
     "tailwindcss": "^4.0.17"
