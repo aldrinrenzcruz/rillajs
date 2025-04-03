@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rilla.js</title>
+  <link rel="icon" type="image/svg+xml" href="./public/favicon/favicon.svg">
+  <link rel="stylesheet" href="./public/css/app.min.css">
+  <script src="./public/js/highlight.min.js"></script>
+  <script src="./dist/rilla.js"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+  <header class="sticky top-0 z-50 bg-gray-50 py-4 px-4">
+    <div class="flex justify-between items-center">
+      <div class="flex items-center">
+        <span class="text-2xl font-bold text-rose-600"><a href="/index.html">Rilla.js</a></span>
+        <span class="ml-1 px-2 py-1 bg-rose-800 text-white rounded-full text-xs">v0.1</span>
+      </div>
+      <nav class="hidden md:block">
+        <ul class="flex space-x-4">
+          <li><a href="https://github.com/aldrinrenzcruz/rillajs" class="hover:text-rose-500 transition duration-200">GitHub</a></li>
+          <li>
+            <a href="./dist/rilla.min.js" download class="bg-rose-600 text-white px-3 py-1 rounded hover:bg-rose-700 transition duration-200">Download</a>
+          </li>
+        </ul>
+      </nav>
+      <button class="md:hidden text-gray-500 hover:text-rose-500 focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="py-8 relative">
+    <aside class="hidden lg:block fixed lg:w-56 top-16 bottom-0 overflow-y-auto pl-5 pt-2 pb-4 h-[calc(100% - 1rem)]">
+      <div class="pr-8">
+        <ul class="space-y-2">
+          <li>
+            <span class="font-bold text-gray-600 uppercase text-xs tracking-wide">DOM Selection</span>
+            <ul class="space-y-2 text-sm mt-2 pl-4">
+              <li><a href="#" class="block hover:text-rose-500 transition">$</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">id</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">select</a></li>
+            </ul>
+          </li>
+          <li class="pt-2">
+            <span class="font-bold text-gray-600 uppercase text-xs tracking-wide">DOM Traversal</span>
+            <ul class="space-y-2 text-sm mt-2 pl-4">
+              <li><a href="#" class="block hover:text-rose-500 transition">this</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">parent</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">children</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">siblings</a></li>
+            </ul>
+          </li>
+          <li class="pt-2">
+            <span class="font-bold text-gray-600 uppercase text-xs tracking-wide">DOM Manipulation</span>
+            <ul class="space-y-2 text-sm mt-2 pl-4">
+              <li><a href="#" class="block hover:text-rose-500 transition">create</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">paint</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">append</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">prepend</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">wrap</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">unwrap</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">remove</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">replace</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">text</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">value</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">html</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">outer</a></li>
+            </ul>
+          </li>
+          <li class="pt-2">
+            <span class="font-bold text-gray-600 uppercase text-xs tracking-wide">Event Handling</span>
+            <ul class="space-y-2 text-sm mt-2 pl-4">
+              <li><a href="#" class="block hover:text-rose-500 transition">on</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">off</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">prevent</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">stop</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">dom</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">window</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">rillaEvents</a></li>
+            </ul>
+          </li>
+          <li class="pt-2">
+            <span class="font-bold text-gray-600 uppercase text-xs tracking-wide">Attribute Utilities</span>
+            <ul class="space-y-2 text-sm mt-2 pl-4">
+              <li><a href="#" class="block hover:text-rose-500 transition">attr</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">data</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">css</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">class</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">hasClass</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">addClass</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">removeClass</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">toggleClass</a></li>
+            </ul>
+          </li>
+          <li class="pt-2">
+            <span class="font-bold text-gray-600 uppercase text-xs tracking-wide">String Manipulation</span>
+            <ul class="space-y-2 text-sm mt-2 pl-4">
+              <li><a href="#" class="block hover:text-rose-500 transition">toTitle</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">toSentence</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">toKebab</a></li>
+            </ul>
+          </li>
+          <li class="pt-2">
+            <span class="font-bold text-gray-600 uppercase text-xs tracking-wide">Element Visibility</span>
+            <ul class="space-y-2 text-sm mt-2 pl-4">
+              <li><a href="#" class="block hover:text-rose-500 transition">show</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">hide</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">toggle</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">fadeIn</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">fadeOut</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">fadeToggle</a></li>
+            </ul>
+          </li>
+          <li class="pt-2">
+            <span class="font-bold text-gray-600 uppercase text-xs tracking-wide">Element Interaction</span>
+            <ul class="space-y-2 text-sm mt-2 pl-4">
+              <li><a href="#" class="block hover:text-rose-500 transition">draggable</a></li>
+            </ul>
+          </li>
+          <li class="pt-2">
+            <span class="font-bold text-gray-600 uppercase text-xs tracking-wide">Storage</span>
+            <ul class="space-y-2 text-sm mt-2 pl-4">
+              <li><a href="#" class="block hover:text-rose-500 transition">local</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">session</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">rillaStore</a></li>
+            </ul>
+          </li>
+          <li class="pt-2">
+            <span class="font-bold text-gray-600 uppercase text-xs tracking-wide">Console</span>
+            <ul class="space-y-2 text-sm mt-2 pl-4">
+              <li><a href="#" class="block hover:text-rose-500 transition">log</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">warn</a></li>
+              <li><a href="#" class="block hover:text-rose-500 transition">error</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <div class="max-w-6xl mx-auto">
+      <main class="w-full lg:ml-52 max-w-2xl px-6 mx-auto">
+        <h1>Writing Vanilla JS Made Easy</h1>
+        <p class="mb-6">Rilla is a minimalistic JavaScript utility library designed to simplify DOM selection, manipulation, and event handling.</p>
+        <div class="bg-rose-100 text-rose-800 border-l-4 border-rose-600 p-4 mb-8">
+          <p><strong>Warning:</strong> This early build (v0.1) is still in development and may undergo significant changes without prior notice, potentially breaking your code. Use it for testing purposes only.</p>
+        </div>
+        <section id="getting-started">
+          <h2>Getting Started</h2>
+          <article id="cdn">
+            <h3>CDN</h3>
+            <p>Use the jsDeliver CDN to access the latest minified version of Rilla.js:</p>
+            <div class="code-block" data-src="jsdelivr-cdn"></div>
+            <p>Alternatively, you can also download the latest minified version:</p>
+            <button class="bg-rose-600 text-white font-bold rounded-lg shadow-md hover:bg-rose-700 transition px-4 py-2">
+              <a href="./dist/rilla.min.js" download>Download Rilla.js</a>
+            </button>
+            <ul class="list-disc space-y-2 pl-5 mt-4">
+              <li><a href="./dist/rilla.js" download class="rilla-url">Download the uncompressed version of Rilla.js</a></li>
+              <li><a href="./dist/rilla.min.js.map" download class="rilla-url">Download the map file for the minified Rilla.js</a></li>
+            </ul>
+          </article>
+          <article id="installation">
+            <h3>Installation</h3>
+            <p>Add the <span class="code">rilla.min.js</span> script tag in the <span class="code">&lt;head&gt;</span> of your HTML file, and start using Rilla:</p>
+            <div class="code-block" data-src="installation"></div>
+          </article>
+        </section>
+        <section id="features">
+          <h2>Features</h2>
+          <article id="dom-selection">
+            <h3>DOM Selection</h3>
+            <p>Select DOM elements using ID, ClassName, or TagName.</p>
+            <div class="code-block" data-src="dom-selection"></div>
+            <p>To use the library functions inside HTML attributes like <span class="code">onclick</span>, make sure to use the global reference:</p>
+            <div class="code-block" data-src="global-usage"></div>
+          </article>
+          <article id="dom-manipulation">
+            <h3>DOM Manipulation</h3>
+            <p>Easily modify DOM elements with these utility methods.</p>
+            <div class="code-block" data-src="dom-manipulation"></div>
+          </article>
+          <article id="element-references">
+            <h3>Element References</h3>
+            <p>Capture element references while maintaining chainability.</p>
+            <div class="code-block" data-src="element-references"></div>
+          </article>
+          <article id="attributes-classes">
+            <h3>Attributes and Classes</h3>
+            <p>Work with element attributes and CSS classes seamlessly.</p>
+            <div class="code-block" data-src="attributes-classes"></div>
+          </article>
+          <article id="event-handling">
+            <h3>Event Handling</h3>
+            <p>Manage event listeners with chainable methods.</p>
+            <div class="code-block" data-src="event-handling"></div>
+          </article>
+          <article id="document-window">
+            <h3>Document and Window Events</h3>
+            <p>Listen for document and window events.</p>
+            <div class="code-block" data-src="document-window"></div>
+          </article>
+          <article id="visibility">
+            <h3>Show/Hide and Fade Effects</h3>
+            <p>Control element visibility with simple functions.</p>
+            <div class="code-block" data-src="visibility"></div>
+          </article>
+          <article id="storage">
+            <h3>Storage Utilities</h3>
+            <p>Easily interact with browser storage.</p>
+            <div class="code-block" data-src="storage"></div>
+          </article>
+          <article id="draggable">
+            <h3>Draggable Elements</h3>
+            <p>Insert the following CSS classes to your stylesheet:</p>
+            <div class="code-block" data-src="draggable-css"></div>
+            <p>Then, to make a container (or an element) draggable, add the <span class="code">.draggable</span> class to the container, and <span class="code">.drag-handle</span> to the element you want to assign as the handle:</p>
+            <div class="code-block" data-src="draggable"></div>
+          </article>
+        </section>
+        <section id="more-information">
+          <h2>More Information</h2>
+          <article id="browser-support">
+            <h3>Browser Support</h3>
+            <p>Rilla.js is built for modern browsers and uses ES6 features. It works in all major browsers that support ES6.</p>
+          </article>
+          <article id="github">
+            <h3>GitHub Repository</h3>
+            <p>View the source code and contribute on <a href="https://github.com/aldrinrenzcruz/rillajs">GitHub</a>.</p>
+          </article>
+          <article id="license">
+            <h3>License</h3>
+            <p>This project is licensed under the <a href="LICENSE">MIT License</a></p>
+          </article>
+          <p>&copy; 2025 Rilla.js. MIT License.</p>
+        </section>
+      </main>
+      <aside class="hidden lg:block fixed lg:w-64 top-16 bottom-0 overflow-y-auto pb-8 h-[calc(100%-1rem)] left-[calc(50%+352px)]">
+        <div class="pt-12 pl-8">
+          <h3 class="font-bold text-gray-500 mb-4 uppercase text-xs">On This Page</h3>
+          <nav class="toc text-sm pl-3">
+            <div class="mb-3">
+              <span class="font-semibold text-gray-600 uppercase text-xs tracking-wide"><a href="#getting-started">Getting Started</a></span>
+              <ul class="mt-2 pl-3 space-y-2 text-sm">
+                <li><a href="#cdn" class="text-gray-500 hover:text-rose-500 transition">CDN</a></li>
+                <li><a href="#installation" class="text-gray-500 hover:text-rose-500 transition">Installation</a></li>
+
+              </ul>
+            </div>
+            <div class="mb-3">
+              <span class="font-semibold text-gray-600 uppercase text-xs tracking-wide"><a href="#features">Features</a></span>
+              <ul class="mt-2 pl-3 space-y-2 text-sm">
+                <li><a href="#dom-selection" class="text-gray-500 hover:text-rose-500 transition">DOM Selection</a></li>
+                <li><a href="#dom-manipulation" class="text-gray-500 hover:text-rose-500 transition">DOM Manipulation</a></li>
+                <li><a href="#element-references" class="text-gray-500 hover:text-rose-500 transition">Element References</a></li>
+                <li><a href="#attributes-classes" class="text-gray-500 hover:text-rose-500 transition">Attributes &amp; Classes</a></li>
+                <li><a href="#event-handling" class="text-gray-500 hover:text-rose-500 transition">Event Handling</a></li>
+                <li><a href="#document-window" class="text-gray-500 hover:text-rose-500 transition">Document &amp; Window Events</a></li>
+                <li><a href="#visibility" class="text-gray-500 hover:text-rose-500 transition">Show/Hide &amp; Fade Effects</a></li>
+                <li><a href="#storage" class="text-gray-500 hover:text-rose-500 transition">Storage Utilities</a></li>
+                <li><a href="#draggable" class="text-gray-500 hover:text-rose-500 transition">Draggable Elements</a></li>
+              </ul>
+            </div>
+            <div>
+              <span class="font-semibold text-gray-600 uppercase text-xs tracking-wide"><a href="#more-information">More Information</a></span>
+              <ul class="mt-2 pl-3 space-y-2 text-sm">
+                <li><a href="#browser-support" class="text-gray-500 hover:text-rose-500 transition">Browser Support</a></li>
+                <li><a href="#github" class="text-gray-500 hover:text-rose-500 transition">GitHub</a></li>
+                <li><a href="#license" class="text-gray-500 hover:text-rose-500 transition">License</a></li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script src="./public/js/app.js"></script>
+</body>
+
+</html>

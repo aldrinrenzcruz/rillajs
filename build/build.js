@@ -1,32 +1,28 @@
 import fs from "fs-extra";
-import { replaceInFile } from "replace-in-file"; // Named import
+import { replaceInFile } from "replace-in-file";
 
 async function build() {
-  // Copy index.html to public/
-  fs.copySync("index.html", "public/index.html");
+  fs.copySync("index-dev.html", "index.html");
 
   try {
     await replaceInFile({
-      files: "public/index.html",
+      files: "index.html",
       from: [
-        /script\.js/g, 
-        /style\.css/g,
-        /dist\/rilla\.js/g,   // Replace ./dist/rilla.js
-        /public\/js\/app\.js/g // Replace ./public/js/app.js
+        /<script\s+src="\.\/public\/js\/highlight\.min\.js"><\/script>/g,
+        /<script\s+src="\.\/dist\/rilla\.js"><\/script>/g,
+        /<script\s+src="\.\/public\/js\/app\.js"><\/script>/g
       ],
       to: [
-        "./script.min.js",        // Added a period before the path
-        "./style.min.css",        // Added a period before the path
-        "./dist/rilla.min.js",    // Added a period before the path
-        "./public/js/app.min.js"  // Added a period before the path
+        '<script src="./public/js/highlight.min.js"></script>',
+        '<script src="./dist/rilla.min.js"></script>',
+        '<script src="./public/js/app.min.js"></script>'
       ],
     });
 
-    console.log("✅ index.html copied and updated in /public");
+    console.log("✅ index-dev.html copied and updated");
   } catch (error) {
-    console.error("❌ Error updating index.html:", error);
+    console.error("❌ Error updating index-dev.html:", error);
   }
 }
 
-// Run the build process
 build();
