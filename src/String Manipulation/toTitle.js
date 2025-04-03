@@ -1,5 +1,5 @@
 // Accepts a boolean parameter whether it should transform the minor words in the array
-function $toTitle(s, cm = true) {
+function $toTitleCase(s, cm = true) {
   const m = /^(a|an|the|and|but|or|nor|for|so|yet|at|by|in|is|of|on|to|up|with|as|vs\.?|per|via)$/i;
   if (!s) return '';
   return s.toLowerCase()
@@ -17,6 +17,6 @@ function $toTitle(s, cm = true) {
     });
 }
 
-String.prototype.$toTitle = function (cm = true) {
-  return $toTitle(this, cm);
+String.prototype.$toTitleCase = function (cm = true) {
+  return $toTitleCase(this, cm);
 };

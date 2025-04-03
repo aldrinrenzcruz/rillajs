@@ -1,7 +1,7 @@
-function $toKebab(s) {
+function $toKebabCase(s) {
   return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
 
-String.prototype.$toKebab = function () {
-  return $toKebab(this);
+String.prototype.$toKebabCase = function () {
+  return $toKebabCase(this);
 };

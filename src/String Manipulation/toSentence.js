@@ -1,7 +1,7 @@
-function $toSentence(s) {
+function $toSentenceCase(s) {
   return s[0].toUpperCase() + s.slice(1).toLowerCase();
 }
 
-String.prototype.$toSentence = function () {
-  return $toSentence(this);
+String.prototype.$toSentenceCase = function () {
+  return $toSentenceCase(this);
 };
