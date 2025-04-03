@@ -11,42 +11,24 @@
 
 <body>
 
-  <div id="container">
-    <ul id="masterlist">
-      <li>sadas</li>
-    </ul>
-  </div>
-  <div class="container">
-    <ul>
-      <li>haha</li>
-      <li>12312312</li>
-      <li>12331232</li>
-    </ul>
-  </div>
-  <div class="container">
-    <ul>
-      <li>haha</li>
-      <li>12312312</li>
-      <li>12331232</li>
-    </ul>
-  </div>
-  <div class="container">
-    <ul>
-      <li>haha</li>
-      <li>12312312</li>
-      <li>12331232</li>
-    </ul>
-  </div>
-
-  <button id="btn">Toggle</button>
+  <aside id="container"></aside>
 
   <script>
+    let container = $("#container");
+
     fetch('../public/data/rilla.json')
       .then(response => response.json())
       .then(data => {
         Object.entries(data).forEach(([key, values]) => {
-          console.log(key);
-          console.log(values);
+          const title = key.$toKebabCase();
+          container.$append(`<div data-title="${title}">${key}</div>`)
+            .$(`div[data-title='${title}']`)
+            .$this(div => {
+              values.forEach(value => {
+                div.$append(`<li>${value}</li>`)
+              }
+              )
+            })
         });
       })
       .catch(error => console.error('Error fetching JSON:', error));
