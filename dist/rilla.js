@@ -750,6 +750,33 @@ NodeList.prototype.$class = function (classNames) {
   return this;
 };
 
+Element.prototype.$css = function (property, value) {
+  if (typeof property === "string") {
+    if (value === undefined) {
+      return window.getComputedStyle(this).getPropertyValue(property);
+    } else if (typeof value === "function") {
+      let currentValue = window.getComputedStyle(this).getPropertyValue(property);
+      this.style[property] = value(this, currentValue);
+    } else {
+      this.style[property] = value;
+    }
+  } else if (typeof property === "object") {
+    for (let key in property) {
+      let val = property[key];
+      this.style[key] = typeof val === "function" ? val(this, window.getComputedStyle(this).getPropertyValue(key)) : val;
+    }
+  }
+  return this;
+};
+
+NodeList.prototype.$css = function (property, value) {
+  if (typeof property === "string" && value === undefined) {
+    return Array.from(this).map(el => el.$css(property));
+  }
+  Array.from(this).forEach(el => el.$css(property, value));
+  return this;
+};
+
 Element.prototype.$data = function (key, value) {
   // Case 1: No parameters - get all data attributes
   if (arguments.length === 0) {
@@ -910,6 +937,33 @@ NodeList.prototype.$toggleClass = function (classNames) {
     console.error("toggleClass: error toggling classes", error);
   }
   return this;
+};
+
+function $toKebab(s) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
+String.prototype.$toKebab = function () {
+  return $toKebab(this);
+};
+
+function $toSentence(s) {
+  return s[0].toUpperCase() + s.slice(1).toLowerCase();
+}
+
+String.prototype.$toSentence = function () {
+  return $toSentence(this);
+};
+
+function $toTitle(s) {
+  const m = /^(a|an|the|and|but|or|nor|for|so|yet|at|by|in|is|of|on|to|up|with|as|vs?\.?|per|via)$/i;
+  return s.toLowerCase()
+    .replace(/\b\w+/g, (w, i) => i === 0 || !m.test(w) ? w[0].toUpperCase() + w.slice(1) : w)
+    .replace(/'S /g, "'s ");
+}
+
+String.prototype.$toTitle = function () {
+  return $toTitle(this);
 };
 
 function $local(key, value) {
