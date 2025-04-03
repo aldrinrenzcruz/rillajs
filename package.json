@@ -22,10 +22,11 @@
   "homepage": "https://github.com/aldrinrenzcruz/rillajs#readme",
   "dependencies": {
     "@tailwindcss/cli": "^4.0.17",
-    "fs-extra": "^11.3.0",
     "tailwindcss": "^4.0.17"
   },
   "devDependencies": {
+    "fs-extra": "^11.3.0",
+    "replace-in-file": "^8.3.0",
     "terser": "^5.39.0"
   }
 }
