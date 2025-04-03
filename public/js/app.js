@@ -31,7 +31,7 @@ function renderRightSidebar() {
 }
 
 function renderLandingCodeBlocks() {
-  fetch('./public/docs/code-snippets/landing/landing.json')
+  fetch('./public/docs/code-snippets/landing/@landing.json')
     .then(response => response.json())
     .then(data => {
       const examples = data.examples;
