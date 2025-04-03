@@ -1,9 +1,9 @@
 $dom(() => {
   renderLandingCodeBlocks();
-  initializeContentSidebar();
+  renderRightSidebar();
 });
 
-function initializeContentSidebar() {
+function renderRightSidebar() {
   const sections = document.querySelectorAll('section, article');
   const tocLinks = document.querySelectorAll('.toc a');
   function highlightActiveSection() {
