@@ -66,14 +66,18 @@ function renderLandingCodeBlocks() {
             .$parent()
             .$wrap("<div class='relative'></div>")
             .$parent()
-            .$append("<button class='copy-btn'></button>")
-            .$("button")
-            .$text(lang.trim() || "copy")
+            .$prepend("<span class='code-type'></span>")
+            .$(".code-type")
+            .$text(lang.trim())
+            .$parent()
+            .$prepend("<button class='copy-btn'></button>")
+            .$(".copy-btn")
+            .$text("Copy")
             .$this(btn =>
               btn.$on('click', () => {
                 navigator.clipboard.writeText(modifiedContent);
-                btn.$text("copied!");
-                setTimeout(() => btn.$text(lang || "copy"), 1500);
+                btn.$text("Copied");
+                setTimeout(() => btn.$text("Copy"), 1500);
               })
             );
         });
