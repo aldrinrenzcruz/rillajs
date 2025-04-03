@@ -44,9 +44,9 @@
     "toggleClass"
   ],
   "String Manipulation": [
-    "toTitle",
-    "toSentence",
-    "toKebab"
+    "toTitleCase",
+    "toSentenceCase",
+    "toKebabCase"
   ],
   "Element Visibility": [
     "show",
