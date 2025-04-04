@@ -15,13 +15,15 @@ function renderRightSidebar() {
       const sectionId = section.getAttribute('id');
       if (sectionId && scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
         tocLinks.forEach(link => {
-          link.classList.remove('text-rose-500', 'font-medium');
+          link.classList.remove('text-rose-500');
+          link.classList.remove('underline');
           link.classList.add('text-gray-500');
         });
         const activeLink = document.querySelector(`.toc a[href="#${sectionId}"]`);
         if (activeLink) {
           activeLink.classList.remove('text-gray-500');
-          activeLink.classList.add('text-rose-500', 'font-medium');
+          activeLink.classList.add('text-rose-500');
+          activeLink.classList.add('underline');
         }
       }
     });
