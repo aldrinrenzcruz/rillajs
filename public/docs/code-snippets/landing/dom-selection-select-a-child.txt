@@ -1,0 +1,4 @@
+#javascript
+
+let items = $('.masterlist li');
+let buttons = $('.containers .test-btn');

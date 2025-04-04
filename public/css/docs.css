@@ -46,7 +46,7 @@ section h2 {
 
 article h3 {
   font-weight: bold;
-  font-size: 1.25rem;
+  font-size: 1rem;
   letter-spacing: 0.025em;
   color: var(--color-gray-800);
   opacity: 0.95;
@@ -125,4 +125,16 @@ button.copy-btn {
     color: var(--color-gray-400);
     cursor: pointer;
   }
+}
+
+article .item h4 {
+  width: fit-content;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-family: monospace;
+  font-size: 1rem;
+}
+
+article .item h4 span {
+  text-decoration: underline;
 }

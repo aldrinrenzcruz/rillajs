@@ -2,7 +2,9 @@
   "examples": [
     "jsdelivr-cdn",
     "installation",
-    "dom-selection",
+    "dom-selection-s",
+    "dom-selection-within-element",
+    "dom-selection-select-a-child",
     "dom-manipulation",
     "element-references",
     "attributes-classes",

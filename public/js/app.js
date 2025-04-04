@@ -4,7 +4,7 @@ $dom(() => {
 });
 
 function renderRightSidebar() {
-  const sections = document.querySelectorAll('section, article');
+  const sections = document.querySelectorAll('section, div.item');
   const tocLinks = document.querySelectorAll('.toc a');
   function highlightActiveSection() {
     let scrollPosition = window.scrollY;
