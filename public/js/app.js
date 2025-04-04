@@ -52,13 +52,19 @@ function renderLandingCodeBlocks() {
               return { example, modifiedContent, lang };
             })
             .catch(err => {
-              console.error(`Error fetching ${url}:`, err);
-              return { example, data: null, lang };
+              $error(`Error fetching ${url}:`, err);
+              return { example, modifiedContent: null, lang: null };
             });
         })
       ).then(results => {
         results.forEach(({ example, modifiedContent, lang }) => {
-          $(`.code-block[data-src=${example}]`)
+          if (!modifiedContent || lang === null) return;
+          const codeblock = $(`.code-block[data-src=${example}]`);
+          if (!codeblock) {
+            $warn(`renderLandingCodeBlocks: data-src="${example}" element not found`);
+            return;
+          }
+          codeblock
             .$append(`<pre></pre>`)
             .$("pre")
             .$append(`<code class="language-${lang}"></code>`)
@@ -86,6 +92,6 @@ function renderLandingCodeBlocks() {
       });
     })
     .catch(err => {
-      console.error("Error loading .json:", err);
+      $error("Error loading .json:", err);
     });
 }
