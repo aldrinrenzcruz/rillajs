@@ -12,32 +12,13 @@
 </head>
 
 <body>
-  <header class="sticky top-0 z-50 bg-gray-50 py-4 px-4">
-    <div class="flex justify-between items-center">
-      <div class="flex items-center">
-        <span class="text-2xl font-bold text-rose-600"><a href="/index.html">Rilla.js</a></span>
-        <span class="ml-1 px-2 py-1 bg-rose-800 text-white rounded-full text-xs">v0.1</span>
-      </div>
-      <nav class="hidden md:block">
-        <ul class="flex space-x-4">
-          <li><a href="https://github.com/aldrinrenzcruz/rillajs" class="hover:text-rose-500 transition duration-200">GitHub</a></li>
-          <li>
-            <a href="./dist/rilla.min.js" download class="bg-rose-600 text-white px-3 py-1 rounded hover:bg-rose-700 transition duration-200">Download</a>
-          </li>
-        </ul>
-      </nav>
-      <button class="md:hidden text-gray-500 hover:text-rose-500 focus:outline-none">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-        </svg>
-      </button>
-    </div>
-  </header>
-
   <div class="py-8 relative">
 
-    <aside class="hidden lg:block fixed lg:w-56 top-16 bottom-0 overflow-y-auto pl-5 pt-2 pb-4 h-[calc(100% - 1rem)]">
+    <aside class="hidden lg:block fixed lg:w-56 top-0 bottom-0 overflow-y-auto pl-5 pt-2 pb-4">
       <div class="pr-8">
+        <div class="my-6">
+          <span class="text-2xl font-bold text-rose-600"><a href="/index.html">Rilla.js</a></span>
+        </div>
         <ul class="space-y-2">
           <li>
             <span class="font-bold text-gray-600 uppercase text-xs tracking-wide">DOM Selection</span>
@@ -241,7 +222,7 @@
         </section>
       </main>
 
-      <aside class="hidden lg:block fixed lg:w-64 top-16 bottom-0 overflow-y-auto pb-8 h-[calc(100%-1rem)] left-[calc(50%+352px)]">
+      <aside class="hidden lg:block fixed lg:w-64 top-0 bottom-0 overflow-y-auto pb-8 left-[calc(50%+352px)]">
         <div class="pt-12 pl-8">
           <h3 class="font-bold text-gray-500 mb-4 uppercase text-xs">On This Page</h3>
           <nav class="toc text-sm pl-3">
@@ -281,7 +262,7 @@
     </div>
   </div>
 
-  <script src="./public/js/app.min.js"></script>
+  <script src="./public/js/app.js"></script>
 </body>
 
 </html>
