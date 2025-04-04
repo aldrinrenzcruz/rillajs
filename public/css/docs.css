@@ -101,7 +101,7 @@ span.code-type {
   font-family: monospace;
   font-size: 0.75rem;
   line-height: 1rem;
-  color: var(--color-gray-500);
+  color: var(--color-gray-400);
 }
 
 button.copy-btn {
@@ -116,7 +116,7 @@ button.copy-btn {
   font-family: monospace;
   font-size: 0.75rem;
   line-height: 1rem;
-  color: var(--color-gray-500);
+  color: var(--color-gray-400);
   transition-property: background-color, border-color, color, fill, stroke,
     opacity, box-shadow, transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
