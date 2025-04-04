@@ -9,7 +9,7 @@
     "event-handling",
     "document-window",
     "visibility",
-    "storage",
+    "storage-utilities",
     "draggable",
     "draggable-css",
     "global-usage"
