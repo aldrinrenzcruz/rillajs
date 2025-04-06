@@ -5,6 +5,7 @@
     "dom-selection-s",
     "dom-selection-within-element",
     "dom-selection-select-a-child",
+    "dom-selection-chaining",
     "dom-manipulation",
     "element-references",
     "attributes-classes",

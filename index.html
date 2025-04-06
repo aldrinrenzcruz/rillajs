@@ -205,10 +205,13 @@
             <div class="code-block" data-src="dom-selection-within-element"></div>
             <p>Select a child or children of an element:</p>
             <div class="code-block" data-src="dom-selection-select-a-child"></div>
+            <p>By default, <span class="code">$()</span> doesn't support the global scope since it's only defined as a method on <span class="code">Element.prototype</span>. In those cases, you would need to add a <span class="code">window.</span> before the selector, like <span class="code">window.$('#container')</span>, to access it globally.</p>
+            <p>You'll only have to worry about this if you're using the selector inline in HTML, such as within an <span class="code">onclick</span> attribute callback:</p>
+            <div class="code-block" data-src="global-usage"></div>
+            <p>Chain the selected element or elements with vanilla JS or Rilla methods:</p>
+            <div class="code-block" data-src="dom-selection-chaining"></div>
           </div>
-          <p>By default, <span class="code">$()</span> doesn't support the global scope since it's only defined as a method on <span class="code">Element.prototype</span>. In those cases, you would need to add a <span class="code">window.</span> before the selector, like <span class="code">window.$('#container')</span>, to access it globally.</p>
-          <p>You'll only have to worry about this if you're using the selector inline in HTML, such as within an <span class="code">onclick</span> attribute callback:</p>
-          <div class="code-block" data-src="global-usage"></div>
+
         </article>
 
         <article>
