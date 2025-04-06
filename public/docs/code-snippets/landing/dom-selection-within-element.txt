@@ -1,3 +1,3 @@
 #javascript
 
-let button = container.$('.test-btn');
+container.$('.test-btn');
