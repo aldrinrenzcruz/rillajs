@@ -142,6 +142,6 @@ article .item h4 {
   font-size: .875rem;
 }
 
-article .item h4 span {
+article .item h4 a {
   text-decoration: underline;
 }
