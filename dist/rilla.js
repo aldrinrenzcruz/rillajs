@@ -17,9 +17,9 @@ Element.prototype.$ = function (selector) {
 //   return $select(document, selector);
 // };
 
-function $select(context, selector) {
-  if (typeof selector !== "string" || !selector.trim()) {
-    console.error(`$: invalid selector "${selector}"`);
+function $select(context, el) {
+  if (typeof el !== "string" || !el.trim()) {
+    console.error(`$: invalid selector "${el}"`);
     return null;
   }
 
@@ -31,19 +31,19 @@ function $select(context, selector) {
   let elements;
 
   try {
-    elements = context.querySelectorAll(selector);
+    elements = context.querySelectorAll(el);
   } catch (error) {
-    console.error(`$: invalid selector "${selector}"`, error);
+    console.error(`$: invalid selector "${el}"`, error);
     return null;
   }
 
   if (!elements.length) {
-    console.error(`$: ${selector} not found.`);
+    console.error(`$: ${el} not found.`);
     return null;
   }
 
-  if (selector.startsWith("#") && elements.length > 1) {
-    console.warn(`$: (${elements.length}) ${selector} elements found.`);
+  if (el.startsWith("#") && elements.length > 1) {
+    console.warn(`$: (${elements.length}) ${el} elements found.`);
     return elements[0];
   }
 
