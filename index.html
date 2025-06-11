@@ -216,7 +216,7 @@
         <div class="code-block" data-src="dom-selection-select-a-child"></div>
         <p>Chain the selected element or elements with vanilla JS or Rilla methods:</p>
         <div class="code-block" data-src="dom-selection-chaining"></div>
-        <p>By default, <kbd>$(element)</kbd> doesn't support the global scope since it's only defined as a method on <kbd>Element.prototype</kbd>. In those cases, you would need to add a <kbd>window.</kbd> before the selector, like <kbd>window.$('#container')</kbd>, to access it globally.</p>
+        <p>By default, <kbd>$(element)</kbd> doesn't support the global scope since it's only defined as a method on <kbd>Element.prototype</kbd>. For those cases, you would need to add a <kbd>window.</kbd> before the selector, like <kbd>window.$('#container')</kbd>, to access it globally.</p>
         <p>You'll only need to worry about this if you're using the selector inline in HTML, such as within a function in an <kbd>onclick</kbd> attribute:</p>
         <div class="code-block" data-src="global-usage"></div>
       </article>
