@@ -28,7 +28,6 @@ rillajs/
 │  │   draggable.txt
 │  │   element-references.txt
 │  │   event-handling.txt
-│  │   global-usage.txt
 │  │   installation.txt
 │  │   storage.txt
 │  │   visibility.txt
