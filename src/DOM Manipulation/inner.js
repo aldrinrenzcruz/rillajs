@@ -1,4 +1,4 @@
-Element.prototype.$html = function (content) {
+Element.prototype.$inner = function (content) {
   if (content === undefined) {
     return this.innerHTML;
   }
@@ -6,7 +6,7 @@ Element.prototype.$html = function (content) {
   return this;
 };
 
-NodeList.prototype.$html = function (content) {
+NodeList.prototype.$inner = function (content) {
   if (content === undefined) {
     return Array.from(this).map(el => el.innerHTML);
   }

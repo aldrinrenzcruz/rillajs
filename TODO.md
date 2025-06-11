@@ -14,6 +14,7 @@
 - Add installation via npm
 - Add in Visibility: slideUp, slideDown, slideToggle
 - Add in User Interface: resizable()
+- Remove unnecessary checks on each function to reduce bloat and improve speed
 
 **COMPLETED:**
 - Modify .unwrap to make sure the parent isn't the body
