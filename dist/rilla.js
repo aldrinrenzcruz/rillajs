@@ -943,7 +943,7 @@ String.prototype.$toTitleCase = function (cm = true) {
   return $toTitleCase(this, cm);
 };
 
-$window(() => {
+window.addEventListener("load", function () {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   var popups = document.getElementsByClassName("draggable");
   var elmnt = null;
@@ -996,9 +996,7 @@ $window(() => {
     }
     return null;
   }
-})
-
-
+});
 
 function $fadeIn(param, displayType = "block", duration = 200) {
   if (typeof param === "string") {
