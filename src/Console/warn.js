@@ -1,1 +1,0 @@
-window.$warn = console.warn.bind(console);

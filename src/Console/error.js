@@ -1,1 +1,0 @@
-window.$error = console.error.bind(console);

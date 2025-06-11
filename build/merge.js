@@ -6,7 +6,6 @@ const outputDir = path.resolve(__dirname, "../dist");
 const outputFile = path.join(outputDir, "rilla.js");
 
 const directories = [
-  "Console",
   "DOM Selection",
   "DOM Traversal",
   "DOM Manipulation",

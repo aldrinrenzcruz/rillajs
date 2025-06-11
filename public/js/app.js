@@ -22,7 +22,7 @@ function renderLandingCodeBlocks() {
               return { example, modifiedContent, lang };
             })
             .catch(err => {
-              $error(`Error fetching ${url}:`, err);
+              console.error(`Error fetching ${url}:`, err);
               return { example, modifiedContent: null, lang: null };
             });
         })
@@ -62,6 +62,6 @@ function renderLandingCodeBlocks() {
       });
     })
     .catch(err => {
-      $error("Error loading .json:", err);
+      console.error("Error loading .json:", err);
     });
 }

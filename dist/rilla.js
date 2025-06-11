@@ -1,9 +1,3 @@
-window.$error = console.error.bind(console);
-
-window.$log = console.log.bind(console);
-
-window.$warn = console.warn.bind(console);
-
 function $(selector) {
   return $select(document, selector);
 }
@@ -16,6 +10,9 @@ Element.prototype.$ = function (selector) {
 // window.$ = function (selector) {
 //   return $select(document, selector);
 // };
+
+// option 2. Explicitly assign to window to ensure accessibility in HTML event handlers
+// window.$ = $;
 
 function $select(context, el) {
   if (typeof el !== "string" || !el.trim()) {
