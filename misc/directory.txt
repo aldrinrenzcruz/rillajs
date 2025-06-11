@@ -22,11 +22,9 @@ rillajs/
 │  │
 │  ├─docs
 │  │   attributes-classes.txt
-│  │   document-window.txt
 │  │   dom-manipulation.txt
 │  │   dom-selection.txt
 │  │   draggable.txt
-│  │   element-references.txt
 │  │   event-handling.txt
 │  │   installation.txt
 │  │   storage.txt
