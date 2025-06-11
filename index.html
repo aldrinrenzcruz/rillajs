@@ -13,7 +13,7 @@
 
 <body>
 
-  <aside class="fixed top-0 bottom-0 overflow-y-auto pt-2 pb-4 pl-5 pr-8 lg:block lg:w-60 hidden">
+  <aside class="fixed top-0 left-0 h-screen w-64 bg-white shadow-lg z-40 transform transition-transform duration-300 ease-in-out overflow-y-auto pt-2 pb-4 pl-5 pr-8">
     <div class="mt-4 mb-6">
       <span class="text-2xl font-bold text-rose-600">
         <a href="/index.html">Rilla.js</a>
@@ -26,6 +26,7 @@
           <a href="#getting-started">Getting Started</a>
         </span>
         <ul class="space-y-2 text-sm mt-2 pl-4">
+          <li><a href="#download" class="block hover:text-rose-500 transition">Download</a></li>
           <li><a href="#cdn" class="block hover:text-rose-500 transition">CDN</a></li>
           <li><a href="#installation" class="block hover:text-rose-500 transition">Installation</a></li>
         </ul>
@@ -35,8 +36,7 @@
           <a href="#dom-selection">DOM Selection</a>
         </span>
         <ul class="space-y-2 text-sm mt-2 pl-4">
-          <li><a href="#selector" class="block hover:text-rose-500 transition">$</a></li>
-          <li><a href="#select" class="block hover:text-rose-500 transition">select</a></li>
+          <li><a href="#selector" class="block hover:text-rose-500 transition">$(element)</a></li>
         </ul>
       </li>
       <li class="pt-2">
@@ -162,127 +162,124 @@
     </ul>
   </aside>
 
-  <main class="flex justify-center py-8 lg:pl-20">
-    <div class="max-w-3xl w-full">
-      <h1>Writing Vanilla JS Made Easy</h1>
-      <p class="mb-6">Rilla is a minimalistic JavaScript utility library designed to simplify DOM selection, manipulation, and event handling.</p>
-      <div class="bg-rose-100 text-rose-800 border-l-4 border-rose-600 p-4 mb-8">
+  <main class="w-full max-w-3xl mx-auto py-8 px-4 relative z-10">
+    <section>
+      <h1>Writing JS Made Easy</h1>
+      <p class="mb-6"><em>Rilla</em> is a minimalistic JavaScript utility library designed to simplify DOM selection, manipulation, and event handling.</p>
+      <div class="border-rose-600 bg-rose-100 text-rose-800 border-l-4  p-4 mb-8">
         <p><strong>Warning:</strong> This early build (v0.1) is still in development and may undergo significant changes without prior notice, potentially breaking your code. Use it for testing purposes only.</p>
       </div>
-      <section>
-        <h2 id="section-getting-started">Getting Started</h2>
-        <article>
-          <h3 id="cdn">CDN</h3>
-          <p>Use the jsDeliver CDN to access the latest minified version of Rilla.js:</p>
-          <div class="code-block" data-src="jsdelivr-cdn"></div>
-          <p>Alternatively, you can also download the latest minified version:</p>
-          <div class="my-6">
-            <a href="./dist/rilla.min.js" class="bg-rose-600 text-white font-bold rounded-lg shadow-md hover:bg-rose-700 transition px-4 py-2" download>Download Rilla.js</a>
-          </div>
-          <ul class="list-disc space-y-2 pl-5 mt-4">
-            <li><a href="./dist/rilla.js" download class="rilla-url">Download the uncompressed version of Rilla.js</a></li>
-            <li><a href="./dist/rilla.min.js.map" download class="rilla-url">Download the map file for the minified Rilla.js</a></li>
-          </ul>
-        </article>
-        <article>
-          <h3 id="installation">Installation</h3>
-          <p>Add the <span class="code">rilla.min.js</span> script tag in the <span class="code">&lt;head&gt;</span> of your HTML file, and start using Rilla:</p>
-          <div class="code-block" data-src="installation"></div>
-        </article>
-      </section>
-      <section>
-        <h2 id="features">Features</h2>
-        <article>
-          <h3 id="dom-selection">DOM Selection</h3>
-          <p>Select DOM elements using id, className, tagName, etc.</p>
-          <div id="selector" class="item">
-            <h4><a href="./src/DOM Selection/$.js">$(element: string)</a>: HTMLElement|NodeList|null</h4>
-            <p>Select an element by id, className, or tagName:</p>
-            <div class="code-block" data-src="dom-selection-s"></div>
-            <p>As a method to an <span class="code">HTMLElement</span> to select its child or children:</p>
-            <div class="code-block" data-src="dom-selection-within-element"></div>
-            <p>Select a child or children of an element:</p>
-            <div class="code-block" data-src="dom-selection-select-a-child"></div>
-            <p>Chain the selected element or elements with vanilla JS or Rilla methods:</p>
-            <div class="code-block" data-src="dom-selection-chaining"></div>
-            <p>By default, <span class="code">$()</span> doesn't support the global scope since it's only defined as a method on <span class="code">Element.prototype</span>. In those cases, you would need to add a <span class="code">window.</span> before the selector, like <span class="code">window.$('#container')</span>, to access it globally.</p>
-            <p>You'll only have to worry about this if you're using the selector inline in HTML, such as within an <span class="code">onclick</span> attribute callback:</p>
-            <div class="code-block" data-src="global-usage"></div>
-          </div>
-          <div id="select" class="item">
-            <h4><span><a href="./src/DOM Selection/select.js">$select(context: string, element: string)</a></span>: HTMLElement|NodeList|null</h4>
-            <p>This is the main function being used by <span class="code">$()</span> to select DOM elements.</p>
-          </div>
-        </article>
+    </section>
 
-        <article>
-          <h3 id="dom-manipulation">DOM Manipulation</h3>
-          <p>Easily modify DOM elements with these utility methods.</p>
-          <div class="code-block" data-src="dom-manipulation"></div>
-        </article>
+    <section>
+      <h2 id="getting-started">Getting Started</h2>
+      <article>
+        <h3 id="download">Download</h3>
+        <p>Download the latest minified version:</p>
+        <div class="my-6">
+          <a href="./dist/rilla.min.js" class="bg-rose-600 text-white font-bold rounded-lg shadow-md hover:bg-rose-700 transition px-4 py-2" download>Download Rilla.js</a>
+        </div>
+        <ul class="list-disc space-y-2 pl-5 mt-4">
+          <li><a href="./dist/rilla.js" download class="rilla-url">Download the unminified version</a></li>
+          <li><a href="./dist/rilla.min.js.map" download class="rilla-url">Download the map file for the minified version</a></li>
+        </ul>
+      </article>
+      <article>
+        <h3 id="cdn">CDN</h3>
+        <p>Alternatively, you can start using it via CDN:</p>
+        <div class="code-block" data-src="jsdelivr-cdn"></div>
+      </article>
+      <article>
+        <h3 id="installation">Installation</h3>
+        <p>Simply add the <kbd>rilla.min.js</kbd> script tag in the <kbd>&lt;head&gt;</kbd> section of your HTML file:</p>
+        <div class="code-block" data-src="installation"></div>
+      </article>
+    </section>
 
-        <article>
-          <h3 id="element-references">Element References</h3>
-          <p>Capture element references while maintaining chainability.</p>
-          <div class="code-block" data-src="element-references"></div>
-        </article>
+    <section>
+      <h2 id="dom-selection">DOM Selection</h2>
+      <article id="selector" class="item">
+        <h3>$(element)</h3>
+        <p>Select DOM elements using <kbd>id</kbd>, <kbd>className</kbd>, <kbd>tagName</kbd>, etc.</p>
+        <div class="code-block" data-src="dom-selection-s"></div>
+        <p>As a method to an element to select its child or children:</p>
+        <div class="code-block" data-src="dom-selection-within-element"></div>
+        <p>Select a child or children of an element:</p>
+        <div class="code-block" data-src="dom-selection-select-a-child"></div>
+        <p>Chain the selected element or elements with vanilla JS or Rilla methods:</p>
+        <div class="code-block" data-src="dom-selection-chaining"></div>
+        <p>By default, <kbd>$(element)</kbd> doesn't support the global scope since it's only defined as a method on <kbd>Element.prototype</kbd>. In those cases, you would need to add a <kbd>window.</kbd> before the selector, like <kbd>window.$('#container')</kbd>, to access it globally.</p>
+        <p>You'll only need to worry about this if you're using the selector inline in HTML, such as within a function in an <kbd>onclick</kbd> attribute:</p>
+        <div class="code-block" data-src="global-usage"></div>
+      </article>
+    </section>
 
-        <article>
-          <h3 id="attributes-classes">Attributes and Classes</h3>
-          <p>Work with element attributes and CSS classes seamlessly.</p>
-          <div class="code-block" data-src="attributes-classes"></div>
-        </article>
+    <section>
+      <h2 id="dom-manipulation">DOM Manipulation</h2>
+      <p>Easily modify DOM elements with these utility methods.</p>
+      <div class="code-block" data-src="dom-manipulation"></div>
+    </section>
 
-        <article>
-          <h3 id="event-handling">Event Handling</h3>
-          <p>Manage event listeners with chainable methods.</p>
-          <div class="code-block" data-src="event-handling"></div>
-        </article>
+    <section>
+      <h2 id="element-references">Element References</h2>
+      <p>Capture element references while maintaining chainability.</p>
+      <div class="code-block" data-src="element-references"></div>
+    </section>
 
-        <article>
-          <h3 id="document-window">Document and Window Events</h3>
-          <p>Listen for document and window events.</p>
-          <div class="code-block" data-src="document-window"></div>
-        </article>
+    <section>
+      <h2 id="attributes-classes">Attributes and Classes</h2>
+      <p>Work with element attributes and CSS classes seamlessly.</p>
+      <div class="code-block" data-src="attributes-classes"></div>
+    </section>
 
-        <article>
-          <h3 id="visibility">Show/Hide and Fade Effects</h3>
-          <p>Control element visibility with simple functions.</p>
-          <div class="code-block" data-src="visibility"></div>
-        </article>
+    <section>
+      <h2 id="event-handling">Event Handling</h2>
+      <p>Manage event listeners with chainable methods.</p>
+      <div class="code-block" data-src="event-handling"></div>
+    </section>
 
-        <article>
-          <h3 id="storage-utilities">Storage Utilities</h3>
-          <p>Easily interact with browser storage.</p>
-          <div class="code-block" data-src="storage-utilities"></div>
-        </article>
+    <section>
+      <h2 id="document-window">Document and Window Events</h2>
+      <p>Listen for document and window events.</p>
+      <div class="code-block" data-src="document-window"></div>
+    </section>
 
-        <article>
-          <h3 id="draggable">Draggable Elements</h3>
-          <p>Insert the following CSS classes to your stylesheet:</p>
-          <div class="code-block" data-src="draggable-css"></div>
-          <p>Then, to make a container (or an element) draggable, add the <span class="code">.draggable</span> class to the container, and <span class="code">.drag-handle</span> to the element you want to assign as the handle:</p>
-          <div class="code-block" data-src="draggable"></div>
-        </article>
-      </section>
+    <section>
+      <h2 id="visibility">Show/Hide and Fade Effects</h2>
+      <p>Control element visibility with simple functions.</p>
+      <div class="code-block" data-src="visibility"></div>
+    </section>
 
-      <section>
-        <h2 id="more-information">More Information</h2>
-        <article>
-          <h3 id="browser-support">Browser Support</h3>
-          <p>Rilla.js is built for modern browsers and uses ES6 features. It works in all major browsers that support ES6.</p>
-        </article>
-        <article>
-          <h3 id="github">GitHub Repository</h3>
-          <p>View the source code and contribute on <a href="https://github.com/aldrinrenzcruz/rillajs">GitHub</a>.</p>
-        </article>
-        <article>
-          <h3 id="license">License</h3>
-          <p>This project is licensed under the <a href="LICENSE">MIT License</a>.</p>
-        </article>
-        <p>&copy; 2025 Rilla.js. MIT License.</p>
-      </section>
-    </div>
+    <section>
+      <h2 id="storage-utilities">Storage Utilities</h2>
+      <p>Easily interact with browser storage.</p>
+      <div class="code-block" data-src="storage-utilities"></div>
+    </section>
+
+    <section>
+      <h2 id="draggable">Draggable Elements</h2>
+      <p>Insert the following CSS classes to your stylesheet:</p>
+      <div class="code-block" data-src="draggable-css"></div>
+      <p>Then, to make a container (or an element) draggable, add the <kbd>.draggable</kbd> class to the container, and <kbd>.drag-handle</kbd> to the element you want to assign as the handle:</p>
+      <div class="code-block" data-src="draggable"></div>
+    </section>
+
+    <section>
+      <h2 id="more-information">More Information</h2>
+      <article>
+        <h3 id="browser-support">Browser Support</h3>
+        <p>Rilla.js is built for modern browsers and uses ES6 features. It works in all major browsers that support ES6.</p>
+      </article>
+      <article>
+        <h3 id="github">GitHub Repository</h3>
+        <p>View the source code and contribute on <a href="https://github.com/aldrinrenzcruz/rillajs">GitHub</a>.</p>
+      </article>
+      <article>
+        <h3 id="license">License</h3>
+        <p>This project is licensed under the <a href="LICENSE">MIT License</a>.</p>
+      </article>
+      <p>&copy; 2025 Rilla.js. MIT License.</p>
+    </section>
   </main>
 
   <script src="./public/js/app.js"></script>
