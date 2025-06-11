@@ -14,7 +14,7 @@ const directories = [
   "String Manipulation",
   "Element Interaction",
   "Element Visibility",
-  "Storage",
+  "Storage Utilities",
 ];
 
 fs.ensureDirSync(outputDir);
