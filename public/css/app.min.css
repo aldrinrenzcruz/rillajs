@@ -250,9 +250,6 @@
   .top-0 {
     top: calc(var(--spacing) * 0);
   }
-  .bottom-0 {
-    bottom: calc(var(--spacing) * 0);
-  }
   .left-0 {
     left: calc(var(--spacing) * 0);
   }
@@ -495,9 +492,6 @@
   }
   .min-h-screen {
     min-height: 100vh;
-  }
-  .w-1 {
-    width: calc(var(--spacing) * 1);
   }
   .w-1\/2 {
     width: calc(1/2 * 100%);
@@ -2035,6 +2029,14 @@ code.hljs {
 body {
   background-color: var(--color-gray-50);
   color: var(--color-gray-800);
+}
+.no-highlight, button, .code-type, .copy-btn {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 h2, h3, section[id], article[id] {
   scroll-margin-top: 1rem;
