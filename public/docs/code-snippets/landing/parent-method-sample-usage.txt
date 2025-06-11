@@ -1,0 +1,7 @@
+#javascript
+
+element.$parent(); // defaults to level 1
+
+const grandparent = element.$parent(2);
+
+const greatGrandparent = element.$parent(3);
