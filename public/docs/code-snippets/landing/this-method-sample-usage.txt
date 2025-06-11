@@ -1,0 +1,6 @@
+#javascript
+
+$('.button)
+  .$addClass('loading')
+  .$this(el => console.log('Button state:', el.$class()))
+  .$text('Loading...');

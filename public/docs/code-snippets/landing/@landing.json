@@ -6,6 +6,7 @@
     "dom-selection-within-element",
     "dom-selection-select-a-child",
     "dom-selection-chaining",
+    "this-method-sample-usage",
     "dom-manipulation",
     "element-references",
     "attributes-classes",
