@@ -135,7 +135,6 @@
         <ul class="space-y-2 text-sm mt-2 pl-4">
           <li><a href="#local" class="block hover:text-rose-500 transition">local</a></li>
           <li><a href="#session" class="block hover:text-rose-500 transition">session</a></li>
-          <li><a href="#rillaStore" class="block hover:text-rose-500 transition">rillaStore</a></li>
         </ul>
       </li>
       <li class="pt-2">
@@ -598,8 +597,10 @@
           $draggable
           <a href="./src/Element Interaction/draggable.js" target="_blank">Raw</a>
         </h3>
-        <p>TODO: placeholder text</p>
-        <div class="code-block" data-src="draggable-method-sample-usage"></div>
+        <p>Add the following CSS classes to your stylesheet:</p>
+        <div class="code-block" data-src="draggable-css"></div>
+        <p>Then, to make a container (or an element) draggable, add the <kbd>.draggable</kbd> class to the container, and <kbd>.drag-handle</kbd> to the element you want to assign as the handle:</p>
+        <div class="code-block" data-src="draggable"></div>
       </article>
     </section>
 
@@ -610,8 +611,13 @@
           $local
           <a href="./src/Storage Utilities/local.js" target="_blank">Raw</a>
         </h3>
-        <p>TODO: placeholder text</p>
-        <div class="code-block" data-src="local-method-sample-usage"></div>
+        <p><kbd>GET</kbd> the value of a <kbd>localStorage</kbd> key:</p>
+        <div class="code-block" data-src="local-get"></div>
+        <p><kbd>SET</kbd> the value of a <kbd>localStorage</kbd> key:</p>
+        <div class="code-block" data-src="local-set"></div>
+        <p><kbd>DELETE</kbd> a <kbd>localStorage</kbd> key and its value:</p>
+        <div class="code-block" data-src="local-delete"></div>
+        <p>This <kbd>$local</kbd> method uses the utility function <a href="./src/Storage Utilities/rillaStore.js" target="_blank">$rillaStore</a>.</p>
       </article>
 
       <article id="session" class="item">
@@ -619,27 +625,14 @@
           $session
           <a href="./src/Storage Utilities/session.js" target="_blank">Raw</a>
         </h3>
-        <p>TODO: placeholder text</p>
-        <div class="code-block" data-src="session-method-sample-usage"></div>
+        <p><kbd>GET</kbd> the value of a <kbd>sessionStorage</kbd> key:</p>
+        <div class="code-block" data-src="session-get"></div>
+        <p><kbd>SET</kbd> the value of a <kbd>sessionStorage</kbd> key:</p>
+        <div class="code-block" data-src="session-set"></div>
+        <p><kbd>DELETE</kbd> a <kbd>sessionStorage</kbd> key and its value:</p>
+        <div class="code-block" data-src="session-delete"></div>
+        <p>This <kbd>$session</kbd> method uses the utility function <a href="./src/Storage Utilities/rillaStore.js" target="_blank">$rillaStore</a>.</p>
       </article>
-
-      <article id="rillaStore" class="item">
-        <h3>
-          $rillaStore
-          <a href="./src/Storage Utilities/rillaStore.js" target="_blank">Raw</a>
-        </h3>
-        <p>TODO: placeholder text</p>
-        <div class="code-block" data-src="rillaStore-method-sample-usage"></div>
-      </article>
-      <div class="code-block" data-src="storage-utilities"></div>
-    </section>
-
-    <section>
-      <h2 id="draggable">Draggable Elements</h2>
-      <p>Insert the following CSS classes to your stylesheet:</p>
-      <div class="code-block" data-src="draggable-css"></div>
-      <p>Then, to make a container (or an element) draggable, add the <kbd>.draggable</kbd> class to the container, and <kbd>.drag-handle</kbd> to the element you want to assign as the handle:</p>
-      <div class="code-block" data-src="draggable"></div>
     </section>
 
     <section>

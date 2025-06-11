@@ -1,0 +1,5 @@
+#javascript
+
+$session(key);
+
+$session('cartItems');

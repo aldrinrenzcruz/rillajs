@@ -11,8 +11,13 @@
     "attributes-classes",
     "event-handling",
     "visibility",
-    "storage-utilities",
     "draggable",
-    "draggable-css"
+    "draggable-css",
+    "local-get",
+    "local-set",
+    "local-delete",
+    "session-get",
+    "session-set",
+    "session-delete"
   ]
 }

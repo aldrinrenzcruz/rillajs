@@ -1,0 +1,5 @@
+#javascript
+
+$local(key, null);
+
+$local('theme', null);

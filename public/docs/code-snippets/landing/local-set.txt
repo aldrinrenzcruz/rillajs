@@ -1,0 +1,7 @@
+#javascript
+
+$local(key, value);
+
+$local('theme', 'dark');
+
+$local('user', { name: 'John', age: 30 });
