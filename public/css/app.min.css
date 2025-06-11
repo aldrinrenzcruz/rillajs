@@ -15,6 +15,7 @@
     --color-rose-700: oklch(0.514 0.222 16.935);
     --color-rose-800: oklch(0.455 0.188 13.697);
     --color-gray-50: oklch(0.985 0.002 247.839);
+    --color-gray-300: oklch(0.872 0.01 258.338);
     --color-gray-400: oklch(0.707 0.022 261.325);
     --color-gray-500: oklch(0.551 0.027 264.364);
     --color-gray-600: oklch(0.446 0.03 256.802);
@@ -2072,11 +2073,36 @@ section h2 {
   color: var(--color-gray-800);
 }
 article h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-weight: bold;
   font-size: 1.1rem;
   letter-spacing: 0.025em;
   color: var(--color-gray-800);
   opacity: 0.95;
+  a {
+    font-size: 0.875rem;
+    margin-left: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    background-color: transparent;
+    color: var(--color-gray-700);
+    border: 1px solid var(--color-gray-300);
+    border-radius: 0.375rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    &:hover {
+      border-color: var(--color-gray-400);
+      color: var(--color-gray-800);
+    }
+  }
 }
 article h3:first-of-type {
   margin-bottom: 0.5rem;
