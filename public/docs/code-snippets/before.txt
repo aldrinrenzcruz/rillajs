@@ -1,0 +1,11 @@
+#javascript
+
+element.$before(htmlString);
+
+<input type="text" id="name" />
+
+$("#name").$before("<label for='name'>Name:</label>");
+
+// Result:
+// <label for="name">Name:</label>
+// <input type="text" id="name" />

@@ -1,0 +1,11 @@
+#javascript
+
+element.$after(htmlString);
+
+<label for="name">Name:</label>
+
+$('label[for="name"]').$after("<input type='text' id='name' />");
+
+// Result:
+// <label for="name">Name:</label>
+// <input type="text" id="name" />

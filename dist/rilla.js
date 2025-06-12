@@ -103,6 +103,31 @@ NodeList.prototype.$this = function (callback) {
   return this;
 };
 
+Element.prototype.$after = function (htmlString) {
+  if (!htmlString) {
+    console.warn("$after: invalid parameter");
+    return this;
+  }
+  const template = document.createElement("template");
+  template.innerHTML = htmlString.trim();
+  const fragment = template.content;
+  this.parentNode?.insertBefore(fragment, this.nextSibling);
+  return this;
+};
+
+NodeList.prototype.$after = function (htmlString) {
+  if (!htmlString) {
+    console.warn("$after: invalid parameter");
+    return this;
+  }
+  Array.from(this).forEach(el => {
+    if (el instanceof Element) {
+      el.$after(htmlString);
+    }
+  });
+  return this;
+};
+
 Element.prototype.$append = function (htmlString) {
   if (!htmlString) {
     console.warn("$append: invalid parameter");
@@ -123,6 +148,31 @@ NodeList.prototype.$append = function (htmlString) {
   this.forEach(el => {
     if (el instanceof Element) {
       el.$append(htmlString);
+    }
+  });
+  return this;
+};
+
+Element.prototype.$before = function (htmlString) {
+  if (!htmlString) {
+    console.warn("$before: invalid parameter");
+    return this;
+  }
+  const template = document.createElement("template");
+  template.innerHTML = htmlString.trim();
+  const fragment = template.content;
+  this.parentNode?.insertBefore(fragment, this);
+  return this;
+};
+
+NodeList.prototype.$before = function (htmlString) {
+  if (!htmlString) {
+    console.warn("$before: invalid parameter");
+    return this;
+  }
+  Array.from(this).forEach(el => {
+    if (el instanceof Element) {
+      el.$before(htmlString);
     }
   });
   return this;

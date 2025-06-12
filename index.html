@@ -57,10 +57,12 @@
         <ul class="space-y-2 text-sm mt-2 pl-4">
           <li><a href="#create" class="block hover:text-rose-500 transition">create</a></li>
           <li><a href="#paint" class="block hover:text-rose-500 transition">paint</a></li>
-          <li><a href="#prepend" class="block hover:text-rose-500 transition">prepend</a></li>
-          <li><a href="#append" class="block hover:text-rose-500 transition">append</a></li>
           <li><a href="#wrap" class="block hover:text-rose-500 transition">wrap</a></li>
           <li><a href="#unwrap" class="block hover:text-rose-500 transition">unwrap</a></li>
+          <li><a href="#prepend" class="block hover:text-rose-500 transition">prepend</a></li>
+          <li><a href="#append" class="block hover:text-rose-500 transition">append</a></li>
+          <li><a href="#before" class="block hover:text-rose-500 transition">before</a></li>
+          <li><a href="#after" class="block hover:text-rose-500 transition">after</a></li>
           <li><a href="#text" class="block hover:text-rose-500 transition">text</a></li>
           <li><a href="#value" class="block hover:text-rose-500 transition">value</a></li>
           <li><a href="#inner" class="block hover:text-rose-500 transition">inner</a></li>
@@ -267,24 +269,6 @@
         <div class="code-block" data-src="paint-method-sample-usage"></div>
       </article>
 
-      <article id="prepend" class="item">
-        <h3>
-          $prepend
-          <a href="./src/DOM Manipulation/prepend.js" target="_blank">Raw</a>
-        </h3>
-        <p>Insert an element as the first child(ren) of the element:</p>
-        <div class="code-block" data-src="prepend"></div>
-      </article>
-
-      <article id="append" class="item">
-        <h3>
-          $append
-          <a href="./src/DOM Manipulation/append.js" target="_blank">Raw</a>
-        </h3>
-        <p>TODO: placeholder text</p>
-        <div class="code-block" data-src="append-method-sample-usage"></div>
-      </article>
-
       <article id="wrap" class="item">
         <h3>
           $wrap
@@ -304,6 +288,43 @@
         <p>If not an only child, move the element outside the parent:</p>
         <div class="code-block" data-src="unwrap-multiple-children"></div>
       </article>
+
+      <article id="prepend" class="item">
+        <h3>
+          $prepend
+          <a href="./src/DOM Manipulation/prepend.js" target="_blank">Raw</a>
+        </h3>
+        <p>Insert an element as the first child(ren) of the element:</p>
+        <div class="code-block" data-src="prepend"></div>
+      </article>
+
+      <article id="append" class="item">
+        <h3>
+          $append
+          <a href="./src/DOM Manipulation/append.js" target="_blank">Raw</a>
+        </h3>
+        <p>Insert an element as the last child(ren) of the element:</p>
+        <div class="code-block" data-src="append"></div>
+      </article>
+
+      <article id="before" class="item">
+        <h3>
+          $before
+          <a href="./src/DOM Manipulation/before.js" target="_blank">Raw</a>
+        </h3>
+        <p>Insert an element before the element:</p>
+        <div class="code-block" data-src="before"></div>
+      </article>
+
+      <article id="after" class="item">
+        <h3>
+          $after
+          <a href="./src/DOM Manipulation/after.js" target="_blank">Raw</a>
+        </h3>
+        <p>Insert an element after the element:</p>
+        <div class="code-block" data-src="after"></div>
+      </article>
+
       <article id="text" class="item">
         <h3>
           $text

@@ -1,8 +1,11 @@
 {
   "examples": [
     "addClass",
+    "after",
+    "append",
     "attr-get",
     "attr-set",
+    "before",
     "children-method-sample-usage",
     "class-check",
     "class-delete",

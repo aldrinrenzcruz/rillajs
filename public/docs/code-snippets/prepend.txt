@@ -1,6 +1,6 @@
 #javascript
 
-element.$prepend(htmlString)
+element.$prepend(htmlString);
 
 <div class="field" id="username-field">
   <input type="text" name="username" />

@@ -1,0 +1,14 @@
+#javascript
+
+element.$append(htmlString);
+
+<div id="box">
+  <span>Existing</span>
+</div>
+
+$("#box").$append("<p>New Content</p>");
+// Result:
+// <div id="box">
+//   <span>Existing</span>
+//   <p>New Content</p>
+// </div>
