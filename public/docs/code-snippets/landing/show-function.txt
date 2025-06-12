@@ -2,12 +2,12 @@
 
 $show(element, displayType);
 
-$show('myModal');                   // Sets display: block
-$show('sidebar', 'flex');           // Sets display: flex
-$show('notification', 'inline');    // Sets display: inline
+$show('#myModal');                   // Sets display: block
+$show('#sidebar', 'flex');           // Sets display: flex
+$show('.notification', 'inline');    // Sets display: inline
 
-$show('myDiv', 'block', 300);     // Fade in over 300ms
-$show('myDiv', 'flex', 500);      // Fade in as flex over 500ms
+$show('.myDiv', 'block', 300);     // Fade in over 300ms
+$show('.myDiv', 'flex', 500);      // Fade in as flex over 500ms
 
 $show(document.querySelector('.btn')); // Vanilla JS selector
 $show($('.btn'));

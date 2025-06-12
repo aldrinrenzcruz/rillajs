@@ -13,7 +13,7 @@ function $showElement(element, displayType, duration) {
 
 function $show(param, displayType = "block", duration = 0) {
   if (typeof param === "string") {
-    const element = document.querySelector(`#${param}`);
+    const element = document.querySelector(param);
     if (element) {
       $showElement(element, displayType, duration);
       return element;

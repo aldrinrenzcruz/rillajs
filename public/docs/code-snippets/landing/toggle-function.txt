@@ -2,11 +2,11 @@
 
 $toggle(element, displayType);
 
-$toggle('myModal');                   // Sets display: block
-$toggle('sidebar', 'flex');           // Sets display: flex
-$toggle('notification', 'inline');    // Sets display: inline
+$toggle('#myModal');                   // Sets display: block
+$toggle('#sidebar', 'flex');           // Sets display: flex
+$toggle('.notification', 'inline');    // Sets display: inline
 
-$toggle('myDiv', 'block', 300); // Fade toggle over 300ms
+$toggle('.myDiv', 'block', 300); // Fade toggle over 300ms
 
 $toggle(document.querySelector('.btn')); // Vanilla JS selector
 $toggle($('.btn'));

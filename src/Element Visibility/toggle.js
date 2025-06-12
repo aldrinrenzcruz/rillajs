@@ -8,7 +8,7 @@ function $toggleElement(element, displayType, duration) {
 
 function $toggle(param, displayType = "block", duration = 0) {
   if (typeof param === "string") {
-    const element = document.querySelector(`#${param}`);
+    const element = document.querySelector(param);
     if (element) {
       $toggleElement(element, displayType, duration);
       return element;

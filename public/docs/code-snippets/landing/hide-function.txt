@@ -2,8 +2,8 @@
 
 $hide(element);
 
-$hide('myModal');
-$hide('myModal', 300); // Fade out over 300ms
+$hide('#myModal');
+$hide('.myModal', 300); // Fade out over 300ms
 
 $hide(document.querySelector('.btn')); // Vanilla JS selector
 $hide($('.btn'));

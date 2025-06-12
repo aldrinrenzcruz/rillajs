@@ -13,7 +13,7 @@ function $hideElement(element, duration) {
 
 function $hide(param, duration = 0) {
   if (typeof param === "string") {
-    const element = document.querySelector(`#${param}`);
+    const element = document.querySelector(param);
     if (element) {
       $hideElement(element, duration);
       return element;
