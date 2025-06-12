@@ -1,0 +1,10 @@
+#javascript
+
+$toggle(element, displayType);
+
+$toggle('myModal');                   // Sets display: block
+$toggle('sidebar', 'flex');           // Sets display: flex
+$toggle('notification', 'inline');    // Sets display: inline
+
+$toggle(document.querySelector('.btn')); // Vanilla JS selector
+$toggle($('.btn'));

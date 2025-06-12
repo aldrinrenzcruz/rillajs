@@ -1,0 +1,11 @@
+#javascript
+
+element.$toggle(displayType);
+
+$('.modal')
+  .$toggle() // defaults to block
+  .$addClass('animate-in');
+
+$('.navbar')
+  .$toggle('flex') // display type flex
+  .$setAttribute('aria-expanded', 'true');

@@ -1,0 +1,7 @@
+#javascript
+
+element.$hide();
+
+$('.modal')
+  .$hide()
+  .$addClass('animate-out');

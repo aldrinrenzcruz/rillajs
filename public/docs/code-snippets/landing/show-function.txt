@@ -1,0 +1,10 @@
+#javascript
+
+$show(element, displayType);
+
+$show('myModal');                   // Sets display: block
+$show('sidebar', 'flex');           // Sets display: flex
+$show('notification', 'inline');    // Sets display: inline
+
+$show(document.querySelector('.btn')); // Vanilla JS selector
+$show($('.btn'));

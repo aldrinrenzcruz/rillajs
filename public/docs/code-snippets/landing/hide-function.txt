@@ -1,0 +1,8 @@
+#javascript
+
+$hide(element);
+
+$hide('myModal');
+
+$hide(document.querySelector('.btn')); // Vanilla JS selector
+$hide($('.btn'));
