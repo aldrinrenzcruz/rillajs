@@ -1,0 +1,5 @@
+#javascript
+
+element.$inner();
+
+$('#container').$inner();

@@ -1,0 +1,5 @@
+#javascript
+
+element.$text(content);
+
+$('#paragraph').$text("hello world");

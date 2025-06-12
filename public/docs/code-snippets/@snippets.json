@@ -38,11 +38,15 @@
     "hasClass",
     "hide-function",
     "hide-method",
+    "inner-get",
+    "inner-set",
     "installation",
     "jsdelivr-cdn",
     "local-delete",
     "local-get",
     "local-set",
+    "outer-get",
+    "outer-set",
     "parent-method-sample-usage",
     "removeClass",
     "session-delete",
@@ -51,6 +55,8 @@
     "show-function",
     "show-method",
     "siblings-method-sample-usage",
+    "text-get",
+    "text-set",
     "this-method-sample-usage",
     "toKebabCase-function",
     "toKebabCase-method",
@@ -61,6 +67,8 @@
     "toggle-function",
     "toggle-method",
     "toggleClass",
+    "value-get",
+    "value-set",
     "window"
   ]
 }

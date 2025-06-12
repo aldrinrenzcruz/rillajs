@@ -26,15 +26,3 @@ $("p")
 // Unwrapping elements
 $("p").unwrap()
 $("#container").unwrap()
-
-// Get or set HTML content
-element.html();         // Get HTML content
-element.html('<p>New content</p>');  // Set HTML content
-
-// Get or set text content
-element.text();         // Get text content
-element.text('New text');  // Set text content
-
-// Get or set input value
-element.val();          // Get value
-element.val('New value');  // Set value

@@ -1,0 +1,5 @@
+#javascript
+
+element.$inner(content);
+
+$('#container').$inner("<h1>New Title</h1>");
