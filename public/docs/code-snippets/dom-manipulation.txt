@@ -1,6 +1,0 @@
-#javascript
-
-// Create a new element
-const button = $create("button")
-  .text("Copy")
-  .addClass("px-2 py-1 bg-gray-800 text-gray-400");
