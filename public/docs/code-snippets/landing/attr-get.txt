@@ -1,0 +1,10 @@
+#javascript
+
+element.$attr(name)
+
+btn.$attr("id");
+container.$attr("class")
+checkbox.$attr("disabled");
+img.$attr("src");
+img.$attr("alt");
+img.$attr("title"); 

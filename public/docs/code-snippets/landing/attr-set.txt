@@ -1,0 +1,9 @@
+#javascript
+
+element.$attr(name, value)
+
+container.$attr("class", "btn-primary");
+checkbox.$attr("disabled", "true");
+img.$attr("src", "logo.png");
+img.$attr("alt", "image description");
+img.$attr("title", "image title"); 

@@ -1,0 +1,6 @@
+#javascript
+
+element.$data(key);
+
+$("#myElement").data("age");
+// "25"

@@ -1,0 +1,6 @@
+#javascript
+
+element.$class().includes();
+
+$("#heading").$class().includes("font-bold"); 
+// true

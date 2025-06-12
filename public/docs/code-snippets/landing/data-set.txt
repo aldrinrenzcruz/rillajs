@@ -1,0 +1,6 @@
+#javascript
+
+element.$data(key, value);
+
+$("#myElement").data("age", "30");
+// Result: <div id="myElement" data-user="john"  data-age="30"  data-active="true"></div>

@@ -1,0 +1,25 @@
+#javascript
+
+element.$css({...});
+
+// Set multiple properties
+element.$css({
+  width: '400px',
+  height: '300px',
+  backgroundColor: 'lightblue',
+  border: '2px solid navy',
+  borderRadius: '10px'
+});
+
+// Mix direct values and functions
+element.$css({
+  width: '200px',
+  height: (el, currentHeight) => {
+    const width = parseInt(el.$css('width'));
+    return (width * 0.6) + 'px';
+  },
+  opacity: '0.9',
+  transform: (el, currentTransform) => {
+    return currentTransform + ' scale(1.1)';
+  }
+});

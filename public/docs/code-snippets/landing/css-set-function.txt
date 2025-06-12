@@ -1,0 +1,19 @@
+#javascript
+
+element.$css(property, function(index, currentValue) { ... })
+element.$css(property, (index, currentValue) => {...})
+
+// Increase current width by 50px
+element.$css('width', (el, currentWidth) => {
+  return (parseInt(currentWidth) + 50) + 'px';
+});
+
+// Toggle opacity between 0.5 and 1
+element.$css('opacity', (el, currentOpacity) => {
+  return parseFloat(currentOpacity) < 1 ? '1' : '0.5';
+});
+
+// Dynamic color based on element state
+element.$css('color', (el, currentColor) => {
+  return el.classList.contains('active') ? 'green' : 'gray';
+});

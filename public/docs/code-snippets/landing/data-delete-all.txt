@@ -1,0 +1,6 @@
+#javascript
+
+element.$data("");
+
+$("#myElement").data("");
+// Result: <div id="myElement"></div>

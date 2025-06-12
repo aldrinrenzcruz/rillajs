@@ -1,0 +1,6 @@
+#javascript
+
+element.$class("");
+
+$("#heading").$class("");
+// Result: <h1 id="heading"></h1>

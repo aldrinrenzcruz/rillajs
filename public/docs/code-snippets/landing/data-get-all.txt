@@ -1,0 +1,6 @@
+#javascript
+
+element.$data();
+
+$("#myElement").data();
+// { user: "john", age: "25", active: "true" }
