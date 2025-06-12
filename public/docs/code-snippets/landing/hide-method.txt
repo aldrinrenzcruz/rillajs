@@ -5,3 +5,5 @@ element.$hide();
 $('.modal')
   .$hide()
   .$addClass('animate-out');
+
+element.$hide(250); // fade-out

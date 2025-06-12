@@ -9,3 +9,5 @@ $('.modal')
 $('.navbar')
   .$toggle('flex') // display type flex
   .$setAttribute('aria-expanded', 'true');
+
+element.$toggle('block', 250); // fade toggle

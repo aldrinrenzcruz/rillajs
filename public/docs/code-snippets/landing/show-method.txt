@@ -9,3 +9,5 @@ $('.modal')
 $('.navbar')
   .$show('flex') // display type flex
   .$setAttribute('aria-expanded', 'true');
+
+element.$show('block', 200); // fade-in
