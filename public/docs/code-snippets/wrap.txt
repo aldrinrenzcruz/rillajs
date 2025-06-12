@@ -1,0 +1,16 @@
+# javascript
+
+element.$wrap(wrapperHTML);
+
+element.$wrap("<div></div>");
+element.$wrap("<div class='container box'></div>"); // with classes
+
+<p id="note">This is a note.</p>
+$("#note").$wrap("<div class='note-wrapper'></div>");
+// Result:
+//<div class="note-wrapper">
+//  <p id="note">This is a note.</p>
+//</div>
+
+// Wrap with custom tags
+element.$wrap("<special></special>");

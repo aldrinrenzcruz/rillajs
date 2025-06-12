@@ -1,0 +1,14 @@
+#javascript
+
+element.$prepend(htmlString)
+
+<div class="field" id="username-field">
+  <input type="text" name="username" />
+</div>
+
+$("#username-field").$prepend("<label>Username:</label>");
+//Result:
+// <div class="field" id="username-field">
+//   <label>Username:</label>
+//   <input type="text" name="username" />
+// </div>

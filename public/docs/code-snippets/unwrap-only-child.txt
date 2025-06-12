@@ -1,0 +1,10 @@
+# javascript
+
+element.$unwrap();
+
+<div class="wrapper">
+  <p id="text">Hello World</p>
+</div>
+
+$("#text").$unwrap();
+// Result: <p id="text">Hello World</p>

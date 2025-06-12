@@ -47,6 +47,7 @@
     "outer-get",
     "outer-set",
     "parent-method-sample-usage",
+    "prepend",
     "removeClass",
     "session-delete",
     "session-get",
@@ -66,8 +67,11 @@
     "toggle-function",
     "toggle-method",
     "toggleClass",
+    "unwrap-multiple-children",
+    "unwrap-only-child",
     "value-get",
     "value-set",
-    "window"
+    "window",
+    "wrap"
   ]
 }

@@ -57,8 +57,8 @@
         <ul class="space-y-2 text-sm mt-2 pl-4">
           <li><a href="#create" class="block hover:text-rose-500 transition">create</a></li>
           <li><a href="#paint" class="block hover:text-rose-500 transition">paint</a></li>
-          <li><a href="#append" class="block hover:text-rose-500 transition">append</a></li>
           <li><a href="#prepend" class="block hover:text-rose-500 transition">prepend</a></li>
+          <li><a href="#append" class="block hover:text-rose-500 transition">append</a></li>
           <li><a href="#wrap" class="block hover:text-rose-500 transition">wrap</a></li>
           <li><a href="#unwrap" class="block hover:text-rose-500 transition">unwrap</a></li>
           <li><a href="#text" class="block hover:text-rose-500 transition">text</a></li>
@@ -267,6 +267,15 @@
         <div class="code-block" data-src="paint-method-sample-usage"></div>
       </article>
 
+      <article id="prepend" class="item">
+        <h3>
+          $prepend
+          <a href="./src/DOM Manipulation/prepend.js" target="_blank">Raw</a>
+        </h3>
+        <p>Insert an element as the first child(ren) of the element:</p>
+        <div class="code-block" data-src="prepend"></div>
+      </article>
+
       <article id="append" class="item">
         <h3>
           $append
@@ -276,31 +285,24 @@
         <div class="code-block" data-src="append-method-sample-usage"></div>
       </article>
 
-      <article id="prepend" class="item">
-        <h3>
-          $prepend
-          <a href="./src/DOM Manipulation/prepend.js" target="_blank">Raw</a>
-        </h3>
-        <p>TODO: placeholder text</p>
-        <div class="code-block" data-src="prepend-method-sample-usage"></div>
-      </article>
-
       <article id="wrap" class="item">
         <h3>
           $wrap
           <a href="./src/DOM Manipulation/wrap.js" target="_blank">Raw</a>
         </h3>
-        <p>TODO: placeholder text</p>
-        <div class="code-block" data-src="wrap-method-sample-usage"></div>
+        <p>Wrap an element with a new element:</p>
+        <div class="code-block" data-src="wrap"></div>
       </article>
-
       <article id="unwrap" class="item">
         <h3>
           $unwrap
           <a href="./src/DOM Manipulation/unwrap.js" target="_blank">Raw</a>
         </h3>
-        <p>TODO: placeholder text</p>
-        <div class="code-block" data-src="unwrap-method-sample-usage"></div>
+        <p>Unwrap an element from its parent if it's not <kbd>&lt;html&gt;</kbd> or <kbd>&lt;body&gt;</kbd>.</p>
+        <p>If an only child, delete the parent element:</p>
+        <div class="code-block" data-src="unwrap-only-child"></div>
+        <p>If not an only child, move the element outside the parent:</p>
+        <div class="code-block" data-src="unwrap-multiple-children"></div>
       </article>
       <article id="text" class="item">
         <h3>

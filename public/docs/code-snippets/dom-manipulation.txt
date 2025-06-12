@@ -13,16 +13,3 @@ element.$prepend('<header>New Header</header>');
 
 // Replace all content
 element.$paint('<div>New Content</div>');
-
-// Single wrapping or Chain wrapping
-$("#container")
-  .wrap("<section class='test-class'></section>")
-  .wrap("<blockquote></blockquote>")
-
-// Wrap multiple elements
-$("p")
-  .wrap("<blockquote></blockquote>")
-
-// Unwrapping elements
-$("p").unwrap()
-$("#container").unwrap()

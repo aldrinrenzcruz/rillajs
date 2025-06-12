@@ -1,0 +1,16 @@
+# javascript
+
+element.$unwrap();
+
+<div class="wrapper">
+  <p id="a">A</p>
+  <p id="b">B</p>
+</div>
+
+$("#a").$unwrap();
+
+// Result:
+// <p id="a">A</p>
+// <div class="wrapper">
+//   <p id="b">B</p>
+// </div>
