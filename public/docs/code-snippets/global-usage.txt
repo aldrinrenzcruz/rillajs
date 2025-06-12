@@ -1,3 +1,0 @@
-#html
-
-<button onclick="toggle(window.$('#container'))">Toggle</button>
