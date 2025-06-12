@@ -1,0 +1,11 @@
+#javascript
+
+string.$toTitleCase(boolean);
+
+let string = "a tale of two cities: war and peace";
+
+string.$toTitleCase();
+// "A Tale of Two Cities: War and Peace"
+
+string.$toTitleCase(true);
+// "A Tale Of Two Cities: War And Peace"

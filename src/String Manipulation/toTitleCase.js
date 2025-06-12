@@ -1,22 +1,26 @@
-// Accepts a boolean parameter whether it should transform the minor words in the array
-function $toTitleCase(s, cm = true) {
-  const m = /^(a|an|the|and|but|or|nor|for|so|yet|at|by|in|is|of|on|to|up|with|as|vs\.?|per|via)$/i;
-  if (!s) return '';
-  return s.toLowerCase()
-    .replace(/\b\w+\b/g, (w, i) => {
-      if (i === 0 || !cm || !m.test(w)) {
-        return w.charAt(0).toUpperCase() + w.slice(1);
+function $toTitleCase(inputString, capitalizeMinorWords = false) {
+  const minorWords = /^(a|an|and|as|at|but|by|for|if|in|is|nor|of|on|or|per|so|the|to|up|via|vs\.?|yet)$/i;
+
+  if (!inputString) return '';
+
+  return inputString.toLowerCase()
+    .replace(/\b\w+\b/g, (word, index) => {
+      // Always capitalize first word, or if capitalizeMinorWords is true, or if not a minor word
+      if (index === 0 || capitalizeMinorWords || !minorWords.test(word)) {
+        return word.charAt(0).toUpperCase() + word.slice(1);
       }
-      return w;
+      return word;
     })
-    .replace(/([a-z])'s\b/gi, match => {
-      return match.toLowerCase();
+    // Keep possessive forms lowercase
+    .replace(/([a-z])'s\b/gi, possessiveMatch => {
+      return possessiveMatch.toLowerCase();
     })
-    .replace(/(?<=\w)-\w/g, match => {
-      return match.toUpperCase();
+    // Capitalize words after hyphens in compound words
+    .replace(/(?<=\w)-\w/g, hyphenatedMatch => {
+      return hyphenatedMatch.toUpperCase();
     });
 }
 
-String.prototype.$toTitleCase = function (cm = true) {
-  return $toTitleCase(this, cm);
+String.prototype.$toTitleCase = function (capitalizeMinorWords = false) {
+  return $toTitleCase(this, capitalizeMinorWords);
 };

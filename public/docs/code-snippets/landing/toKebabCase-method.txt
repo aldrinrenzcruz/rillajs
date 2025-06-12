@@ -1,0 +1,10 @@
+#javascript
+
+string.$toKebabCase();
+
+let title = "My Blog Post Title";
+title.$toKebabCase();
+// Returns: "my-blog-post-title"
+
+"CSS Grid Layout".$toKebabCase();
+// Returns: "css-grid-layout"

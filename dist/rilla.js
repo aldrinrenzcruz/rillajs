@@ -913,6 +913,7 @@ String.prototype.$toKebabCase = function () {
 };
 
 function $toSentenceCase(s) {
+  if (!s) return "";
   return s[0].toUpperCase() + s.slice(1).toLowerCase();
 }
 
@@ -920,27 +921,31 @@ String.prototype.$toSentenceCase = function () {
   return $toSentenceCase(this);
 };
 
-// Accepts a boolean parameter whether it should transform the minor words in the array
-function $toTitleCase(s, cm = true) {
-  const m = /^(a|an|the|and|but|or|nor|for|so|yet|at|by|in|is|of|on|to|up|with|as|vs\.?|per|via)$/i;
-  if (!s) return '';
-  return s.toLowerCase()
-    .replace(/\b\w+\b/g, (w, i) => {
-      if (i === 0 || !cm || !m.test(w)) {
-        return w.charAt(0).toUpperCase() + w.slice(1);
+function $toTitleCase(inputString, capitalizeMinorWords = false) {
+  const minorWords = /^(a|an|and|as|at|but|by|for|if|in|is|nor|of|on|or|per|so|the|to|up|via|vs\.?|yet)$/i;
+
+  if (!inputString) return '';
+
+  return inputString.toLowerCase()
+    .replace(/\b\w+\b/g, (word, index) => {
+      // Always capitalize first word, or if capitalizeMinorWords is true, or if not a minor word
+      if (index === 0 || capitalizeMinorWords || !minorWords.test(word)) {
+        return word.charAt(0).toUpperCase() + word.slice(1);
       }
-      return w;
+      return word;
     })
-    .replace(/([a-z])'s\b/gi, match => {
-      return match.toLowerCase();
+    // Keep possessive forms lowercase
+    .replace(/([a-z])'s\b/gi, possessiveMatch => {
+      return possessiveMatch.toLowerCase();
     })
-    .replace(/(?<=\w)-\w/g, match => {
-      return match.toUpperCase();
+    // Capitalize words after hyphens in compound words
+    .replace(/(?<=\w)-\w/g, hyphenatedMatch => {
+      return hyphenatedMatch.toUpperCase();
     });
 }
 
-String.prototype.$toTitleCase = function (cm = true) {
-  return $toTitleCase(this, cm);
+String.prototype.$toTitleCase = function (capitalizeMinorWords = false) {
+  return $toTitleCase(this, capitalizeMinorWords);
 };
 
 window.addEventListener("load", function () {
@@ -998,390 +1003,156 @@ window.addEventListener("load", function () {
   }
 });
 
-function $fadeIn(param, displayType = "block", duration = 200) {
+function $hideElement(element, duration) {
+  if (duration > 0) {
+    element.style.opacity = 1;
+    element.style.transition = `opacity ${duration}ms`;
+    element.style.opacity = 0;
+    setTimeout(function () {
+      element.style.display = "none";
+    }, duration);
+  } else {
+    element.style.display = "none";
+  }
+}
+
+function $hide(param, duration = 0) {
   if (typeof param === "string") {
-    const element = document.querySelector(`#${param}`);
+    const element = document.querySelector(param);
     if (element) {
-      element.style.opacity = 0;
-      element.style.display = displayType;
-      requestAnimationFrame(function () {
-        element.style.transition = `opacity ${duration}ms`;
-        element.style.opacity = 1;
-      });
+      $hideElement(element, duration);
       return element;
     } else {
-      console.warn(`fadeIn: element with ID ${param} not found`);
       return null;
     }
   }
+
   if (param instanceof NodeList) {
     if (param.length === 0) {
-      console.warn("fadeIn: empty element collection");
       return null;
     }
     for (let i = 0; i < param.length; i++) {
-      const element = param[i];
-      element.style.opacity = 0;
-      element.style.display = displayType;
-      (function (el) {
-        requestAnimationFrame(function () {
-          el.style.transition = `opacity ${duration}ms`;
-          el.style.opacity = 1;
-        });
-      })(element);
+      $hideElement(param[i], duration);
     }
     return param;
   }
+
   if (param && param.style) {
-    param.style.opacity = 0;
-    param.style.display = displayType;
-    requestAnimationFrame(function () {
-      param.style.transition = `opacity ${duration}ms`;
-      param.style.opacity = 1;
-    });
+    $hideElement(param, duration);
     return param;
   }
-  console.warn("fadeIn: element not found or invalid");
   return null;
 }
 
-Element.prototype.$fadeIn = function (displayType = "block", duration = 200) {
-  this.style.opacity = 0;
-  this.style.display = displayType;
-  const element = this;
-  requestAnimationFrame(function () {
-    element.style.transition = `opacity ${duration}ms`;
-    element.style.opacity = 1;
-  });
-
+Element.prototype.$hide = function (duration = 0) {
+  $hideElement(this, duration);
   return this;
 };
 
-NodeList.prototype.$fadeIn = function (displayType = "block", duration = 200) {
+NodeList.prototype.$hide = function (duration = 0) {
   for (let i = 0; i < this.length; i++) {
-    const element = this[i];
+    $hideElement(this[i], duration);
+  }
+  return this;
+};
+
+function $showElement(element, displayType, duration) {
+  if (duration > 0) {
     element.style.opacity = 0;
     element.style.display = displayType;
-    (function (el) {
-      requestAnimationFrame(function () {
-        el.style.transition = `opacity ${duration}ms`;
-        el.style.opacity = 1;
-      });
-    })(element);
-  }
-  return this;
-};
-
-function $fadeOut(param, duration = 200) {
-  if (typeof param === "string") {
-    const element = document.querySelector(`#${param}`);
-    if (element) {
-      element.style.opacity = 1;
+    requestAnimationFrame(function () {
       element.style.transition = `opacity ${duration}ms`;
-      element.style.opacity = 0;
-
-      setTimeout(function () {
-        element.style.display = "none";
-      }, duration);
-
-      return element;
-    } else {
-      console.warn(`fadeOut: element with ID ${param} not found`);
-      return null;
-    }
-  }
-  if (param instanceof NodeList) {
-    if (param.length === 0) {
-      console.warn("fadeOut: empty element collection");
-      return null;
-    }
-    for (let i = 0; i < param.length; i++) {
-      const element = param[i];
       element.style.opacity = 1;
-      element.style.transition = `opacity ${duration}ms`;
-      element.style.opacity = 0;
-      (function (el) {
-        setTimeout(function () {
-          el.style.display = "none";
-        }, duration);
-      })(element);
-    }
-    return param;
-  }
-  if (param && param.style) {
-    param.style.opacity = 1;
-    param.style.transition = `opacity ${duration}ms`;
-    param.style.opacity = 0;
-    setTimeout(function () {
-      param.style.display = "none";
-    }, duration);
-    return param;
-  }
-  console.warn("fadeOut: element not found or invalid");
-  return null;
-}
-
-Element.prototype.$fadeOut = function (duration = 200) {
-  this.style.opacity = 1;
-  this.style.transition = `opacity ${duration}ms`;
-  this.style.opacity = 0;
-
-  const element = this;
-  setTimeout(function () {
-    element.style.display = "none";
-  }, duration);
-
-  return this;
-};
-
-NodeList.prototype.$fadeOut = function (duration = 200) {
-  for (let i = 0; i < this.length; i++) {
-    const element = this[i];
-    element.style.opacity = 1;
-    element.style.transition = `opacity ${duration}ms`;
-    element.style.opacity = 0;
-    (function (el) {
-      setTimeout(function () {
-        el.style.display = "none";
-      }, duration);
-    })(element);
-  }
-
-  return this;
-};
-
-function $fadeToggle(param, displayType = "block", duration = 200) {
-  if (typeof param === "string") {
-    const element = document.querySelector(`#${param}`);
-    if (element) {
-      if (window.getComputedStyle(element).display === "none") {
-        $fadeIn(element, displayType, duration);
-      } else {
-        $fadeOut(element, duration);
-      }
-      return element;
-    } else {
-      console.warn(`fadeToggle: element with ID ${param} not found`);
-      return null;
-    }
-  }
-  if (param instanceof NodeList) {
-    if (param.length === 0) {
-      console.warn("fadeToggle: empty element collection");
-      return null;
-    }
-    for (let i = 0; i < param.length; i++) {
-      const element = param[i];
-      if (window.getComputedStyle(element).display === "none") {
-        element.style.opacity = 0;
-        element.style.display = displayType;
-        (function (el) {
-          requestAnimationFrame(function () {
-            el.style.transition = `opacity ${duration}ms`;
-            el.style.opacity = 1;
-          });
-        })(element);
-      } else {
-        element.style.opacity = 1;
-        element.style.transition = `opacity ${duration}ms`;
-        element.style.opacity = 0;
-        (function (el) {
-          setTimeout(function () {
-            el.style.display = "none";
-          }, duration);
-        })(element);
-      }
-    }
-    return param;
-  }
-  if (param && param.style) {
-    if (window.getComputedStyle(param).display === "none") {
-      $fadeIn(param, displayType, duration);
-    } else {
-      $fadeOut(param, duration);
-    }
-    return param;
-  }
-  console.warn("fadeToggle: element not found or invalid");
-  return null;
-}
-
-Element.prototype.$fadeToggle = function (displayType = "block", duration = 200) {
-  if (window.getComputedStyle(this).display === "none") {
-    this.$fadeIn(displayType, duration);
+    });
   } else {
-    this.$fadeOut(duration);
+    element.style.display = displayType;
   }
-  return this;
-};
+}
 
-NodeList.prototype.$fadeToggle = function (displayType = "block", duration = 200) {
-  for (let i = 0; i < this.length; i++) {
-    const element = this[i];
-    if (window.getComputedStyle(element).display === "none") {
-      element.style.opacity = 0;
-      element.style.display = displayType;
-      (function (el) {
-        requestAnimationFrame(function () {
-          el.style.transition = `opacity ${duration}ms`;
-          el.style.opacity = 1;
-        });
-      })(element);
-    } else {
-      element.style.opacity = 1;
-      element.style.transition = `opacity ${duration}ms`;
-      element.style.opacity = 0;
-      (function (el) {
-        setTimeout(function () {
-          el.style.display = "none";
-        }, duration);
-      })(element);
-    }
-  }
-  return this;
-};
-
-function $hide(param) {
+function $show(param, displayType = "block", duration = 0) {
   if (typeof param === "string") {
-    const element = document.querySelector(`#${param}`);
+    const element = document.querySelector(param);
     if (element) {
-      element.style.display = "none";
+      $showElement(element, displayType, duration);
       return element;
     } else {
-      console.warn(`hide: element with ID ${param} not found`);
       return null;
     }
   }
+
   if (param instanceof NodeList) {
     if (param.length === 0) {
-      console.warn("hide: empty element collection");
       return null;
     }
     for (let i = 0; i < param.length; i++) {
-      param[i].style.display = "none";
+      $showElement(param[i], displayType, duration);
     }
     return param;
   }
+
   if (param && param.style) {
-    param.style.display = "none";
+    $showElement(param, displayType, duration);
     return param;
   }
-  console.warn("hide: element not found or invalid");
   return null;
 }
 
-Element.prototype.$hide = function () {
-  this.style.display = "none";
+Element.prototype.$show = function (displayType = "block", duration = 0) {
+  $showElement(this, displayType, duration);
   return this;
 };
 
-NodeList.prototype.$hide = function () {
+NodeList.prototype.$show = function (displayType = "block", duration = 0) {
   for (let i = 0; i < this.length; i++) {
-    this[i].style.display = "none";
+    $showElement(this[i], displayType, duration);
   }
   return this;
 };
 
-function $show(param, displayType = "block") {
-  if (typeof param === "string") {
-    const element = document.querySelector(`#${param}`);
-    if (element) {
-      element.style.display = displayType;
-      return element;
-    } else {
-      console.warn(`show: element with ID ${param} not found`);
-      return null;
-    }
-  }
-  if (param instanceof NodeList) {
-    if (param.length === 0) {
-      console.warn("show: empty element collection");
-      return null;
-    }
-    for (let i = 0; i < param.length; i++) {
-      param[i].style.display = displayType;
-    }
-    return param;
-  }
-  if (param && param.style) {
-    param.style.display = displayType;
-    return param;
-  }
-  console.warn("show: element not found or invalid");
-  return null;
-}
-
-Element.prototype.$show = function (displayType = "block") {
-  this.style.display = displayType;
-  return this;
-};
-
-NodeList.prototype.$show = function (displayType = "block") {
-  for (let i = 0; i < this.length; i++) {
-    this[i].style.display = displayType;
-  }
-  return this;
-};
-
-function $toggle(param, displayType = "block") {
-  if (typeof param === "string") {
-    const element = document.querySelector(`#${param}`);
-    if (element) {
-      if (window.getComputedStyle(element).display === "none") {
-        $show(element, displayType);
-      } else {
-        $hide(element);
-      }
-      return element;
-    } else {
-      console.warn(`toggle: element with ID ${param} not found`);
-      return null;
-    }
-  }
-  if (param instanceof NodeList) {
-    if (param.length === 0) {
-      console.warn("toggle: empty element collection");
-      return null;
-    }
-    for (let i = 0; i < param.length; i++) {
-      const element = param[i];
-      if (window.getComputedStyle(element).display === "none") {
-        element.style.display = displayType;
-      } else {
-        element.style.display = "none";
-      }
-    }
-    return param;
-  }
-  if (param && param.style) {
-    if (window.getComputedStyle(param).display === "none") {
-      $show(param, displayType);
-    } else {
-      $hide(param);
-    }
-    return param;
-  }
-  console.warn("toggle: element not found or invalid");
-  return null;
-}
-
-Element.prototype.$toggle = function (displayType = "block") {
-  if (window.getComputedStyle(this).display === "none") {
-    this.style.display = displayType;
+function $toggleElement(element, displayType, duration) {
+  if (window.getComputedStyle(element).display === "none") {
+    $showElement(element, displayType, duration);
   } else {
-    this.style.display = "none";
+    $hideElement(element, duration);
   }
+}
+
+function $toggle(param, displayType = "block", duration = 0) {
+  if (typeof param === "string") {
+    const element = document.querySelector(param);
+    if (element) {
+      $toggleElement(element, displayType, duration);
+      return element;
+    } else {
+      return null;
+    }
+  }
+
+  if (param instanceof NodeList) {
+    if (param.length === 0) {
+      return null;
+    }
+    for (let i = 0; i < param.length; i++) {
+      $toggleElement(param[i], displayType, duration);
+    }
+    return param;
+  }
+
+  if (param && param.style) {
+    $toggleElement(param, displayType, duration);
+    return param;
+  }
+  return null;
+}
+
+Element.prototype.$toggle = function (displayType = "block", duration = 0) {
+  $toggleElement(this, displayType, duration);
   return this;
 };
 
-NodeList.prototype.$toggle = function (displayType = "block") {
+NodeList.prototype.$toggle = function (displayType = "block", duration = 0) {
   for (let i = 0; i < this.length; i++) {
-    const element = this[i];
-    if (window.getComputedStyle(element).display === "none") {
-      element.style.display = displayType;
-    } else {
-      element.style.display = "none";
-    }
+    $toggleElement(this[i], displayType, duration);
   }
   return this;
 };

@@ -1,0 +1,9 @@
+#javascript
+
+$toSentenceCase(string);
+
+$toSentenceCase("HELLO WORLD");
+// "Hello world"
+
+$toSentenceCase("tHiS iS mIxEd CaSe");
+// "This is mixed case"

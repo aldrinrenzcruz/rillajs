@@ -1,0 +1,27 @@
+#javascript
+
+$toKebabCase(string);
+
+// Basic usage
+$toKebabCase("Hello World");
+// Returns: "hello-world"
+
+// Handles multiple spaces and special characters
+$toKebabCase("This   is  a    test!");
+// Returns: "this-is-a-test"
+
+// Handles mixed case
+$toKebabCase("JavaScript Framework");
+// Returns: "javascript-framework"
+
+// Handles numbers
+$toKebabCase("Version 2.0 Release");
+// Returns: "version-2-0-release"
+
+// Handles special characters
+$toKebabCase("User@Name & Email!");
+// Returns: "user-name-email"
+
+// Handles leading/trailing spaces and characters
+$toKebabCase("  --Hello World--  ");
+// Returns: "hello-world"

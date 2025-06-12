@@ -13,6 +13,13 @@
     "dom-manipulation",
     "attributes-classes",
     "event-handling",
+
+    "toTitleCase-function",
+    "toTitleCase-method",
+    "toSentenceCase-function",
+    "toSentenceCase-method",
+    "toKebabCase-function",
+    "toKebabCase-method",
     "show-function",
     "show-method",
     "hide-function",

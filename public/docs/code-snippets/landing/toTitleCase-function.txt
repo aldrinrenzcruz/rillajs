@@ -1,0 +1,19 @@
+#javascript
+
+$toTitleCase(string, boolean);
+
+// Default behavior - proper title case (skips minor words)
+$toTitleCase("a tale of two cities: war and peace");
+// "A Tale of Two Cities: War and Peace"
+
+// Boolean true, capitalize minor words
+$toTitleCase("a tale of two cities: war and peace", true);
+// "A Tale Of Two Cities: War And Peace"
+
+// Handles possessive forms
+$toTitleCase("john's amazing adventure");
+// "John's Amazing Adventure"
+
+// Handles hyphenated words
+$toTitleCase("state-of-the-art technology");
+// "State-Of-The-Art Technology"

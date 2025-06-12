@@ -1,0 +1,10 @@
+#javascript
+
+string.$toSentenceCase();
+
+let text = "HELLO WORLD";
+text.$toSentenceCase();
+// "Hello world"
+
+"Lord of the RINGS".$toSentenceCase();
+// "Lord of the rings"
