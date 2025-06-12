@@ -4,12 +4,3 @@
 const button = $create("button")
   .text("Copy")
   .addClass("px-2 py-1 bg-gray-800 text-gray-400");
-
-// Append HTML to an element (returns the element for chaining)
-element.$append('<div class="new-item">Content</div>');
-
-// Prepend HTML
-element.$prepend('<header>New Header</header>');
-
-// Replace all content
-element.$paint('<div>New Content</div>');
