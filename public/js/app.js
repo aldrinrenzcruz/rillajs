@@ -1,15 +1,15 @@
 $dom(() => {
-  renderLandingCodeBlocks();
+  renderCodeBlocks();
 });
 
-function renderLandingCodeBlocks() {
-  fetch('./public/docs/code-snippets/landing/@landing.json')
+function renderCodeBlocks() {
+  fetch('./public/docs/code-snippets/@snippets.json')
     .then(response => response.json())
     .then(data => {
       const examples = data.examples;
       return Promise.all(
         examples.map(example => {
-          const url = `./public/docs/code-snippets/landing/${example}.txt`;
+          const url = `./public/docs/code-snippets/${example}.txt`;
           return fetch(url)
             .then(response => {
               if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
@@ -31,7 +31,7 @@ function renderLandingCodeBlocks() {
           if (!modifiedContent || lang === null) return;
           const codeblock = $(`.code-block[data-src=${example}]`);
           if (!codeblock) {
-            console.warn(`renderLandingCodeBlocks: data-src="${example}" element not found`);
+            console.warn(`renderCodeBlocks: data-src="${example}" element not found`);
             return;
           }
           codeblock
