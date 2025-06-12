@@ -15,7 +15,7 @@ Element.prototype.passive = function () {
       }
     });
   } catch (error) {
-    console.error("passive: Error setting passive option", error);
+    console.warn("passive: Error setting passive option", error);
   }
   return this;
 };
@@ -26,7 +26,7 @@ NodeList.prototype.passive = function () {
       element.passive();
     });
   } catch (error) {
-    console.error("passive: Error setting passive option on NodeList", error);
+    console.warn("passive: Error setting passive option on NodeList", error);
   }
   return this;
 };

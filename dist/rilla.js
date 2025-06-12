@@ -16,12 +16,12 @@ Element.prototype.$ = function (selector) {
 
 function $select(context, el) {
   if (typeof el !== "string" || !el.trim()) {
-    console.error(`$: invalid selector "${el}"`);
+    console.warn(`$: invalid selector "${el}"`);
     return null;
   }
 
   if (!(context instanceof Element) && context !== document) {
-    console.error(`$: invalid context`, context);
+    console.warn(`$: invalid context`, context);
     return null;
   }
 
@@ -30,12 +30,12 @@ function $select(context, el) {
   try {
     elements = context.querySelectorAll(el);
   } catch (error) {
-    console.error(`$: invalid selector "${el}"`, error);
+    console.warn(`$: invalid selector "${el}"`, error);
     return null;
   }
 
   if (!elements.length) {
-    console.error(`$: ${el} not found.`);
+    console.warn(`$: ${el} not found.`);
     return null;
   }
 
@@ -105,7 +105,7 @@ NodeList.prototype.$this = function (callback) {
 
 Element.prototype.$append = function (htmlString) {
   if (!htmlString) {
-    console.error("$append: invalid parameter");
+    console.warn("$append: invalid parameter");
     return this;
   }
   const template = document.createElement("template");
@@ -117,7 +117,7 @@ Element.prototype.$append = function (htmlString) {
 
 NodeList.prototype.$append = function (htmlString) {
   if (!htmlString) {
-    console.error("$append: invalid parameter");
+    console.warn("$append: invalid parameter");
     return this;
   }
   this.forEach(el => {
@@ -130,7 +130,7 @@ NodeList.prototype.$append = function (htmlString) {
 
 window.$create = function (tagName) {
   if (!tagName || typeof tagName !== "string") {
-    console.error("$create: invalid tag name");
+    console.warn("$create: invalid tag name");
     return null;
   }
   return document.createElement(tagName);
@@ -192,7 +192,7 @@ NodeList.prototype.$paint = function (htmlString) {
 
 Element.prototype.$prepend = function (htmlString) {
   if (!htmlString) {
-    console.error("$prepend: invalid parameter");
+    console.warn("$prepend: invalid parameter");
     return this;
   }
   const template = document.createElement("template");
@@ -204,7 +204,7 @@ Element.prototype.$prepend = function (htmlString) {
 
 NodeList.prototype.$prepend = function (htmlString) {
   if (!htmlString) {
-    console.error("$prepend: invalid parameter");
+    console.warn("$prepend: invalid parameter");
     return this;
   }
   this.forEach(el => {
@@ -338,7 +338,7 @@ Element.prototype.$wrap = function (content) {
   temp.innerHTML = content;
   const wrapper = temp.firstElementChild;
   if (!wrapper) {
-    console.error("$wrap: invalid argument");
+    console.warn("$wrap: invalid argument");
     return this;
   }
   const parent = this.parentNode;
@@ -422,9 +422,9 @@ Element.prototype.$off = function (event, handler) {
       return this;
     }
 
-    console.error("off: Invalid arguments");
+    console.warn("off: Invalid arguments");
   } catch (error) {
-    console.error("off: Error removing event listener(s)", error);
+    console.warn("off: Error removing event listener(s)", error);
   }
 
   return this;
@@ -442,7 +442,7 @@ NodeList.prototype.$off = function (event, handler) {
       }
     });
   } catch (error) {
-    console.error("off: Error removing event listener(s) from NodeList", error);
+    console.warn("off: Error removing event listener(s) from NodeList", error);
   }
 
   return this;
@@ -450,12 +450,12 @@ NodeList.prototype.$off = function (event, handler) {
 
 Element.prototype.$on = function (event, handler) {
   if (typeof event !== "string") {
-    console.error("on: Event type must be a string");
+    console.warn("on: Event type must be a string");
     return this;
   }
 
   if (typeof handler !== "function") {
-    console.error("on: Handler must be a function");
+    console.warn("on: Handler must be a function");
     return this;
   }
 
@@ -479,7 +479,7 @@ Element.prototype.$on = function (event, handler) {
     // Add the event listener
     this.addEventListener(event, handler);
   } catch (error) {
-    console.error(`on: Error adding '${event}' event listener`, error);
+    console.warn(`on: Error adding '${event}' event listener`, error);
   }
 
   return this;
@@ -487,12 +487,12 @@ Element.prototype.$on = function (event, handler) {
 
 NodeList.prototype.$on = function (event, handler) {
   if (typeof event !== "string") {
-    console.error("on: Event type must be a string");
+    console.warn("on: Event type must be a string");
     return this;
   }
 
   if (typeof handler !== "function") {
-    console.error("on: Handler must be a function");
+    console.warn("on: Handler must be a function");
     return this;
   }
 
@@ -501,7 +501,7 @@ NodeList.prototype.$on = function (event, handler) {
       element.$on(event, handler);
     });
   } catch (error) {
-    console.error(`on: Error adding '${event}' event listener to NodeList`, error);
+    console.warn(`on: Error adding '${event}' event listener to NodeList`, error);
   }
 
   return this;
@@ -538,7 +538,7 @@ Element.prototype.$prevent = function () {
       }
     });
   } catch (error) {
-    console.error("prevent: Error adding preventDefault", error);
+    console.warn("prevent: Error adding preventDefault", error);
   }
 
   return this;
@@ -550,7 +550,7 @@ NodeList.prototype.$prevent = function () {
       element.$prevent();
     });
   } catch (error) {
-    console.error("prevent: Error adding preventDefault to NodeList", error);
+    console.warn("prevent: Error adding preventDefault to NodeList", error);
   }
 
   return this;
@@ -589,7 +589,7 @@ Element.prototype.$stop = function () {
       }
     });
   } catch (error) {
-    console.error("stop: Error adding stopPropagation", error);
+    console.warn("stop: Error adding stopPropagation", error);
   }
 
   return this;
@@ -601,7 +601,7 @@ NodeList.prototype.$stop = function () {
       element.$stop();
     });
   } catch (error) {
-    console.error("stop: Error adding stopPropagation to NodeList", error);
+    console.warn("stop: Error adding stopPropagation to NodeList", error);
   }
 
   return this;
@@ -613,7 +613,7 @@ function $window(callback) {
 
 Element.prototype.$addClass = function (classNames) {
   if (typeof classNames !== "string") {
-    console.error("addClass: input must be a string");
+    console.warn("addClass: input must be a string");
     return this;
   }
   const classes = classNames.trim().split(/\s+/).filter(cls => cls);
@@ -624,14 +624,14 @@ Element.prototype.$addClass = function (classNames) {
   try {
     this.classList.add(...classes);
   } catch (error) {
-    console.error("addClass: error adding classes", error);
+    console.warn("addClass: error adding classes", error);
   }
   return this;
 };
 
 NodeList.prototype.$addClass = function (classNames) {
   if (typeof classNames !== "string") {
-    console.error("addClass: input must be a string");
+    console.warn("addClass: input must be a string");
     return this;
   }
   const classes = classNames.trim().split(/\s+/).filter(cls => cls);
@@ -644,7 +644,7 @@ NodeList.prototype.$addClass = function (classNames) {
       element.classList.add(...classes);
     });
   } catch (error) {
-    console.error("addClass: error adding classes", error);
+    console.warn("addClass: error adding classes", error);
   }
   return this;
 };
@@ -668,7 +668,7 @@ Element.prototype.$class = function (classNames) {
     return Array.from(this.classList);
   }
   if (typeof classNames !== "string") {
-    console.error("class: input must be a string");
+    console.warn("class: input must be a string");
     return this;
   }
   try {
@@ -682,7 +682,7 @@ Element.prototype.$class = function (classNames) {
       this.classList.add(...classes);
     }
   } catch (error) {
-    console.error("class: error setting classes", error);
+    console.warn("class: error setting classes", error);
   }
   return this;
 };
@@ -692,7 +692,7 @@ NodeList.prototype.$class = function (classNames) {
     return Array.from(this).map(element => Array.from(element.classList));
   }
   if (typeof classNames !== "string") {
-    console.error("class: input must be a string");
+    console.warn("class: input must be a string");
     return this;
   }
   try {
@@ -710,7 +710,7 @@ NodeList.prototype.$class = function (classNames) {
       }
     });
   } catch (error) {
-    console.error("class: error setting classes", error);
+    console.warn("class: error setting classes", error);
   }
   return this;
 };
@@ -801,13 +801,13 @@ Element.prototype.$hasClass = function (className) {
     return this.classList.length > 0;
   }
   if (typeof className !== "string") {
-    console.error("hasClass: Input must be a string");
+    console.warn("hasClass: Input must be a string");
     return false;
   }
   try {
     return this.classList.contains(className.trim());
   } catch (error) {
-    console.error("hasClass: Error checking classes", error);
+    console.warn("hasClass: Error checking classes", error);
     return false;
   }
 };
@@ -817,20 +817,20 @@ NodeList.prototype.$hasClass = function (className) {
     return Array.from(this).some(element => element.classList.length > 0);
   }
   if (typeof className !== "string") {
-    console.error("hasClass: Input must be a string");
+    console.warn("hasClass: Input must be a string");
     return false;
   }
   try {
     return Array.from(this).some(element => element.classList.contains(className.trim()));
   } catch (error) {
-    console.error("hasClass: Error checking classes", error);
+    console.warn("hasClass: Error checking classes", error);
     return false;
   }
 };
 
 Element.prototype.$removeClass = function (classNames) {
   if (typeof classNames !== "string") {
-    console.error("removeClass: input must be a string");
+    console.warn("removeClass: input must be a string");
     return this;
   }
   const classes = classNames.trim().split(/\s+/).filter(cls => cls);
@@ -841,14 +841,14 @@ Element.prototype.$removeClass = function (classNames) {
   try {
     this.classList.remove(...classes);
   } catch (error) {
-    console.error("removeClass: error removing classes", error);
+    console.warn("removeClass: error removing classes", error);
   }
   return this;
 };
 
 NodeList.prototype.$removeClass = function (classNames) {
   if (typeof classNames !== "string") {
-    console.error("removeClass: input must be a string");
+    console.warn("removeClass: input must be a string");
     return this;
   }
   const classes = classNames.trim().split(/\s+/).filter(cls => cls);
@@ -861,14 +861,14 @@ NodeList.prototype.$removeClass = function (classNames) {
       element.classList.remove(...classes);
     });
   } catch (error) {
-    console.error("removeClass: error removing classes", error);
+    console.warn("removeClass: error removing classes", error);
   }
   return this;
 };
 
 Element.prototype.$toggleClass = function (classNames) {
   if (typeof classNames !== "string") {
-    console.error("toggleClass: input must be a string");
+    console.warn("toggleClass: input must be a string");
     return this;
   }
   const classes = classNames.trim().split(/\s+/).filter(cls => cls);
@@ -879,14 +879,14 @@ Element.prototype.$toggleClass = function (classNames) {
   try {
     classes.forEach(cls => this.classList.toggle(cls));
   } catch (error) {
-    console.error("toggleClass: error toggling classes", error);
+    console.warn("toggleClass: error toggling classes", error);
   }
   return this;
 };
 
 NodeList.prototype.$toggleClass = function (classNames) {
   if (typeof classNames !== "string") {
-    console.error("toggleClass: input must be a string");
+    console.warn("toggleClass: input must be a string");
     return this;
   }
   const classes = classNames.trim().split(/\s+/).filter(cls => cls);
@@ -899,7 +899,7 @@ NodeList.prototype.$toggleClass = function (classNames) {
       classes.forEach(cls => element.classList.toggle(cls));
     });
   } catch (error) {
-    console.error("toggleClass: error toggling classes", error);
+    console.warn("toggleClass: error toggling classes", error);
   }
   return this;
 };

@@ -29,7 +29,7 @@ Element.prototype.$stop = function () {
       }
     });
   } catch (error) {
-    console.error("stop: Error adding stopPropagation", error);
+    console.warn("stop: Error adding stopPropagation", error);
   }
 
   return this;
@@ -41,7 +41,7 @@ NodeList.prototype.$stop = function () {
       element.$stop();
     });
   } catch (error) {
-    console.error("stop: Error adding stopPropagation to NodeList", error);
+    console.warn("stop: Error adding stopPropagation to NodeList", error);
   }
 
   return this;

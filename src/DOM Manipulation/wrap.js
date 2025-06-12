@@ -4,7 +4,7 @@ Element.prototype.$wrap = function (content) {
   temp.innerHTML = content;
   const wrapper = temp.firstElementChild;
   if (!wrapper) {
-    console.error("$wrap: invalid argument");
+    console.warn("$wrap: invalid argument");
     return this;
   }
   const parent = this.parentNode;

@@ -1,11 +1,11 @@
 Element.prototype.$on = function (event, handler) {
   if (typeof event !== "string") {
-    console.error("on: Event type must be a string");
+    console.warn("on: Event type must be a string");
     return this;
   }
 
   if (typeof handler !== "function") {
-    console.error("on: Handler must be a function");
+    console.warn("on: Handler must be a function");
     return this;
   }
 
@@ -29,7 +29,7 @@ Element.prototype.$on = function (event, handler) {
     // Add the event listener
     this.addEventListener(event, handler);
   } catch (error) {
-    console.error(`on: Error adding '${event}' event listener`, error);
+    console.warn(`on: Error adding '${event}' event listener`, error);
   }
 
   return this;
@@ -37,12 +37,12 @@ Element.prototype.$on = function (event, handler) {
 
 NodeList.prototype.$on = function (event, handler) {
   if (typeof event !== "string") {
-    console.error("on: Event type must be a string");
+    console.warn("on: Event type must be a string");
     return this;
   }
 
   if (typeof handler !== "function") {
-    console.error("on: Handler must be a function");
+    console.warn("on: Handler must be a function");
     return this;
   }
 
@@ -51,7 +51,7 @@ NodeList.prototype.$on = function (event, handler) {
       element.$on(event, handler);
     });
   } catch (error) {
-    console.error(`on: Error adding '${event}' event listener to NodeList`, error);
+    console.warn(`on: Error adding '${event}' event listener to NodeList`, error);
   }
 
   return this;

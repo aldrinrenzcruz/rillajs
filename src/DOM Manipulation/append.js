@@ -1,6 +1,6 @@
 Element.prototype.$append = function (htmlString) {
   if (!htmlString) {
-    console.error("$append: invalid parameter");
+    console.warn("$append: invalid parameter");
     return this;
   }
   const template = document.createElement("template");
@@ -12,7 +12,7 @@ Element.prototype.$append = function (htmlString) {
 
 NodeList.prototype.$append = function (htmlString) {
   if (!htmlString) {
-    console.error("$append: invalid parameter");
+    console.warn("$append: invalid parameter");
     return this;
   }
   this.forEach(el => {

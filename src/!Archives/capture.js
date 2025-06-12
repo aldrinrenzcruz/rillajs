@@ -15,7 +15,7 @@ Element.prototype.capture = function () {
       }
     });
   } catch (error) {
-    console.error("capture: Error setting capture option", error);
+    console.warn("capture: Error setting capture option", error);
   }
   return this;
 };
@@ -26,7 +26,7 @@ NodeList.prototype.capture = function () {
       element.capture();
     });
   } catch (error) {
-    console.error("capture: Error setting capture option on NodeList", error);
+    console.warn("capture: Error setting capture option on NodeList", error);
   }
   return this;
 };

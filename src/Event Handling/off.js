@@ -58,9 +58,9 @@ Element.prototype.$off = function (event, handler) {
       return this;
     }
 
-    console.error("off: Invalid arguments");
+    console.warn("off: Invalid arguments");
   } catch (error) {
-    console.error("off: Error removing event listener(s)", error);
+    console.warn("off: Error removing event listener(s)", error);
   }
 
   return this;
@@ -78,7 +78,7 @@ NodeList.prototype.$off = function (event, handler) {
       }
     });
   } catch (error) {
-    console.error("off: Error removing event listener(s) from NodeList", error);
+    console.warn("off: Error removing event listener(s) from NodeList", error);
   }
 
   return this;

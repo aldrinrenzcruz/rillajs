@@ -1,6 +1,6 @@
 Element.prototype.$addClass = function (classNames) {
   if (typeof classNames !== "string") {
-    console.error("addClass: input must be a string");
+    console.warn("addClass: input must be a string");
     return this;
   }
   const classes = classNames.trim().split(/\s+/).filter(cls => cls);
@@ -11,14 +11,14 @@ Element.prototype.$addClass = function (classNames) {
   try {
     this.classList.add(...classes);
   } catch (error) {
-    console.error("addClass: error adding classes", error);
+    console.warn("addClass: error adding classes", error);
   }
   return this;
 };
 
 NodeList.prototype.$addClass = function (classNames) {
   if (typeof classNames !== "string") {
-    console.error("addClass: input must be a string");
+    console.warn("addClass: input must be a string");
     return this;
   }
   const classes = classNames.trim().split(/\s+/).filter(cls => cls);
@@ -31,7 +31,7 @@ NodeList.prototype.$addClass = function (classNames) {
       element.classList.add(...classes);
     });
   } catch (error) {
-    console.error("addClass: error adding classes", error);
+    console.warn("addClass: error adding classes", error);
   }
   return this;
 };

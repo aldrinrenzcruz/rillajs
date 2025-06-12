@@ -31,7 +31,7 @@ function renderLandingCodeBlocks() {
           if (!modifiedContent || lang === null) return;
           const codeblock = $(`.code-block[data-src=${example}]`);
           if (!codeblock) {
-            $warn(`renderLandingCodeBlocks: data-src="${example}" element not found`);
+            console.warn(`renderLandingCodeBlocks: data-src="${example}" element not found`);
             return;
           }
           codeblock

@@ -29,7 +29,7 @@ Element.prototype.$prevent = function () {
       }
     });
   } catch (error) {
-    console.error("prevent: Error adding preventDefault", error);
+    console.warn("prevent: Error adding preventDefault", error);
   }
 
   return this;
@@ -41,7 +41,7 @@ NodeList.prototype.$prevent = function () {
       element.$prevent();
     });
   } catch (error) {
-    console.error("prevent: Error adding preventDefault to NodeList", error);
+    console.warn("prevent: Error adding preventDefault to NodeList", error);
   }
 
   return this;

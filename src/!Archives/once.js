@@ -15,7 +15,7 @@ Element.prototype.once = function () {
       }
     });
   } catch (error) {
-    console.error("once: Error setting once option", error);
+    console.warn("once: Error setting once option", error);
   }
   return this;
 };
@@ -25,7 +25,7 @@ NodeList.prototype.once = function () {
       element.once();
     });
   } catch (error) {
-    console.error("once: Error setting once option on NodeList", error);
+    console.warn("once: Error setting once option on NodeList", error);
   }
   return this;
 };

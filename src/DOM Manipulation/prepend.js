@@ -1,6 +1,6 @@
 Element.prototype.$prepend = function (htmlString) {
   if (!htmlString) {
-    console.error("$prepend: invalid parameter");
+    console.warn("$prepend: invalid parameter");
     return this;
   }
   const template = document.createElement("template");
@@ -12,7 +12,7 @@ Element.prototype.$prepend = function (htmlString) {
 
 NodeList.prototype.$prepend = function (htmlString) {
   if (!htmlString) {
-    console.error("$prepend: invalid parameter");
+    console.warn("$prepend: invalid parameter");
     return this;
   }
   this.forEach(el => {

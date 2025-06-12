@@ -1,6 +1,6 @@
 Element.prototype.$toggleClass = function (classNames) {
   if (typeof classNames !== "string") {
-    console.error("toggleClass: input must be a string");
+    console.warn("toggleClass: input must be a string");
     return this;
   }
   const classes = classNames.trim().split(/\s+/).filter(cls => cls);
@@ -11,14 +11,14 @@ Element.prototype.$toggleClass = function (classNames) {
   try {
     classes.forEach(cls => this.classList.toggle(cls));
   } catch (error) {
-    console.error("toggleClass: error toggling classes", error);
+    console.warn("toggleClass: error toggling classes", error);
   }
   return this;
 };
 
 NodeList.prototype.$toggleClass = function (classNames) {
   if (typeof classNames !== "string") {
-    console.error("toggleClass: input must be a string");
+    console.warn("toggleClass: input must be a string");
     return this;
   }
   const classes = classNames.trim().split(/\s+/).filter(cls => cls);
@@ -31,7 +31,7 @@ NodeList.prototype.$toggleClass = function (classNames) {
       classes.forEach(cls => element.classList.toggle(cls));
     });
   } catch (error) {
-    console.error("toggleClass: error toggling classes", error);
+    console.warn("toggleClass: error toggling classes", error);
   }
   return this;
 };

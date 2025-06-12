@@ -16,12 +16,12 @@ Element.prototype.$ = function (selector) {
 
 function $select(context, el) {
   if (typeof el !== "string" || !el.trim()) {
-    console.error(`$: invalid selector "${el}"`);
+    console.warn(`$: invalid selector "${el}"`);
     return null;
   }
 
   if (!(context instanceof Element) && context !== document) {
-    console.error(`$: invalid context`, context);
+    console.warn(`$: invalid context`, context);
     return null;
   }
 
@@ -30,12 +30,12 @@ function $select(context, el) {
   try {
     elements = context.querySelectorAll(el);
   } catch (error) {
-    console.error(`$: invalid selector "${el}"`, error);
+    console.warn(`$: invalid selector "${el}"`, error);
     return null;
   }
 
   if (!elements.length) {
-    console.error(`$: ${el} not found.`);
+    console.warn(`$: ${el} not found.`);
     return null;
   }
 

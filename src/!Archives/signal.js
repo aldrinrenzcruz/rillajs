@@ -8,7 +8,7 @@ Element.prototype.signal = function (abortSignal) {
       return this;
     }
     if (!(abortSignal instanceof AbortSignal)) {
-      console.error("signal: Parameter must be an AbortSignal");
+      console.warn("signal: Parameter must be an AbortSignal");
       return this;
     }
     const handlers = $rillaEvents.get(this);
@@ -21,7 +21,7 @@ Element.prototype.signal = function (abortSignal) {
       }
     });
   } catch (error) {
-    console.error("signal: Error setting signal option", error);
+    console.warn("signal: Error setting signal option", error);
   }
   return this;
 };
@@ -32,7 +32,7 @@ NodeList.prototype.signal = function (abortSignal) {
       element.signal(abortSignal);
     });
   } catch (error) {
-    console.error("signal: Error setting signal option on NodeList", error);
+    console.warn("signal: Error setting signal option on NodeList", error);
   }
   return this;
 };

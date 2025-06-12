@@ -1,6 +1,6 @@
 Element.prototype.$removeClass = function (classNames) {
   if (typeof classNames !== "string") {
-    console.error("removeClass: input must be a string");
+    console.warn("removeClass: input must be a string");
     return this;
   }
   const classes = classNames.trim().split(/\s+/).filter(cls => cls);
@@ -11,14 +11,14 @@ Element.prototype.$removeClass = function (classNames) {
   try {
     this.classList.remove(...classes);
   } catch (error) {
-    console.error("removeClass: error removing classes", error);
+    console.warn("removeClass: error removing classes", error);
   }
   return this;
 };
 
 NodeList.prototype.$removeClass = function (classNames) {
   if (typeof classNames !== "string") {
-    console.error("removeClass: input must be a string");
+    console.warn("removeClass: input must be a string");
     return this;
   }
   const classes = classNames.trim().split(/\s+/).filter(cls => cls);
@@ -31,7 +31,7 @@ NodeList.prototype.$removeClass = function (classNames) {
       element.classList.remove(...classes);
     });
   } catch (error) {
-    console.error("removeClass: error removing classes", error);
+    console.warn("removeClass: error removing classes", error);
   }
   return this;
 };
