@@ -1,0 +1,12 @@
+#javascript
+
+// Using a regular function
+$dom(function() {
+  console.log('DOM is ready!');
+  // Your initialization code here
+});
+
+// Using an arrow function
+$dom(() => {
+  console.log('DOM is ready!');
+});

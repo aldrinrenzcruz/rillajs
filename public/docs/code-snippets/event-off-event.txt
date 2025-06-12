@@ -1,0 +1,5 @@
+#javascript
+
+element.$off(event);
+
+$('#my-element').$off('click');

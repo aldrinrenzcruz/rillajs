@@ -1,0 +1,12 @@
+#javascript
+
+// Using a regular function
+$window(function() {
+  console.log('Everything is loaded!');
+  // Your code here
+});
+
+// Using an arrow function
+$window(() => {
+  console.log('Page fully loaded!');
+});

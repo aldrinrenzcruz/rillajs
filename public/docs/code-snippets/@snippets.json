@@ -20,6 +20,7 @@
     "data-get-specific",
     "data-html",
     "data-set",
+    "dom",
     "dom-manipulation",
     "dom-selection-chaining",
     "dom-selection-s",
@@ -27,7 +28,12 @@
     "dom-selection-within-element",
     "draggable",
     "draggable-css",
-    "event-handling",
+    "event-off-all",
+    "event-off-event",
+    "event-off-specific",
+    "event-on",
+    "event-prevent",
+    "event-stop",
     "global-usage",
     "hasClass",
     "hide-function",
@@ -54,6 +60,7 @@
     "toTitleCase-method",
     "toggle-function",
     "toggle-method",
-    "toggleClass"
+    "toggleClass",
+    "window"
   ]
 }

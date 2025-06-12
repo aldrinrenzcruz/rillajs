@@ -1,0 +1,9 @@
+#javascript
+
+element.$("on" () => {...}).$prevent();
+
+$('#myForm')
+  .$on('submit', function(e) {
+    console.log('Form submitted');
+  })
+  .$prevent();

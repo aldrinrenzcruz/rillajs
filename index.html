@@ -368,8 +368,8 @@
           $on
           <a href="./src/Event Handling/on.js" target="_blank">Raw</a>
         </h3>
-        <p>TODO: placeholder text</p>
-        <div class="code-block" data-src="on-method-sample-usage"></div>
+        <p>Add an <kbd>event listener</kbd> to a element:</p>
+        <div class="code-block" data-src="event-on"></div>
       </article>
 
       <article id="off" class="item">
@@ -377,8 +377,12 @@
           $off
           <a href="./src/Event Handling/off.js" target="_blank">Raw</a>
         </h3>
-        <p>TODO: placeholder text</p>
-        <div class="code-block" data-src="off-method-sample-usage"></div>
+        <p>Remove all the event listeners of an element:</p>
+        <div class="code-block" data-src="event-off-all"></div>
+        <p>Remove all listeners for a specific event:</p>
+        <div class="code-block" data-src="event-off-event"></div>
+        <p>Remove a specific event listener:</p>
+        <div class="code-block" data-src="event-off-specific"></div>
       </article>
 
       <article id="prevent" class="item">
@@ -386,8 +390,8 @@
           $prevent
           <a href="./src/Event Handling/prevent.js" target="_blank">Raw</a>
         </h3>
-        <p>TODO: placeholder text</p>
-        <div class="code-block" data-src="prevent-method-sample-usage"></div>
+        <p>Add <kbd>preventDefault()</kbd> to an event listener:</p>
+        <div class="code-block" data-src="event-prevent"></div>
       </article>
 
       <article id="stop" class="item">
@@ -395,8 +399,8 @@
           $stop
           <a href="./src/Event Handling/stop.js" target="_blank">Raw</a>
         </h3>
-        <p>TODO: placeholder text</p>
-        <div class="code-block" data-src="stop-method-sample-usage"></div>
+        <p>Add <kbd>stopPropagation()</kbd> to an event listener:</p>
+        <div class="code-block" data-src="event-stop"></div>
       </article>
 
       <article id="dom" class="item">
@@ -404,8 +408,8 @@
           $dom
           <a href="./src/Event Handling/dom.js" target="_blank">Raw</a>
         </h3>
-        <p>TODO: placeholder text</p>
-        <div class="code-block" data-src="dom-method-sample-usage"></div>
+        <p>Execute code when the DOM is fully loaded and ready:</p>
+        <div class="code-block" data-src="dom"></div>
       </article>
 
       <article id="window" class="item">
@@ -413,16 +417,13 @@
           $window
           <a href="./src/Event Handling/window.js" target="_blank">Raw</a>
         </h3>
-        <p>TODO: placeholder text</p>
-        <div class="code-block" data-src="window-method-sample-usage"></div>
+        <p>Execute code when the entire page (including all resources) has finished loading:</p>
+        <div class="code-block" data-src="window"></div>
       </article>
-
-      <div class="code-block" data-src="event-handling"></div>
     </section>
 
     <section>
       <h2 id="attribute-utilities">Attribute Utilities</h2>
-
       <article id="attr" class="item">
         <h3>
           $attr
@@ -433,7 +434,6 @@
         <p><kbd>SET</kbd> the value of an <kbd>attribute</kbd>:</p>
         <div class="code-block" data-src="attr-set"></div>
       </article>
-
       <article id="data" class="item">
         <h3>
           $data
@@ -468,9 +468,6 @@
         <p><kbd>SET</kbd> multilple properties (object):</p>
         <div class="code-block" data-src="css-set-multiple"></div>
       </article>
-
-      <h1 id="heading" class="mb-2 pb-3 font-bold text-3xl tracking-wider text-rose-600"></h1>
-
       <article id="class" class="item">
         <h3>
           $class
@@ -487,7 +484,6 @@
         <p><kbd>DELETE</kbd> the <kbd>class</kbd> of an element:</p>
         <div class="code-block" data-src="class-delete"></div>
       </article>
-
       <article id="hasClass" class="item">
         <h3>
           $hasClass
@@ -496,7 +492,6 @@
         <p>Check if an element has a specific class. Returns a boolean:</p>
         <div class="code-block" data-src="hasClass"></div>
       </article>
-
       <article id="addClass" class="item">
         <h3>
           $addClass
@@ -505,7 +500,6 @@
         <p>Add a class/classes to an element:</p>
         <div class="code-block" data-src="addClass"></div>
       </article>
-
       <article id="removeClass" class="item">
         <h3>
           $removeClass
@@ -514,7 +508,6 @@
         <p>Remove a class/classes from an element:</p>
         <div class="code-block" data-src="removeClass"></div>
       </article>
-
       <article id="toggleClass" class="item">
         <h3>
           $toggleClass
@@ -539,7 +532,6 @@
         <p>Everything above, as a method:</p>
         <div class="code-block" data-src="toTitleCase-method"></div>
       </article>
-
       <article id="toSentenceCase" class="item">
         <h3>
           $toSentenceCase
@@ -550,7 +542,6 @@
         <p>Everything above, as a method:</p>
         <div class="code-block" data-src="toSentenceCase-method"></div>
       </article>
-
       <article id="toKebabCase" class="item">
         <h3>
           $toKebabCase
@@ -575,7 +566,6 @@
         <p>As a method:</p>
         <div class="code-block" data-src="show-method"></div>
       </article>
-
       <article id="hide" class="item">
         <h3>
           $hide
@@ -586,7 +576,6 @@
         <p>As a method:</p>
         <div class="code-block" data-src="hide-method"></div>
       </article>
-
       <article id="toggle" class="item">
         <h3>
           $toggle
@@ -628,7 +617,6 @@
         <p><kbd>DELETE</kbd> a <kbd>localStorage</kbd> key and its value:</p>
         <div class="code-block" data-src="local-delete"></div>
       </article>
-
       <article id="session" class="item">
         <h3>
           $session
