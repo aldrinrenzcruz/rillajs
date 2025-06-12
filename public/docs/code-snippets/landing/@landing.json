@@ -11,7 +11,6 @@
     "children-method-sample-usage",
     "siblings-method-sample-usage",
     "dom-manipulation",
-    "attributes-classes",
     "event-handling",
     "attr-get",
     "attr-set",
@@ -31,6 +30,10 @@
 "class-check",
 "class-set",
 "class-delete",
+"hasClass",
+"addClass",
+"removeClass",
+"toggleClass",
 
     "toTitleCase-function",
     "toTitleCase-method",

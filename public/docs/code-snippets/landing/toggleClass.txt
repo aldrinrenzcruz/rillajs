@@ -1,0 +1,7 @@
+#javascript
+
+element.$toggleClass(className);
+
+link.$toggleClass("active");
+
+btn.$toggleClass('btn primary large');

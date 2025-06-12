@@ -1,0 +1,7 @@
+#javascript
+
+element.$removeClass(className);
+
+link.$removeClass("active");
+
+btn.$removeClass('btn primary large');

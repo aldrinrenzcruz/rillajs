@@ -1,0 +1,7 @@
+#javascript
+
+element.$addClass(className);
+
+link.$addClass("active");
+
+btn.$addClass('btn primary large');

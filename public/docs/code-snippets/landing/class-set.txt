@@ -1,6 +1,6 @@
 #javascript
 
-element.$class(value);
+element.$class(className);
 
 $("#heading").$class("new-class another-class");
 // Result: <h1 id="heading" class="new-class another-class"></h1>

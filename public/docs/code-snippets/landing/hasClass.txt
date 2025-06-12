@@ -1,0 +1,5 @@
+#javascript
+
+element.$hasClass(className);
+
+element.$hasClass("items"); // true or false
