@@ -395,7 +395,3 @@ Explore the source code, report issues, or contribute on [GitHub](https://github
 ## 📄 License
 
 Rilla.js is open source and distributed under the [MIT License](LICENSE).
-
----
-
-Made with ❤️ by [Aldrin Renz Cruz](https://github.com/aldrinrenzcruz)
