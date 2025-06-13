@@ -1,6 +1,7 @@
 $dom(() => {
   renderCodeBlocks();
   $("main a").secureLinks();
+  $("footer a").secureLinks();
 });
 
 function renderCodeBlocks() {
