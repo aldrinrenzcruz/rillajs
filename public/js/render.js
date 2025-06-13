@@ -112,7 +112,6 @@ const sidebarListData = [
     title: "More Information",
     href: "#more-information",
     items: [
-      { title: "Browser Support", href: "#browser-support" },
       { title: "Github", href: "#github" },
       { title: "License", href: "#license" }
     ]
