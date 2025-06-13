@@ -51,6 +51,7 @@
     "parent-method-sample-usage",
     "prepend",
     "removeClass",
+    "render",
     "session-delete",
     "session-get",
     "session-set",

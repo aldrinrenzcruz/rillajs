@@ -31,6 +31,7 @@ const sidebarListData = [
     items: [
       { title: "wrap", href: "#wrap" },
       { title: "unwrap", href: "#unwrap" },
+      { title: "render", href: "#render" },
       { title: "prepend", href: "#prepend" },
       { title: "append", href: "#append" },
       { title: "before", href: "#before" },

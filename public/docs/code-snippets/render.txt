@@ -1,0 +1,31 @@
+#javascript
+
+element.$paint(htmlString);
+
+// Sample data object
+let section = {
+  title: "My Tasks",
+  items: [
+    { id: 1, text: "Complete project proposal", done: false },
+    { id: 2, text: "Review team feedback", done: true },
+    { id: 3, text: "Schedule client meeting", done: false }
+  ]
+};
+
+// Sample template
+let template = `
+  <div>
+    <h1>${section.title}</h1>
+    <ul>
+      ${section.items.map(item => `
+        <li class="task-item ${item.done ? "completed" : "pending"}">
+          <input type="checkbox" ${item.done ? "checked" : ""}>
+          <span>${item.text}</span>
+        </li>
+      `).join("")}
+    </ul>
+    <p>Total: ${section.items.length} tasks</p>
+  </div>
+`;
+
+$("#container").$paint(template);
