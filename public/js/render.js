@@ -117,7 +117,7 @@ function renderSidebar() {
       <li><a href="${item.href}">${item.title}</a></li>
     `).join("");
     return `
-      <li${index > 0 ? ' class="pt-2"' : ''}>
+      <li${index > 0 ? " class='pt-2'" : ""}>
         <span>
           <a href="${section.href}">${section.title}</a>
         </span>
