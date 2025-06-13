@@ -87,18 +87,18 @@ const sidebarListData = [
     ]
   },
   {
-    title: "Element Interaction",
-    href: "#element-interaction",
-    items: [
-      { title: "draggable", href: "#draggable" }
-    ]
-  },
-  {
     title: "Storage Utilities",
     href: "#storage-utilities",
     items: [
       { title: "local", href: "#local" },
       { title: "session", href: "#session" }
+    ]
+  },
+  {
+    title: "Element Interaction",
+    href: "#element-interaction",
+    items: [
+      { title: "draggable", href: "#draggable" }
     ]
   },
   {
