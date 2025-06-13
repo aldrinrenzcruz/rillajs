@@ -1,0 +1,35 @@
+Navigation/History:
+
+$back() - go back in history (window.history.back())
+$forward() - go forward in history (window.history.forward())
+$reload() - reload page (window.location.reload())
+$redirect(url) - navigate to URL (window.location.href = url)
+
+Query/Search utilities:
+
+$query() - get all URL parameters as an object
+$hasParam(key) - check if parameter exists
+
+Browser info:
+
+$userAgent() - get user agent string
+$referrer() - get referring URL
+$title(newTitle) - get/set page title
+
+Storage helpers:
+
+$cookie(key, value) - get/set cookies (though you mentioned no localStorage/sessionStorage)
+
+Viewport/Screen:
+
+$scroll(x, y) - scroll to position
+$viewport() - get viewport dimensions
+
+The most commonly useful additions to your set would probably be:
+
+$query() - to get all parameters as an object
+$redirect(url) - for navigation
+$reload() - for page refresh
+$title() - for page title management
+
+Would any of these be useful for your utility collection?
