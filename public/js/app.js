@@ -5,13 +5,13 @@ $dom(() => {
 });
 
 function renderCodeBlocks() {
-  fetch('./docs/code-snippets/@snippets.json')
+  let dir = "./docs/code-snippets";
+  fetch(`${dir}/@snippets.json`)
     .then(response => response.json())
     .then(data => {
-      const examples = data.examples;
       return Promise.all(
-        examples.map(example => {
-          const url = `./docs/code-snippets/${example}.txt`;
+        data.map(snippet => {
+          const url = `${dir}/${snippet}.txt`;
           return fetch(url)
             .then(response => {
               if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
@@ -21,19 +21,19 @@ function renderCodeBlocks() {
               const lines = data.split("\n");
               const lang = lines[0].replace(/^#\s*/, "");
               const modifiedContent = lines.slice(2).join("\n");
-              return { example, modifiedContent, lang };
+              return { snippet, modifiedContent, lang };
             })
             .catch(err => {
               console.error(`Error fetching ${url}:`, err);
-              return { example, modifiedContent: null, lang: null };
+              return { snippet, modifiedContent: null, lang: null };
             });
         })
       ).then(results => {
-        results.forEach(({ example, modifiedContent, lang }) => {
+        results.forEach(({ snippet, modifiedContent, lang }) => {
           if (!modifiedContent || lang === null) return;
-          const codeblock = $(`.code-block[data-src=${example}]`);
+          const codeblock = $(`.code-block[data-src=${snippet}]`);
           if (!codeblock) {
-            console.warn(`renderCodeBlocks: data-src="${example}" element not found`);
+            console.warn(`renderCodeBlocks: data-src="${snippet}" element not found`);
             return;
           }
           codeblock

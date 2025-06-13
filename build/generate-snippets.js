@@ -29,13 +29,7 @@ function generateSnippetsJson() {
       console.warn('⚠️  No .txt files found in the directory');
     }
 
-    // Create the JSON structure
-    const snippetsData = {
-      examples: txtFiles
-    };
-
-    // Write to @snippets.json
-    fs.writeFileSync(outputFile, JSON.stringify(snippetsData, null, 2), 'utf8');
+    fs.writeFileSync(outputFile, JSON.stringify(txtFiles, null, 2), 'utf8');
 
     console.log('✅ Successfully generated @snippets.json');
     console.log(`📁 Location: ${outputFile}`);
