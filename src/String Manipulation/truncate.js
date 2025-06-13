@@ -1,8 +1,8 @@
-function $truncate(text, count, trim = true) {
-  let truncated = text.slice(0, count);
+function $truncate(text, length, trim = true) {
+  let truncated = text.slice(0, length);
   return (trim ? truncated.replace(/[^\w]+$/, "") : truncated) + "...";
 }
 
-String.prototype.$truncate = function (count, trim = true) {
-  return $truncate(this, count, trim);
+String.prototype.$truncate = function (length, trim = true) {
+  return $truncate(this, length, trim);
 };

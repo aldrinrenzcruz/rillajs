@@ -1,6 +1,6 @@
 #javascript
 
-string.$truncate(count, trim);
+string.$truncate(length, trim);
 
 let text = "...";
 text.$truncate(text, 30);

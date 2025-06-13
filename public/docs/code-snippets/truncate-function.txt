@@ -1,13 +1,13 @@
 #javascript
 
-$truncate(text, count, trim);
+$truncate(text, length, trim);
 
-// pass a string directly
+// passing a string directly
 $truncate("No. I am the one who knocks.", 20); // "No. I am the one who..."
 
 let text = "No more half measures, Walter.";
 
-// pass a string variable
+// passing a string variable
 $truncate(text, 10); // "No more ha..."
 
 // trim special characters at the end, defaults to true
