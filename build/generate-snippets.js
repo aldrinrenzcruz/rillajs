@@ -2,11 +2,11 @@ const fs = require('fs');
 const path = require('path');
 
 /**
- * Script to generate @snippets.json from .txt files in public/docs/code-snippets directory
+ * Script to generate @snippets.json from .txt files in docs/code-snippets directory
  */
 
 function generateSnippetsJson() {
-  const snippetsDir = path.join(process.cwd(), 'public', 'docs', 'code-snippets');
+  const snippetsDir = path.join(process.cwd(), 'docs', 'code-snippets');
   const outputFile = path.join(snippetsDir, '@snippets.json');
 
   try {
@@ -40,8 +40,6 @@ function generateSnippetsJson() {
     console.log('✅ Successfully generated @snippets.json');
     console.log(`📁 Location: ${outputFile}`);
     console.log(`📊 Found ${txtFiles.length} .txt files:`);
-    txtFiles.forEach(file => console.log(`   - ${file}`));
-
   } catch (error) {
     console.error('❌ Error generating snippets:', error.message);
     process.exit(1);

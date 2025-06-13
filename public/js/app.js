@@ -5,13 +5,13 @@ $dom(() => {
 });
 
 function renderCodeBlocks() {
-  fetch('./public/docs/code-snippets/@snippets.json')
+  fetch('./docs/code-snippets/@snippets.json')
     .then(response => response.json())
     .then(data => {
       const examples = data.examples;
       return Promise.all(
         examples.map(example => {
-          const url = `./public/docs/code-snippets/${example}.txt`;
+          const url = `./docs/code-snippets/${example}.txt`;
           return fetch(url)
             .then(response => {
               if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);

@@ -39,8 +39,6 @@ let files = [];
 directories.forEach(dir => {
   const dirPath = path.join(sourceDir, dir);
   const dirFiles = getFilesFromDirectory(dirPath);
-
-  console.log(`Found ${dirFiles.length} files in ${dir}/`);
   files = files.concat(dirFiles);
 });
 
@@ -50,7 +48,6 @@ const mergedContent = files
   .map(file => {
     const filePath = path.join(sourceDir, file);
     if (fs.existsSync(filePath)) {
-      console.log(`✔ Adding: ${file}`);
       return fs.readFileSync(filePath, "utf-8");
     } else {
       console.warn(`⚠ File not found: ${file}`);
