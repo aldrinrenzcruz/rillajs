@@ -106,6 +106,9 @@ const sidebarListData = [
     title: "URL Utilities",
     href: "#url-utilities",
     items: [
+      { title: "url", href: "#url" },
+      { title: "param", href: "#param" },
+      { title: "hash", href: "#hash" },
       { title: "secureLinks", href: "#secureLinks" }
     ]
   },

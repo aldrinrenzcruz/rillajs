@@ -1,0 +1,6 @@
+#javascript
+
+$param(key, value);
+
+$param("color", "red"); // https://example.com/page?category=sneakers&color=red
+$param("size", "10");   // https://example.com/page?category=sneakers&color=red&size=10

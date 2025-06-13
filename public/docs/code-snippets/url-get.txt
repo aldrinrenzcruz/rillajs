@@ -1,0 +1,21 @@
+#javascript
+
+$url();
+
+// Sample URL
+"https://example.com/products/shoes?category=sneakers&color=blue&size=10&sale=true#reviews"
+
+$url();
+// "https://example.com/products/shoes?category=sneakers&color=blue&size=10&sale=true#reviews"
+
+// Get specific property
+$url("protocol");  // "https:"
+$url("hostname");  // "example.com"
+$url("host");      // "example.com"
+$url("port");      // ""
+$url("pathname");  // "/products/shoes"
+$url("search");    // "?category=sneakers&color=blue&size=10&sale=true"
+$url("hash");      // "#reviews"
+$url("origin");    // "https://example.com"
+$url("username");  // ""
+$url("password");  // ""

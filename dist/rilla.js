@@ -1191,6 +1191,27 @@ function $session(key, value) {
   return $rillaStore("session", key, value);
 }
 
+function $hash(value) {
+  if (value === undefined) {
+    return window.location.hash.slice(1);
+  } else {
+    window.location.hash = value;
+    return value;
+  }
+}
+
+function $param(key, value) {
+  const params = new URLSearchParams(window.location.search);
+  if (value === undefined) {
+    return params.get(key);
+  } else {
+    params.set(key, value);
+    const newUrl = window.location.pathname + '?' + params.toString() + window.location.hash;
+    window.history.replaceState({}, '', newUrl);
+    return value;
+  }
+}
+
 Element.prototype.secureLinks = function (noopener = true, noreferrer = true) {
   return this.$("a").$this(link => {
     !link.$attr("target") && link.$attr("target", "_blank");
@@ -1204,3 +1225,11 @@ Element.prototype.secureLinks = function (noopener = true, noreferrer = true) {
 NodeList.prototype.secureLinks = function (noopener = true, noreferrer = true) {
   return this.forEach(el => el.secureLinks(noopener, noreferrer)) || this;
 };
+
+function $url(property) {
+  if (property === undefined) {
+    return window.location.href;
+  } else {
+    return window.location[property];
+  }
+}

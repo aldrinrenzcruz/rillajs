@@ -1,0 +1,9 @@
+#javascript
+
+$hash();
+
+// Sample URL
+https://example.com/products/shoes?category=sneakers&color=blue&size=10&sale=true#reviews
+
+$hash();
+// "reviews"

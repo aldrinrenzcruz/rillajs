@@ -1,0 +1,6 @@
+#javascript
+
+$param(key);
+
+$param("category");    // "sneakers"
+$param("nonexistent"); // null

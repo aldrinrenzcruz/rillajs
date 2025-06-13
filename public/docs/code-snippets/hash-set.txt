@@ -1,0 +1,6 @@
+#javascript
+
+$hash(value);
+
+$hash("freebies");
+// https://example.com/products/shoes?category=sneakers&color=blue&size=10&sale=true#freebies
