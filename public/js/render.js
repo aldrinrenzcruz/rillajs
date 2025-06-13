@@ -111,30 +111,25 @@ const sidebarListData = [
   }
 ];
 
-function generateNavigation(data) {
-  return data.map((section, index) => {
-    const subItems = section.items.map(item => `
-  <li><a href="${item.href}" class="block hover:text-rose-500 transition">${item.title}</a></li>
-  `).join('');
-
+function renderSidebar() {
+  const template = sidebarListData.map((section, index) => {
+    const listItems = section.items.map(item => `
+      <li><a href="${item.href}">${item.title}</a></li>
+    `).join("");
     return `
-  <li${index > 0 ? ' class="pt-2"' : ''}>
-    <span class="font-bold text-gray-600 uppercase text-xs tracking-wide">
-      <a href="${section.href}" class="text-gray-600">${section.title}</a>
-    </span>
-    <ul class="space-y-2 text-sm mt-2 pl-4">
-      ${subItems}
-    </ul>
-  </li>
-  `;
-  }).join('');
+      <li${index > 0 ? ' class="pt-2"' : ''}>
+        <span>
+          <a href="${section.href}">${section.title}</a>
+        </span>
+        <ul class="space-y-2 text-sm mt-2 pl-4">
+          ${listItems}
+        </ul>
+      </li>
+    `;
+  }).join("");
+  $("#sidebar-list-placeholder").$append(template);
 }
 
-function renderNavigation() {
-  const sidebarList = document.getElementById('sidebar-list-placeholder');
-  if (sidebarList) {
-    sidebarList.innerHTML = generateNavigation(sidebarListData);
-  }
-}
-
-document.addEventListener('DOMContentLoaded', renderNavigation);
+$dom(() => {
+  renderSidebar();
+})

@@ -169,3 +169,24 @@ article .item h3 {
 article .item h3 a {
   text-decoration: underline;
 }
+
+#sidebar li {
+  & a {
+    transition: color;
+    &:hover {
+      color: var(--color-rose-500);
+    }
+  }
+
+  & span {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.75rem;
+    letter-spacing: 0.025em;
+    color: var(--color-gray-600);
+
+    & a {
+      color: var(--color-rose-600);
+    }
+  }
+}
