@@ -2,12 +2,12 @@
 
 $truncate(text, count, trim);
 
-// passing a string directly
+// pass a string directly
 $truncate("No. I am the one who knocks.", 20); // "No. I am the one who..."
 
 let text = "No more half measures, Walter.";
 
-// passing a string variable
+// pass a string variable
 $truncate(text, 10); // "No more ha..."
 
 // trim special characters at the end, defaults to true
@@ -17,4 +17,4 @@ $truncate(text, 22); // "No more half measures..."
 $truncate(text, 22, false); // "No more half measures,..."
 
 // start count at the end
-$truncate(text, "-10"); // "No more half measure..."
+$truncate(text, -10); // "No more half measure..."
