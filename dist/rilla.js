@@ -1183,7 +1183,7 @@ function $session(key, value) {
 }
 
 Element.prototype.secureLinks = function (noopener = true, noreferrer = true) {
-  return this.$this(link => {
+  return this.$("a").$this(link => {
     !link.$attr("target") && link.$attr("target", "_blank");
     const rel = (link.$attr("rel") || "").split(" ").filter(Boolean);
     noopener && !rel.includes("noopener") && rel.push("noopener");

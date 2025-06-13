@@ -1,7 +1,7 @@
 $dom(() => {
   renderCodeBlocks();
-  $("main a").secureLinks();
-  $("footer a").secureLinks();
+  $("main").secureLinks();
+  $("footer").secureLinks();
 });
 
 function renderCodeBlocks() {
