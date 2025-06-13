@@ -1,0 +1,6 @@
+#javascript
+
+string.$truncate(count, trim);
+
+let text = "Alas, lady, I am but the heir of Isildur, not Isildur himself";
+text.$truncate(text, 30); // "Alas, lady, I am but the heir..."

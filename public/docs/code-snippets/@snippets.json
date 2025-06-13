@@ -71,6 +71,8 @@
     "toggle-function",
     "toggle-method",
     "toggleClass",
+    "truncate-function",
+    "truncate-method",
     "unwrap-multiple-children",
     "unwrap-only-child",
     "value-get",

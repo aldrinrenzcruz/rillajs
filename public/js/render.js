@@ -74,7 +74,8 @@ const sidebarListData = [
     items: [
       { title: "toTitleCase", href: "#toTitleCase" },
       { title: "toSentenceCase", href: "#toSentenceCase" },
-      { title: "toKebabCase", href: "#toKebabCase" }
+      { title: "toKebabCase", href: "#toKebabCase" },
+      { title: "truncate", href: "#truncate" }
     ]
   },
   {

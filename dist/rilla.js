@@ -952,6 +952,15 @@ String.prototype.$toTitleCase = function (capitalizeMinorWords = false) {
   return $toTitleCase(this, capitalizeMinorWords);
 };
 
+function $truncate(text, count, trim = true) {
+  let truncated = text.slice(0, count);
+  return (trim ? truncated.replace(/[^\w]+$/, "") : truncated) + "...";
+}
+
+String.prototype.$truncate = function (count, trim = true) {
+  return $truncate(this, count, trim);
+};
+
 window.addEventListener("load", function () {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   var popups = document.getElementsByClassName("draggable");
