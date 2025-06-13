@@ -1,0 +1,6 @@
+#javascript
+
+$("main a").secureLinks(); // Default: target="_blank" rel="noopener noreferrer"
+$("main a").secureLinks(true, false); // target="_blank" rel="noopener"
+$(".content a").secureLinks(false, true); // target="_blank" rel="noreferrer"
+$(".content a").secureLinks(false, false); // target="_blank"

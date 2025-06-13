@@ -1,6 +1,6 @@
 $dom(() => {
   renderCodeBlocks();
-  secureAnchorTags();
+  $("main a").secureLinks();
 });
 
 function renderCodeBlocks() {
@@ -66,20 +66,3 @@ function renderCodeBlocks() {
       console.error("Error loading .json:", err);
     });
 }
-
-function secureAnchorTags(noopener = true, noreferrer = true) {
-  $("main a").$this(link => {
-    link.$attr("target") === null && link.$attr("target", "_blank");
-    const relExists = link.$attr("rel");
-    let rel = relExists ? relExists.split(" ").filter(i => i.trim() !== "") : [];
-    noopener && !rel.includes("noopener") && rel.push("noopener");
-    noreferrer && !rel.includes("noreferrer") && rel.push("noreferrer");
-    rel.length > 0 && link.$attr("rel", rel.join(" "));
-  });
-}
-
-// Usage examples:
-// secureAnchorTags(); // Default: target="_blank" rel="noopener noreferrer"
-// secureAnchorTags(true, false); // target="_blank" rel="noopener"
-// secureAnchorTags(false, true); // target="_blank" rel="noreferrer"
-// secureAnchorTags(false, false); // target="_blank"

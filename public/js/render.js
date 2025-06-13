@@ -102,6 +102,13 @@ const sidebarListData = [
     ]
   },
   {
+    title: "URL Utilities",
+    href: "#url-utilities",
+    items: [
+      { title: "secureLinks", href: "#secureLinks" }
+    ]
+  },
+  {
     title: "More Information",
     href: "#more-information",
     items: [

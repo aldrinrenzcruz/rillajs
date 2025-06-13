@@ -15,6 +15,7 @@ const directories = [
   "Element Interaction",
   "Element Visibility",
   "Storage Utilities",
+  "URL Utilities",
 ];
 
 fs.ensureDirSync(outputDir);
