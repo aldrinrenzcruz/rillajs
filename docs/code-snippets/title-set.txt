@@ -1,0 +1,5 @@
+#javascript
+
+$title(newTitle);
+
+$title("Rillafy - Albums");

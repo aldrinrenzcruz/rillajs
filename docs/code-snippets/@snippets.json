@@ -65,6 +65,8 @@
   "text-get",
   "text-set",
   "this-method-sample-usage",
+  "title-get",
+  "title-set",
   "toKebabCase-function",
   "toKebabCase-method",
   "toSentenceCase-function",

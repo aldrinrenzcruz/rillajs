@@ -113,6 +113,13 @@ const sidebarListData = [
     ]
   },
   {
+    title: "Page Utilities",
+    href: "#page-utilities",
+    items: [
+      { title: "title", href: "#title" }
+    ]
+  },
+  {
     title: "More Information",
     href: "#more-information",
     items: [
