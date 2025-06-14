@@ -20,46 +20,37 @@ function renderCodeBlocks() {
             .then(data => {
               const lines = data.split("\n");
               const lang = lines[0].replace(/^#\s*/, "");
-              const modifiedContent = lines.slice(2).join("\n");
-              return { snippet, modifiedContent, lang };
+              const content = lines.slice(2).join("\n");
+              return { snippet, content, lang };
             })
             .catch(err => {
               console.error(`Error fetching ${url}:`, err);
-              return { snippet, modifiedContent: null, lang: null };
+              return { snippet, content: null, lang: null };
             });
         })
-      ).then(results => {
-        results.forEach(({ snippet, modifiedContent, lang }) => {
-          if (!modifiedContent || lang === null) return;
-          const codeblock = $(`.code-block[data-src=${snippet}]`);
-          if (!codeblock) {
-            console.warn(`renderCodeBlocks: data-src="${snippet}" element not found`);
-            return;
-          }
-          codeblock
-            .$append(`<pre></pre>`)
-            .$("pre")
-            .$append(`<code class="language-${lang}"></code>`)
-            .$("code")
-            .$text(modifiedContent)
-            .$this((el) => { hljs.highlightElement(el) })
-            .$parent()
-            .$wrap("<div class='relative'></div>")
-            .$parent()
-            .$prepend("<span class='code-type'></span>")
-            .$(".code-type")
-            .$text(lang.trim())
-            .$parent()
-            .$prepend("<button class='copy-btn'></button>")
-            .$(".copy-btn")
-            .$text("Copy")
-            .$this(btn =>
-              btn.$on('click', () => {
-                navigator.clipboard.writeText(modifiedContent);
-                btn.$text("Copied");
-                setTimeout(() => btn.$text("Copy"), 1500);
-              })
-            );
+      );
+    })
+    .then(results => {
+      $(".code-block").forEach((el) => {
+        const dataSnippet = el.$attr("data-src");
+        const snippetData = results.find(result => result.snippet === dataSnippet);
+        if (!snippetData || !snippetData.content || snippetData.lang === null) {
+          console.warn(`renderCodeBlocks: No valid data found for data-src="${dataSnippet}"`);
+          return;
+        }
+        const { content, lang } = snippetData;
+        el.$append(`
+          <div class="relative">
+            <button class="copy-btn">Copy</button>
+            <span class="code-type">${lang.trim()}</span>
+            <pre><code class="language-${lang} hljs"></code></pre>
+          </div>
+        `)
+        el.$("code").$text(content).$this(el => { hljs.highlightElement(el) })
+        el.$(".copy-btn").$on("click", function () {
+          navigator.clipboard.writeText(content);
+          this.$text("Copied");
+          setTimeout(() => this.$text("Copy"), 1500);
         });
       });
     })
