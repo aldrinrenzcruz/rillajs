@@ -38,17 +38,16 @@ function renderCodeBlocks() {
           console.warn(`renderCodeBlocks: No valid data found for data-src="${dataSnippet}"`);
           return;
         }
-        const { content, lang } = snippetData;
         el.$append(`
           <div class="relative">
             <button class="copy-btn">Copy</button>
-            <span class="code-type">${lang.trim()}</span>
-            <pre><code class="language-${lang} hljs"></code></pre>
+            <span class="code-type">${snippetData.lang.trim()}</span>
+            <pre><code class="language-${snippetData.lang} hljs"></code></pre>
           </div>
         `)
-        el.$("code").$text(content).$this(el => { hljs.highlightElement(el) })
+        el.$("code").$text(snippetData.content).$this(el => { hljs.highlightElement(el) })
         el.$(".copy-btn").$on("click", function () {
-          navigator.clipboard.writeText(content);
+          navigator.clipboard.writeText(snippetData.content);
           this.$text("Copied");
           setTimeout(() => this.$text("Copy"), 1500);
         });
