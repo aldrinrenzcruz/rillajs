@@ -474,6 +474,70 @@
         <p>As a method:</p>
         <div class="code-block" data-src="toggle-method"></div>
       </article>
+      <article id="animateIn" class="item">
+        <h3>
+          animateIn (optional)
+          <a href="./src/Element Visibility/animateIn.js">Raw</a>
+        </h3>
+        <p>Reveal hidden elements with smooth CSS animations. Handles animation timing, cleanup, callback, and user motion preferences.</p>
+        <p>Add the following function to your script:</p>
+        <div class="code-block" data-src="animateIn"></div>
+        <p>This function assumes your elements are hidden using a CSS class <kbd>.hidden</kbd>:</p>
+        <div class="code-block" data-src="css-hidden"></div>
+        <p>Modify the animation duration by replacing the default <kbd>200ms</kbd>. Also if your app doesn't support the toggle setting for enabling/disabling motion effects, you can remove the condition for <kbd>isMotionEffectsEnabled</kbd> like so:</p>
+        <div class="code-block" data-src="animateIn-no-settings"></div>
+        <p>Lastly, this requires any of the following CSS:</p>
+        <h4>slide-in-left</h4>
+        <div class="code-block" data-src="slide-in-left"></div>
+        <h4>slide-in-right</h4>
+        <div class="code-block" data-src="slide-in-right"></div>
+        <h4>slide-in-up</h4>
+        <div class="code-block" data-src="slide-in-up"></div>
+        <h4>slide-in-down</h4>
+        <div class="code-block" data-src="slide-in-down"></div>
+        <h4>zoom-in</h4>
+        <div class="code-block" data-src="zoom-in"></div>
+      </article>
+      <article id="animateOut" class="item">
+        <h3>
+          animateOut (optional)
+          <a href="./src/Element Visibility/animateOut.js">Raw</a>
+        </h3>
+        <p>Hide elements with smooth CSS animations. Handles animation timing, cleanup, callback, and user motion preferences.</p>
+        <p>Add the following function to your script:</p>
+        <div class="code-block" data-src="animateOut"></div>
+        <p>This function assumes your elements would be hidden using a CSS class <kbd>.hidden</kbd>:</p>
+        <div class="code-block" data-src="css-hidden"></div>
+        <p>Modify the animation duration by replacing the default <kbd>200ms</kbd>. Also if your app doesn't support the toggle setting for enabling/disabling motion effects, you can remove the condition for <kbd>isMotionEffectsEnabled</kbd> like so:</p>
+        <div class="code-block" data-src="animateOut-no-settings"></div>
+        <p>Lastly, this requires any of the following CSS:</p>
+        <h4>slide-out-left</h4>
+        <div class="code-block" data-src="slide-out-left"></div>
+        <h4>slide-out-right</h4>
+        <div class="code-block" data-src="slide-out-right"></div>
+        <h4>slide-out-up</h4>
+        <div class="code-block" data-src="slide-out-up"></div>
+        <h4>slide-out-down</h4>
+        <div class="code-block" data-src="slide-out-down"></div>
+        <h4>zoom-out</h4>
+        <div class="code-block" data-src="zoom-out"></div>
+      </article>
+      <article id="animateSlideScreens" class="item">
+        <h3>
+          animateSlideScreens (optional)
+          <a href="./src/Element Visibility/animateSlideScreens.js">Raw</a>
+        </h3>
+        <p>Swap two "screens" i.e. elements visibility with smooth slide transition:</p>
+        <div class="code-block" data-src="animateSlideScreens"></div>
+      </article>
+      <article id="animateZoomScreens" class="item">
+        <h3>
+          animateZoomScreens (optional)
+          <a href="./src/Element Visibility/animateZoomScreens.js">Raw</a>
+        </h3>
+        <p>Swap two "screens" i.e. elements visibility with smooth zoom transition:</p>
+        <div class="code-block" data-src="animateZoomScreens"></div>
+      </article>
     </section>
 
     <section>

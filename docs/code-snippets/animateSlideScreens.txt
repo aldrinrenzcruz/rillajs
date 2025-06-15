@@ -1,0 +1,13 @@
+#javascript
+
+function animateSlideScreens(fromScreen, toScreen, direction = "left", callback) {
+  const fromElement = $getElement(fromScreen);
+  const toElement = $getElement(toScreen);
+  animateOut(fromElement, `slide-out-${direction}`, () => {
+    animateIn(toElement, `slide-in-${direction}`, () => {
+      if (typeof callback === "function") {
+        callback();
+      }
+    });
+  });
+}

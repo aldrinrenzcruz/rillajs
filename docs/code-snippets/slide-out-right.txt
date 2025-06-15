@@ -1,0 +1,17 @@
+#css
+
+.slide-out-right {
+  animation: slideOutRight 0.2s ease-in forwards;
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}

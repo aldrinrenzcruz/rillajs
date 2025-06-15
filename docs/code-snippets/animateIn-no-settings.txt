@@ -1,0 +1,11 @@
+#javascript
+
+function animateIn(element, animation, callback) {
+  const el = $getElement(element);
+  el.classList.remove("hidden");
+  el.classList.add(animation);
+  setTimeout(() => {
+    el.classList.remove(animation);
+    (typeof callback === "function") && callback(true);
+  }, 200);
+}

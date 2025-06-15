@@ -1,0 +1,17 @@
+#css
+
+.zoom-out {
+  animation: zoomOut 0.2s ease-out forwards;
+}
+
+@keyframes zoomOut {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+}

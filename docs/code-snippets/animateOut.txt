@@ -1,0 +1,16 @@
+#javascript
+
+function animateOut(element, animation, callback) {
+  const el = $getElement(element);
+  if (isMotionEffectsEnabled) {
+    el.classList.add(animation);
+    setTimeout(() => {
+      el.classList.add("hidden");
+      el.classList.remove(animation);
+      (typeof callback === "function") && callback(true);
+    }, 200);
+  } else {
+    el.classList.add("hidden");
+    (typeof callback === "function") && callback(true);
+  }
+}

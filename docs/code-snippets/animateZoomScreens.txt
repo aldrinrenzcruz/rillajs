@@ -1,0 +1,13 @@
+#javascript
+
+function animateZoomScreens(fromScreen, toScreen, callback) {
+  const fromElement = $getElement(fromScreen);
+  const toElement = $getElement(toScreen);
+  animateOut(fromElement, "zoom-out", () => {
+    animateIn(toElement, "zoom-in", () => {
+      if (typeof callback === "function") {
+        callback();
+      }
+    });
+  });
+}

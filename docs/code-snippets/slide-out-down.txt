@@ -1,0 +1,17 @@
+#css
+
+.slide-out-down {
+  animation: slideOutDown 0.2s ease-in forwards;
+}
+
+@keyframes slideOutDown {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
