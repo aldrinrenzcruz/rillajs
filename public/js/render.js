@@ -12,7 +12,8 @@ const sidebarListData = [
     title: "DOM Selection",
     href: "#dom-selection",
     items: [
-      { title: "$(element)", href: "#selector" }
+      { title: "$(element)", href: "#selector" },
+      { title: "getElement", href: "#getElement" }
     ]
   },
   {

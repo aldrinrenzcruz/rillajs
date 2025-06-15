@@ -47,6 +47,10 @@ function $select(context, el) {
   return elements.length === 1 ? elements[0] : elements;
 }
 
+function $getElement(element) {
+  return typeof element === "string" ? document.querySelector(element) : element;
+}
+
 Element.prototype.$children = function (level = 1) {
   let current = [this];
   for (let i = 0; i < level; i++) {

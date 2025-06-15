@@ -1,0 +1,13 @@
+#javascript
+
+$getElement(element);
+
+$getElement("#header")           // returns element with ID "header"
+$getElement(".modal")            // returns first element with class "modal"
+$getElement("section > .item")   // returns first matching nested element
+$getElement(document.body)       // returns document.body unchanged
+
+function animateIn(element) {
+  const el = $getElement(element);
+  ...
+}

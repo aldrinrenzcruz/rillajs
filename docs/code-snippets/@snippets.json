@@ -35,6 +35,7 @@
   "event-on",
   "event-prevent",
   "event-stop",
+  "getElement",
   "hasClass",
   "hash-get",
   "hash-set",
