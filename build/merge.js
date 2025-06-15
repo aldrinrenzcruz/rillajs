@@ -12,6 +12,7 @@ const directories = [
   "Event Handling",
   "Attribute Utilities",
   "String Manipulation",
+  "Array Manipulation",
   "Element Interaction",
   "Element Visibility",
   "Storage Utilities",

@@ -965,6 +965,19 @@ String.prototype.$truncate = function (length, trim = true) {
   return $truncate(this, length, trim);
 };
 
+function $shuffle(array) {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+Array.prototype.shuffle = function () {
+  return $shuffle(this);
+};
+
 window.addEventListener("load", function () {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   var popups = document.getElementsByClassName("draggable");

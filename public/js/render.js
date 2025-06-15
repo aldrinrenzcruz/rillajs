@@ -80,6 +80,13 @@ const sidebarListData = [
     ]
   },
   {
+    title: "Array Manipulation",
+    href: "#array-manipulation",
+    items: [
+      { title: "shuffle", href: "#shuffle" }
+    ]
+  },
+  {
     title: "Element Visibility",
     href: "#element-visibility",
     items: [

@@ -69,6 +69,8 @@
   "session-set",
   "show-function",
   "show-method",
+  "shuffle-function",
+  "shuffle-method",
   "siblings-method-sample-usage",
   "slide-in-down",
   "slide-in-left",

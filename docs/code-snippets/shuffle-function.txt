@@ -1,0 +1,18 @@
+#javascript
+
+$shuffle(array);
+
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+console.log("Shuffled:", $shuffle(numbers));
+
+const fruits = ["apple", "banana", "cherry", "date", "elderberry"];
+console.log("Shuffled fruits:", $shuffle(fruits));
+
+const users = [
+  { id: 1, name: "Alice", role: "admin" },
+  { id: 2, name: "Bob", role: "user" },
+  { id: 3, name: "Charlie", role: "moderator" },
+  { id: 4, name: "Diana", role: "user" },
+  { id: 5, name: "Eve", role: "admin" }
+];
+console.log("Shuffled users:", $shuffle(users));
