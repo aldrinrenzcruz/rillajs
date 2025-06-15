@@ -2,9 +2,9 @@
 
 $session(key, value);
 
-$session('isLoggedIn', true);
+$session("isLoggedIn", true);
 
-$session('cartItems', [
-  { id: 1, name: 'Laptop', price: 999 },
-  { id: 2, name: 'Mouse', price: 29 }
+$session("cartItems", [
+  { id: 1, name: "Laptop", price: 999 },
+  { id: 2, name: "Mouse", price: 29 }
 ]);

@@ -2,4 +2,4 @@
 
 element.$text();
 
-$('#paragraph').$text();
+$("#paragraph").$text();

@@ -2,8 +2,8 @@
 
 element.$hide();
 
-$('.modal')
+$(".modal")
   .$hide()
-  .$addClass('animate-out');
+  .$addClass("animate-out");
 
 element.$hide(250); // fade-out

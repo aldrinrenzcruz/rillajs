@@ -2,4 +2,4 @@
 
 element.$value(content);
 
-$('#search-bar').$value("hello world");
+$("#search-bar").$value("hello world");

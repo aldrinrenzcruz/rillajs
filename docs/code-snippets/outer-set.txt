@@ -2,4 +2,4 @@
 
 element.$outer(content);
 
-$('#container').$outer("<h1>New Title</h1>");
+$("#container").$outer("<h1>New Title</h1>");

@@ -2,8 +2,8 @@
 
 element.$("on" () => {...}).$stop();
 
-$('#my-button')
-  .$on('click', function(e) {
-    console.log('Child button clicked');
+$("#my-button")
+  .$on("click", function(e) {
+    console.log("Child button clicked");
   })
   .$stop();

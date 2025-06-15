@@ -1,4 +1,4 @@
 #javascript
 
-$('button').addEventListener(...)
-$('container').$append()
+$("button").addEventListener(...)
+$("container").$append()

@@ -1,7 +1,7 @@
 #javascript
 
-$("#heading").$css('font-size', '20px');
+$("#heading").$css("font-size", "20px");
 // Result: <p id="heading" style="font-size: 20px;"></p>
 
-$("#heading").$css('color', "#000");
+$("#heading").$css("color", "#000");
 // Result: <p id="heading" style="color: rgb(0, 0, 0);"></p>

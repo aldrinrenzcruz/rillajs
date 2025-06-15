@@ -2,4 +2,4 @@
 
 element.$inner(content);
 
-$('#container').$inner("<h1>New Title</h1>");
+$("#container").$inner("<h1>New Title</h1>");

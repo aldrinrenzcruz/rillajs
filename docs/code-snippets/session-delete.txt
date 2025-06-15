@@ -2,4 +2,4 @@
 
 $session(key, null);
 
-$session('cartItems', null);
+$session("cartItems", null);

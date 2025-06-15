@@ -2,4 +2,4 @@
 
 $local(key, null);
 
-$local('theme', null);
+$local("theme", null);

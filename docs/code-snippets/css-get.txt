@@ -2,6 +2,6 @@
 
 element.$css(property);
 
-$("#heading").$css('font-size');        // "16px"
-$("#heading").$css('color');            // "oklch(0.278 0.033 256.848)"
-$("#heading").$css('letter-spacing');   // "normal"
+$("#heading").$css("font-size");        // "16px"
+$("#heading").$css("color");            // "oklch(0.278 0.033 256.848)"
+$("#heading").$css("letter-spacing");   // "normal"

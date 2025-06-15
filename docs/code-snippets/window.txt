@@ -2,11 +2,11 @@
 
 // Using a regular function
 $window(function() {
-  console.log('Everything is loaded!');
+  console.log("Everything is loaded!");
   // Your code here
 });
 
 // Using an arrow function
 $window(() => {
-  console.log('Page fully loaded!');
+  console.log("Page fully loaded!");
 });

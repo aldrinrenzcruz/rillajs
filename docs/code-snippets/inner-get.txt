@@ -2,4 +2,4 @@
 
 element.$inner();
 
-$('#container').$inner();
+$("#container").$inner();

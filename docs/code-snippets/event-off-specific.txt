@@ -2,4 +2,4 @@
 
 element.$off(event, handler);
 
-$('#myButton').$off('click', clickHandler);
+$("#myButton").$off("click", clickHandler);

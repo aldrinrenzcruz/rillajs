@@ -2,4 +2,4 @@
 
 element.$off(event);
 
-$('#my-element').$off('click');
+$("#my-element").$off("click");

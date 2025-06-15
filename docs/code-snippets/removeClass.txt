@@ -4,4 +4,4 @@ element.$removeClass(className);
 
 link.$removeClass("active");
 
-btn.$removeClass('btn primary large');
+btn.$removeClass("btn primary large");

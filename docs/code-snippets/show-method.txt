@@ -2,12 +2,12 @@
 
 element.$show(displayType);
 
-$('.modal')
+$(".modal")
   .$show() // defaults to block
-  .$addClass('animate-in');
+  .$addClass("animate-in");
 
-$('.navbar')
-  .$show('flex') // display type flex
-  .$setAttribute('aria-expanded', 'true');
+$(".navbar")
+  .$show("flex") // display type flex
+  .$setAttribute("aria-expanded", "true");
 
-element.$show('block', 200); // fade-in
+element.$show("block", 200); // fade-in

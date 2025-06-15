@@ -2,4 +2,4 @@
 
 element.$off();
 
-$('#myButton').$off();
+$("#myButton").$off();
