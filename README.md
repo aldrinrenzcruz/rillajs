@@ -4,8 +4,6 @@
 
 Rilla.js is a lightweight JavaScript utility library designed to simplify development and improve the developer experience.
 
-> ⚠️ **Warning**: This early build (v0.1) is still in development and may undergo significant changes without prior notice, potentially breaking your code. Use it for testing purposes only.
-
 ## 🚀 Getting Started
 
 ### Download
@@ -32,6 +30,8 @@ Simply add the rilla.min.js script tag in the `<head>` section of your HTML file
 ```
 
 ## 📖 Documentation
+
+Link to the official documentation: [https://rillajs.aldrinrenzcruz.com/](https://rillajs.aldrinrenzcruz.com/)
 
 ### DOM Selection
 
