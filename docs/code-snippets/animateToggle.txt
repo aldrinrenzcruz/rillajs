@@ -1,0 +1,11 @@
+#javascript
+
+function animateToggle(element, inAnimation, outAnimation, callback) {
+  const el = $getElement(element);
+  const isVisible = !el.classList.contains("hidden");
+  if (isVisible) {
+    animateOut(el, outAnimation, callback);
+  } else {
+    animateIn(el, inAnimation, callback);
+  }
+}

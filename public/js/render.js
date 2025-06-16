@@ -95,6 +95,7 @@ const sidebarListData = [
       { title: "toggle", href: "#toggle" },
       { title: "animateIn", href: "#animateIn" },
       { title: "animateOut", href: "#animateOut" },
+      { title: "animateToggle", href: "#animateToggle" },
       { title: "animateSlideScreens", href: "#animateSlideScreens" },
       { title: "animateZoomScreens", href: "#animateZoomScreens" },
     ]

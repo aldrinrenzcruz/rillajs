@@ -974,7 +974,7 @@ function $shuffle(array) {
   return shuffled;
 }
 
-Array.prototype.shuffle = function () {
+Array.prototype.$shuffle = function () {
   return $shuffle(this);
 };
 
