@@ -57,3 +57,37 @@ function renderCodeBlocks() {
       console.error("Error loading .json:", err);
     });
 }
+
+$("#sidebar-menu-btn").$on("click", () => {
+  animateToggle("#sidebar", "slide-in-right", "slide-out-left");
+})
+
+function animateIn(element, animation, callback) {
+  const el = $getElement(element);
+  el.classList.remove("hidden");
+  el.classList.add(animation);
+  setTimeout(() => {
+    el.classList.remove(animation);
+    (typeof callback === "function") && callback(true);
+  }, 200);
+}
+
+function animateOut(element, animation, callback) {
+  const el = $getElement(element);
+  el.classList.add(animation);
+  setTimeout(() => {
+    el.classList.add("hidden");
+    el.classList.remove(animation);
+    (typeof callback === "function") && callback(true);
+  }, 200);
+}
+
+function animateToggle(element, inAnimation, outAnimation, callback) {
+  const el = $getElement(element);
+  const isVisible = !el.classList.contains("hidden");
+  if (isVisible) {
+    animateOut(el, outAnimation, callback);
+  } else {
+    animateIn(el, inAnimation, callback);
+  }
+}
