@@ -20,24 +20,24 @@
 
 <body>
 
-  <button id="sidebar-menu-btn" class="fixed top-8 left-4 z-50 cursor-pointer">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-      class="bi bi-list" viewBox="0 0 16 16">
-      <path fill-rule="evenodd"
-        d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
-    </svg>
-  </button>
+  <header class="fixed top-0 left-0 w-full flex items-center justify-start gap-x-4 px-6 py-4 bg-white">
+    <button id="sidebar-menu-btn" class="cursor-pointer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+        class="bi bi-list" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+      </svg>
+    </button>
+    <span class="text-2xl font-bold text-rose-600">
+      <a href="/index.html">Rilla.js</a>
+    </span>
+  </header>
 
-  <aside id="sidebar" class="fixed top-0 left-0 h-screen w-64 bg-white border-r border-gray-400 shadow-lg z-40 transform transition-transform duration-300 ease-in-out overflow-y-auto pt-2 pb-4 pl-5 pr-8 no-highlight">
-    <div class="mt-4 mb-6">
-      <span class="text-2xl font-bold text-rose-600 ml-10">
-        <a href="/index.html">Rilla.js</a>
-      </span>
-    </div>
+  <aside id="sidebar" class="fixed top-16 left-0 w-64 bg-white transform transition-transform duration-300 ease-in-out overflow-y-auto pb-4 pl-5 pr-8 no-highlight" style="height: calc(100vh - 4rem);">
     <ul id="sidebar-list-placeholder" class="space-y-2 toc"></ul>
   </aside>
 
-  <main class="w-full max-w-3xl mx-auto py-8 px-4 relative z-10">
+  <main class="w-full max-w-3xl mx-auto pt-24 pb-8 px-4 relative z-10">
     <section>
       <h1>Writing JS Made Easy</h1>
       <p class="mb-6"><em>Rilla.js</em> is a lightweight JavaScript utility library designed to simplify development and improve the developer experience.</p>
@@ -681,7 +681,7 @@
   </main>
 
   <footer class="w-full text-center py-6 text-sm text-gray-500">
-    Built by <a href="https://aldrinrenzcruz.com/notebook" class="underline hover:text-rose-600">Aldrin Renz Cruz</a> |
+    Created by <a href="https://aldrinrenzcruz.com/notebook" class="underline hover:text-rose-600">Aldrin Renz Cruz</a> |
     <a href="https://github.com/aldrinrenzcruz/rillajs" class="underline hover:text-rose-600">GitHub</a>
   </footer>
 
