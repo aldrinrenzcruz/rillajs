@@ -3,6 +3,10 @@ body {
   color: var(--color-gray-800);
 }
 
+html {
+  scroll-padding-top: 4rem;
+}
+
 .no-highlight,
 button,
 .code-type,
